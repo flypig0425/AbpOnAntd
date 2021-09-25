@@ -3004,7 +3004,7 @@
           "bin/placeholder/Zero.Abp.AspNetCore.Components.Web.Theming.dll": {}
         }
       },
-      "Zero.Abp.AspNetCore.Mvc.UI.Bundling/1.0.0": {
+      "Zero.Abp.AspNetCore.Mvc.UI.Bundling/4.4.2": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
@@ -9400,7 +9400,7 @@
       "path": "../Zero.Abp.AspNetCore.Components.Web.Theming/Zero.Abp.AspNetCore.Components.Web.Theming.csproj",
       "msbuildProject": "../Zero.Abp.AspNetCore.Components.Web.Theming/Zero.Abp.AspNetCore.Components.Web.Theming.csproj"
     },
-    "Zero.Abp.AspNetCore.Mvc.UI.Bundling/1.0.0": {
+    "Zero.Abp.AspNetCore.Mvc.UI.Bundling/4.4.2": {
       "type": "project",
       "path": "../Zero.Abp.AspNetCore.Mvc.UI.Bundling/Zero.Abp.AspNetCore.Mvc.UI.Bundling.csproj",
       "msbuildProject": "../Zero.Abp.AspNetCore.Mvc.UI.Bundling/Zero.Abp.AspNetCore.Mvc.UI.Bundling.csproj"
@@ -9412,7 +9412,7 @@
       "Fody >= 6.5.0",
       "Zero.Abp.AspNetCore.Components.Server >= 4.4.2",
       "Zero.Abp.AspNetCore.Components.Web.Theming >= 4.4.2",
-      "Zero.Abp.AspNetCore.Mvc.UI.Bundling >= 1.0.0"
+      "Zero.Abp.AspNetCore.Mvc.UI.Bundling >= 4.4.2"
     ]
   },
   "packageFolders": {

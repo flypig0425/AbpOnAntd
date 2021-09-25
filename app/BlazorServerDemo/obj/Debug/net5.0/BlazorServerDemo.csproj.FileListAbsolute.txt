@@ -477,3 +477,4 @@ D:\DevCodes\AbpZero\app\BlazorServerDemo\obj\Debug\net5.0\BlazorServerDemo.dll
 D:\DevCodes\AbpZero\app\BlazorServerDemo\obj\Debug\net5.0\ref\BlazorServerDemo.dll
 D:\DevCodes\AbpZero\app\BlazorServerDemo\obj\Debug\net5.0\BlazorServerDemo.pdb
 D:\DevCodes\AbpZero\app\BlazorServerDemo\obj\Debug\net5.0\BlazorServerDemo.genruntimeconfig.cache
+D:\DevCodes\AbpZero\app\BlazorServerDemo\bin\Debug\net5.0\Zero.Abp.AspNetCore.Mvc.UI.Bundling.xml

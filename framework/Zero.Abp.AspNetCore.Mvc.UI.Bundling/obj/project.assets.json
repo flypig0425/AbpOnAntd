@@ -2,6 +2,27 @@
   "version": 3,
   "targets": {
     "net5.0": {
+      "ConfigureAwait.Fody/3.3.1": {
+        "type": "package",
+        "dependencies": {
+          "Fody": "6.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/ConfigureAwait.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/ConfigureAwait.dll": {}
+        },
+        "build": {
+          "build/ConfigureAwait.Fody.props": {}
+        }
+      },
+      "Fody/6.5.0": {
+        "type": "package",
+        "build": {
+          "build/Fody.targets": {}
+        }
+      },
       "JetBrains.Annotations/2020.3.0": {
         "type": "package",
         "compile": {
@@ -1640,6 +1661,57 @@
     }
   },
   "libraries": {
+    "ConfigureAwait.Fody/3.3.1": {
+      "sha512": "R9PQYf0AT4RBZcUXm22xWkCpSmNHdTzQ0dOyLIsxIK6dwXH4S9pY/rZdXU/63i8vZvSzZ99sB1kP7xer8MCe6w==",
+      "type": "package",
+      "path": "configureawait.fody/3.3.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/ConfigureAwait.Fody.props",
+        "configureawait.fody.3.3.1.nupkg.sha512",
+        "configureawait.fody.nuspec",
+        "lib/net452/ConfigureAwait.dll",
+        "lib/net452/ConfigureAwait.xml",
+        "lib/netstandard2.0/ConfigureAwait.dll",
+        "lib/netstandard2.0/ConfigureAwait.xml",
+        "weaver/ConfigureAwait.Fody.dll",
+        "weaver/ConfigureAwait.Fody.xcf"
+      ]
+    },
+    "Fody/6.5.0": {
+      "sha512": "+bc+fzXFum7/MPjhEsxw+kIGcwfnI3JHv4w2T0jLLvk9HfO/xoq/aIjF1TSPlUWl+A1k2odtwdEdKZXJZXZzbQ==",
+      "type": "package",
+      "path": "fody/6.5.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "License.txt",
+        "build/Fody.targets",
+        "fody.6.5.0.nupkg.sha512",
+        "fody.nuspec",
+        "netclassictask/Fody.dll",
+        "netclassictask/FodyCommon.dll",
+        "netclassictask/FodyHelpers.dll",
+        "netclassictask/FodyIsolated.dll",
+        "netclassictask/Mono.Cecil.Pdb.dll",
+        "netclassictask/Mono.Cecil.Pdb.pdb",
+        "netclassictask/Mono.Cecil.Rocks.dll",
+        "netclassictask/Mono.Cecil.Rocks.pdb",
+        "netclassictask/Mono.Cecil.dll",
+        "netclassictask/Mono.Cecil.pdb",
+        "netstandardtask/Fody.dll",
+        "netstandardtask/FodyCommon.dll",
+        "netstandardtask/FodyHelpers.dll",
+        "netstandardtask/FodyIsolated.dll",
+        "netstandardtask/Mono.Cecil.Pdb.dll",
+        "netstandardtask/Mono.Cecil.Pdb.pdb",
+        "netstandardtask/Mono.Cecil.Rocks.dll",
+        "netstandardtask/Mono.Cecil.Rocks.pdb",
+        "netstandardtask/Mono.Cecil.dll",
+        "netstandardtask/Mono.Cecil.pdb"
+      ]
+    },
     "JetBrains.Annotations/2020.3.0": {
       "sha512": "FnX06vtxuoZnhZdR6UHt5kJ7HUC/syODfGLnhPDn1x5sXvvepNyCl4jMtPUzJfsPWh7q0Jo+AIYz5xaVbbyikA==",
       "type": "package",
@@ -5074,6 +5146,8 @@
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "ConfigureAwait.Fody >= 3.3.1",
+      "Fody >= 6.5.0",
       "Volo.Abp.AspNetCore.Mvc >= 4.4.2",
       "Volo.Abp.AspNetCore.Mvc.UI.Bundling.Abstractions >= 4.4.2",
       "Volo.Abp.Minify >= 4.4.2"
@@ -5083,7 +5157,7 @@
     "C:\\Users\\weidyg\\.nuget\\packages\\": {}
   },
   "project": {
-    "version": "1.0.0",
+    "version": "4.4.2",
     "restore": {
       "projectUniqueName": "D:\\DevCodes\\AbpZero\\framework\\Zero.Abp.AspNetCore.Mvc.UI.Bundling\\Zero.Abp.AspNetCore.Mvc.UI.Bundling.csproj",
       "projectName": "Zero.Abp.AspNetCore.Mvc.UI.Bundling",
@@ -5118,6 +5192,17 @@
       "net5.0": {
         "targetAlias": "net5.0",
         "dependencies": {
+          "ConfigureAwait.Fody": {
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[3.3.1, )"
+          },
+          "Fody": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[6.5.0, )"
+          },
           "Volo.Abp.AspNetCore.Mvc": {
             "target": "Package",
             "version": "[4.4.2, )"

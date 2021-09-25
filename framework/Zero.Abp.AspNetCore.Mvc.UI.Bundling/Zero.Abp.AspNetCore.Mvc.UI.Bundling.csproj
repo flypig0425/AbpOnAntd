@@ -1,13 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
+  <Import Project="..\configureawait.props" />
+  <Import Project="..\common.props" />
+  
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
   
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.AspNetCore.Mvc" Version="4.4.2" />
-    <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Bundling.Abstractions" Version="4.4.2" />
-    <PackageReference Include="Volo.Abp.Minify" Version="4.4.2" />
+    <PackageReference Include="Volo.Abp.AspNetCore.Mvc" Version="$(AbpPackageVersion)" />
+    <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Bundling.Abstractions" Version="$(AbpPackageVersion)" />
+    <PackageReference Include="Volo.Abp.Minify" Version="$(AbpPackageVersion)" />
   </ItemGroup>
   
 </Project>

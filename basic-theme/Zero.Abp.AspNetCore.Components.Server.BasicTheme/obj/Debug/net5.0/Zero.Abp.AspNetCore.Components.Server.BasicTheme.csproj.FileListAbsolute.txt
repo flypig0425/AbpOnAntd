@@ -320,7 +320,8 @@ D:\DevCodes\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Server.BasicTheme
 D:\DevCodes\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Server.BasicTheme\obj\Debug\net5.0\staticwebassets\Zero.Abp.AspNetCore.Components.Server.BasicTheme.StaticWebAssets.Manifest.cache
 D:\DevCodes\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Server.BasicTheme\obj\Debug\net5.0\staticwebassets\Zero.Abp.AspNetCore.Components.Server.BasicTheme.StaticWebAssets.xml
 D:\DevCodes\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Server.BasicTheme\obj\Debug\net5.0\Zero.Abp.AspNetCore.Components.Server.BasicTheme.RazorTargetAssemblyInfo.cache
-D:\DevCodes\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Server.BasicTheme\obj\Debug\net5.0\Zero.Abp.AspNetCore.Components.Server.BasicTheme.csproj.CopyComplete
 D:\DevCodes\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Server.BasicTheme\obj\Debug\net5.0\Zero.Abp.AspNetCore.Components.Server.BasicTheme.dll
 D:\DevCodes\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Server.BasicTheme\obj\Debug\net5.0\ref\Zero.Abp.AspNetCore.Components.Server.BasicTheme.dll
 D:\DevCodes\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Server.BasicTheme\obj\Debug\net5.0\Zero.Abp.AspNetCore.Components.Server.BasicTheme.pdb
+D:\DevCodes\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Server.BasicTheme\bin\Debug\net5.0\Zero.Abp.AspNetCore.Mvc.UI.Bundling.xml
+D:\DevCodes\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Server.BasicTheme\obj\Debug\net5.0\Zero.Abp.AspNetCore.Components.Server.BasicTheme.csproj.CopyComplete

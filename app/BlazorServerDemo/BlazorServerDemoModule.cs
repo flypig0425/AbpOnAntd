@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System;
+using System.Linq;
 using System.Net.Http;
 using Volo.Abp;
 using Volo.Abp.AspNetCore.Authentication.JwtBearer;
@@ -41,12 +43,13 @@ namespace BlazorServerDemo
             //ConfigureAutoMapper();
             //ConfigureVirtualFileSystem(hostingEnvironment);
             ConfigureLocalizationServices();
-            ConfigureSwaggerServices(context.Services);
             //ConfigureAutoApiControllers();
             ConfigureHttpClient(context);
             //ConfigureAntDesign(context);
             ConfigureRouter(context);
             //ConfigureMenu(context);
+            ConfigureCors(context, configuration);
+            ConfigureSwaggerServices(context.Services);
         }
 
         private void ConfigureUrls(IConfiguration configuration)
@@ -149,6 +152,28 @@ namespace BlazorServerDemo
                 options.AppAssembly = typeof(BlazorServerDemoModule).Assembly;
             });
         }
+        private void ConfigureCors(ServiceConfigurationContext context, IConfiguration configuration)
+        {
+            context.Services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder
+                        .WithOrigins(
+                            configuration["App:CorsOrigins"]
+                                .Split(",", StringSplitOptions.RemoveEmptyEntries)
+                                .Select(o => o.RemovePostFix("/"))
+                                .ToArray()
+                        )
+                        .WithAbpExposedHeaders()
+                        .SetIsOriginAllowedToAllowWildcardSubdomains()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowCredentials();
+                });
+            });
+        }
+
 
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
         {
@@ -171,6 +196,7 @@ namespace BlazorServerDemo
             app.UseCorrelationId();
             app.UseStaticFiles();
             app.UseRouting();
+            app.UseCors();
             //app.UseAuthentication();
             //app.UseJwtTokenMiddleware();
 

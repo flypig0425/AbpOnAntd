@@ -14,8 +14,8 @@ namespace Zero.Abp.AspNetCore.Components.WebAssembly.BasicTheme.Themes.Basic
         [Inject]
         protected IMenuManager MenuManager { get; set; }
 
-        [CanBeNull]
-        protected AuthenticationStateProvider AuthenticationStateProvider;
+        //[CanBeNull]
+        //protected AuthenticationStateProvider AuthenticationStateProvider;
 
         //[CanBeNull]
         //protected SignOutSessionStateManager SignOutManager;
@@ -28,17 +28,17 @@ namespace Zero.Abp.AspNetCore.Components.WebAssembly.BasicTheme.Themes.Basic
 
             Navigation.LocationChanged += OnLocationChanged;
 
-            LazyGetService(ref AuthenticationStateProvider);
-            //LazyGetService(ref SignOutManager);
+            //LazyGetService(ref AuthenticationStateProvider);
+            ////LazyGetService(ref SignOutManager);
 
-            if (AuthenticationStateProvider != null)
-            {
-                AuthenticationStateProvider.AuthenticationStateChanged += async (task) =>
-                {
-                    Menu = await MenuManager.GetAsync(StandardMenus.User);
-                    await InvokeAsync(StateHasChanged);
-                };
-            }
+            //if (AuthenticationStateProvider != null)
+            //{
+            //    AuthenticationStateProvider.AuthenticationStateChanged += async (task) =>
+            //    {
+            //        Menu = await MenuManager.GetAsync(StandardMenus.User);
+            //        await InvokeAsync(StateHasChanged);
+            //    };
+            //}
         }
 
         protected virtual void OnLocationChanged(object sender, LocationChangedEventArgs e)

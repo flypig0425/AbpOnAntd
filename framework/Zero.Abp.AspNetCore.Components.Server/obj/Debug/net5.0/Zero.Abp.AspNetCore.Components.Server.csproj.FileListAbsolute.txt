@@ -20,8 +20,8 @@ D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components.Server\obj\Debug\ne
 D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components.Server\obj\Debug\net5.0\staticwebassets\Zero.Abp.AspNetCore.Components.Server.StaticWebAssets.Manifest.cache
 D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components.Server\obj\Debug\net5.0\staticwebassets\Zero.Abp.AspNetCore.Components.Server.StaticWebAssets.xml
 D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components.Server\obj\Debug\net5.0\Zero.Abp.AspNetCore.Components.Server.RazorTargetAssemblyInfo.cache
-D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components.Server\obj\Debug\net5.0\Zero.Abp.AspNetCore.Components.Server.csproj.CopyComplete
 D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components.Server\obj\Debug\net5.0\Zero.Abp.AspNetCore.Components.Server.dll
 D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components.Server\obj\Debug\net5.0\ref\Zero.Abp.AspNetCore.Components.Server.dll
 D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components.Server\obj\Debug\net5.0\Zero.Abp.AspNetCore.Components.Server.xml
 D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components.Server\obj\Debug\net5.0\Zero.Abp.AspNetCore.Components.Server.pdb
+D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components.Server\obj\Debug\net5.0\Zero.Abp.AspNetCore.Components.Server.csproj.CopyComplete

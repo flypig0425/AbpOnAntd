@@ -5189,3 +5189,732 @@ File name: 'Volo.Abp.AspNetCore.Components.Web, Version=4.4.2.0, Culture=neutral
 2021-09-24 23:28:46.398 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/_blazor?id=Dejs2yV-coUsxh6wBFbtfA - - - 101 - - 8060.8379ms
 2021-09-24 23:28:46.406 +08:00 [INF] Executed endpoint 'Blazor disconnect'
 2021-09-24 23:28:46.408 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:33188/_blazor/disconnect multipart/form-data;+boundary=----WebKitFormBoundary6itTI7IdkhndUnRI 359 - 200 - - 41.7481ms
+2021-09-25 23:27:15.132 +08:00 [INF] Starting web host.
+2021-09-25 23:27:17.491 +08:00 [INF] User profile is available. Using 'C:\Users\weidyg\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2021-09-25 23:27:17.557 +08:00 [INF] Loaded ABP modules:
+2021-09-25 23:27:17.557 +08:00 [INF] - BlazorServerDemo.BlazorServerDemoModule
+2021-09-25 23:27:17.557 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2021-09-25 23:27:17.557 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2021-09-25 23:27:17.557 +08:00 [INF]   - Volo.Abp.Swashbuckle.AbpSwashbuckleModule
+2021-09-25 23:27:17.557 +08:00 [INF]     - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2021-09-25 23:27:17.557 +08:00 [INF]     - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcModule
+2021-09-25 23:27:17.557 +08:00 [INF]       - Volo.Abp.AspNetCore.AbpAspNetCoreModule
+2021-09-25 23:27:17.557 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2021-09-25 23:27:17.557 +08:00 [INF]           - Volo.Abp.Data.AbpDataModule
+2021-09-25 23:27:17.557 +08:00 [INF]             - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2021-09-25 23:27:17.557 +08:00 [INF]               - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2021-09-25 23:27:17.557 +08:00 [INF]               - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2021-09-25 23:27:17.557 +08:00 [INF]             - Volo.Abp.Uow.AbpUnitOfWorkModule
+2021-09-25 23:27:17.557 +08:00 [INF]             - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2021-09-25 23:27:17.557 +08:00 [INF]           - Volo.Abp.Json.AbpJsonModule
+2021-09-25 23:27:17.557 +08:00 [INF]             - Volo.Abp.Timing.AbpTimingModule
+2021-09-25 23:27:17.557 +08:00 [INF]               - Volo.Abp.Localization.AbpLocalizationModule
+2021-09-25 23:27:17.557 +08:00 [INF]                 - Volo.Abp.Settings.AbpSettingsModule
+2021-09-25 23:27:17.557 +08:00 [INF]                   - Volo.Abp.Security.AbpSecurityModule
+2021-09-25 23:27:17.557 +08:00 [INF]                   - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2021-09-25 23:27:17.557 +08:00 [INF]           - Volo.Abp.Threading.AbpThreadingModule
+2021-09-25 23:27:17.557 +08:00 [INF]         - Volo.Abp.Http.AbpHttpModule
+2021-09-25 23:27:17.557 +08:00 [INF]           - Volo.Abp.Http.AbpHttpAbstractionsModule
+2021-09-25 23:27:17.557 +08:00 [INF]           - Volo.Abp.Minify.AbpMinifyModule
+2021-09-25 23:27:17.557 +08:00 [INF]         - Volo.Abp.Authorization.AbpAuthorizationModule
+2021-09-25 23:27:17.557 +08:00 [INF]           - Volo.Abp.Authorization.AbpAuthorizationAbstractionsModule
+2021-09-25 23:27:17.557 +08:00 [INF]         - Volo.Abp.Validation.AbpValidationModule
+2021-09-25 23:27:17.557 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2021-09-25 23:27:17.557 +08:00 [INF]       - Volo.Abp.ApiVersioning.AbpApiVersioningAbstractionsModule
+2021-09-25 23:27:17.557 +08:00 [INF]       - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcContractsModule
+2021-09-25 23:27:17.557 +08:00 [INF]         - Volo.Abp.Application.AbpDddApplicationContractsModule
+2021-09-25 23:27:17.557 +08:00 [INF]       - Volo.Abp.UI.Navigation.AbpUiNavigationModule
+2021-09-25 23:27:17.557 +08:00 [INF]         - Volo.Abp.UI.AbpUiModule
+2021-09-25 23:27:17.557 +08:00 [INF]       - Volo.Abp.GlobalFeatures.AbpGlobalFeaturesModule
+2021-09-25 23:27:17.557 +08:00 [INF]       - Volo.Abp.Application.AbpDddApplicationModule
+2021-09-25 23:27:17.557 +08:00 [INF]         - Volo.Abp.Domain.AbpDddDomainModule
+2021-09-25 23:27:17.557 +08:00 [INF]           - Volo.Abp.EventBus.AbpEventBusModule
+2021-09-25 23:27:17.557 +08:00 [INF]           - Volo.Abp.Guids.AbpGuidsModule
+2021-09-25 23:27:17.557 +08:00 [INF]           - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2021-09-25 23:27:17.557 +08:00 [INF]           - Volo.Abp.Specifications.AbpSpecificationsModule
+2021-09-25 23:27:17.557 +08:00 [INF]         - Volo.Abp.Features.AbpFeaturesModule
+2021-09-25 23:27:17.557 +08:00 [INF]   - Volo.Abp.AspNetCore.Authentication.JwtBearer.AbpAspNetCoreAuthenticationJwtBearerModule
+2021-09-25 23:27:17.557 +08:00 [INF]   - Volo.Abp.AspNetCore.Serilog.AbpAspNetCoreSerilogModule
+2021-09-25 23:27:17.557 +08:00 [INF]   - Zero.Abp.AspNetCore.Components.Server.BasicTheme.AbpAspNetCoreComponentsServerBasicThemeModule
+2021-09-25 23:27:17.557 +08:00 [INF]     - Zero.Abp.AspNetCore.Components.Web.BasicTheme.AbpAspNetCoreComponentsWebBasicThemeModule
+2021-09-25 23:27:17.557 +08:00 [INF]       - Zero.Abp.AspNetCore.Components.Web.Theming.AbpAspNetCoreComponentsWebThemingModule
+2021-09-25 23:27:17.557 +08:00 [INF]         - Zero.Abp.AntdesignUI.AbpAntdesignUIModule
+2021-09-25 23:27:17.557 +08:00 [INF]           - Zero.Abp.AspNetCore.Components.Web.AbpAspNetCoreComponentsWebModule
+2021-09-25 23:27:17.557 +08:00 [INF]             - Zero.Abp.AspNetCore.Components.AbpAspNetCoreComponentsModule
+2021-09-25 23:27:17.557 +08:00 [INF]     - Zero.Abp.AspNetCore.Components.Server.Theming.AbpAspNetCoreComponentsServerThemingModule
+2021-09-25 23:27:17.557 +08:00 [INF]       - Zero.Abp.AspNetCore.Components.Server.AbpAspNetCoreComponentsServerModule
+2021-09-25 23:27:17.557 +08:00 [INF]         - Volo.Abp.Http.Client.AbpHttpClientModule
+2021-09-25 23:27:17.557 +08:00 [INF]         - Volo.Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule
+2021-09-25 23:27:17.557 +08:00 [INF]       - Zero.Abp.AspNetCore.Mvc.UI.Bundling.AbpAspNetCoreMvcUiBundlingModule
+2021-09-25 23:27:17.557 +08:00 [INF]         - Volo.Abp.AspNetCore.Mvc.UI.Bundling.AbpAspNetCoreMvcUiBundlingAbstractionsModule
+2021-09-25 23:27:18.278 +08:00 [INF] Initialized all ABP modules.
+2021-09-25 23:27:18.291 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-09-25 23:27:18.291 +08:00 [INF] Hosting environment: Development
+2021-09-25 23:27:18.291 +08:00 [INF] Content root path: D:\DevCodes\AbpZero\app\BlazorServerDemo
+2021-09-25 23:27:18.302 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/ - -
+2021-09-25 23:27:18.337 +08:00 [WRN] Failed to determine the https port for redirect.
+2021-09-25 23:27:18.395 +08:00 [INF] Executing endpoint '/_Host'
+2021-09-25 23:27:18.421 +08:00 [INF] Route matched with {page = "/_Host", area = "", action = "", controller = ""}. Executing page /_Host
+2021-09-25 23:27:18.422 +08:00 [INF] Skipping the execution of current filter as its not the most effective filter implementing the policy Microsoft.AspNetCore.Mvc.ViewFeatures.IAntiforgeryPolicy
+2021-09-25 23:27:18.434 +08:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2021-09-25 23:27:18.434 +08:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2021-09-25 23:27:18.469 +08:00 [DBG] Added bundle 'Blazor.BasicTheme.Global' to the page in 5.42 ms.
+2021-09-25 23:27:18.499 +08:00 [DBG] Added bundle 'Blazor.BasicTheme.Global' to the page in 1.45 ms.
+2021-09-25 23:27:18.539 +08:00 [INF] Executed page /_Host in 115.4665ms
+2021-09-25 23:27:18.540 +08:00 [INF] Executed endpoint '/_Host'
+2021-09-25 23:27:18.568 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/ - - - 200 - text/html;+charset=utf-8 267.1720ms
+2021-09-25 23:27:18.583 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/_content/AntDesign/css/ant-design-blazor.css?_v=637673825280000000 - -
+2021-09-25 23:27:18.583 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/blazor-global-styles.css?_v=637680762762736521 - -
+2021-09-25 23:27:18.585 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/_framework/blazor.server.js?_v=637596081720000000 - -
+2021-09-25 23:27:18.585 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/_content/AntDesign/js/ant-design-blazor.js?_v=637673826600000000 - -
+2021-09-25 23:27:18.586 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/_framework/aspnetcore-browser-refresh.js - -
+2021-09-25 23:27:18.586 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/_content/Zero.Abp.AspNetCore.Components.Web/libs/abp/js/abp.js?_v=637680762762736521 - -
+2021-09-25 23:27:18.588 +08:00 [INF] The file /_content/Zero.Abp.AspNetCore.Components.Web/libs/abp/js/abp.js was not modified
+2021-09-25 23:27:18.588 +08:00 [INF] The file /_content/AntDesign/js/ant-design-blazor.js was not modified
+2021-09-25 23:27:18.588 +08:00 [INF] The file /_framework/blazor.server.js was not modified
+2021-09-25 23:27:18.588 +08:00 [INF] The file /_content/AntDesign/css/ant-design-blazor.css was not modified
+2021-09-25 23:27:18.590 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/_framework/blazor.server.js?_v=637596081720000000 - - - 304 - application/javascript 4.3759ms
+2021-09-25 23:27:18.590 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/_content/AntDesign/css/ant-design-blazor.css?_v=637673825280000000 - - - 304 - text/css 6.3452ms
+2021-09-25 23:27:18.590 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/_content/Zero.Abp.AspNetCore.Components.Web/libs/abp/js/abp.js?_v=637680762762736521 - - - 304 - application/javascript 3.7429ms
+2021-09-25 23:27:18.590 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/_content/AntDesign/js/ant-design-blazor.js?_v=637673826600000000 - - - 304 - application/javascript 4.3612ms
+2021-09-25 23:27:18.590 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/_framework/aspnetcore-browser-refresh.js - - - 200 7927 application/javascript;+charset=utf-8 4.3376ms
+2021-09-25 23:27:18.604 +08:00 [INF] Sending file. Request path: '/blazor-global-styles.css'. Physical path: 'D:\DevCodes\AbpZero\app\BlazorServerDemo\wwwroot\blazor-global-styles.css'
+2021-09-25 23:27:18.604 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/blazor-global-styles.css?_v=637680762762736521 - - - 200 379 text/css 21.0758ms
+2021-09-25 23:27:18.628 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:33188/_blazor/negotiate?negotiateVersion=1 text/plain;charset=UTF-8 0
+2021-09-25 23:27:18.630 +08:00 [INF] Executing endpoint '/_blazor/negotiate'
+2021-09-25 23:27:18.640 +08:00 [INF] Executed endpoint '/_blazor/negotiate'
+2021-09-25 23:27:18.640 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:33188/_blazor/negotiate?negotiateVersion=1 text/plain;charset=UTF-8 0 - 200 316 application/json 12.5668ms
+2021-09-25 23:27:18.666 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/_blazor?id=OwxcigbdxkgX0GS3RjYshw - -
+2021-09-25 23:27:18.667 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/favicon.ico - -
+2021-09-25 23:27:18.668 +08:00 [INF] Executing endpoint '/_blazor'
+2021-09-25 23:27:18.671 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/favicon.ico - - - 404 - - 3.7657ms
+2021-09-25 23:27:28.807 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/swagger - -
+2021-09-25 23:27:28.809 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/swagger - - - 301 - - 1.8415ms
+2021-09-25 23:27:28.811 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/swagger/index.html - -
+2021-09-25 23:27:28.838 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/swagger/index.html - - - 200 - text/html;charset=utf-8 26.9507ms
+2021-09-25 23:27:28.845 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:33188/_blazor/disconnect multipart/form-data;+boundary=----WebKitFormBoundaryL1XeZvXAAntcBy3v 359
+2021-09-25 23:27:28.847 +08:00 [INF] Executing endpoint 'Blazor disconnect'
+2021-09-25 23:27:28.855 +08:00 [INF] Executed endpoint '/_blazor'
+2021-09-25 23:27:28.855 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/_blazor?id=OwxcigbdxkgX0GS3RjYshw - - - 101 - - 10189.1565ms
+2021-09-25 23:27:28.859 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/swagger/swagger-ui.css - -
+2021-09-25 23:27:28.859 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/swagger/ui/abp.swagger.js - -
+2021-09-25 23:27:28.859 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/swagger/ui/abp.js - -
+2021-09-25 23:27:28.859 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/swagger/swagger-ui-standalone-preset.js - -
+2021-09-25 23:27:28.859 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/swagger/swagger-ui-bundle.js - -
+2021-09-25 23:27:28.861 +08:00 [INF] Sending file. Request path: '/swagger/ui/abp.swagger.js'. Physical path: 'N/A'
+2021-09-25 23:27:28.861 +08:00 [INF] Sending file. Request path: '/swagger/ui/abp.js'. Physical path: 'N/A'
+2021-09-25 23:27:28.862 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/swagger/ui/abp.swagger.js - - - 200 1026 application/javascript 2.0981ms
+2021-09-25 23:27:28.862 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/swagger/ui/abp.js - - - 200 3025 application/javascript 2.1048ms
+2021-09-25 23:27:28.863 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/_framework/aspnetcore-browser-refresh.js - -
+2021-09-25 23:27:28.864 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/_framework/aspnetcore-browser-refresh.js - - - 200 7927 application/javascript;+charset=utf-8 0.3881ms
+2021-09-25 23:27:28.865 +08:00 [INF] Executed endpoint 'Blazor disconnect'
+2021-09-25 23:27:28.866 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:33188/_blazor/disconnect multipart/form-data;+boundary=----WebKitFormBoundaryL1XeZvXAAntcBy3v 359 - 200 - - 20.2892ms
+2021-09-25 23:27:28.867 +08:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2021-09-25 23:27:28.867 +08:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2021-09-25 23:27:28.868 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/swagger/swagger-ui.css - - - 200 143410 text/css 8.6794ms
+2021-09-25 23:27:28.869 +08:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2021-09-25 23:27:28.871 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/swagger/swagger-ui-standalone-preset.js - - - 200 336841 application/javascript 11.7751ms
+2021-09-25 23:27:28.884 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/swagger/swagger-ui-bundle.js - - - 200 1097461 application/javascript 24.7005ms
+2021-09-25 23:27:28.992 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/swagger/v1/swagger.json - -
+2021-09-25 23:27:29.005 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/swagger/favicon-32x32.png - -
+2021-09-25 23:27:29.006 +08:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2021-09-25 23:27:29.007 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/swagger/favicon-32x32.png - - - 200 628 image/png 1.1503ms
+2021-09-25 23:27:29.051 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 58.4021ms
+2021-09-25 23:27:37.574 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/abp/Swashbuckle/SetCsrfCookie - -
+2021-09-25 23:27:37.576 +08:00 [INF] Executing endpoint 'Volo.Abp.Swashbuckle.AbpSwashbuckleController.SetCsrfCookie (Volo.Abp.Swashbuckle)'
+2021-09-25 23:27:37.581 +08:00 [INF] Route matched with {area = "Abp", action = "SetCsrfCookie", controller = "AbpSwashbuckle", page = ""}. Executing controller action with signature Void SetCsrfCookie() on controller Volo.Abp.Swashbuckle.AbpSwashbuckleController (Volo.Abp.Swashbuckle).
+2021-09-25 23:27:37.601 +08:00 [WRN] The cookie 'XSRF-TOKEN' has set 'SameSite=None' and must also set 'Secure'.
+2021-09-25 23:27:37.601 +08:00 [INF] Executed action Volo.Abp.Swashbuckle.AbpSwashbuckleController.SetCsrfCookie (Volo.Abp.Swashbuckle) in 20.0159ms
+2021-09-25 23:27:37.601 +08:00 [INF] Executed endpoint 'Volo.Abp.Swashbuckle.AbpSwashbuckleController.SetCsrfCookie (Volo.Abp.Swashbuckle)'
+2021-09-25 23:27:37.602 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/abp/Swashbuckle/SetCsrfCookie - - - 204 - - 27.5518ms
+2021-09-25 23:27:37.822 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/api/abp/api-definition - -
+2021-09-25 23:27:37.823 +08:00 [INF] Executing endpoint 'Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:27:37.834 +08:00 [INF] Route matched with {area = "abp", action = "Get", controller = "AbpApiDefinition", page = ""}. Executing controller action with signature Volo.Abp.Http.Modeling.ApplicationApiDescriptionModel Get(Volo.Abp.Http.Modeling.ApplicationApiDescriptionModelRequestDto) on controller Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController (Volo.Abp.AspNetCore.Mvc).
+2021-09-25 23:27:37.848 +08:00 [DBG] ActionApiDescriptionModel.Create: AbpApplicationConfiguration.GetAsync
+2021-09-25 23:27:37.852 +08:00 [DBG] ActionApiDescriptionModel.Create: AbpApiDefinition.GetByModel
+2021-09-25 23:27:37.855 +08:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.Http.Modeling.ApplicationApiDescriptionModel'.
+2021-09-25 23:27:37.871 +08:00 [INF] Executed action Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc) in 36.1638ms
+2021-09-25 23:27:37.871 +08:00 [INF] Executed endpoint 'Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:27:37.871 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/api/abp/api-definition - - - 200 - application/json;+charset=utf-8 48.5265ms
+2021-09-25 23:28:49.029 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/api/abp/api-definition - -
+2021-09-25 23:28:49.030 +08:00 [INF] Executing endpoint 'Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:28:49.030 +08:00 [INF] Route matched with {area = "abp", action = "Get", controller = "AbpApiDefinition", page = ""}. Executing controller action with signature Volo.Abp.Http.Modeling.ApplicationApiDescriptionModel Get(Volo.Abp.Http.Modeling.ApplicationApiDescriptionModelRequestDto) on controller Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController (Volo.Abp.AspNetCore.Mvc).
+2021-09-25 23:28:49.031 +08:00 [DBG] ActionApiDescriptionModel.Create: AbpApplicationConfiguration.GetAsync
+2021-09-25 23:28:49.032 +08:00 [DBG] ActionApiDescriptionModel.Create: AbpApiDefinition.GetByModel
+2021-09-25 23:28:49.032 +08:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.Http.Modeling.ApplicationApiDescriptionModel'.
+2021-09-25 23:28:49.032 +08:00 [INF] Executed action Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc) in 1.6148ms
+2021-09-25 23:28:49.032 +08:00 [INF] Executed endpoint 'Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:28:49.032 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/api/abp/api-definition - - - 200 - application/json;+charset=utf-8 3.7751ms
+2021-09-25 23:29:17.788 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/api/abp/api-definition - -
+2021-09-25 23:29:17.789 +08:00 [INF] Executing endpoint 'Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:29:17.789 +08:00 [INF] Route matched with {area = "abp", action = "Get", controller = "AbpApiDefinition", page = ""}. Executing controller action with signature Volo.Abp.Http.Modeling.ApplicationApiDescriptionModel Get(Volo.Abp.Http.Modeling.ApplicationApiDescriptionModelRequestDto) on controller Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController (Volo.Abp.AspNetCore.Mvc).
+2021-09-25 23:29:17.789 +08:00 [DBG] ActionApiDescriptionModel.Create: AbpApplicationConfiguration.GetAsync
+2021-09-25 23:29:17.789 +08:00 [DBG] ActionApiDescriptionModel.Create: AbpApiDefinition.GetByModel
+2021-09-25 23:29:17.790 +08:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.Http.Modeling.ApplicationApiDescriptionModel'.
+2021-09-25 23:29:17.790 +08:00 [INF] Executed action Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc) in 1.1527ms
+2021-09-25 23:29:17.790 +08:00 [INF] Executed endpoint 'Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:29:17.790 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/api/abp/api-definition - - - 200 - application/json;+charset=utf-8 2.2615ms
+2021-09-25 23:36:11.005 +08:00 [INF] Starting web host.
+2021-09-25 23:36:13.668 +08:00 [INF] User profile is available. Using 'C:\Users\weidyg\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2021-09-25 23:36:13.725 +08:00 [INF] Loaded ABP modules:
+2021-09-25 23:36:13.725 +08:00 [INF] - BlazorServerDemo.BlazorServerDemoModule
+2021-09-25 23:36:13.725 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2021-09-25 23:36:13.725 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2021-09-25 23:36:13.725 +08:00 [INF]   - Volo.Abp.Swashbuckle.AbpSwashbuckleModule
+2021-09-25 23:36:13.725 +08:00 [INF]     - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2021-09-25 23:36:13.725 +08:00 [INF]     - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcModule
+2021-09-25 23:36:13.725 +08:00 [INF]       - Volo.Abp.AspNetCore.AbpAspNetCoreModule
+2021-09-25 23:36:13.725 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2021-09-25 23:36:13.725 +08:00 [INF]           - Volo.Abp.Data.AbpDataModule
+2021-09-25 23:36:13.725 +08:00 [INF]             - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2021-09-25 23:36:13.725 +08:00 [INF]               - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2021-09-25 23:36:13.725 +08:00 [INF]               - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2021-09-25 23:36:13.725 +08:00 [INF]             - Volo.Abp.Uow.AbpUnitOfWorkModule
+2021-09-25 23:36:13.725 +08:00 [INF]             - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2021-09-25 23:36:13.725 +08:00 [INF]           - Volo.Abp.Json.AbpJsonModule
+2021-09-25 23:36:13.725 +08:00 [INF]             - Volo.Abp.Timing.AbpTimingModule
+2021-09-25 23:36:13.725 +08:00 [INF]               - Volo.Abp.Localization.AbpLocalizationModule
+2021-09-25 23:36:13.725 +08:00 [INF]                 - Volo.Abp.Settings.AbpSettingsModule
+2021-09-25 23:36:13.725 +08:00 [INF]                   - Volo.Abp.Security.AbpSecurityModule
+2021-09-25 23:36:13.725 +08:00 [INF]                   - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2021-09-25 23:36:13.725 +08:00 [INF]           - Volo.Abp.Threading.AbpThreadingModule
+2021-09-25 23:36:13.725 +08:00 [INF]         - Volo.Abp.Http.AbpHttpModule
+2021-09-25 23:36:13.725 +08:00 [INF]           - Volo.Abp.Http.AbpHttpAbstractionsModule
+2021-09-25 23:36:13.725 +08:00 [INF]           - Volo.Abp.Minify.AbpMinifyModule
+2021-09-25 23:36:13.725 +08:00 [INF]         - Volo.Abp.Authorization.AbpAuthorizationModule
+2021-09-25 23:36:13.725 +08:00 [INF]           - Volo.Abp.Authorization.AbpAuthorizationAbstractionsModule
+2021-09-25 23:36:13.725 +08:00 [INF]         - Volo.Abp.Validation.AbpValidationModule
+2021-09-25 23:36:13.725 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2021-09-25 23:36:13.725 +08:00 [INF]       - Volo.Abp.ApiVersioning.AbpApiVersioningAbstractionsModule
+2021-09-25 23:36:13.726 +08:00 [INF]       - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcContractsModule
+2021-09-25 23:36:13.726 +08:00 [INF]         - Volo.Abp.Application.AbpDddApplicationContractsModule
+2021-09-25 23:36:13.726 +08:00 [INF]       - Volo.Abp.UI.Navigation.AbpUiNavigationModule
+2021-09-25 23:36:13.726 +08:00 [INF]         - Volo.Abp.UI.AbpUiModule
+2021-09-25 23:36:13.726 +08:00 [INF]       - Volo.Abp.GlobalFeatures.AbpGlobalFeaturesModule
+2021-09-25 23:36:13.726 +08:00 [INF]       - Volo.Abp.Application.AbpDddApplicationModule
+2021-09-25 23:36:13.726 +08:00 [INF]         - Volo.Abp.Domain.AbpDddDomainModule
+2021-09-25 23:36:13.726 +08:00 [INF]           - Volo.Abp.EventBus.AbpEventBusModule
+2021-09-25 23:36:13.726 +08:00 [INF]           - Volo.Abp.Guids.AbpGuidsModule
+2021-09-25 23:36:13.726 +08:00 [INF]           - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2021-09-25 23:36:13.726 +08:00 [INF]           - Volo.Abp.Specifications.AbpSpecificationsModule
+2021-09-25 23:36:13.726 +08:00 [INF]         - Volo.Abp.Features.AbpFeaturesModule
+2021-09-25 23:36:13.726 +08:00 [INF]   - Volo.Abp.AspNetCore.Authentication.JwtBearer.AbpAspNetCoreAuthenticationJwtBearerModule
+2021-09-25 23:36:13.726 +08:00 [INF]   - Volo.Abp.AspNetCore.Serilog.AbpAspNetCoreSerilogModule
+2021-09-25 23:36:13.726 +08:00 [INF]   - Zero.Abp.AspNetCore.Components.Server.BasicTheme.AbpAspNetCoreComponentsServerBasicThemeModule
+2021-09-25 23:36:13.726 +08:00 [INF]     - Zero.Abp.AspNetCore.Components.Web.BasicTheme.AbpAspNetCoreComponentsWebBasicThemeModule
+2021-09-25 23:36:13.726 +08:00 [INF]       - Zero.Abp.AspNetCore.Components.Web.Theming.AbpAspNetCoreComponentsWebThemingModule
+2021-09-25 23:36:13.726 +08:00 [INF]         - Zero.Abp.AntdesignUI.AbpAntdesignUIModule
+2021-09-25 23:36:13.726 +08:00 [INF]           - Zero.Abp.AspNetCore.Components.Web.AbpAspNetCoreComponentsWebModule
+2021-09-25 23:36:13.726 +08:00 [INF]             - Zero.Abp.AspNetCore.Components.AbpAspNetCoreComponentsModule
+2021-09-25 23:36:13.726 +08:00 [INF]     - Zero.Abp.AspNetCore.Components.Server.Theming.AbpAspNetCoreComponentsServerThemingModule
+2021-09-25 23:36:13.726 +08:00 [INF]       - Zero.Abp.AspNetCore.Components.Server.AbpAspNetCoreComponentsServerModule
+2021-09-25 23:36:13.726 +08:00 [INF]         - Volo.Abp.Http.Client.AbpHttpClientModule
+2021-09-25 23:36:13.726 +08:00 [INF]         - Volo.Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule
+2021-09-25 23:36:13.726 +08:00 [INF]       - Zero.Abp.AspNetCore.Mvc.UI.Bundling.AbpAspNetCoreMvcUiBundlingModule
+2021-09-25 23:36:13.726 +08:00 [INF]         - Volo.Abp.AspNetCore.Mvc.UI.Bundling.AbpAspNetCoreMvcUiBundlingAbstractionsModule
+2021-09-25 23:36:14.514 +08:00 [INF] Initialized all ABP modules.
+2021-09-25 23:36:14.532 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-09-25 23:36:14.532 +08:00 [INF] Hosting environment: Development
+2021-09-25 23:36:14.532 +08:00 [INF] Content root path: D:\DevCodes\AbpZero\app\BlazorServerDemo
+2021-09-25 23:36:14.542 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/ - -
+2021-09-25 23:36:14.582 +08:00 [WRN] Failed to determine the https port for redirect.
+2021-09-25 23:36:14.642 +08:00 [INF] Executing endpoint '/_Host'
+2021-09-25 23:36:14.669 +08:00 [INF] Route matched with {page = "/_Host", area = "", action = "", controller = ""}. Executing page /_Host
+2021-09-25 23:36:14.671 +08:00 [INF] Skipping the execution of current filter as its not the most effective filter implementing the policy Microsoft.AspNetCore.Mvc.ViewFeatures.IAntiforgeryPolicy
+2021-09-25 23:36:14.685 +08:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2021-09-25 23:36:14.685 +08:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2021-09-25 23:36:14.723 +08:00 [DBG] Added bundle 'Blazor.BasicTheme.Global' to the page in 5.91 ms.
+2021-09-25 23:36:14.757 +08:00 [DBG] Added bundle 'Blazor.BasicTheme.Global' to the page in 2.07 ms.
+2021-09-25 23:36:14.798 +08:00 [INF] Executed page /_Host in 125.8745ms
+2021-09-25 23:36:14.799 +08:00 [INF] Executed endpoint '/_Host'
+2021-09-25 23:36:14.827 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/ - - - 200 - text/html;+charset=utf-8 285.2675ms
+2021-09-25 23:36:14.838 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/_content/AntDesign/css/ant-design-blazor.css?_v=637673825280000000 - -
+2021-09-25 23:36:14.838 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/blazor-global-styles.css?_v=637680762762736521 - -
+2021-09-25 23:36:14.838 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/_framework/blazor.server.js?_v=637596081720000000 - -
+2021-09-25 23:36:14.842 +08:00 [INF] The file /_framework/blazor.server.js was not modified
+2021-09-25 23:36:14.842 +08:00 [INF] The file /blazor-global-styles.css was not modified
+2021-09-25 23:36:14.842 +08:00 [INF] The file /_content/AntDesign/css/ant-design-blazor.css was not modified
+2021-09-25 23:36:14.843 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/_content/AntDesign/css/ant-design-blazor.css?_v=637673825280000000 - - - 304 - text/css 4.8872ms
+2021-09-25 23:36:14.843 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/blazor-global-styles.css?_v=637680762762736521 - - - 304 - text/css 4.8869ms
+2021-09-25 23:36:14.843 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/_framework/blazor.server.js?_v=637596081720000000 - - - 304 - application/javascript 4.7720ms
+2021-09-25 23:36:14.848 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/_content/AntDesign/js/ant-design-blazor.js?_v=637673826600000000 - -
+2021-09-25 23:36:14.849 +08:00 [INF] The file /_content/AntDesign/js/ant-design-blazor.js was not modified
+2021-09-25 23:36:14.849 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/_content/Zero.Abp.AspNetCore.Components.Web/libs/abp/js/abp.js?_v=637680762762736521 - -
+2021-09-25 23:36:14.849 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/_content/AntDesign/js/ant-design-blazor.js?_v=637673826600000000 - - - 304 - application/javascript 1.3416ms
+2021-09-25 23:36:14.850 +08:00 [INF] The file /_content/Zero.Abp.AspNetCore.Components.Web/libs/abp/js/abp.js was not modified
+2021-09-25 23:36:14.850 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/_content/Zero.Abp.AspNetCore.Components.Web/libs/abp/js/abp.js?_v=637680762762736521 - - - 304 - application/javascript 1.2930ms
+2021-09-25 23:36:14.863 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/_framework/aspnetcore-browser-refresh.js - -
+2021-09-25 23:36:14.866 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/_framework/aspnetcore-browser-refresh.js - - - 200 7927 application/javascript;+charset=utf-8 2.6080ms
+2021-09-25 23:36:14.878 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:33188/_blazor/negotiate?negotiateVersion=1 text/plain;charset=UTF-8 0
+2021-09-25 23:36:14.883 +08:00 [INF] CORS policy execution failed.
+2021-09-25 23:36:14.883 +08:00 [INF] Request origin http://localhost:33188 does not have permission to access the resource.
+2021-09-25 23:36:14.885 +08:00 [INF] Executing endpoint '/_blazor/negotiate'
+2021-09-25 23:36:14.897 +08:00 [INF] Executed endpoint '/_blazor/negotiate'
+2021-09-25 23:36:14.897 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:33188/_blazor/negotiate?negotiateVersion=1 text/plain;charset=UTF-8 0 - 200 316 application/json 18.4869ms
+2021-09-25 23:36:14.902 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/_blazor?id=1FkLZg5Y8DG3d5GeZ76z3g - -
+2021-09-25 23:36:14.904 +08:00 [INF] CORS policy execution failed.
+2021-09-25 23:36:14.904 +08:00 [INF] Request origin http://localhost:33188 does not have permission to access the resource.
+2021-09-25 23:36:14.904 +08:00 [INF] Executing endpoint '/_blazor'
+2021-09-25 23:37:59.231 +08:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:33188/api/abp/api-definition - -
+2021-09-25 23:37:59.233 +08:00 [INF] CORS policy execution failed.
+2021-09-25 23:37:59.233 +08:00 [INF] Request origin http://localhost:56984 does not have permission to access the resource.
+2021-09-25 23:37:59.233 +08:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:33188/api/abp/api-definition - - - 204 - - 1.7188ms
+2021-09-25 23:38:03.652 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:33188/_blazor/disconnect multipart/form-data;+boundary=----WebKitFormBoundaryqDlV3EKiINRntiJI 359
+2021-09-25 23:38:03.653 +08:00 [INF] CORS policy execution failed.
+2021-09-25 23:38:03.653 +08:00 [INF] Request origin http://localhost:33188 does not have permission to access the resource.
+2021-09-25 23:38:03.653 +08:00 [INF] Executing endpoint 'Blazor disconnect'
+2021-09-25 23:38:03.673 +08:00 [INF] Executed endpoint '/_blazor'
+2021-09-25 23:38:03.673 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/_blazor?id=1FkLZg5Y8DG3d5GeZ76z3g - - - 101 - - 108771.3074ms
+2021-09-25 23:38:03.674 +08:00 [INF] Executed endpoint 'Blazor disconnect'
+2021-09-25 23:38:03.675 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:33188/_blazor/disconnect multipart/form-data;+boundary=----WebKitFormBoundaryqDlV3EKiINRntiJI 359 - 200 - - 22.8198ms
+2021-09-25 23:38:10.692 +08:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:33188/api/abp/api-definition - -
+2021-09-25 23:38:10.694 +08:00 [INF] CORS policy execution failed.
+2021-09-25 23:38:10.694 +08:00 [INF] Request origin http://localhost:56984 does not have permission to access the resource.
+2021-09-25 23:38:10.694 +08:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:33188/api/abp/api-definition - - - 204 - - 1.8049ms
+2021-09-25 23:38:17.804 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/ - -
+2021-09-25 23:38:17.806 +08:00 [INF] Executing endpoint '/_Host'
+2021-09-25 23:38:17.806 +08:00 [INF] Route matched with {page = "/_Host", area = "", action = "", controller = ""}. Executing page /_Host
+2021-09-25 23:38:17.806 +08:00 [INF] Skipping the execution of current filter as its not the most effective filter implementing the policy Microsoft.AspNetCore.Mvc.ViewFeatures.IAntiforgeryPolicy
+2021-09-25 23:38:17.806 +08:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2021-09-25 23:38:17.807 +08:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2021-09-25 23:38:17.809 +08:00 [DBG] Added bundle 'Blazor.BasicTheme.Global' to the page in 0.56 ms.
+2021-09-25 23:38:17.810 +08:00 [DBG] Added bundle 'Blazor.BasicTheme.Global' to the page in 0.30 ms.
+2021-09-25 23:38:17.813 +08:00 [INF] Executed page /_Host in 6.7997ms
+2021-09-25 23:38:17.813 +08:00 [INF] Executed endpoint '/_Host'
+2021-09-25 23:38:17.814 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/ - - - 200 - text/html;+charset=utf-8 10.1568ms
+2021-09-25 23:38:17.843 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/_content/AntDesign/css/ant-design-blazor.css?_v=637673825280000000 - -
+2021-09-25 23:38:17.843 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/blazor-global-styles.css?_v=637680762762736521 - -
+2021-09-25 23:38:17.843 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/_framework/blazor.server.js?_v=637596081720000000 - -
+2021-09-25 23:38:17.844 +08:00 [INF] The file /blazor-global-styles.css was not modified
+2021-09-25 23:38:17.844 +08:00 [INF] The file /_framework/blazor.server.js was not modified
+2021-09-25 23:38:17.844 +08:00 [INF] The file /_content/AntDesign/css/ant-design-blazor.css was not modified
+2021-09-25 23:38:17.844 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/blazor-global-styles.css?_v=637680762762736521 - - - 304 - text/css 1.3646ms
+2021-09-25 23:38:17.844 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/_framework/blazor.server.js?_v=637596081720000000 - - - 304 - application/javascript 0.9583ms
+2021-09-25 23:38:17.844 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/_content/AntDesign/css/ant-design-blazor.css?_v=637673825280000000 - - - 304 - text/css 1.5016ms
+2021-09-25 23:38:17.846 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/_content/Zero.Abp.AspNetCore.Components.Web/libs/abp/js/abp.js?_v=637680762762736521 - -
+2021-09-25 23:38:17.846 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/_content/AntDesign/js/ant-design-blazor.js?_v=637673826600000000 - -
+2021-09-25 23:38:17.846 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/_framework/aspnetcore-browser-refresh.js - -
+2021-09-25 23:38:17.847 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/_framework/aspnetcore-browser-refresh.js - - - 200 7927 application/javascript;+charset=utf-8 0.6412ms
+2021-09-25 23:38:17.847 +08:00 [INF] The file /_content/Zero.Abp.AspNetCore.Components.Web/libs/abp/js/abp.js was not modified
+2021-09-25 23:38:17.847 +08:00 [INF] The file /_content/AntDesign/js/ant-design-blazor.js was not modified
+2021-09-25 23:38:17.847 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/_content/Zero.Abp.AspNetCore.Components.Web/libs/abp/js/abp.js?_v=637680762762736521 - - - 304 - application/javascript 1.6069ms
+2021-09-25 23:38:17.847 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/_content/AntDesign/js/ant-design-blazor.js?_v=637673826600000000 - - - 304 - application/javascript 1.6069ms
+2021-09-25 23:38:17.887 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:33188/_blazor/negotiate?negotiateVersion=1 text/plain;charset=UTF-8 0
+2021-09-25 23:38:17.888 +08:00 [INF] CORS policy execution failed.
+2021-09-25 23:38:17.888 +08:00 [INF] Request origin http://localhost:33188 does not have permission to access the resource.
+2021-09-25 23:38:17.889 +08:00 [INF] Executing endpoint '/_blazor/negotiate'
+2021-09-25 23:38:17.890 +08:00 [INF] Executed endpoint '/_blazor/negotiate'
+2021-09-25 23:38:17.890 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:33188/_blazor/negotiate?negotiateVersion=1 text/plain;charset=UTF-8 0 - 200 316 application/json 2.8790ms
+2021-09-25 23:38:17.925 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/_blazor?id=GnNkliENeqitSsByXh9Pfw - -
+2021-09-25 23:38:17.926 +08:00 [INF] CORS policy execution failed.
+2021-09-25 23:38:17.926 +08:00 [INF] Request origin http://localhost:33188 does not have permission to access the resource.
+2021-09-25 23:38:17.926 +08:00 [INF] Executing endpoint '/_blazor'
+2021-09-25 23:38:23.099 +08:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:33188/api/abp/api-definition - -
+2021-09-25 23:38:23.100 +08:00 [INF] CORS policy execution failed.
+2021-09-25 23:38:23.100 +08:00 [INF] Request origin http://localhost:56984 does not have permission to access the resource.
+2021-09-25 23:38:23.100 +08:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:33188/api/abp/api-definition - - - 204 - - 1.0406ms
+2021-09-25 23:38:29.262 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/api/abp/api-definition - -
+2021-09-25 23:38:29.264 +08:00 [INF] Executing endpoint 'Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:38:29.278 +08:00 [INF] Route matched with {area = "abp", action = "Get", controller = "AbpApiDefinition", page = ""}. Executing controller action with signature Volo.Abp.Http.Modeling.ApplicationApiDescriptionModel Get(Volo.Abp.Http.Modeling.ApplicationApiDescriptionModelRequestDto) on controller Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController (Volo.Abp.AspNetCore.Mvc).
+2021-09-25 23:38:29.329 +08:00 [DBG] ActionApiDescriptionModel.Create: AbpApplicationConfiguration.GetAsync
+2021-09-25 23:38:29.332 +08:00 [DBG] ActionApiDescriptionModel.Create: AbpApiDefinition.GetByModel
+2021-09-25 23:38:29.336 +08:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.Http.Modeling.ApplicationApiDescriptionModel'.
+2021-09-25 23:38:29.356 +08:00 [INF] Executed action Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc) in 77.8442ms
+2021-09-25 23:38:29.356 +08:00 [INF] Executed endpoint 'Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:38:29.356 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/api/abp/api-definition - - - 200 - application/json;+charset=utf-8 93.8853ms
+2021-09-25 23:38:36.405 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/api/abp/api-definition - -
+2021-09-25 23:38:36.406 +08:00 [INF] Executing endpoint 'Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:38:36.406 +08:00 [INF] Route matched with {area = "abp", action = "Get", controller = "AbpApiDefinition", page = ""}. Executing controller action with signature Volo.Abp.Http.Modeling.ApplicationApiDescriptionModel Get(Volo.Abp.Http.Modeling.ApplicationApiDescriptionModelRequestDto) on controller Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController (Volo.Abp.AspNetCore.Mvc).
+2021-09-25 23:38:36.408 +08:00 [DBG] ActionApiDescriptionModel.Create: AbpApplicationConfiguration.GetAsync
+2021-09-25 23:38:36.408 +08:00 [DBG] ActionApiDescriptionModel.Create: AbpApiDefinition.GetByModel
+2021-09-25 23:38:36.408 +08:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.Http.Modeling.ApplicationApiDescriptionModel'.
+2021-09-25 23:38:36.409 +08:00 [INF] Executed action Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc) in 2.1063ms
+2021-09-25 23:38:36.409 +08:00 [INF] Executed endpoint 'Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:38:36.409 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/api/abp/api-definition - - - 200 - application/json;+charset=utf-8 3.8018ms
+2021-09-25 23:39:18.023 +08:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:33188/api/abp/api-definition - -
+2021-09-25 23:39:18.024 +08:00 [INF] CORS policy execution failed.
+2021-09-25 23:39:18.024 +08:00 [INF] Request origin http://localhost:56984 does not have permission to access the resource.
+2021-09-25 23:39:18.024 +08:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:33188/api/abp/api-definition - - - 204 - - 1.1613ms
+2021-09-25 23:40:01.267 +08:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:33188/api/abp/api-definition - -
+2021-09-25 23:40:01.267 +08:00 [INF] CORS policy execution failed.
+2021-09-25 23:40:01.268 +08:00 [INF] Request origin http://localhost:56984 does not have permission to access the resource.
+2021-09-25 23:40:01.268 +08:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:33188/api/abp/api-definition - - - 204 - - 0.9442ms
+2021-09-25 23:40:31.245 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/ - -
+2021-09-25 23:40:31.247 +08:00 [INF] Executing endpoint '/_Host'
+2021-09-25 23:40:31.247 +08:00 [INF] Route matched with {page = "/_Host", area = "", action = "", controller = ""}. Executing page /_Host
+2021-09-25 23:40:31.247 +08:00 [INF] Skipping the execution of current filter as its not the most effective filter implementing the policy Microsoft.AspNetCore.Mvc.ViewFeatures.IAntiforgeryPolicy
+2021-09-25 23:40:31.247 +08:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2021-09-25 23:40:31.247 +08:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2021-09-25 23:40:31.248 +08:00 [DBG] Added bundle 'Blazor.BasicTheme.Global' to the page in 0.59 ms.
+2021-09-25 23:40:31.249 +08:00 [DBG] Added bundle 'Blazor.BasicTheme.Global' to the page in 0.18 ms.
+2021-09-25 23:40:31.251 +08:00 [INF] Executed page /_Host in 4.0321ms
+2021-09-25 23:40:31.251 +08:00 [INF] Executed endpoint '/_Host'
+2021-09-25 23:40:31.252 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/ - - - 200 - text/html;+charset=utf-8 6.3581ms
+2021-09-25 23:40:31.258 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:33188/_blazor/disconnect multipart/form-data;+boundary=----WebKitFormBoundaryQDW72T6FmvuUVAnw 359
+2021-09-25 23:40:31.259 +08:00 [INF] CORS policy execution failed.
+2021-09-25 23:40:31.259 +08:00 [INF] Request origin http://localhost:33188 does not have permission to access the resource.
+2021-09-25 23:40:31.259 +08:00 [INF] Executing endpoint 'Blazor disconnect'
+2021-09-25 23:40:31.259 +08:00 [INF] Executed endpoint '/_blazor'
+2021-09-25 23:40:31.259 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/_blazor?id=GnNkliENeqitSsByXh9Pfw - - - 101 - - 133334.0763ms
+2021-09-25 23:40:31.260 +08:00 [INF] Executed endpoint 'Blazor disconnect'
+2021-09-25 23:40:31.260 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:33188/_blazor/disconnect multipart/form-data;+boundary=----WebKitFormBoundaryQDW72T6FmvuUVAnw 359 - 200 - - 1.9720ms
+2021-09-25 23:40:31.267 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/blazor-global-styles.css?_v=637680762762736521 - -
+2021-09-25 23:40:31.267 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/_content/AntDesign/css/ant-design-blazor.css?_v=637673825280000000 - -
+2021-09-25 23:40:31.267 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/_framework/blazor.server.js?_v=637596081720000000 - -
+2021-09-25 23:40:31.268 +08:00 [INF] The file /_framework/blazor.server.js was not modified
+2021-09-25 23:40:31.268 +08:00 [INF] The file /blazor-global-styles.css was not modified
+2021-09-25 23:40:31.268 +08:00 [INF] The file /_content/AntDesign/css/ant-design-blazor.css was not modified
+2021-09-25 23:40:31.268 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/_framework/blazor.server.js?_v=637596081720000000 - - - 304 - application/javascript 0.7902ms
+2021-09-25 23:40:31.268 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/blazor-global-styles.css?_v=637680762762736521 - - - 304 - text/css 0.8263ms
+2021-09-25 23:40:31.268 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/_content/AntDesign/css/ant-design-blazor.css?_v=637673825280000000 - - - 304 - text/css 0.8800ms
+2021-09-25 23:40:31.270 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/_content/AntDesign/js/ant-design-blazor.js?_v=637673826600000000 - -
+2021-09-25 23:40:31.272 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/_content/Zero.Abp.AspNetCore.Components.Web/libs/abp/js/abp.js?_v=637680762762736521 - -
+2021-09-25 23:40:31.272 +08:00 [INF] The file /_content/AntDesign/js/ant-design-blazor.js was not modified
+2021-09-25 23:40:31.272 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/_content/AntDesign/js/ant-design-blazor.js?_v=637673826600000000 - - - 304 - application/javascript 1.8196ms
+2021-09-25 23:40:31.273 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/_framework/aspnetcore-browser-refresh.js - -
+2021-09-25 23:40:31.273 +08:00 [INF] The file /_content/Zero.Abp.AspNetCore.Components.Web/libs/abp/js/abp.js was not modified
+2021-09-25 23:40:31.273 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/_framework/aspnetcore-browser-refresh.js - - - 200 7927 application/javascript;+charset=utf-8 0.4449ms
+2021-09-25 23:40:31.273 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/_content/Zero.Abp.AspNetCore.Components.Web/libs/abp/js/abp.js?_v=637680762762736521 - - - 304 - application/javascript 1.5343ms
+2021-09-25 23:40:31.290 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:33188/_blazor/negotiate?negotiateVersion=1 text/plain;charset=UTF-8 0
+2021-09-25 23:40:31.292 +08:00 [INF] CORS policy execution failed.
+2021-09-25 23:40:31.292 +08:00 [INF] Request origin http://localhost:33188 does not have permission to access the resource.
+2021-09-25 23:40:31.292 +08:00 [INF] Executing endpoint '/_blazor/negotiate'
+2021-09-25 23:40:31.293 +08:00 [INF] Executed endpoint '/_blazor/negotiate'
+2021-09-25 23:40:31.293 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:33188/_blazor/negotiate?negotiateVersion=1 text/plain;charset=UTF-8 0 - 200 316 application/json 2.8428ms
+2021-09-25 23:40:31.295 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/_blazor?id=tHdRidthEqbaVdj8Fona_A - -
+2021-09-25 23:40:31.296 +08:00 [INF] CORS policy execution failed.
+2021-09-25 23:40:31.296 +08:00 [INF] Request origin http://localhost:33188 does not have permission to access the resource.
+2021-09-25 23:40:31.296 +08:00 [INF] Executing endpoint '/_blazor'
+2021-09-25 23:40:36.968 +08:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:33188/api/abp/api-definition - -
+2021-09-25 23:40:36.969 +08:00 [INF] CORS policy execution failed.
+2021-09-25 23:40:36.969 +08:00 [INF] Request origin http://localhost:56984 does not have permission to access the resource.
+2021-09-25 23:40:36.969 +08:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:33188/api/abp/api-definition - - - 204 - - 0.8906ms
+2021-09-25 23:40:47.109 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:33188/_blazor/disconnect multipart/form-data;+boundary=----WebKitFormBoundaryuAl3SalPkIIvNqAj 359
+2021-09-25 23:40:47.110 +08:00 [INF] CORS policy execution failed.
+2021-09-25 23:40:47.110 +08:00 [INF] Request origin http://localhost:33188 does not have permission to access the resource.
+2021-09-25 23:40:47.110 +08:00 [INF] Executing endpoint 'Blazor disconnect'
+2021-09-25 23:40:47.110 +08:00 [INF] Executed endpoint 'Blazor disconnect'
+2021-09-25 23:40:47.111 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:33188/_blazor/disconnect multipart/form-data;+boundary=----WebKitFormBoundaryuAl3SalPkIIvNqAj 359 - 200 - - 1.3286ms
+2021-09-25 23:40:47.114 +08:00 [INF] Executed endpoint '/_blazor'
+2021-09-25 23:40:47.114 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/_blazor?id=tHdRidthEqbaVdj8Fona_A - - - 101 - - 15818.7977ms
+2021-09-25 23:40:51.399 +08:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:33188/api/abp/api-definition - -
+2021-09-25 23:40:51.400 +08:00 [INF] CORS policy execution failed.
+2021-09-25 23:40:51.400 +08:00 [INF] Request origin http://localhost:56984 does not have permission to access the resource.
+2021-09-25 23:40:51.400 +08:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:33188/api/abp/api-definition - - - 204 - - 0.9822ms
+2021-09-25 23:42:35.443 +08:00 [INF] Starting web host.
+2021-09-25 23:42:37.979 +08:00 [INF] User profile is available. Using 'C:\Users\weidyg\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2021-09-25 23:42:38.027 +08:00 [INF] Loaded ABP modules:
+2021-09-25 23:42:38.027 +08:00 [INF] - BlazorServerDemo.BlazorServerDemoModule
+2021-09-25 23:42:38.027 +08:00 [INF]   - Volo.Abp.Autofac.AbpAutofacModule
+2021-09-25 23:42:38.027 +08:00 [INF]     - Volo.Abp.Castle.AbpCastleCoreModule
+2021-09-25 23:42:38.027 +08:00 [INF]   - Volo.Abp.Swashbuckle.AbpSwashbuckleModule
+2021-09-25 23:42:38.027 +08:00 [INF]     - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule
+2021-09-25 23:42:38.027 +08:00 [INF]     - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcModule
+2021-09-25 23:42:38.027 +08:00 [INF]       - Volo.Abp.AspNetCore.AbpAspNetCoreModule
+2021-09-25 23:42:38.027 +08:00 [INF]         - Volo.Abp.Auditing.AbpAuditingModule
+2021-09-25 23:42:38.027 +08:00 [INF]           - Volo.Abp.Data.AbpDataModule
+2021-09-25 23:42:38.027 +08:00 [INF]             - Volo.Abp.ObjectExtending.AbpObjectExtendingModule
+2021-09-25 23:42:38.027 +08:00 [INF]               - Volo.Abp.Localization.AbpLocalizationAbstractionsModule
+2021-09-25 23:42:38.027 +08:00 [INF]               - Volo.Abp.Validation.AbpValidationAbstractionsModule
+2021-09-25 23:42:38.027 +08:00 [INF]             - Volo.Abp.Uow.AbpUnitOfWorkModule
+2021-09-25 23:42:38.027 +08:00 [INF]             - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule
+2021-09-25 23:42:38.027 +08:00 [INF]           - Volo.Abp.Json.AbpJsonModule
+2021-09-25 23:42:38.027 +08:00 [INF]             - Volo.Abp.Timing.AbpTimingModule
+2021-09-25 23:42:38.027 +08:00 [INF]               - Volo.Abp.Localization.AbpLocalizationModule
+2021-09-25 23:42:38.027 +08:00 [INF]                 - Volo.Abp.Settings.AbpSettingsModule
+2021-09-25 23:42:38.027 +08:00 [INF]                   - Volo.Abp.Security.AbpSecurityModule
+2021-09-25 23:42:38.027 +08:00 [INF]                   - Volo.Abp.MultiTenancy.AbpMultiTenancyModule
+2021-09-25 23:42:38.027 +08:00 [INF]           - Volo.Abp.Threading.AbpThreadingModule
+2021-09-25 23:42:38.027 +08:00 [INF]         - Volo.Abp.Http.AbpHttpModule
+2021-09-25 23:42:38.027 +08:00 [INF]           - Volo.Abp.Http.AbpHttpAbstractionsModule
+2021-09-25 23:42:38.027 +08:00 [INF]           - Volo.Abp.Minify.AbpMinifyModule
+2021-09-25 23:42:38.027 +08:00 [INF]         - Volo.Abp.Authorization.AbpAuthorizationModule
+2021-09-25 23:42:38.027 +08:00 [INF]           - Volo.Abp.Authorization.AbpAuthorizationAbstractionsModule
+2021-09-25 23:42:38.027 +08:00 [INF]         - Volo.Abp.Validation.AbpValidationModule
+2021-09-25 23:42:38.027 +08:00 [INF]         - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule
+2021-09-25 23:42:38.027 +08:00 [INF]       - Volo.Abp.ApiVersioning.AbpApiVersioningAbstractionsModule
+2021-09-25 23:42:38.027 +08:00 [INF]       - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcContractsModule
+2021-09-25 23:42:38.027 +08:00 [INF]         - Volo.Abp.Application.AbpDddApplicationContractsModule
+2021-09-25 23:42:38.027 +08:00 [INF]       - Volo.Abp.UI.Navigation.AbpUiNavigationModule
+2021-09-25 23:42:38.027 +08:00 [INF]         - Volo.Abp.UI.AbpUiModule
+2021-09-25 23:42:38.027 +08:00 [INF]       - Volo.Abp.GlobalFeatures.AbpGlobalFeaturesModule
+2021-09-25 23:42:38.027 +08:00 [INF]       - Volo.Abp.Application.AbpDddApplicationModule
+2021-09-25 23:42:38.027 +08:00 [INF]         - Volo.Abp.Domain.AbpDddDomainModule
+2021-09-25 23:42:38.027 +08:00 [INF]           - Volo.Abp.EventBus.AbpEventBusModule
+2021-09-25 23:42:38.027 +08:00 [INF]           - Volo.Abp.Guids.AbpGuidsModule
+2021-09-25 23:42:38.027 +08:00 [INF]           - Volo.Abp.ObjectMapping.AbpObjectMappingModule
+2021-09-25 23:42:38.027 +08:00 [INF]           - Volo.Abp.Specifications.AbpSpecificationsModule
+2021-09-25 23:42:38.027 +08:00 [INF]         - Volo.Abp.Features.AbpFeaturesModule
+2021-09-25 23:42:38.027 +08:00 [INF]   - Volo.Abp.AspNetCore.Authentication.JwtBearer.AbpAspNetCoreAuthenticationJwtBearerModule
+2021-09-25 23:42:38.027 +08:00 [INF]   - Volo.Abp.AspNetCore.Serilog.AbpAspNetCoreSerilogModule
+2021-09-25 23:42:38.027 +08:00 [INF]   - Zero.Abp.AspNetCore.Components.Server.BasicTheme.AbpAspNetCoreComponentsServerBasicThemeModule
+2021-09-25 23:42:38.027 +08:00 [INF]     - Zero.Abp.AspNetCore.Components.Web.BasicTheme.AbpAspNetCoreComponentsWebBasicThemeModule
+2021-09-25 23:42:38.027 +08:00 [INF]       - Zero.Abp.AspNetCore.Components.Web.Theming.AbpAspNetCoreComponentsWebThemingModule
+2021-09-25 23:42:38.027 +08:00 [INF]         - Zero.Abp.AntdesignUI.AbpAntdesignUIModule
+2021-09-25 23:42:38.027 +08:00 [INF]           - Zero.Abp.AspNetCore.Components.Web.AbpAspNetCoreComponentsWebModule
+2021-09-25 23:42:38.027 +08:00 [INF]             - Zero.Abp.AspNetCore.Components.AbpAspNetCoreComponentsModule
+2021-09-25 23:42:38.027 +08:00 [INF]     - Zero.Abp.AspNetCore.Components.Server.Theming.AbpAspNetCoreComponentsServerThemingModule
+2021-09-25 23:42:38.027 +08:00 [INF]       - Zero.Abp.AspNetCore.Components.Server.AbpAspNetCoreComponentsServerModule
+2021-09-25 23:42:38.027 +08:00 [INF]         - Volo.Abp.Http.Client.AbpHttpClientModule
+2021-09-25 23:42:38.027 +08:00 [INF]         - Volo.Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule
+2021-09-25 23:42:38.027 +08:00 [INF]       - Zero.Abp.AspNetCore.Mvc.UI.Bundling.AbpAspNetCoreMvcUiBundlingModule
+2021-09-25 23:42:38.027 +08:00 [INF]         - Volo.Abp.AspNetCore.Mvc.UI.Bundling.AbpAspNetCoreMvcUiBundlingAbstractionsModule
+2021-09-25 23:42:38.903 +08:00 [INF] Initialized all ABP modules.
+2021-09-25 23:42:38.925 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-09-25 23:42:38.925 +08:00 [INF] Hosting environment: Development
+2021-09-25 23:42:38.925 +08:00 [INF] Content root path: D:\DevCodes\AbpZero\app\BlazorServerDemo
+2021-09-25 23:42:38.938 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/ - -
+2021-09-25 23:42:38.984 +08:00 [WRN] Failed to determine the https port for redirect.
+2021-09-25 23:42:39.065 +08:00 [INF] Executing endpoint '/_Host'
+2021-09-25 23:42:39.097 +08:00 [INF] Route matched with {page = "/_Host", area = "", action = "", controller = ""}. Executing page /_Host
+2021-09-25 23:42:39.099 +08:00 [INF] Skipping the execution of current filter as its not the most effective filter implementing the policy Microsoft.AspNetCore.Mvc.ViewFeatures.IAntiforgeryPolicy
+2021-09-25 23:42:39.117 +08:00 [INF] Executing an implicit handler method - ModelState is "Valid"
+2021-09-25 23:42:39.117 +08:00 [INF] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+2021-09-25 23:42:39.160 +08:00 [DBG] Added bundle 'Blazor.BasicTheme.Global' to the page in 7.39 ms.
+2021-09-25 23:42:39.199 +08:00 [DBG] Added bundle 'Blazor.BasicTheme.Global' to the page in 1.99 ms.
+2021-09-25 23:42:39.247 +08:00 [INF] Executed page /_Host in 145.7305ms
+2021-09-25 23:42:39.247 +08:00 [INF] Executed endpoint '/_Host'
+2021-09-25 23:42:39.277 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/ - - - 200 - text/html;+charset=utf-8 339.1015ms
+2021-09-25 23:42:39.283 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/_content/AntDesign/css/ant-design-blazor.css?_v=637673825280000000 - -
+2021-09-25 23:42:39.283 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/blazor-global-styles.css?_v=637680762762736521 - -
+2021-09-25 23:42:39.283 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/_framework/blazor.server.js?_v=637596081720000000 - -
+2021-09-25 23:42:39.286 +08:00 [INF] The file /_content/AntDesign/css/ant-design-blazor.css was not modified
+2021-09-25 23:42:39.286 +08:00 [INF] The file /_framework/blazor.server.js was not modified
+2021-09-25 23:42:39.286 +08:00 [INF] The file /blazor-global-styles.css was not modified
+2021-09-25 23:42:39.288 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/_framework/blazor.server.js?_v=637596081720000000 - - - 304 - application/javascript 4.7456ms
+2021-09-25 23:42:39.288 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/_content/AntDesign/css/ant-design-blazor.css?_v=637673825280000000 - - - 304 - text/css 4.8542ms
+2021-09-25 23:42:39.288 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/blazor-global-styles.css?_v=637680762762736521 - - - 304 - text/css 4.8539ms
+2021-09-25 23:42:39.291 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/_content/AntDesign/js/ant-design-blazor.js?_v=637673826600000000 - -
+2021-09-25 23:42:39.292 +08:00 [INF] The file /_content/AntDesign/js/ant-design-blazor.js was not modified
+2021-09-25 23:42:39.293 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/_content/AntDesign/js/ant-design-blazor.js?_v=637673826600000000 - - - 304 - application/javascript 1.3837ms
+2021-09-25 23:42:39.293 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/_content/Zero.Abp.AspNetCore.Components.Web/libs/abp/js/abp.js?_v=637680762762736521 - -
+2021-09-25 23:42:39.294 +08:00 [INF] The file /_content/Zero.Abp.AspNetCore.Components.Web/libs/abp/js/abp.js was not modified
+2021-09-25 23:42:39.295 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/_content/Zero.Abp.AspNetCore.Components.Web/libs/abp/js/abp.js?_v=637680762762736521 - - - 304 - application/javascript 1.0548ms
+2021-09-25 23:42:39.313 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/_framework/aspnetcore-browser-refresh.js - -
+2021-09-25 23:42:39.316 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/_framework/aspnetcore-browser-refresh.js - - - 200 7927 application/javascript;+charset=utf-8 2.9325ms
+2021-09-25 23:42:39.330 +08:00 [INF] Request starting HTTP/1.1 POST http://localhost:33188/_blazor/negotiate?negotiateVersion=1 text/plain;charset=UTF-8 0
+2021-09-25 23:42:39.336 +08:00 [INF] CORS policy execution failed.
+2021-09-25 23:42:39.336 +08:00 [INF] Request origin http://localhost:33188 does not have permission to access the resource.
+2021-09-25 23:42:39.337 +08:00 [INF] Executing endpoint '/_blazor/negotiate'
+2021-09-25 23:42:39.349 +08:00 [INF] Executed endpoint '/_blazor/negotiate'
+2021-09-25 23:42:39.349 +08:00 [INF] Request finished HTTP/1.1 POST http://localhost:33188/_blazor/negotiate?negotiateVersion=1 text/plain;charset=UTF-8 0 - 200 316 application/json 19.3005ms
+2021-09-25 23:42:39.353 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/_blazor?id=b7nKolz_Te1BppJJrHt3HQ - -
+2021-09-25 23:42:39.355 +08:00 [INF] CORS policy execution failed.
+2021-09-25 23:42:39.355 +08:00 [INF] Request origin http://localhost:33188 does not have permission to access the resource.
+2021-09-25 23:42:39.356 +08:00 [INF] Executing endpoint '/_blazor'
+2021-09-25 23:42:40.184 +08:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:33188/api/abp/api-definition - -
+2021-09-25 23:42:40.186 +08:00 [INF] CORS policy execution successful.
+2021-09-25 23:42:40.187 +08:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:33188/api/abp/api-definition - - - 204 - - 2.2327ms
+2021-09-25 23:42:40.188 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/api/abp/api-definition - -
+2021-09-25 23:42:40.190 +08:00 [INF] CORS policy execution successful.
+2021-09-25 23:42:40.190 +08:00 [INF] Executing endpoint 'Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:42:40.213 +08:00 [INF] Route matched with {area = "abp", action = "Get", controller = "AbpApiDefinition", page = ""}. Executing controller action with signature Volo.Abp.Http.Modeling.ApplicationApiDescriptionModel Get(Volo.Abp.Http.Modeling.ApplicationApiDescriptionModelRequestDto) on controller Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController (Volo.Abp.AspNetCore.Mvc).
+2021-09-25 23:42:40.265 +08:00 [DBG] ActionApiDescriptionModel.Create: AbpApplicationConfiguration.GetAsync
+2021-09-25 23:42:40.269 +08:00 [DBG] ActionApiDescriptionModel.Create: AbpApiDefinition.GetByModel
+2021-09-25 23:42:40.272 +08:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.Http.Modeling.ApplicationApiDescriptionModel'.
+2021-09-25 23:42:40.293 +08:00 [INF] Executed action Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc) in 79.6243ms
+2021-09-25 23:42:40.293 +08:00 [INF] Executed endpoint 'Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:42:40.294 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/api/abp/api-definition - - - 200 - application/json;+charset=utf-8 105.1978ms
+2021-09-25 23:42:40.423 +08:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:33188/api/abp/application-configuration?api-version=1.0 - -
+2021-09-25 23:42:40.424 +08:00 [INF] CORS policy execution successful.
+2021-09-25 23:42:40.425 +08:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:33188/api/abp/application-configuration?api-version=1.0 - - - 204 - - 1.2873ms
+2021-09-25 23:42:40.426 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/api/abp/application-configuration?api-version=1.0 - -
+2021-09-25 23:42:40.426 +08:00 [INF] CORS policy execution successful.
+2021-09-25 23:42:40.426 +08:00 [INF] Executing endpoint 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:42:40.430 +08:00 [INF] Route matched with {area = "abp", action = "Get", controller = "AbpApplicationConfiguration", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationDto] GetAsync() on controller Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController (Volo.Abp.AspNetCore.Mvc).
+2021-09-25 23:42:40.456 +08:00 [WRN] The cookie 'XSRF-TOKEN' has set 'SameSite=None' and must also set 'Secure'.
+2021-09-25 23:42:40.483 +08:00 [DBG] Executing AbpApplicationConfigurationAppService.GetAsync()...
+2021-09-25 23:42:40.754 +08:00 [DBG] Executed AbpApplicationConfigurationAppService.GetAsync().
+2021-09-25 23:42:40.757 +08:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationDto'.
+2021-09-25 23:42:40.769 +08:00 [INF] Executed action Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc) in 339.1744ms
+2021-09-25 23:42:40.769 +08:00 [INF] Executed endpoint 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:42:40.769 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/api/abp/application-configuration?api-version=1.0 - - - 200 - application/json;+charset=utf-8 343.7796ms
+2021-09-25 23:43:35.188 +08:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:33188/api/abp/api-definition - -
+2021-09-25 23:43:35.188 +08:00 [INF] CORS policy execution successful.
+2021-09-25 23:43:35.189 +08:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:33188/api/abp/api-definition - - - 204 - - 1.0676ms
+2021-09-25 23:43:35.190 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/api/abp/api-definition - -
+2021-09-25 23:43:35.191 +08:00 [INF] CORS policy execution successful.
+2021-09-25 23:43:35.191 +08:00 [INF] Executing endpoint 'Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:43:35.191 +08:00 [INF] Route matched with {area = "abp", action = "Get", controller = "AbpApiDefinition", page = ""}. Executing controller action with signature Volo.Abp.Http.Modeling.ApplicationApiDescriptionModel Get(Volo.Abp.Http.Modeling.ApplicationApiDescriptionModelRequestDto) on controller Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController (Volo.Abp.AspNetCore.Mvc).
+2021-09-25 23:43:35.191 +08:00 [DBG] ActionApiDescriptionModel.Create: AbpApplicationConfiguration.GetAsync
+2021-09-25 23:43:35.192 +08:00 [DBG] ActionApiDescriptionModel.Create: AbpApiDefinition.GetByModel
+2021-09-25 23:43:35.192 +08:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.Http.Modeling.ApplicationApiDescriptionModel'.
+2021-09-25 23:43:35.192 +08:00 [INF] Executed action Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc) in 1.1058ms
+2021-09-25 23:43:35.192 +08:00 [INF] Executed endpoint 'Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:43:35.192 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/api/abp/api-definition - - - 200 - application/json;+charset=utf-8 2.4101ms
+2021-09-25 23:43:35.320 +08:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:33188/api/abp/application-configuration?api-version=1.0 - -
+2021-09-25 23:43:35.321 +08:00 [INF] CORS policy execution successful.
+2021-09-25 23:43:35.321 +08:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:33188/api/abp/application-configuration?api-version=1.0 - - - 204 - - 1.0419ms
+2021-09-25 23:43:35.323 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/api/abp/application-configuration?api-version=1.0 - -
+2021-09-25 23:43:35.323 +08:00 [INF] CORS policy execution successful.
+2021-09-25 23:43:35.324 +08:00 [INF] Executing endpoint 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:43:35.324 +08:00 [INF] Route matched with {area = "abp", action = "Get", controller = "AbpApplicationConfiguration", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationDto] GetAsync() on controller Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController (Volo.Abp.AspNetCore.Mvc).
+2021-09-25 23:43:35.325 +08:00 [WRN] The cookie 'XSRF-TOKEN' has set 'SameSite=None' and must also set 'Secure'.
+2021-09-25 23:43:35.326 +08:00 [DBG] Executing AbpApplicationConfigurationAppService.GetAsync()...
+2021-09-25 23:43:35.327 +08:00 [DBG] Executed AbpApplicationConfigurationAppService.GetAsync().
+2021-09-25 23:43:35.327 +08:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationDto'.
+2021-09-25 23:43:35.328 +08:00 [INF] Executed action Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc) in 3.9338ms
+2021-09-25 23:43:35.328 +08:00 [INF] Executed endpoint 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:43:35.328 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/api/abp/application-configuration?api-version=1.0 - - - 200 - application/json;+charset=utf-8 5.2260ms
+2021-09-25 23:45:45.979 +08:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:33188/api/abp/api-definition - -
+2021-09-25 23:45:45.980 +08:00 [INF] CORS policy execution successful.
+2021-09-25 23:45:45.980 +08:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:33188/api/abp/api-definition - - - 204 - - 0.9915ms
+2021-09-25 23:45:45.981 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/api/abp/api-definition - -
+2021-09-25 23:45:45.982 +08:00 [INF] CORS policy execution successful.
+2021-09-25 23:45:45.982 +08:00 [INF] Executing endpoint 'Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:45:45.982 +08:00 [INF] Route matched with {area = "abp", action = "Get", controller = "AbpApiDefinition", page = ""}. Executing controller action with signature Volo.Abp.Http.Modeling.ApplicationApiDescriptionModel Get(Volo.Abp.Http.Modeling.ApplicationApiDescriptionModelRequestDto) on controller Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController (Volo.Abp.AspNetCore.Mvc).
+2021-09-25 23:45:45.983 +08:00 [DBG] ActionApiDescriptionModel.Create: AbpApplicationConfiguration.GetAsync
+2021-09-25 23:45:45.983 +08:00 [DBG] ActionApiDescriptionModel.Create: AbpApiDefinition.GetByModel
+2021-09-25 23:45:45.983 +08:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.Http.Modeling.ApplicationApiDescriptionModel'.
+2021-09-25 23:45:45.984 +08:00 [INF] Executed action Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc) in 1.001ms
+2021-09-25 23:45:45.984 +08:00 [INF] Executed endpoint 'Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:45:45.984 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/api/abp/api-definition - - - 200 - application/json;+charset=utf-8 2.6380ms
+2021-09-25 23:45:46.125 +08:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:33188/api/abp/application-configuration?api-version=1.0 - -
+2021-09-25 23:45:46.126 +08:00 [INF] CORS policy execution successful.
+2021-09-25 23:45:46.126 +08:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:33188/api/abp/application-configuration?api-version=1.0 - - - 204 - - 1.2601ms
+2021-09-25 23:45:46.127 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/api/abp/application-configuration?api-version=1.0 - -
+2021-09-25 23:45:46.128 +08:00 [INF] CORS policy execution successful.
+2021-09-25 23:45:46.128 +08:00 [INF] Executing endpoint 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:45:46.128 +08:00 [INF] Route matched with {area = "abp", action = "Get", controller = "AbpApplicationConfiguration", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationDto] GetAsync() on controller Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController (Volo.Abp.AspNetCore.Mvc).
+2021-09-25 23:45:46.129 +08:00 [WRN] The cookie 'XSRF-TOKEN' has set 'SameSite=None' and must also set 'Secure'.
+2021-09-25 23:45:46.129 +08:00 [DBG] Executing AbpApplicationConfigurationAppService.GetAsync()...
+2021-09-25 23:45:46.130 +08:00 [DBG] Executed AbpApplicationConfigurationAppService.GetAsync().
+2021-09-25 23:45:46.130 +08:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationDto'.
+2021-09-25 23:45:46.130 +08:00 [INF] Executed action Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc) in 2.0805ms
+2021-09-25 23:45:46.130 +08:00 [INF] Executed endpoint 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:45:46.130 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/api/abp/application-configuration?api-version=1.0 - - - 200 - application/json;+charset=utf-8 3.2177ms
+2021-09-25 23:52:14.627 +08:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:33188/api/abp/api-definition - -
+2021-09-25 23:52:14.628 +08:00 [INF] CORS policy execution successful.
+2021-09-25 23:52:14.628 +08:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:33188/api/abp/api-definition - - - 204 - - 0.9510ms
+2021-09-25 23:52:14.629 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/api/abp/api-definition - -
+2021-09-25 23:52:14.630 +08:00 [INF] CORS policy execution successful.
+2021-09-25 23:52:14.630 +08:00 [INF] Executing endpoint 'Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:52:14.630 +08:00 [INF] Route matched with {area = "abp", action = "Get", controller = "AbpApiDefinition", page = ""}. Executing controller action with signature Volo.Abp.Http.Modeling.ApplicationApiDescriptionModel Get(Volo.Abp.Http.Modeling.ApplicationApiDescriptionModelRequestDto) on controller Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController (Volo.Abp.AspNetCore.Mvc).
+2021-09-25 23:52:14.630 +08:00 [DBG] ActionApiDescriptionModel.Create: AbpApplicationConfiguration.GetAsync
+2021-09-25 23:52:14.630 +08:00 [DBG] ActionApiDescriptionModel.Create: AbpApiDefinition.GetByModel
+2021-09-25 23:52:14.631 +08:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.Http.Modeling.ApplicationApiDescriptionModel'.
+2021-09-25 23:52:14.631 +08:00 [INF] Executed action Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc) in 0.852ms
+2021-09-25 23:52:14.631 +08:00 [INF] Executed endpoint 'Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:52:14.631 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/api/abp/api-definition - - - 200 - application/json;+charset=utf-8 1.8344ms
+2021-09-25 23:52:14.726 +08:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:33188/api/abp/application-configuration?api-version=1.0 - -
+2021-09-25 23:52:14.727 +08:00 [INF] CORS policy execution successful.
+2021-09-25 23:52:14.728 +08:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:33188/api/abp/application-configuration?api-version=1.0 - - - 204 - - 1.3611ms
+2021-09-25 23:52:14.729 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/api/abp/application-configuration?api-version=1.0 - -
+2021-09-25 23:52:14.729 +08:00 [INF] CORS policy execution successful.
+2021-09-25 23:52:14.729 +08:00 [INF] Executing endpoint 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:52:14.730 +08:00 [INF] Route matched with {area = "abp", action = "Get", controller = "AbpApplicationConfiguration", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationDto] GetAsync() on controller Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController (Volo.Abp.AspNetCore.Mvc).
+2021-09-25 23:52:14.731 +08:00 [WRN] The cookie 'XSRF-TOKEN' has set 'SameSite=None' and must also set 'Secure'.
+2021-09-25 23:52:14.732 +08:00 [DBG] Executing AbpApplicationConfigurationAppService.GetAsync()...
+2021-09-25 23:52:14.732 +08:00 [DBG] Executed AbpApplicationConfigurationAppService.GetAsync().
+2021-09-25 23:52:14.732 +08:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationDto'.
+2021-09-25 23:52:14.733 +08:00 [INF] Executed action Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc) in 3.0923ms
+2021-09-25 23:52:14.733 +08:00 [INF] Executed endpoint 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:52:14.733 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/api/abp/application-configuration?api-version=1.0 - - - 200 - application/json;+charset=utf-8 4.3527ms
+2021-09-25 23:54:03.024 +08:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:33188/api/abp/api-definition - -
+2021-09-25 23:54:03.025 +08:00 [INF] CORS policy execution successful.
+2021-09-25 23:54:03.025 +08:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:33188/api/abp/api-definition - - - 204 - - 1.0255ms
+2021-09-25 23:54:03.027 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/api/abp/api-definition - -
+2021-09-25 23:54:03.028 +08:00 [INF] CORS policy execution successful.
+2021-09-25 23:54:03.028 +08:00 [INF] Executing endpoint 'Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:54:03.028 +08:00 [INF] Route matched with {area = "abp", action = "Get", controller = "AbpApiDefinition", page = ""}. Executing controller action with signature Volo.Abp.Http.Modeling.ApplicationApiDescriptionModel Get(Volo.Abp.Http.Modeling.ApplicationApiDescriptionModelRequestDto) on controller Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController (Volo.Abp.AspNetCore.Mvc).
+2021-09-25 23:54:03.029 +08:00 [DBG] ActionApiDescriptionModel.Create: AbpApplicationConfiguration.GetAsync
+2021-09-25 23:54:03.029 +08:00 [DBG] ActionApiDescriptionModel.Create: AbpApiDefinition.GetByModel
+2021-09-25 23:54:03.029 +08:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.Http.Modeling.ApplicationApiDescriptionModel'.
+2021-09-25 23:54:03.029 +08:00 [INF] Executed action Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc) in 0.9599ms
+2021-09-25 23:54:03.029 +08:00 [INF] Executed endpoint 'Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:54:03.029 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/api/abp/api-definition - - - 200 - application/json;+charset=utf-8 2.2989ms
+2021-09-25 23:54:03.122 +08:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:33188/api/abp/application-configuration?api-version=1.0 - -
+2021-09-25 23:54:03.123 +08:00 [INF] CORS policy execution successful.
+2021-09-25 23:54:03.123 +08:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:33188/api/abp/application-configuration?api-version=1.0 - - - 204 - - 0.7063ms
+2021-09-25 23:54:03.124 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/api/abp/application-configuration?api-version=1.0 - -
+2021-09-25 23:54:03.124 +08:00 [INF] CORS policy execution successful.
+2021-09-25 23:54:03.124 +08:00 [INF] Executing endpoint 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:54:03.124 +08:00 [INF] Route matched with {area = "abp", action = "Get", controller = "AbpApplicationConfiguration", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationDto] GetAsync() on controller Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController (Volo.Abp.AspNetCore.Mvc).
+2021-09-25 23:54:03.125 +08:00 [WRN] The cookie 'XSRF-TOKEN' has set 'SameSite=None' and must also set 'Secure'.
+2021-09-25 23:54:03.126 +08:00 [DBG] Executing AbpApplicationConfigurationAppService.GetAsync()...
+2021-09-25 23:54:03.126 +08:00 [DBG] Executed AbpApplicationConfigurationAppService.GetAsync().
+2021-09-25 23:54:03.126 +08:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationDto'.
+2021-09-25 23:54:03.126 +08:00 [INF] Executed action Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc) in 1.8588ms
+2021-09-25 23:54:03.126 +08:00 [INF] Executed endpoint 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:54:03.126 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/api/abp/application-configuration?api-version=1.0 - - - 200 - application/json;+charset=utf-8 2.9221ms
+2021-09-25 23:54:57.958 +08:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:33188/api/abp/api-definition - -
+2021-09-25 23:54:57.958 +08:00 [INF] CORS policy execution successful.
+2021-09-25 23:54:57.959 +08:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:33188/api/abp/api-definition - - - 204 - - 0.8886ms
+2021-09-25 23:54:57.960 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/api/abp/api-definition - -
+2021-09-25 23:54:57.961 +08:00 [INF] CORS policy execution successful.
+2021-09-25 23:54:57.961 +08:00 [INF] Executing endpoint 'Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:54:57.962 +08:00 [INF] Route matched with {area = "abp", action = "Get", controller = "AbpApiDefinition", page = ""}. Executing controller action with signature Volo.Abp.Http.Modeling.ApplicationApiDescriptionModel Get(Volo.Abp.Http.Modeling.ApplicationApiDescriptionModelRequestDto) on controller Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController (Volo.Abp.AspNetCore.Mvc).
+2021-09-25 23:54:57.962 +08:00 [DBG] ActionApiDescriptionModel.Create: AbpApplicationConfiguration.GetAsync
+2021-09-25 23:54:57.962 +08:00 [DBG] ActionApiDescriptionModel.Create: AbpApiDefinition.GetByModel
+2021-09-25 23:54:57.963 +08:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.Http.Modeling.ApplicationApiDescriptionModel'.
+2021-09-25 23:54:57.964 +08:00 [INF] Executed action Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc) in 1.938ms
+2021-09-25 23:54:57.964 +08:00 [INF] Executed endpoint 'Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:54:57.964 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/api/abp/api-definition - - - 200 - application/json;+charset=utf-8 3.7916ms
+2021-09-25 23:54:58.110 +08:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:33188/api/abp/application-configuration?api-version=1.0 - -
+2021-09-25 23:54:58.110 +08:00 [INF] CORS policy execution successful.
+2021-09-25 23:54:58.111 +08:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:33188/api/abp/application-configuration?api-version=1.0 - - - 204 - - 1.1043ms
+2021-09-25 23:54:58.112 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/api/abp/application-configuration?api-version=1.0 - -
+2021-09-25 23:54:58.112 +08:00 [INF] CORS policy execution successful.
+2021-09-25 23:54:58.112 +08:00 [INF] Executing endpoint 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:54:58.112 +08:00 [INF] Route matched with {area = "abp", action = "Get", controller = "AbpApplicationConfiguration", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationDto] GetAsync() on controller Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController (Volo.Abp.AspNetCore.Mvc).
+2021-09-25 23:54:58.113 +08:00 [WRN] The cookie 'XSRF-TOKEN' has set 'SameSite=None' and must also set 'Secure'.
+2021-09-25 23:54:58.113 +08:00 [DBG] Executing AbpApplicationConfigurationAppService.GetAsync()...
+2021-09-25 23:54:58.114 +08:00 [DBG] Executed AbpApplicationConfigurationAppService.GetAsync().
+2021-09-25 23:54:58.114 +08:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationDto'.
+2021-09-25 23:54:58.114 +08:00 [INF] Executed action Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc) in 1.9301ms
+2021-09-25 23:54:58.114 +08:00 [INF] Executed endpoint 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:54:58.115 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/api/abp/application-configuration?api-version=1.0 - - - 200 - application/json;+charset=utf-8 2.8790ms
+2021-09-25 23:56:02.812 +08:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:33188/api/abp/api-definition - -
+2021-09-25 23:56:02.813 +08:00 [INF] CORS policy execution successful.
+2021-09-25 23:56:02.813 +08:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:33188/api/abp/api-definition - - - 204 - - 0.8468ms
+2021-09-25 23:56:02.814 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/api/abp/api-definition - -
+2021-09-25 23:56:02.815 +08:00 [INF] CORS policy execution successful.
+2021-09-25 23:56:02.815 +08:00 [INF] Executing endpoint 'Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:56:02.815 +08:00 [INF] Route matched with {area = "abp", action = "Get", controller = "AbpApiDefinition", page = ""}. Executing controller action with signature Volo.Abp.Http.Modeling.ApplicationApiDescriptionModel Get(Volo.Abp.Http.Modeling.ApplicationApiDescriptionModelRequestDto) on controller Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController (Volo.Abp.AspNetCore.Mvc).
+2021-09-25 23:56:02.816 +08:00 [DBG] ActionApiDescriptionModel.Create: AbpApplicationConfiguration.GetAsync
+2021-09-25 23:56:02.816 +08:00 [DBG] ActionApiDescriptionModel.Create: AbpApiDefinition.GetByModel
+2021-09-25 23:56:02.816 +08:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.Http.Modeling.ApplicationApiDescriptionModel'.
+2021-09-25 23:56:02.816 +08:00 [INF] Executed action Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc) in 1.0792ms
+2021-09-25 23:56:02.816 +08:00 [INF] Executed endpoint 'Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:56:02.816 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/api/abp/api-definition - - - 200 - application/json;+charset=utf-8 2.2556ms
+2021-09-25 23:56:02.974 +08:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:33188/api/abp/application-configuration?api-version=1.0 - -
+2021-09-25 23:56:02.974 +08:00 [INF] CORS policy execution successful.
+2021-09-25 23:56:02.975 +08:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:33188/api/abp/application-configuration?api-version=1.0 - - - 204 - - 0.9581ms
+2021-09-25 23:56:02.976 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/api/abp/application-configuration?api-version=1.0 - -
+2021-09-25 23:56:02.977 +08:00 [INF] CORS policy execution successful.
+2021-09-25 23:56:02.977 +08:00 [INF] Executing endpoint 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:56:02.977 +08:00 [INF] Route matched with {area = "abp", action = "Get", controller = "AbpApplicationConfiguration", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationDto] GetAsync() on controller Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController (Volo.Abp.AspNetCore.Mvc).
+2021-09-25 23:56:02.978 +08:00 [WRN] The cookie 'XSRF-TOKEN' has set 'SameSite=None' and must also set 'Secure'.
+2021-09-25 23:56:02.978 +08:00 [DBG] Executing AbpApplicationConfigurationAppService.GetAsync()...
+2021-09-25 23:56:02.979 +08:00 [DBG] Executed AbpApplicationConfigurationAppService.GetAsync().
+2021-09-25 23:56:02.979 +08:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationDto'.
+2021-09-25 23:56:02.979 +08:00 [INF] Executed action Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc) in 2.2772ms
+2021-09-25 23:56:02.979 +08:00 [INF] Executed endpoint 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:56:02.980 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/api/abp/application-configuration?api-version=1.0 - - - 200 - application/json;+charset=utf-8 3.5862ms
+2021-09-25 23:56:21.185 +08:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:33188/api/abp/api-definition - -
+2021-09-25 23:56:21.186 +08:00 [INF] CORS policy execution successful.
+2021-09-25 23:56:21.186 +08:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:33188/api/abp/api-definition - - - 204 - - 0.9053ms
+2021-09-25 23:56:21.187 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/api/abp/api-definition - -
+2021-09-25 23:56:21.188 +08:00 [INF] CORS policy execution successful.
+2021-09-25 23:56:21.188 +08:00 [INF] Executing endpoint 'Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:56:21.188 +08:00 [INF] Route matched with {area = "abp", action = "Get", controller = "AbpApiDefinition", page = ""}. Executing controller action with signature Volo.Abp.Http.Modeling.ApplicationApiDescriptionModel Get(Volo.Abp.Http.Modeling.ApplicationApiDescriptionModelRequestDto) on controller Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController (Volo.Abp.AspNetCore.Mvc).
+2021-09-25 23:56:21.188 +08:00 [DBG] ActionApiDescriptionModel.Create: AbpApplicationConfiguration.GetAsync
+2021-09-25 23:56:21.188 +08:00 [DBG] ActionApiDescriptionModel.Create: AbpApiDefinition.GetByModel
+2021-09-25 23:56:21.188 +08:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.Http.Modeling.ApplicationApiDescriptionModel'.
+2021-09-25 23:56:21.189 +08:00 [INF] Executed action Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc) in 0.7124ms
+2021-09-25 23:56:21.189 +08:00 [INF] Executed endpoint 'Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:56:21.189 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/api/abp/api-definition - - - 200 - application/json;+charset=utf-8 1.7678ms
+2021-09-25 23:56:21.457 +08:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:33188/api/abp/application-configuration?api-version=1.0 - -
+2021-09-25 23:56:21.460 +08:00 [INF] CORS policy execution successful.
+2021-09-25 23:56:21.460 +08:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:33188/api/abp/application-configuration?api-version=1.0 - - - 204 - - 3.2116ms
+2021-09-25 23:56:21.463 +08:00 [INF] Request starting HTTP/1.1 GET http://localhost:33188/api/abp/application-configuration?api-version=1.0 - -
+2021-09-25 23:56:21.464 +08:00 [INF] CORS policy execution successful.
+2021-09-25 23:56:21.465 +08:00 [INF] Executing endpoint 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:56:21.465 +08:00 [INF] Route matched with {area = "abp", action = "Get", controller = "AbpApplicationConfiguration", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationDto] GetAsync() on controller Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController (Volo.Abp.AspNetCore.Mvc).
+2021-09-25 23:56:21.470 +08:00 [WRN] The cookie 'XSRF-TOKEN' has set 'SameSite=None' and must also set 'Secure'.
+2021-09-25 23:56:21.475 +08:00 [DBG] Executing AbpApplicationConfigurationAppService.GetAsync()...
+2021-09-25 23:56:21.477 +08:00 [DBG] Executed AbpApplicationConfigurationAppService.GetAsync().
+2021-09-25 23:56:21.478 +08:00 [INF] Executing ObjectResult, writing value of type 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.ApplicationConfigurationDto'.
+2021-09-25 23:56:21.480 +08:00 [INF] Executed action Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc) in 14.9381ms
+2021-09-25 23:56:21.481 +08:00 [INF] Executed endpoint 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationController.GetAsync (Volo.Abp.AspNetCore.Mvc)'
+2021-09-25 23:56:21.481 +08:00 [INF] Request finished HTTP/1.1 GET http://localhost:33188/api/abp/application-configuration?api-version=1.0 - - - 200 - application/json;+charset=utf-8 18.6361ms

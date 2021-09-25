@@ -13,11 +13,11 @@ using System.Reflection;
 
 [assembly: System.Reflection.AssemblyCompanyAttribute("Zero.Abp.AspNetCore.Mvc.UI.Bundling")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("4.4.2.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("4.4.2")]
 [assembly: System.Reflection.AssemblyProductAttribute("Zero.Abp.AspNetCore.Mvc.UI.Bundling")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Zero.Abp.AspNetCore.Mvc.UI.Bundling")]
-[assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
+[assembly: System.Reflection.AssemblyVersionAttribute("4.4.2.0")]
 
 // 由 MSBuild WriteCodeFragment 类生成。
 

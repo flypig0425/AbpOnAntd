@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "3uLpwzNZonbXb5rRxvBocz+ltnkQhZ0OHmXs+M1BLbM3FsJMi7SxhEYlC/xYz0JVYd4LSbKbw+KiEUrzE174Ag==",
+  "dgSpecHash": "ZVoq4vDGzcPw7tmxJg4FYFl9HW27vHKIU70WLaVfWQ2t4hV+7s/6CH4rOqxGECPapG8xPxiz649ZcOaOdmi5Rg==",
   "success": true,
   "projectFilePath": "D:\\DevCodes\\AbpZero\\framework\\Zero.Abp.AspNetCore.Mvc.UI.Bundling\\Zero.Abp.AspNetCore.Mvc.UI.Bundling.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\weidyg\\.nuget\\packages\\configureawait.fody\\3.3.1\\configureawait.fody.3.3.1.nupkg.sha512",
+    "C:\\Users\\weidyg\\.nuget\\packages\\fody\\6.5.0\\fody.6.5.0.nupkg.sha512",
     "C:\\Users\\weidyg\\.nuget\\packages\\jetbrains.annotations\\2020.3.0\\jetbrains.annotations.2020.3.0.nupkg.sha512",
     "C:\\Users\\weidyg\\.nuget\\packages\\microsoft.aspnetcore.authorization\\5.0.9\\microsoft.aspnetcore.authorization.5.0.9.nupkg.sha512",
     "C:\\Users\\weidyg\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\5.0.9\\microsoft.aspnetcore.jsonpatch.5.0.9.nupkg.sha512",

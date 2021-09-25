@@ -19,20 +19,22 @@
       "NETCOREAPP3_0_OR_GREATER",
       "NETCOREAPP3_1_OR_GREATER"
     ],
-    "languageVersion": "9.0",
+    "languageVersion": "latest",
     "platform": "",
     "allowUnsafe": false,
     "warningsAsErrors": false,
     "optimize": false,
     "keyFile": "",
     "emitEntryPoint": false,
-    "xmlDoc": false,
+    "xmlDoc": true,
     "debugType": "portable"
   },
   "targets": {
     ".NETCoreApp,Version=v5.0": {
-      "Zero.Abp.AspNetCore.Mvc.UI.Bundling/1.0.0": {
+      "Zero.Abp.AspNetCore.Mvc.UI.Bundling/4.4.2": {
         "dependencies": {
+          "ConfigureAwait.Fody": "3.3.1",
+          "Fody": "6.5.0",
           "Volo.Abp.AspNetCore.Mvc": "4.4.2",
           "Volo.Abp.AspNetCore.Mvc.UI.Bundling.Abstractions": "4.4.2",
           "Volo.Abp.Minify": "4.4.2",
@@ -320,6 +322,21 @@
           "Zero.Abp.AspNetCore.Mvc.UI.Bundling.dll": {}
         }
       },
+      "ConfigureAwait.Fody/3.3.1": {
+        "dependencies": {
+          "Fody": "6.5.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/ConfigureAwait.dll": {
+            "assemblyVersion": "3.3.1.0",
+            "fileVersion": "3.3.1.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/ConfigureAwait.dll": {}
+        }
+      },
+      "Fody/6.5.0": {},
       "JetBrains.Annotations/2020.3.0": {
         "runtime": {
           "lib/netstandard2.0/JetBrains.Annotations.dll": {
@@ -3391,10 +3408,24 @@
     }
   },
   "libraries": {
-    "Zero.Abp.AspNetCore.Mvc.UI.Bundling/1.0.0": {
+    "Zero.Abp.AspNetCore.Mvc.UI.Bundling/4.4.2": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "ConfigureAwait.Fody/3.3.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-R9PQYf0AT4RBZcUXm22xWkCpSmNHdTzQ0dOyLIsxIK6dwXH4S9pY/rZdXU/63i8vZvSzZ99sB1kP7xer8MCe6w==",
+      "path": "configureawait.fody/3.3.1",
+      "hashPath": "configureawait.fody.3.3.1.nupkg.sha512"
+    },
+    "Fody/6.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+bc+fzXFum7/MPjhEsxw+kIGcwfnI3JHv4w2T0jLLvk9HfO/xoq/aIjF1TSPlUWl+A1k2odtwdEdKZXJZXZzbQ==",
+      "path": "fody/6.5.0",
+      "hashPath": "fody.6.5.0.nupkg.sha512"
     },
     "JetBrains.Annotations/2020.3.0": {
       "type": "package",

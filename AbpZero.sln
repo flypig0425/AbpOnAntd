@@ -35,13 +35,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{D5D082
 		framework\configureawait.props = framework\configureawait.props
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWebAssmblyDemo", "app\BlazorWebAssmblyDemo\BlazorWebAssmblyDemo.csproj", "{B0FE6C41-8632-4260-97F7-4E2930935311}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWebAssmblyDemo", "app\BlazorWebAssmblyDemo\BlazorWebAssmblyDemo.csproj", "{B0FE6C41-8632-4260-97F7-4E2930935311}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.AspNetCore.Components.WebAssembly.BasicTheme", "basic-theme\Zero.Abp.AspNetCore.Components.WebAssembly.BasicTheme\Zero.Abp.AspNetCore.Components.WebAssembly.BasicTheme.csproj", "{46ECD549-E328-47B8-8B63-8D21334F4077}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.AspNetCore.Components.WebAssembly", "framework\Zero.Abp.AspNetCore.Components.WebAssembly\Zero.Abp.AspNetCore.Components.WebAssembly.csproj", "{91CFC0C5-5CBF-4FCE-AE17-513BC7AF928E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.AspNetCore.Components.WebAssembly.Theming", "framework\Zero.Abp.AspNetCore.Components.WebAssembly.Theming\Zero.Abp.AspNetCore.Components.WebAssembly.Theming.csproj", "{96F07818-FD62-447E-8D04-98D13CD8F36F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.Http.Client.IdentityModel.WebAssembly", "framework\Zero.Abp.Http.Client.IdentityModel.WebAssembly\Zero.Abp.Http.Client.IdentityModel.WebAssembly.csproj", "{4CBA1651-AEEF-4C2C-9AD2-BCD52FB7ED02}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -105,6 +107,10 @@ Global
 		{96F07818-FD62-447E-8D04-98D13CD8F36F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96F07818-FD62-447E-8D04-98D13CD8F36F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96F07818-FD62-447E-8D04-98D13CD8F36F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CBA1651-AEEF-4C2C-9AD2-BCD52FB7ED02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CBA1651-AEEF-4C2C-9AD2-BCD52FB7ED02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CBA1651-AEEF-4C2C-9AD2-BCD52FB7ED02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CBA1651-AEEF-4C2C-9AD2-BCD52FB7ED02}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -125,6 +131,7 @@ Global
 		{46ECD549-E328-47B8-8B63-8D21334F4077} = {8F84A30B-33A4-442D-8903-162DFDCC674F}
 		{91CFC0C5-5CBF-4FCE-AE17-513BC7AF928E} = {9B20C328-C33E-4ACC-90AE-EEE112C36EEC}
 		{96F07818-FD62-447E-8D04-98D13CD8F36F} = {9B20C328-C33E-4ACC-90AE-EEE112C36EEC}
+		{4CBA1651-AEEF-4C2C-9AD2-BCD52FB7ED02} = {9B20C328-C33E-4ACC-90AE-EEE112C36EEC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CCCD4626-D10B-4FA0-A554-235AECB0AB80}

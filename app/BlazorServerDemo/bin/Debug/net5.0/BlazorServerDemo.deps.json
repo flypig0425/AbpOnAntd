@@ -3023,7 +3023,7 @@
         "dependencies": {
           "Zero.Abp.AspNetCore.Components.Server": "4.4.2",
           "Zero.Abp.AspNetCore.Components.Web.Theming": "4.4.2",
-          "Zero.Abp.AspNetCore.Mvc.UI.Bundling": "1.0.0"
+          "Zero.Abp.AspNetCore.Mvc.UI.Bundling": "4.4.2"
         },
         "runtime": {
           "Zero.Abp.AspNetCore.Components.Server.Theming.dll": {}
@@ -3069,7 +3069,7 @@
           "Zero.Abp.AspNetCore.Components.Web.Theming.dll": {}
         }
       },
-      "Zero.Abp.AspNetCore.Mvc.UI.Bundling/1.0.0": {
+      "Zero.Abp.AspNetCore.Mvc.UI.Bundling/4.4.2": {
         "dependencies": {
           "Volo.Abp.AspNetCore.Mvc": "4.4.2",
           "Volo.Abp.AspNetCore.Mvc.UI.Bundling.Abstractions": "4.4.2",
@@ -6332,7 +6332,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Zero.Abp.AspNetCore.Mvc.UI.Bundling/1.0.0": {
+    "Zero.Abp.AspNetCore.Mvc.UI.Bundling/4.4.2": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -11,7 +11,7 @@
   <ItemGroup>
         <ProjectReference Include="..\..\framework\Zero.Abp.AspNetCore.Components.WebAssembly.Theming\Zero.Abp.AspNetCore.Components.WebAssembly.Theming.csproj" />
         <ProjectReference Include="..\Zero.Abp.AspNetCore.Components.Web.BasicTheme\Zero.Abp.AspNetCore.Components.Web.BasicTheme.csproj" />
-        <!--<ProjectReference Include="..\..\..\..\framework\src\Volo.Abp.Http.Client.IdentityModel.WebAssembly\Volo.Abp.Http.Client.IdentityModel.WebAssembly.csproj" />-->
+        <!--<ProjectReference Include="..\..\framework\Zero.Abp.Http.Client.IdentityModel.WebAssembly\Zero.Abp.Http.Client.IdentityModel.WebAssembly.csproj" />-->
     </ItemGroup>
 
   <ItemGroup>

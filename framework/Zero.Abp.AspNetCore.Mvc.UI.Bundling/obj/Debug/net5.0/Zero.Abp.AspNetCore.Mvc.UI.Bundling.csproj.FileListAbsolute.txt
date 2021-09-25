@@ -288,3 +288,6 @@ D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Mvc.UI.Bundling\obj\Debug\net5
 D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Mvc.UI.Bundling\obj\Debug\net5.0\Zero.Abp.AspNetCore.Mvc.UI.Bundling.dll
 D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Mvc.UI.Bundling\obj\Debug\net5.0\ref\Zero.Abp.AspNetCore.Mvc.UI.Bundling.dll
 D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Mvc.UI.Bundling\obj\Debug\net5.0\Zero.Abp.AspNetCore.Mvc.UI.Bundling.pdb
+D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Mvc.UI.Bundling\bin\Debug\net5.0\Zero.Abp.AspNetCore.Mvc.UI.Bundling.xml
+D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Mvc.UI.Bundling\obj\Debug\net5.0\Zero.Abp.AspNetCore.Mvc.UI.Bundling.csproj.Fody.CopyLocal.cache
+D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Mvc.UI.Bundling\obj\Debug\net5.0\Zero.Abp.AspNetCore.Mvc.UI.Bundling.xml
