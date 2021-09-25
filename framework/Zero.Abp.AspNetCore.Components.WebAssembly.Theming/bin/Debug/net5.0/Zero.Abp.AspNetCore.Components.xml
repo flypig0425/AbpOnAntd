@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Zero.Abp.AspNetCore.Components</name>
+    </assembly>
+    <members>
+        <member name="T:Zero.Abp.AspNetCore.Components.Messages.UiMessageOptions">
+            <summary>
+            Options to override message dialog appearance.
+            </summary>
+        </member>
+        <member name="P:Zero.Abp.AspNetCore.Components.Messages.UiMessageOptions.CenterMessage">
+            <summary>
+            If true, the message dialogue will be centered on the screen.
+            </summary>
+        </member>
+        <member name="P:Zero.Abp.AspNetCore.Components.Messages.UiMessageOptions.ShowMessageIcon">
+            <summary>
+            If true, the message dialogue will show the large icon for the current message type.
+            </summary>
+        </member>
+        <member name="P:Zero.Abp.AspNetCore.Components.Messages.UiMessageOptions.MessageIcon">
+            <summary>
+            Overrides the build-in message icon.
+            </summary>
+        </member>
+        <member name="P:Zero.Abp.AspNetCore.Components.Messages.UiMessageOptions.OkButtonText">
+            <summary>
+            Custom text for the Ok button.
+            </summary>
+        </member>
+        <member name="P:Zero.Abp.AspNetCore.Components.Messages.UiMessageOptions.OkButtonIcon">
+            <summary>
+            Custom icon for the Ok button.
+            </summary>
+        </member>
+        <member name="P:Zero.Abp.AspNetCore.Components.Messages.UiMessageOptions.ConfirmButtonText">
+            <summary>
+            Custom text for the Confirmation button.
+            </summary>
+        </member>
+        <member name="P:Zero.Abp.AspNetCore.Components.Messages.UiMessageOptions.ConfirmButtonIcon">
+            <summary>
+            Custom icon for the Confirmation button.
+            </summary>
+        </member>
+        <member name="P:Zero.Abp.AspNetCore.Components.Messages.UiMessageOptions.CancelButtonText">
+            <summary>
+            Custom text for the Cancel button.
+            </summary>
+        </member>
+        <member name="P:Zero.Abp.AspNetCore.Components.Messages.UiMessageOptions.CancelButtonIcon">
+            <summary>
+            Custom icon for the Cancel button.
+            </summary>
+        </member>
+        <member name="T:Zero.Abp.AspNetCore.Components.Messages.UiMessageType">
+            <summary>
+            Defines the possible ui message types with predefined actions.
+            </summary>
+        </member>
+        <member name="E:Zero.Abp.AspNetCore.Components.Progression.IUiPageProgressService.ProgressChanged">
+            <summary>
+            An event raised after the notification is received.
+            </summary>
+        </member>
+        <member name="M:Zero.Abp.AspNetCore.Components.Progression.IUiPageProgressService.Go(System.Nullable{System.Int32},System.Action{Zero.Abp.AspNetCore.Components.Progression.UiPageProgressOptions})">
+            <summary>
+            Sets the progress percentage.
+            </summary>
+            <param name="percentage">Value of the progress from 0 to 100, or null for indeterminate progress.</param>
+            <param name="options">Additional options.</param>
+            <returns>Awaitable task.</returns>
+        </member>
+        <member name="T:Zero.Abp.AspNetCore.Components.Progression.UiPageProgressOptions">
+            <summary>
+            Options to override page progress appearance.
+            </summary>
+        </member>
+        <member name="P:Zero.Abp.AspNetCore.Components.Progression.UiPageProgressOptions.Type">
+            <summary>
+            Type or color, of the page progress.
+            </summary>
+        </member>
+    </members>
+</doc>

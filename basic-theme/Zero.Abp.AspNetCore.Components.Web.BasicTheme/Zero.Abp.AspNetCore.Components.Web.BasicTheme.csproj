@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Themes\Basic\FirstLevelNavMenuItem.razor.cs" />
+    <Compile Remove="Themes\Basic\NavMenu.razor.cs" />
+    <Compile Remove="Themes\Basic\NavToolbar.razor.cs" />
+    <Compile Remove="Themes\Basic\SecondLevelNavMenuItem.razor.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Themes\Basic\Branding.razor" />
+    <Content Remove="Themes\Basic\FirstLevelNavMenuItem.razor" />
+    <Content Remove="Themes\Basic\NavMenu.razor" />
+    <Content Remove="Themes\Basic\NavToolbar.razor" />
+    <Content Remove="Themes\Basic\SecondLevelNavMenuItem.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\framework\Zero.Abp.AspNetCore.Components.Web.Theming\Zero.Abp.AspNetCore.Components.Web.Theming.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,27 @@
+﻿@page "/"
+@inherits AbpComponentBase
+@inject IUiPageProgressService pageProgressService
+
+<Button Type="@ButtonType.Primary" OnClick="@DeleteAsync">
+    Open the notification box
+</Button>
+
+@code{
+    protected override void OnInitialized()
+    {
+        Alerts.Warning(
+        "We will have a service interruption between 02:00 AM and 04:00 AM at October 23, 2023!",
+        "Service Interruption");
+        base.OnInitialized();
+    }
+
+    int? percentage = 0;
+
+    public Task DeleteAsync()
+    {
+        percentage = percentage + 10;
+        return pageProgressService.Go(percentage);
+
+        //await Message.Success( "The product 'Acme Atom Re-Arranger' has been successfully deleted."  );
+    }
+}

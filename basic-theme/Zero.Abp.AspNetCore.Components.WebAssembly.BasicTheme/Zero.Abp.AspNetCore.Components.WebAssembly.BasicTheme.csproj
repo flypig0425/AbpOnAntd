@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="Pages\Authentication.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+        <ProjectReference Include="..\..\framework\Zero.Abp.AspNetCore.Components.WebAssembly.Theming\Zero.Abp.AspNetCore.Components.WebAssembly.Theming.csproj" />
+        <ProjectReference Include="..\Zero.Abp.AspNetCore.Components.Web.BasicTheme\Zero.Abp.AspNetCore.Components.Web.BasicTheme.csproj" />
+        <!--<ProjectReference Include="..\..\..\..\framework\src\Volo.Abp.Http.Client.IdentityModel.WebAssembly\Volo.Abp.Http.Client.IdentityModel.WebAssembly.csproj" />-->
+    </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Pages\" />
+  </ItemGroup>
+
+</Project>

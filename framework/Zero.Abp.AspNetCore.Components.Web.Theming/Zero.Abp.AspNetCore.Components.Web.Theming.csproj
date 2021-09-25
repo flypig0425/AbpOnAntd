@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <Import Project="..\configureawait.props" />
+  <Import Project="..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.UI.Navigation" Version="$(AbpPackageVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Zero.Abp.AntdesignUI\Zero.Abp.AntdesignUI.csproj" />
+  </ItemGroup>
+</Project>

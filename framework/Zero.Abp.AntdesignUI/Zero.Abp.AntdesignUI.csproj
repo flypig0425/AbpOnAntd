@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Components\ObjectExtending\**" />
+    <Content Remove="Components\ObjectExtending\**" />
+    <EmbeddedResource Remove="Components\ObjectExtending\**" />
+    <None Remove="Components\ObjectExtending\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="AbpCrudPageBase.cs" />
+    <Compile Remove="AntdesignUiMessageService.cs" />
+    <Compile Remove="AntdesignUiNotificationService.cs" />
+    <Compile Remove="AntdesignUiObjectExtensionPropertyInfoExtensions.cs" />
+    <Compile Remove="Components\AbpExtensibleDataGrid.razor.cs" />
+    <Compile Remove="Components\ActionType.cs" />
+    <Compile Remove="Components\DataGridEntityActionsColumn.razor.cs" />
+    <Compile Remove="Components\EntityAction.razor.cs" />
+    <Compile Remove="Components\EntityActions.razor.cs" />
+    <Compile Remove="Components\SubmitButton.razor.cs" />
+    <Compile Remove="Components\ToolbarButton.razor.cs" />
+    <Compile Remove="Components\UiMessageAlert.razor.cs" />
+    <Compile Remove="Components\UiNotificationAlert.razor.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Components\AbpExtensibleDataGrid.razor" />
+    <Content Remove="Components\DataGridEntityActionsColumn.razor" />
+    <Content Remove="Components\EntityAction.razor" />
+    <Content Remove="Components\EntityActions.razor" />
+    <Content Remove="Components\RadarSpinner.razor" />
+    <Content Remove="Components\SubmitButton.razor" />
+    <Content Remove="Components\ToolbarButton.razor" />
+    <Content Remove="Components\UiMessageAlert.razor" />
+    <Content Remove="Components\UiNotificationAlert.razor" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="AntDesign" Version="0.10.0" />
+    <PackageReference Include="Volo.Abp.Authorization" Version="4.4.2" />
+    <PackageReference Include="Volo.Abp.Ddd.Application.Contracts" Version="4.4.2" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\Zero.Abp.AspNetCore.Components.Web\Zero.Abp.AspNetCore.Components.Web.csproj" />
+  </ItemGroup>
+  
+</Project>

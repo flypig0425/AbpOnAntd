@@ -1,0 +1,17 @@
+D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components\bin\Debug\net5.0\Zero.Abp.AspNetCore.Components.deps.json
+D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components\bin\Debug\net5.0\Zero.Abp.AspNetCore.Components.dll
+D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components\bin\Debug\net5.0\ref\Zero.Abp.AspNetCore.Components.dll
+D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components\bin\Debug\net5.0\Zero.Abp.AspNetCore.Components.pdb
+D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components\bin\Debug\net5.0\Zero.Abp.AspNetCore.Components.xml
+D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components\obj\Debug\net5.0\Zero.Abp.AspNetCore.Components.GeneratedMSBuildEditorConfig.editorconfig
+D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components\obj\Debug\net5.0\Zero.Abp.AspNetCore.Components.AssemblyInfoInputs.cache
+D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components\obj\Debug\net5.0\Zero.Abp.AspNetCore.Components.AssemblyInfo.cs
+D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components\obj\Debug\net5.0\Zero.Abp.AspNetCore.Components.csproj.CoreCompileInputs.cache
+D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components\obj\Debug\net5.0\Zero.Abp.AspNetCore.Components.csproj.Fody.CopyLocal.cache
+D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components\obj\Debug\net5.0\scopedcss\bundle\Zero.Abp.AspNetCore.Components.styles.css
+D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components\obj\Debug\net5.0\staticwebassets\Zero.Abp.AspNetCore.Components.StaticWebAssets.Manifest.cache
+D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components\obj\Debug\net5.0\Zero.Abp.AspNetCore.Components.RazorTargetAssemblyInfo.cache
+D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components\obj\Debug\net5.0\Zero.Abp.AspNetCore.Components.dll
+D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components\obj\Debug\net5.0\ref\Zero.Abp.AspNetCore.Components.dll
+D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components\obj\Debug\net5.0\Zero.Abp.AspNetCore.Components.xml
+D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components\obj\Debug\net5.0\Zero.Abp.AspNetCore.Components.pdb
