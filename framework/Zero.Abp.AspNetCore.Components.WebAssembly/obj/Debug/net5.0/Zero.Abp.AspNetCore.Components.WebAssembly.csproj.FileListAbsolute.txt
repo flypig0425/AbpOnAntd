@@ -24,3 +24,4 @@ D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components.WebAssembly\obj\Deb
 D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components.WebAssembly\obj\Debug\net5.0\ref\Zero.Abp.AspNetCore.Components.WebAssembly.dll
 D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components.WebAssembly\obj\Debug\net5.0\Zero.Abp.AspNetCore.Components.WebAssembly.xml
 D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components.WebAssembly\obj\Debug\net5.0\Zero.Abp.AspNetCore.Components.WebAssembly.pdb
+D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components.WebAssembly\obj\Debug\net5.0\Zero.Abp.AspNetCore.Components.WebAssembly.csproj.CopyComplete

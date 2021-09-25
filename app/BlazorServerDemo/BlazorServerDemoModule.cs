@@ -15,6 +15,7 @@ using Volo.Abp.Modularity;
 using Volo.Abp.Swashbuckle;
 using Volo.Abp.UI.Navigation.Urls;
 using Zero.Abp.AspNetCore.Components.Server.BasicTheme;
+using Zero.Abp.AspNetCore.Components.Server.BasicTheme.Bundling;
 using Zero.Abp.AspNetCore.Components.Web.Theming.Routing;
 
 namespace BlazorServerDemo
@@ -70,15 +71,15 @@ namespace BlazorServerDemo
                 //);
 
                 //BLAZOR UI
-                //options.StyleBundles.Configure(
-                //    BlazorBasicThemeBundles.Styles.Global,
-                //    bundle =>
-                //    {
-                //        bundle.AddFiles("/blazor-global-styles.css");
-                //        ////You can remove the following line if you don't use Blazor CSS isolation for components
-                //        //bundle.AddFiles("/Antd.AbpDemo.Blazor.styles.css");
-                //    }
-                //);
+                options.StyleBundles.Configure(
+                    BlazorBasicThemeBundles.Styles.Global,
+                    bundle =>
+                    {
+                        bundle.AddFiles("/blazor-global-styles.css");
+                        ////You can remove the following line if you don't use Blazor CSS isolation for components
+                        //bundle.AddFiles("/Antd.AbpDemo.Blazor.styles.css");
+                    }
+                );
             });
         }
 

@@ -4,12 +4,13 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>BlazorWebAssmblyDemo.Blazor</title>
+    <title>BlazorWebAssmblyDemo</title>
     <base href="/" />
 
     <!--ABP:Styles-->
-    <link href="global.css?_v=637649661149948696" rel="stylesheet"/>
-    <link href="main.css" rel="stylesheet"/>
+    <!--<link href="global.css?_v=637649661149948696" rel="stylesheet"/>-->
+    <link href="_content/AntDesign/css/ant-design-blazor.css" rel="stylesheet" />
+    <link href="main.css" rel="stylesheet" />
     <!--/ABP:Styles-->
 </head>
 
@@ -22,7 +23,13 @@
     </div>
 
     <!--ABP:Scripts-->
-    <script src="global.js?_v=637649661153988086"></script>
+
+    <script src="_framework/blazor.webassembly.js"></script>
+    <!--<script src="_content/Microsoft.AspNetCore.Components.WebAssembly.Authentication/AuthenticationService.js"></script>-->
+    <script src="_content/AntDesign/js/ant-design-blazor.js"></script>
+    <!--<script src="_content/Zero.Abp.AspNetCore.Components.Web/libs/abp/js/abp.js"></script>-->
+
+    <!--<script src="global.js?_v=637649661153988086"></script>-->
     <!--/ABP:Scripts-->
 
 </body>

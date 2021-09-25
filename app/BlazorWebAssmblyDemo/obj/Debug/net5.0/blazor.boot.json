@@ -274,7 +274,7 @@
       "Zero.Abp.AspNetCore.Components.Web.Theming.dll": "sha256-qCCXjwV15Amu4eTxqq6qIZfk4fLh2U2XcG4NYGpXUUI=",
       "Zero.Abp.AspNetCore.Components.WebAssembly.BasicTheme.dll": "sha256-+O3KCW\/A1XIe7ovkiqd9M1JxaEpoPmAppV9jfKCGQak=",
       "Zero.Abp.AspNetCore.Components.WebAssembly.dll": "sha256-Tpo2o1daTxCVVq36KjYeQ0VdqnKEqFHEQy\/zgzeb7y8=",
-      "Zero.Abp.AspNetCore.Components.WebAssembly.Theming.dll": "sha256-lEEptDE0G5YxE9\/a82mo8QHq\/acCKNBjSzOIKi8K\/00=",
+      "Zero.Abp.AspNetCore.Components.WebAssembly.Theming.dll": "sha256-Rs5DIcIvLrLJt\/VJK5Rxk2eC2Zwhv49eZ\/WY6pH4SEE=",
       "BlazorWebAssmblyDemo.dll": "sha256-Tgujgc\/rAHfT90cWq\/2BD3iD\/O1KrGux6IDa5mD+\/zM="
     },
     "lazyAssembly": null,
@@ -286,7 +286,7 @@
       "Zero.Abp.AspNetCore.Components.Web.BasicTheme.pdb": "sha256-Y9o9nr2Tknr9z\/qdTYE50+cjwfHrdrcKETyutyzRu30=",
       "Zero.Abp.AspNetCore.Components.Web.Theming.pdb": "sha256-a1J50aFXQLyhOrXHHQA9+0kp55n\/xk+Fl+htlbJpi3Q=",
       "Zero.Abp.AspNetCore.Components.WebAssembly.pdb": "sha256-H0tMhCpZo+D9w8vgOji0CFPKH87GB8rnM1pZzb3FNP8=",
-      "Zero.Abp.AspNetCore.Components.WebAssembly.Theming.pdb": "sha256-3ivLmDPdUlb6g1o4GsUquJNZSxJwQYguw5e\/3vfYEzA=",
+      "Zero.Abp.AspNetCore.Components.WebAssembly.Theming.pdb": "sha256-eXz7\/ysXyLu8Pq5kHyNGQy19a2fY23xrcK\/vRZhny1Y=",
       "BlazorWebAssmblyDemo.pdb": "sha256-0zKVru72ngxjBVd1ZimBcZkLht3lQtOZoVXOii1D1WU="
     },
     "runtime": {
