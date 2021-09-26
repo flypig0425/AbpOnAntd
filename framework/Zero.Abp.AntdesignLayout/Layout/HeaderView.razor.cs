@@ -4,7 +4,7 @@ using OneOf;
 
 namespace Zero.Abp.AntdesignLayout
 {
-    internal interface IHeaderView //: IGlobalHeader
+    internal interface IHeaderView : IGlobalHeader
     {
         bool HasSiderMenu { get; }
         int SiderWidth { get; }

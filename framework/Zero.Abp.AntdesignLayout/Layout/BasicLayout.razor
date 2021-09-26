@@ -1,4 +1,5 @@
-﻿@inherits AntProComponentBase
+﻿@namespace Zero.Abp.AntdesignLayout
+@inherits AntProComponentBase
 
 <div class="@ClassMapper.Class" style="@_weakModeStyle">
     <Layout Style="min-height: 100%;">
@@ -11,13 +12,13 @@
             else
             {
                 <CascadingValue Value="MenuExtraRender" Name="MenuExtraRender">
-                    @*<SiderMenu MenuData="MenuData"
-                               OpenKeys="OpenKeys"
-                               Mode="Mode"
-                               Logo="Logo"
-                               SiderWidth="SiderWidth"
-                               OnCollapse="HandleCollapse">
-                    </SiderMenu>*@
+                    <SiderMenu MenuData="MenuData"
+                                   OpenKeys="OpenKeys"
+                                   Mode="Mode"
+                                   Logo="Logo"
+                                   SiderWidth="SiderWidth"
+                                   OnCollapse="HandleCollapse">
+                        </SiderMenu>
                 </CascadingValue>
             }
         }
@@ -25,14 +26,14 @@
             @if (HeaderRender && Pure)
             {
                 <CascadingValue Value="RightContentRender" Name="RightContentRender">
-                    @*<HeaderView Logo="Logo" MenuData="MenuData" Title="@Title" />*@
+                    <HeaderView Logo="Logo" MenuData="MenuData" Title="@Title" />
                 </CascadingValue>
             }
 
             <WrapContent Class="@ContentClassMapper.Class" Style="@ContentStyle" PrefixCls="@PrefixCls">
                 @if (Loading)
                 {
-                    @*<PageLoading />*@
+                    <PageLoading />
                 }
                 else
                 {
@@ -48,7 +49,7 @@
                 }
                 else
                 {
-                    @*<FooterView />*@
+                    <FooterView />
                 }
             }
         </Layout>

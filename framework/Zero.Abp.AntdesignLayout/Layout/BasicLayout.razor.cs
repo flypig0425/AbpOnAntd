@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Zero.Abp.AntdesignLayout
 {
-    internal interface IBasicLayout// : ISiderMenu, IGlobalHeader
+    internal interface IBasicLayout: ISiderMenu, IGlobalHeader
     {
         bool Pure { get; }
         bool Loading { get; }

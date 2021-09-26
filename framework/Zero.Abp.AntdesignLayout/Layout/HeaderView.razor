@@ -1,4 +1,5 @@
-﻿@inherits AntProComponentBase
+﻿@namespace Zero.Abp.AntdesignLayout
+@inherits AntProComponentBase
 
 @if (_needFixedHeader)
 {
@@ -7,7 +8,7 @@
 <Header Class="@ClassMapper.Class" Style="@_headerStyle">
     @if (_isTop && !IsMobile)
     {
-        <TopNavHeader Mode= "MenuMode.Horizontal" Logo="Logo" MenuData="MenuData" />
+        <TopNavHeader Mode="MenuMode.Horizontal" Logo="Logo" MenuData="MenuData" />
     }
     else
     {
