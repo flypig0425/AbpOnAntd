@@ -1,6 +1,7 @@
 ﻿using AntDesign;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Options;
+using Volo.Abp.Ui.Branding;
 
 namespace Zero.Abp.AntdesignLayout
 {
@@ -65,12 +66,12 @@ namespace Zero.Abp.AntdesignLayout
             set => SettingState.Value.FixSiderbar = value;
         }
 
-        [Parameter]
-        public string Title
-        {
-            get => SettingState.Value.Title;
-            set => SettingState.Value.Title = value;
-        }
+        //[Parameter]
+        //public string Title
+        //{
+        //    get => SettingState.Value.Title;
+        //    set => SettingState.Value.Title = value;
+        //}
 
         [Parameter]
         public string IconfontUrl
@@ -126,6 +127,11 @@ namespace Zero.Abp.AntdesignLayout
 
         [Parameter]
         public RenderFragment ChildContent { get; set; }
+
+
+
+        [Inject]
+        protected IBrandingProvider BrandingProvider { get; set; }
 
         [Inject]
         protected IOptions<ProSettings> SettingState { get; set; }

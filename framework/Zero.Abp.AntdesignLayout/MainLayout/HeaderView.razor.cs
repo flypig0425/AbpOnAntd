@@ -21,11 +21,11 @@ namespace Zero.Abp.AntdesignLayout
         public string PrefixCls { get; set; } = "ant-pro";
         [Parameter] public bool Collapsed { get; set; }
         [Parameter] public bool IsMobile { get; set; }
-        [Parameter] public OneOf<string, RenderFragment> Logo { get; set; }
+        //[Parameter] public OneOf<string, RenderFragment> Logo { get; set; }
         [Parameter] public bool HasSiderMenu { get; set; }
         [Parameter] public int SiderWidth { get; set; } = 208;
         [Parameter] public RenderFragment HeaderContentRender { get; set; }
-        [Parameter] public MenuDataItem[] MenuData { get; set; } = { };
+        //[Parameter] public MenuDataItem[] MenuData { get; set; } = { };
 
         protected override void OnInitialized()
         {

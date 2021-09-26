@@ -35,7 +35,6 @@ D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components.Web.Theming\obj\Deb
 D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components.Web.Theming\obj\Debug\net5.0\ref\Zero.Abp.AspNetCore.Components.Web.Theming.dll
 D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components.Web.Theming\obj\Debug\net5.0\Zero.Abp.AspNetCore.Components.Web.Theming.xml
 D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components.Web.Theming\obj\Debug\net5.0\Zero.Abp.AspNetCore.Components.Web.Theming.pdb
-D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components.Web.Theming\obj\Debug\net5.0\Zero.Abp.AspNetCore.Components.Web.Theming.csproj.CopyComplete
 F:\_MyCode\AbpZero\framework\Zero.Abp.AspNetCore.Components.Web.Theming\bin\Debug\net5.0\Zero.Abp.AspNetCore.Components.Web.Theming.StaticWebAssets.xml
 F:\_MyCode\AbpZero\framework\Zero.Abp.AspNetCore.Components.Web.Theming\bin\Debug\net5.0\Zero.Abp.AspNetCore.Components.Web.Theming.deps.json
 F:\_MyCode\AbpZero\framework\Zero.Abp.AspNetCore.Components.Web.Theming\bin\Debug\net5.0\Zero.Abp.AspNetCore.Components.Web.Theming.dll
@@ -78,3 +77,9 @@ F:\_MyCode\AbpZero\framework\Zero.Abp.AspNetCore.Components.Web.Theming\bin\Debu
 F:\_MyCode\AbpZero\framework\Zero.Abp.AspNetCore.Components.Web.Theming\bin\Debug\net5.0\Zero.Abp.AntdesignLayout.StaticWebAssets.xml
 F:\_MyCode\AbpZero\framework\Zero.Abp.AspNetCore.Components.Web.Theming\bin\Debug\net5.0\Zero.Abp.AntdesignLayout.dll
 F:\_MyCode\AbpZero\framework\Zero.Abp.AspNetCore.Components.Web.Theming\bin\Debug\net5.0\Zero.Abp.AntdesignLayout.pdb
+D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components.Web.Theming\bin\Debug\net5.0\package-lock.json
+D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components.Web.Theming\bin\Debug\net5.0\package.json
+D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components.Web.Theming\bin\Debug\net5.0\Zero.Abp.AntdesignLayout.StaticWebAssets.xml
+D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components.Web.Theming\bin\Debug\net5.0\Zero.Abp.AntdesignLayout.dll
+D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components.Web.Theming\bin\Debug\net5.0\Zero.Abp.AntdesignLayout.pdb
+D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components.Web.Theming\obj\Debug\net5.0\Zero.Abp.AspNetCore.Components.Web.Theming.csproj.CopyComplete

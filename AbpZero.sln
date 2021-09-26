@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31424.327
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31612.314
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "framework", "framework", "{9B20C328-C33E-4ACC-90AE-EEE112C36EEC}"
 EndProject
@@ -47,7 +47,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.Http.Client.Identi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "templates", "templates", "{9E03F2D2-4B30-45F7-8683-C8E02E2F9B22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zero.Abp.AntdesignLayout", "framework\Zero.Abp.AntdesignLayout\Zero.Abp.AntdesignLayout.csproj", "{E1E4A568-5311-439D-A055-EB35C64C085F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.AntdesignLayout", "framework\Zero.Abp.AntdesignLayout\Zero.Abp.AntdesignLayout.csproj", "{E1E4A568-5311-439D-A055-EB35C64C085F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

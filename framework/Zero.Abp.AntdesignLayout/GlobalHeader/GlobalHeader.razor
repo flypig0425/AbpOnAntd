@@ -3,11 +3,10 @@
 
 @if (Layout == Layout.Mix && !IsMobile && SplitMenus)
 {
-    <TopNavHeader
-        Mode="MenuMode.Horizontal"
-        MenuData="NoChildrenMenuData"
-        NavTheme="MenuTheme.Dark"
-        Theme="MenuTheme.Dark" />
+    <TopNavHeader Mode="MenuMode.Horizontal"
+              @*MenuData="NoChildrenMenuData"*@
+              NavTheme="MenuTheme.Dark"
+              Theme="MenuTheme.Dark" />
 }
 else
 {
@@ -16,33 +15,18 @@ else
         {
             <span class=@BaseClassName-logo key="logo">
                 <a>
-                    @if (Logo.IsT0)
+                    @if (!BrandingProvider.LogoUrl.IsNullOrWhiteSpace())
                     {
-                        <img src="@Logo.AsT0" alt="@Logo.AsT0" />
-                    }
-
-                    @if (Logo.IsT1)
-                    {
-                        @Logo.AsT1
+                        <img src="@BrandingProvider.LogoUrl" alt="@BrandingProvider.AppName" />
                     }
                 </a>
             </span>
 
-            @if (CollapsedButtonRender != null)
-            {
-                <span
-                    class="@BaseClassName-collapsed-button"
-                    @onclick="@(async () => { await OnCollapse.InvokeAsync(!Collapsed);})">
-                    @if (Collapsed)
-                    {
-                        <Icon Type="menu-unfold" Theme="outline" />
-                    }
-                    else
-                    {
-                        <Icon Type="menu-fold" Theme="outline" />
-                    }
+            <Condition If="CollapsedButtonRender == null" Or="CollapsedButtonRender">
+                <span class="@BaseClassName-collapsed-button" @onclick="@(async () => { await OnCollapse.InvokeAsync(!Collapsed);})">
+                    <Icon Type="@(Collapsed?"menu-unfold":"menu-fold")" Theme="outline" />
                 </span>
-            }
+            </Condition>
         }
         else
         {
@@ -50,19 +34,13 @@ else
             {
                 <div class="@BaseClassName-logo">
                     <a href="/">
-                        @if (Logo.IsT0)
+                        @if (!BrandingProvider.LogoUrl.IsNullOrWhiteSpace())
                         {
-                            <img src="@Logo.AsT0" alt="@Logo.AsT0" />
+                            <img src="@BrandingProvider.LogoUrl" alt="@BrandingProvider.AppName" />
                         }
-
-                        @if (Logo.IsT1)
-                        {
-                            @Logo.AsT1
-                        }
-
                         @if (!Collapsed)
                         {
-                            <h1>@Title</h1>
+                            <h1>@BrandingProvider.AppName</h1>
                         }
                     </a>
                 </div>

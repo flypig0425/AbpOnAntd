@@ -7,7 +7,8 @@ namespace Zero.Abp.AntdesignLayout
     {
         bool Collapsed { get; }
         bool IsMobile { get; }
-        OneOf<string, RenderFragment> Logo { get; }
+
+        //OneOf<string, RenderFragment> Logo { get; }
 
         // todo:oneof
         bool MenuRender { get; }
@@ -34,13 +35,13 @@ namespace Zero.Abp.AntdesignLayout
         [Parameter]
         public bool IsMobile { get; set; }
 
-        [Parameter]
-        public OneOf<string, RenderFragment> Logo { get; set; }
+        //[Parameter]
+        //public OneOf<string, RenderFragment> Logo { get; set; }
 
         [CascadingParameter(Name = nameof(RightContentRender))]
         public RenderFragment RightContentRender { get; set; }
 
-        public MenuDataItem[] NoChildrenMenuData { get; set; }
+        //public MenuDataItem[] NoChildrenMenuData { get; set; }
 
         protected override void OnInitialized()
         {

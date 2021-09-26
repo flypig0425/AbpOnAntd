@@ -10,7 +10,7 @@ namespace Zero.Abp.AntdesignLayout
 {
     internal interface ISiderMenu : IBaseMenu
     {
-        OneOf<string, RenderFragment> Logo { get; }
+        //OneOf<string, RenderFragment> Logo { get; }
         int SiderWidth { get; }
         RenderFragment MenuExtraRender { get; }
         RenderFragment<bool> CollapsedButtonRender { get; }
@@ -30,22 +30,23 @@ namespace Zero.Abp.AntdesignLayout
         [CascadingParameter(Name = nameof(Collapsed))]
         public bool Collapsed { get; set; }
 
+        [CascadingParameter(Name = nameof(MenuExtraRender))]
+        public RenderFragment MenuExtraRender { get; set; }
+
+        [Parameter] public RenderFragment<bool> CollapsedButtonRender { get; set; }
         [Parameter] public EventCallback<bool> HandleOpenChange { get; set; }
         [Parameter] public bool IsMobile { get; set; }
-        [Parameter] public MenuDataItem[] MenuData { get; set; }
+        //[Parameter] public MenuDataItem[] MenuData { get; set; }
         [Parameter] public MenuMode Mode { get; set; } = MenuMode.Inline;
         [Parameter] public EventCallback<bool> OnCollapse { get; set; }
         [Parameter] public string[] OpenKeys { get; set; } = { };
-        [Parameter] public OneOf<string, RenderFragment> Logo { get; set; }
+        //[Parameter] public OneOf<string, RenderFragment> Logo { get; set; }
         [Parameter] public int SiderWidth { get; set; } = 208;
         [Parameter] public BreakpointType Breakpoint { get; set; } = BreakpointType.Lg;
         [Parameter] public bool Hide { get; set; }
         [Parameter] public List<RenderFragment> Links { get; set; }
         [Parameter] public EventCallback<MouseEventArgs> OnMenuHeaderClick { get; set; }
         [Parameter] public EventCallback<string[]> OnOpenChange { get; set; }
-
-        [CascadingParameter(Name = nameof(MenuExtraRender))]
-        public RenderFragment MenuExtraRender { get; set; }
 
         [Parameter]
         public SiderTheme SiderTheme

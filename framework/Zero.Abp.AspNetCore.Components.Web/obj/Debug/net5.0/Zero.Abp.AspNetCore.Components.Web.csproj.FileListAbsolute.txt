@@ -19,7 +19,6 @@ D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components.Web\obj\Debug\net5.
 D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components.Web\obj\Debug\net5.0\ref\Zero.Abp.AspNetCore.Components.Web.dll
 D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components.Web\obj\Debug\net5.0\Zero.Abp.AspNetCore.Components.Web.xml
 D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components.Web\obj\Debug\net5.0\Zero.Abp.AspNetCore.Components.Web.pdb
-D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components.Web\obj\Debug\net5.0\Zero.Abp.AspNetCore.Components.Web.csproj.CopyComplete
 F:\_MyCode\AbpZero\framework\Zero.Abp.AspNetCore.Components.Web\bin\Debug\net5.0\Zero.Abp.AspNetCore.Components.Web.deps.json
 F:\_MyCode\AbpZero\framework\Zero.Abp.AspNetCore.Components.Web\bin\Debug\net5.0\Zero.Abp.AspNetCore.Components.Web.dll
 F:\_MyCode\AbpZero\framework\Zero.Abp.AspNetCore.Components.Web\bin\Debug\net5.0\ref\Zero.Abp.AspNetCore.Components.Web.dll

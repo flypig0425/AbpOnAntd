@@ -22,7 +22,7 @@ namespace Zero.Abp.AntdesignLayout
         string ContentWidth { get; }
         bool FixedHeader { get; }
         bool FixSiderbar { get; }
-        string Title { get; }
+        //string Title { get; }
         string IconfontUrl { get; }
         string PrimaryColor { get; }
         bool ColorWeak { get; }

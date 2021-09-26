@@ -961,3 +961,8 @@ F:\_MyCode\AbpZero\app\BlazorServerDemo\bin\Debug\net5.0\Zero.Abp.AspNetCore.Com
 F:\_MyCode\AbpZero\app\BlazorServerDemo\bin\Debug\net5.0\Zero.Abp.AspNetCore.Components.Server.Theming.StaticWebAssets.xml
 F:\_MyCode\AbpZero\app\BlazorServerDemo\bin\Debug\net5.0\Zero.Abp.AntdesignLayout.dll
 F:\_MyCode\AbpZero\app\BlazorServerDemo\bin\Debug\net5.0\Zero.Abp.AntdesignLayout.pdb
+D:\DevCodes\AbpZero\app\BlazorServerDemo\bin\Debug\net5.0\package-lock.json
+D:\DevCodes\AbpZero\app\BlazorServerDemo\bin\Debug\net5.0\package.json
+D:\DevCodes\AbpZero\app\BlazorServerDemo\bin\Debug\net5.0\Zero.Abp.AntdesignLayout.StaticWebAssets.xml
+D:\DevCodes\AbpZero\app\BlazorServerDemo\bin\Debug\net5.0\Zero.Abp.AntdesignLayout.dll
+D:\DevCodes\AbpZero\app\BlazorServerDemo\bin\Debug\net5.0\Zero.Abp.AntdesignLayout.pdb

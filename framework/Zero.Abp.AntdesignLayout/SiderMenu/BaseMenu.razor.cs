@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using AntDesign;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
 
@@ -10,7 +11,7 @@ namespace Zero.Abp.AntdesignLayout
         bool Collapsed { get; }
         EventCallback<bool> HandleOpenChange { get; }
         bool IsMobile { get; }
-        MenuDataItem[] MenuData { get; }
+        //MenuDataItem[] MenuData { get; }
         MenuMode Mode { get; }
         EventCallback<bool> OnCollapse { get; }
         string[] OpenKeys { get; }
@@ -21,7 +22,7 @@ namespace Zero.Abp.AntdesignLayout
         [Parameter] public bool Collapsed { get; set; }
         [Parameter] public EventCallback<bool> HandleOpenChange { get; set; }
         [Parameter] public bool IsMobile { get; set; }
-        [Parameter] public MenuDataItem[] MenuData { get; set; } = { };
+        //[Parameter] public MenuDataItem[] MenuData { get; set; } = { };
         [Parameter] public MenuMode Mode { get; set; }
         [Parameter] public EventCallback<bool> OnCollapse { get; set; }
         [Parameter] public string[] OpenKeys { get; set; } = { };

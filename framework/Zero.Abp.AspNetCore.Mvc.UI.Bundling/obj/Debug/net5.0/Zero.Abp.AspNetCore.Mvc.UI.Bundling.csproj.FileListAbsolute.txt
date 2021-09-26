@@ -586,3 +586,4 @@ F:\_MyCode\AbpZero\framework\Zero.Abp.AspNetCore.Mvc.UI.Bundling\obj\Debug\net5.
 F:\_MyCode\AbpZero\framework\Zero.Abp.AspNetCore.Mvc.UI.Bundling\obj\Debug\net5.0\ref\Zero.Abp.AspNetCore.Mvc.UI.Bundling.dll
 F:\_MyCode\AbpZero\framework\Zero.Abp.AspNetCore.Mvc.UI.Bundling\obj\Debug\net5.0\Zero.Abp.AspNetCore.Mvc.UI.Bundling.xml
 F:\_MyCode\AbpZero\framework\Zero.Abp.AspNetCore.Mvc.UI.Bundling\obj\Debug\net5.0\Zero.Abp.AspNetCore.Mvc.UI.Bundling.pdb
+D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Mvc.UI.Bundling\obj\Debug\net5.0\Zero.Abp.AspNetCore.Mvc.UI.Bundling.csproj.AssemblyReference.cache
