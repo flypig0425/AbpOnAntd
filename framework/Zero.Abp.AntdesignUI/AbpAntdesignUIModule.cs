@@ -15,13 +15,13 @@ namespace Zero.Abp.AntdesignUI
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
-            ConfigureBlazorise(context);
+            ConfigureAntDesign(context);
+            context.Services.AddSingleton(typeof(AbpBlazorMessageLocalizerHelper<>));
         }
 
-        private void ConfigureBlazorise(ServiceConfigurationContext context)
+        private void ConfigureAntDesign(ServiceConfigurationContext context)
         {
             context.Services.AddAntDesign();
-            context.Services.AddSingleton(typeof(AbpBlazorMessageLocalizerHelper<>));
         }
     }
 }

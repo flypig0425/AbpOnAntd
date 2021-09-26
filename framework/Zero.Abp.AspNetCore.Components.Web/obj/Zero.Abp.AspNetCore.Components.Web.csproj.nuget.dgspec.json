@@ -1,21 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "D:\\DevCodes\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components.Web\\Zero.Abp.AspNetCore.Components.Web.csproj": {}
+    "F:\\_MyCode\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components.Web\\Zero.Abp.AspNetCore.Components.Web.csproj": {}
   },
   "projects": {
-    "D:\\DevCodes\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components.Web\\Zero.Abp.AspNetCore.Components.Web.csproj": {
+    "F:\\_MyCode\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components.Web\\Zero.Abp.AspNetCore.Components.Web.csproj": {
       "version": "4.4.2",
       "restore": {
-        "projectUniqueName": "D:\\DevCodes\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components.Web\\Zero.Abp.AspNetCore.Components.Web.csproj",
+        "projectUniqueName": "F:\\_MyCode\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components.Web\\Zero.Abp.AspNetCore.Components.Web.csproj",
         "projectName": "Zero.Abp.AspNetCore.Components.Web",
-        "projectPath": "D:\\DevCodes\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components.Web\\Zero.Abp.AspNetCore.Components.Web.csproj",
-        "packagesPath": "C:\\Users\\weidyg\\.nuget\\packages\\",
-        "outputPath": "D:\\DevCodes\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components.Web\\obj\\",
+        "projectPath": "F:\\_MyCode\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components.Web\\Zero.Abp.AspNetCore.Components.Web.csproj",
+        "packagesPath": "C:\\Users\\WEIDYG\\.nuget\\packages\\",
+        "outputPath": "F:\\_MyCode\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components.Web\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\weidyg\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\WEIDYG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -28,8 +32,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "D:\\DevCodes\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components\\Zero.Abp.AspNetCore.Components.csproj": {
-                "projectPath": "D:\\DevCodes\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components\\Zero.Abp.AspNetCore.Components.csproj"
+              "F:\\_MyCode\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components\\Zero.Abp.AspNetCore.Components.csproj": {
+                "projectPath": "F:\\_MyCode\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components\\Zero.Abp.AspNetCore.Components.csproj"
               }
             }
           }
@@ -83,22 +87,26 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100-preview.7.21379.14\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\DevCodes\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components\\Zero.Abp.AspNetCore.Components.csproj": {
+    "F:\\_MyCode\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components\\Zero.Abp.AspNetCore.Components.csproj": {
       "version": "4.4.2",
       "restore": {
-        "projectUniqueName": "D:\\DevCodes\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components\\Zero.Abp.AspNetCore.Components.csproj",
+        "projectUniqueName": "F:\\_MyCode\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components\\Zero.Abp.AspNetCore.Components.csproj",
         "projectName": "Zero.Abp.AspNetCore.Components",
-        "projectPath": "D:\\DevCodes\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components\\Zero.Abp.AspNetCore.Components.csproj",
-        "packagesPath": "C:\\Users\\weidyg\\.nuget\\packages\\",
-        "outputPath": "D:\\DevCodes\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components\\obj\\",
+        "projectPath": "F:\\_MyCode\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components\\Zero.Abp.AspNetCore.Components.csproj",
+        "packagesPath": "C:\\Users\\WEIDYG\\.nuget\\packages\\",
+        "outputPath": "F:\\_MyCode\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\weidyg\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\WEIDYG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -167,7 +175,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100-preview.7.21379.14\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     }

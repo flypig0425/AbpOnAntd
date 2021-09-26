@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.31612.314
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "framework", "framework", "{9B20C328-C33E-4ACC-90AE-EEE112C36EEC}"
 EndProject
@@ -44,6 +44,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.AspNetCore.Components.WebAssembly.Theming", "framework\Zero.Abp.AspNetCore.Components.WebAssembly.Theming\Zero.Abp.AspNetCore.Components.WebAssembly.Theming.csproj", "{96F07818-FD62-447E-8D04-98D13CD8F36F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.Http.Client.IdentityModel.WebAssembly", "framework\Zero.Abp.Http.Client.IdentityModel.WebAssembly\Zero.Abp.Http.Client.IdentityModel.WebAssembly.csproj", "{4CBA1651-AEEF-4C2C-9AD2-BCD52FB7ED02}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "templates", "templates", "{9E03F2D2-4B30-45F7-8683-C8E02E2F9B22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zero.Abp.AntdesignLayout", "framework\Zero.Abp.AntdesignLayout\Zero.Abp.AntdesignLayout.csproj", "{E1E4A568-5311-439D-A055-EB35C64C085F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -111,6 +115,10 @@ Global
 		{4CBA1651-AEEF-4C2C-9AD2-BCD52FB7ED02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CBA1651-AEEF-4C2C-9AD2-BCD52FB7ED02}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CBA1651-AEEF-4C2C-9AD2-BCD52FB7ED02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1E4A568-5311-439D-A055-EB35C64C085F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1E4A568-5311-439D-A055-EB35C64C085F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1E4A568-5311-439D-A055-EB35C64C085F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1E4A568-5311-439D-A055-EB35C64C085F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -132,6 +140,7 @@ Global
 		{91CFC0C5-5CBF-4FCE-AE17-513BC7AF928E} = {9B20C328-C33E-4ACC-90AE-EEE112C36EEC}
 		{96F07818-FD62-447E-8D04-98D13CD8F36F} = {9B20C328-C33E-4ACC-90AE-EEE112C36EEC}
 		{4CBA1651-AEEF-4C2C-9AD2-BCD52FB7ED02} = {9B20C328-C33E-4ACC-90AE-EEE112C36EEC}
+		{E1E4A568-5311-439D-A055-EB35C64C085F} = {9B20C328-C33E-4ACC-90AE-EEE112C36EEC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CCCD4626-D10B-4FA0-A554-235AECB0AB80}

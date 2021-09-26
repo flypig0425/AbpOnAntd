@@ -7,20 +7,29 @@
 @inject IAbpRequestLocalizationOptionsProvider RequestLocalizationOptionsProvider
 @if (_otherLanguages != null && _otherLanguages.Any())
 {
-    <Dropdown Trigger="@(new Trigger[] { Trigger.Click })"
-              Placement="@Placement.BottomLeft">
-        <ChildContent>
+<Dropdown Trigger="@(new Trigger[] { Trigger.Click })"
+          Placement="Placement.BottomRight">
+    <Overlay>
+        <Menu>
+            @foreach (var language in _otherLanguages)
+            {
+                <MenuItem Key="@language.CultureName"
+                          OnClick="() => ChangeLanguage(language)">
+                    <span role="img" aria-label="@language.DisplayName">
+                        @language.FlagIcon
+                    </span>
+                    @language.DisplayName
+                </MenuItem>
+            }
+        </Menu>
+    </Overlay>
+    <Unbound>
+        <a @ref="@context.Current" class="anticon">
+            <Icon Type="global" Theme="outline" />
             @_currentLanguage.DisplayName
-        </ChildContent>
-        <Overlay>
-            <Menu>
-                @foreach (var language in _otherLanguages)
-                {
-                    <MenuItem OnClick="() => ChangeLanguage(language)">@language.DisplayName</MenuItem>
-                }
-            </Menu>
-        </Overlay>
-    </Dropdown>
+        </a>
+    </Unbound>
+</Dropdown>
 }
 @code {
     private IReadOnlyList<LanguageInfo> _otherLanguages;

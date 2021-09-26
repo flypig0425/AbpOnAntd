@@ -11,7 +11,7 @@
 <AuthorizeView>
     <Authorized>
         <Dropdown>
-    @*        <DropdownToggle Color="Color.None">
+            <ChildContent>
                 @if (CurrentTenant.Name != null)
                 {
                     <span><i>@CurrentTenant.Name</i>\@CurrentUser.UserName</span>
@@ -20,18 +20,22 @@
                 {
                     <span>@CurrentUser.UserName</span>
                 }
-            </DropdownToggle>
-            <DropdownMenu>
+            </ChildContent>
+            <Overlay>
                 @if (Menu != null)
                 {
+                <Menu>
                     @foreach (var menuItem in Menu.Items)
                     {
-                        <DropdownItem Clicked="@(() => NavigateToAsync(menuItem.Url, menuItem.Target))">@menuItem.DisplayName</DropdownItem>
+                        <MenuItem OnClick="@(() => NavigateToAsync(menuItem.Url, menuItem.Target))">
+                            @menuItem.DisplayName
+                        </MenuItem>
                     }
+                    <Divider />
+                    <MenuItem OnClick="BeginSignOut">@UiLocalizer["Logout"]</MenuItem>
+                </Menu>
                 }
-                <DropdownDivider />
-                <DropdownItem Clicked="BeginSignOut">@UiLocalizer["Logout"]</DropdownItem>
-            </DropdownMenu>*@
+            </Overlay>
         </Dropdown>
     </Authorized>
     <NotAuthorized>

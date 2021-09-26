@@ -16,6 +16,7 @@
     <Compile Remove="AntdesignUiMessageService.cs" />
     <Compile Remove="AntdesignUiNotificationService.cs" />
     <Compile Remove="AntdesignUiObjectExtensionPropertyInfoExtensions.cs" />
+    <Compile Remove="AntdesignUiPageProgressService.cs" />
     <Compile Remove="Components\AbpExtensibleDataGrid.razor.cs" />
     <Compile Remove="Components\ActionType.cs" />
     <Compile Remove="Components\DataGridEntityActionsColumn.razor.cs" />
@@ -25,6 +26,7 @@
     <Compile Remove="Components\ToolbarButton.razor.cs" />
     <Compile Remove="Components\UiMessageAlert.razor.cs" />
     <Compile Remove="Components\UiNotificationAlert.razor.cs" />
+    <Compile Remove="Components\UiPageProgress.razor.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,10 +39,12 @@
     <Content Remove="Components\ToolbarButton.razor" />
     <Content Remove="Components\UiMessageAlert.razor" />
     <Content Remove="Components\UiNotificationAlert.razor" />
+    <Content Remove="Components\UiPageProgress.razor" />
   </ItemGroup>
   
   <ItemGroup>
     <PackageReference Include="AntDesign" Version="0.10.0" />
+    <!--<PackageReference Include="AntDesign.ProLayout" Version="0.1.7" />-->
     <PackageReference Include="Volo.Abp.Authorization" Version="4.4.2" />
     <PackageReference Include="Volo.Abp.Ddd.Application.Contracts" Version="4.4.2" />
   </ItemGroup>
