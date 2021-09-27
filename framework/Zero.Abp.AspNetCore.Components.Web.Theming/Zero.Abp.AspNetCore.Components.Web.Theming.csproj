@@ -7,13 +7,24 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Layout\PageHeader.razor.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Layout\PageHeader.razor" />
+  </ItemGroup>
+
   
   <ItemGroup>
     <PackageReference Include="Volo.Abp.UI.Navigation" Version="$(AbpPackageVersion)" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Zero.Abp.AntdesignLayout\Zero.Abp.AntdesignLayout.csproj" />
     <ProjectReference Include="..\Zero.Abp.AntdesignUI\Zero.Abp.AntdesignUI.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Layout\" />
   </ItemGroup>
 </Project>

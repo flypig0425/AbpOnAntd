@@ -91,12 +91,7 @@ F:\_MyCode\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Web.BasicTheme\obj
 F:\_MyCode\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Web.BasicTheme\obj\Debug\net5.0\Zero.Abp.AspNetCore.Components.Web.BasicTheme.pdb
 F:\_MyCode\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Web.BasicTheme\obj\Debug\net5.0\RazorDeclaration\Themes\Basic\NavToolbar.razor.g.cs
 F:\_MyCode\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Web.BasicTheme\obj\Debug\net5.0\Razor\Themes\Basic\NavToolbar.razor.g.cs
-F:\_MyCode\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Web.BasicTheme\bin\Debug\net5.0\package-lock.json
 F:\_MyCode\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Web.BasicTheme\bin\Debug\net5.0\package.json
-F:\_MyCode\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Web.BasicTheme\bin\Debug\net5.0\Zero.Abp.AntdesignLayout.StaticWebAssets.xml
-F:\_MyCode\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Web.BasicTheme\bin\Debug\net5.0\Zero.Abp.AspNetCore.Components.Web.Theming.StaticWebAssets.xml
-F:\_MyCode\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Web.BasicTheme\bin\Debug\net5.0\Zero.Abp.AntdesignLayout.dll
-F:\_MyCode\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Web.BasicTheme\bin\Debug\net5.0\Zero.Abp.AntdesignLayout.pdb
 D:\DevCodes\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Web.BasicTheme\obj\Debug\net5.0\RazorDeclaration\Themes\Basic\NavToolbar.razor.g.cs
 D:\DevCodes\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Web.BasicTheme\bin\Debug\net5.0\package-lock.json
 D:\DevCodes\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Web.BasicTheme\bin\Debug\net5.0\package.json
@@ -105,3 +100,6 @@ D:\DevCodes\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Web.BasicTheme\bi
 D:\DevCodes\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Web.BasicTheme\bin\Debug\net5.0\Zero.Abp.AntdesignLayout.pdb
 D:\DevCodes\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Web.BasicTheme\obj\Debug\net5.0\Razor\Themes\Basic\NavToolbar.razor.g.cs
 D:\DevCodes\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Web.BasicTheme\obj\Debug\net5.0\Zero.Abp.AspNetCore.Components.Web.BasicTheme.csproj.CopyComplete
+F:\_MyCode\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Web.BasicTheme\bin\Debug\net5.0\Zero.Abp.AspNetCore.Components.Web.Theming.StaticWebAssets.xml
+F:\_MyCode\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Web.BasicTheme\bin\Debug\net5.0\package-lock.json
+F:\_MyCode\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Web.BasicTheme\bin\Debug\net5.0\Zero.Abp.AntdesignUI.StaticWebAssets.xml

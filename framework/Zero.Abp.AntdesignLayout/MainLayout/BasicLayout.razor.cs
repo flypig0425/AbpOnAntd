@@ -27,6 +27,7 @@ namespace Zero.Abp.AntdesignLayout
         public string BaseClassName => $"{PrefixCls}-basicLayout";
         public ClassMapper ContentClassMapper { get; set; } = new ClassMapper();
 
+
         [Parameter] public bool Collapsed { get; set; }
         [Parameter] public EventCallback<bool> HandleOpenChange { get; set; }
         [Parameter] public bool IsMobile { get; set; }
@@ -50,6 +51,7 @@ namespace Zero.Abp.AntdesignLayout
         [Parameter] public string ContentStyle { get; set; }
         [Parameter] public string ColSize { get; set; } = "lg";
         [Parameter] public RenderFragment RightContentRender { get; set; }
+
         [Inject] public ILogger<BasicLayout> Logger { get; set; }
 
         protected override void OnInitialized()

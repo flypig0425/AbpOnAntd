@@ -1,0 +1,17 @@
+﻿@namespace Zero.Abp.AntdesignUI.Layout
+@inherits AntProComponentBase
+
+<div class="@ClassMapper.Class" style="@Style">
+    <div class="@MainClassMapper.Class">
+        <!--header-->
+        @if (MenuHeaderRender)
+        {
+            <div id="logo" class="@BaseClassName-logo" @onclick="OnMenuHeaderClick">
+                <Branding HideTitle="Collapsed"/>
+            </div>
+        }
+        <div style="flex: 1;" class="@BaseClassName-menu">
+            <BaseMenu Mode="Mode" OnlyTopMenu="OnlyTopMenu"/>
+        </div>
+    </div>
+</div>

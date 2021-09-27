@@ -1,0 +1,70 @@
+@namespace Zero.Abp.AntdesignUI.Layout
+@inherits AntProComponentBase
+<Sider Collapsible="false"
+       Collapsed="Collapsed"
+       CollapsedWidth="48"
+       OnCollapse="HandleSiderCollapse"
+       Style="@SiderStyle"
+       Width="SiderWidth"
+       Theme="SiderTheme"
+       Breakpoint="@Breakpoint"
+       Class="@ClassMapper.Class">
+    <!--header-->
+    @if (HasHeaderDom)
+    {
+        <div id="logo" class="@BaseClassName-logo" @onclick="OnMenuHeaderClick">
+            <Branding HideTitle="Collapsed"/>
+        </div>
+    }
+
+    <!--extra-->
+    @if (MenuExtraRender != null && !Collapsed)
+    {
+        <div class="@BaseClassName-extra @(!HasHeaderDom ? $"{BaseClassName}-extra-no-logo" : "")">
+            @MenuExtraRender
+        </div>
+    }
+
+    <!--flatMenu-->
+    <div style="flex: 1; overflow-y: auto; overflow-x: hidden;">
+        <BaseMenu Class="@($"{BaseClassName}-menu")"
+                  Mode="MenuMode.Inline"
+                  Collapsed="Collapsed"
+                  OpenKeys="OpenKeys"
+                  Style="@("width: '100%'")" />
+    </div>
+
+    <!--menu-->
+    <div class="@BaseClassName-links">
+        <Menu Theme="NavTheme"
+              Class="@($"{BaseClassName}-link-menu")"
+              SelectedKeys="new string[] {}"
+              OpenKeys="new string[] {}"
+              Selectable="false">
+            @if (Links != null)
+            {
+                @for (var i = 0; i < Links.Count; i++)
+                {
+                    <MenuItem Class="@($"{BaseClassName}-link")" Key="@(i.ToString())">
+                        @Links[i]
+                    </MenuItem>
+                }
+            }
+            @if (CollapsedButtonRender == null)
+            {
+                <MenuItem Icon="@(Collapsed?"menu-unfold":"menu-fold")"
+                          Class="@($"{BaseClassName}-collapsed-button")"
+                          OnClick="@(async arg => await HandleOnCollapse(Collapsed = !Collapsed))">
+                </MenuItem>
+            }
+            else
+            {
+                @CollapsedButtonRender(Collapsed)
+            }
+        </Menu>
+    </div>
+</Sider>
+
+@code {
+    private bool HasHeaderDom => MenuHeaderRender && Layout != Layout.Mix;
+}

@@ -4,7 +4,7 @@
 <div class="@ClassMapper.Class" style="@Style">
     <div class="@MainClassMapper.Class">
         <!--header-->
-        @if (MenuHeaderRender && Layout != Layout.Mix)
+        @if (MenuHeaderRender)
         {
             <div id="logo" class="@BaseClassName-logo" @onclick="OnMenuHeaderClick">
                 <a href="/">
@@ -21,7 +21,7 @@
         }
 
         <div style="flex: 1;" class="@BaseClassName-menu">
-            <BaseMenu Mode="Mode" />
+            <BaseMenu Mode="Mode" OnlyTopMenu="OnlyTopMenu"/>
         </div>
     </div>
 </div>

@@ -18,6 +18,7 @@ namespace Zero.Abp.AntdesignLayout
         private bool _needFixedHeader;
         private bool _needSettingWidth;
         private bool _isTop;
+
         public string PrefixCls { get; set; } = "ant-pro";
         [Parameter] public bool Collapsed { get; set; }
         [Parameter] public bool IsMobile { get; set; }

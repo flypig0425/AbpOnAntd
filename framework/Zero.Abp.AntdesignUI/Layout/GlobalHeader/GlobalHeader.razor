@@ -1,0 +1,42 @@
+﻿@namespace Zero.Abp.AntdesignUI.Layout
+@inherits AntProComponentBase
+
+@if (Layout == Layout.Mix && !IsMobile && SplitMenus)
+{
+    <TopNavHeader OnlyTopMenu
+                  Mode="MenuMode.Horizontal"
+                  Theme="MenuTheme.Dark"
+                  NavTheme="MenuTheme.Dark" />
+}
+else
+{
+    <div class="@ClassMapper.Class" Style="@Style">
+        @if (Layout == Layout.Mix || IsMobile)
+        {
+            <div class="@BaseClassName-logo" key="logo">
+                <Branding HideTitle="Collapsed||IsMobile" />
+            </div>
+        }
+
+        @if (IsMobile)
+        {
+            @if (CollapsedButtonRender == null)
+            {
+                <span class="@BaseClassName-collapsed-button" @onclick="@(async () => { await OnCollapse.InvokeAsync(!Collapsed); })">
+                    <Icon Type="@(Collapsed ? "menu-unfold" : "menu-fold")" Theme="outline" />
+                </span>
+            }
+            else
+            {
+                @CollapsedButtonRender
+            }
+        }
+
+        <div style="flex: 1">@ChildContent</div>
+
+        @if (RightContentRender != null)
+        {
+            @RightContentRender
+        }
+    </div>
+}

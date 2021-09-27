@@ -2922,21 +2922,6 @@
           "lib/netstandard2.0/Volo.Abp.VirtualFileSystem.dll": {}
         }
       },
-      "Zero.Abp.AntdesignLayout/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v5.0",
-        "dependencies": {
-          "AntDesign": "0.10.0",
-          "Microsoft.AspNetCore.Components.Web": "5.0.10",
-          "Zero.Abp.AspNetCore.Components.Web": "4.4.2"
-        },
-        "compile": {
-          "bin/placeholder/Zero.Abp.AntdesignLayout.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Zero.Abp.AntdesignLayout.dll": {}
-        }
-      },
       "Zero.Abp.AntdesignUI/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -2996,6 +2981,7 @@
           "Microsoft.AspNetCore.Components.Authorization": "5.0.0",
           "Microsoft.AspNetCore.Components.Web": "5.0.0",
           "Volo.Abp.UI": "4.4.2",
+          "Volo.Abp.UI.Navigation": "4.4.2",
           "Zero.Abp.AspNetCore.Components": "4.4.2"
         },
         "compile": {
@@ -3010,7 +2996,6 @@
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
           "Volo.Abp.UI.Navigation": "4.4.2",
-          "Zero.Abp.AntdesignLayout": "1.0.0",
           "Zero.Abp.AntdesignUI": "1.0.0"
         },
         "compile": {
@@ -9391,11 +9376,6 @@
         "volo.abp.virtualfilesystem.nuspec"
       ]
     },
-    "Zero.Abp.AntdesignLayout/1.0.0": {
-      "type": "project",
-      "path": "../Zero.Abp.AntdesignLayout/Zero.Abp.AntdesignLayout.csproj",
-      "msbuildProject": "../Zero.Abp.AntdesignLayout/Zero.Abp.AntdesignLayout.csproj"
-    },
     "Zero.Abp.AntdesignUI/1.0.0": {
       "type": "project",
       "path": "../Zero.Abp.AntdesignUI/Zero.Abp.AntdesignUI.csproj",
@@ -9437,7 +9417,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\weidyg\\.nuget\\packages\\": {},
+    "C:\\Users\\WEIDYG\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {

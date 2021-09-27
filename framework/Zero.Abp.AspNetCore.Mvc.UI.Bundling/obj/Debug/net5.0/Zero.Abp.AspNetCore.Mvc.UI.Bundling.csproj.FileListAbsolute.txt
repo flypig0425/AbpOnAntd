@@ -572,7 +572,6 @@ F:\_MyCode\AbpZero\framework\Zero.Abp.AspNetCore.Mvc.UI.Bundling\bin\Debug\net5.
 F:\_MyCode\AbpZero\framework\Zero.Abp.AspNetCore.Mvc.UI.Bundling\bin\Debug\net5.0\refs\System.Xml.XPath.dll
 F:\_MyCode\AbpZero\framework\Zero.Abp.AspNetCore.Mvc.UI.Bundling\bin\Debug\net5.0\refs\System.Xml.XPath.XDocument.dll
 F:\_MyCode\AbpZero\framework\Zero.Abp.AspNetCore.Mvc.UI.Bundling\bin\Debug\net5.0\refs\WindowsBase.dll
-F:\_MyCode\AbpZero\framework\Zero.Abp.AspNetCore.Mvc.UI.Bundling\obj\Debug\net5.0\Zero.Abp.AspNetCore.Mvc.UI.Bundling.csproj.AssemblyReference.cache
 F:\_MyCode\AbpZero\framework\Zero.Abp.AspNetCore.Mvc.UI.Bundling\obj\Debug\net5.0\Zero.Abp.AspNetCore.Mvc.UI.Bundling.GeneratedMSBuildEditorConfig.editorconfig
 F:\_MyCode\AbpZero\framework\Zero.Abp.AspNetCore.Mvc.UI.Bundling\obj\Debug\net5.0\Zero.Abp.AspNetCore.Mvc.UI.Bundling.AssemblyInfoInputs.cache
 F:\_MyCode\AbpZero\framework\Zero.Abp.AspNetCore.Mvc.UI.Bundling\obj\Debug\net5.0\Zero.Abp.AspNetCore.Mvc.UI.Bundling.AssemblyInfo.cs
@@ -587,3 +586,4 @@ F:\_MyCode\AbpZero\framework\Zero.Abp.AspNetCore.Mvc.UI.Bundling\obj\Debug\net5.
 F:\_MyCode\AbpZero\framework\Zero.Abp.AspNetCore.Mvc.UI.Bundling\obj\Debug\net5.0\Zero.Abp.AspNetCore.Mvc.UI.Bundling.xml
 F:\_MyCode\AbpZero\framework\Zero.Abp.AspNetCore.Mvc.UI.Bundling\obj\Debug\net5.0\Zero.Abp.AspNetCore.Mvc.UI.Bundling.pdb
 D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Mvc.UI.Bundling\obj\Debug\net5.0\Zero.Abp.AspNetCore.Mvc.UI.Bundling.csproj.AssemblyReference.cache
+F:\_MyCode\AbpZero\framework\Zero.Abp.AspNetCore.Mvc.UI.Bundling\obj\Debug\net5.0\Zero.Abp.AspNetCore.Mvc.UI.Bundling.csproj.AssemblyReference.cache

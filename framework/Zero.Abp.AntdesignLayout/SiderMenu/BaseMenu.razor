@@ -1,5 +1,6 @@
 @namespace Zero.Abp.AntdesignLayout
 @inherits AntProComponentBase
+@using Volo.Abp.UI.Navigation
 
 <Menu Mode="Mode"
       DefaultOpenKeys="OpenKeys"
@@ -8,43 +9,56 @@
       Class="@ClassMapper.Class"
       OnOpenChange="SetOpenKeys"
       InlineCollapsed="Collapsed">
-    @*@menuItemTemplate((MenuData, false))*@
+    @menuItemTemplate((Menus, !OnlyTopMenu))
 </Menu>
 
 @code
 {
-    static readonly RenderFragment<MenuDataItem> title = menuItem => 
+    static readonly RenderFragment<ApplicationMenuItem> title = menuItem =>
     @<span>
         @if (!string.IsNullOrEmpty(menuItem.Icon))
+        {
+            if (menuItem.Icon.StartsWith("fa"))
+            {
+                <i class="@menuItem.Icon"></i> }
+            else
             {
                 <Icon Type="@menuItem.Icon" Theme="outline" />
             }
-            <span>@menuItem.Name</span>
-        </span>
+        }
+        <span>@menuItem.DisplayName</span>
+    </span>
     ;
 
-    static readonly RenderFragment<(MenuDataItem[] items, bool isChildren)> menuItemTemplate = context =>
+    static readonly RenderFragment<(ApplicationMenuItemList items, bool isRenderChildren)> menuItemTemplate = context =>
     @<Template>
         @if (context.items != null)
+        {
+            @foreach (var menuItem in context.items)
             {
-                @foreach (var menuItem in context.items)
+                var elementId = menuItem.ElementId ?? "MenuItem_" + menuItem.Name.Replace(".", "_");
+                var cssClass = string.IsNullOrEmpty(menuItem.CssClass) ? string.Empty : menuItem.CssClass;
+                var url = menuItem.Url == null ? "#" : menuItem.Url.TrimStart('/', '~');
+
+                if (menuItem.IsLeaf)
                 {
-                    if (menuItem.Children != null && !menuItem.HideChildrenInMenu)
-                    {
-                        <SubMenu TitleTemplate="@title(menuItem)" Key="@menuItem.Key">
-                            @menuItemTemplate((menuItem.Children, true))
-                        </SubMenu>
-                    }
-                    else if (!menuItem.HideInMenu)
-                    {
-                        <MenuItem Key="@menuItem.Key">
-                            <MenuLink href="@menuItem.Path" Match="@menuItem.Match">
-                                @title(menuItem)
-                            </MenuLink>
-                        </MenuItem>
-                    }
+                    <MenuItem Key="@elementId" Disabled="menuItem.IsDisabled" Class="cssClass">
+                        <MenuLink href="@url" target="@menuItem.Target">
+                            @title(menuItem)
+                        </MenuLink>
+                    </MenuItem>
+                }
+                else
+                {
+                    <SubMenu Key="@elementId" TitleTemplate="@title(menuItem)">
+                        @if (context.isRenderChildren)
+                        {
+                            @menuItemTemplate((menuItem.Items, true))
+                        }
+                    </SubMenu>
                 }
             }
-        </Template>
+        }
+    </Template>
     ;
 }

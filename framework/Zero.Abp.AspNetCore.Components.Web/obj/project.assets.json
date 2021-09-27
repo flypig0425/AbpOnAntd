@@ -846,6 +846,33 @@
           "ref/netstandard1.3/System.Threading.Tasks.dll": {}
         }
       },
+      "Volo.Abp.Authorization/4.4.2": {
+        "type": "package",
+        "dependencies": {
+          "Volo.Abp.Authorization.Abstractions": "4.4.2",
+          "Volo.Abp.Localization": "4.4.2",
+          "Volo.Abp.Security": "4.4.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Volo.Abp.Authorization.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Volo.Abp.Authorization.dll": {}
+        }
+      },
+      "Volo.Abp.Authorization.Abstractions/4.4.2": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Authorization": "5.0.9",
+          "Volo.Abp.MultiTenancy": "4.4.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Volo.Abp.Authorization.Abstractions.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Volo.Abp.Authorization.Abstractions.dll": {}
+        }
+      },
       "Volo.Abp.Core/4.4.2": {
         "type": "package",
         "dependencies": {
@@ -1015,6 +1042,19 @@
         },
         "runtime": {
           "lib/netstandard2.0/Volo.Abp.UI.dll": {}
+        }
+      },
+      "Volo.Abp.UI.Navigation/4.4.2": {
+        "type": "package",
+        "dependencies": {
+          "Volo.Abp.Authorization": "4.4.2",
+          "Volo.Abp.UI": "4.4.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Volo.Abp.UI.Navigation.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Volo.Abp.UI.Navigation.dll": {}
         }
       },
       "Volo.Abp.Uow/4.4.2": {
@@ -3486,6 +3526,34 @@
         "system.threading.tasks.nuspec"
       ]
     },
+    "Volo.Abp.Authorization/4.4.2": {
+      "sha512": "x13pcZVcIwc2WkhYyTbLwvarzXBfq5DWNbDuCnLmZEK/NeKGWaTJozWz5nDFxSbe3GizJdl9TYLdo7haXdgHgQ==",
+      "type": "package",
+      "path": "volo.abp.authorization/4.4.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Volo.Abp.Authorization.dll",
+        "lib/netstandard2.0/Volo.Abp.Authorization.pdb",
+        "lib/netstandard2.0/Volo.Abp.Authorization.xml",
+        "volo.abp.authorization.4.4.2.nupkg.sha512",
+        "volo.abp.authorization.nuspec"
+      ]
+    },
+    "Volo.Abp.Authorization.Abstractions/4.4.2": {
+      "sha512": "PHE9A+MBX+ZJBbMq5su1aFPHLHEIMJpPPhVBdEF2MMyEGrh6J1+WKF1r5DeAabHsZQNQGOwR9ZAf+2z4h9bG3g==",
+      "type": "package",
+      "path": "volo.abp.authorization.abstractions/4.4.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Volo.Abp.Authorization.Abstractions.dll",
+        "lib/netstandard2.0/Volo.Abp.Authorization.Abstractions.pdb",
+        "lib/netstandard2.0/Volo.Abp.Authorization.Abstractions.xml",
+        "volo.abp.authorization.abstractions.4.4.2.nupkg.sha512",
+        "volo.abp.authorization.abstractions.nuspec"
+      ]
+    },
     "Volo.Abp.Core/4.4.2": {
       "sha512": "nuX0wlPaOcx3LYSLFJ7ufKxIKCiAzyMQWbFY6pmQvfN+md3sJ23vDzVlLsLFhDofslEIFhaL3QaasSy2Bg/v6g==",
       "type": "package",
@@ -3654,6 +3722,20 @@
         "volo.abp.ui.nuspec"
       ]
     },
+    "Volo.Abp.UI.Navigation/4.4.2": {
+      "sha512": "q2w9MUnpaSoInIXa+YmeGhfiAaDTOPLI36emRzuMQX1+cN37NNlzpQqC2qq9gnhcPmoupPtJjAv6dwrkMQ8Y/A==",
+      "type": "package",
+      "path": "volo.abp.ui.navigation/4.4.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Volo.Abp.UI.Navigation.dll",
+        "lib/netstandard2.0/Volo.Abp.UI.Navigation.pdb",
+        "lib/netstandard2.0/Volo.Abp.UI.Navigation.xml",
+        "volo.abp.ui.navigation.4.4.2.nupkg.sha512",
+        "volo.abp.ui.navigation.nuspec"
+      ]
+    },
     "Volo.Abp.Uow/4.4.2": {
       "sha512": "AttKTNgqJUWqcJsWI0HVtsWCq/8r9b7Aq9/monbJcMT0svoxb1133Dd1X6LTDw2dntA6Auj35agOhqf5mklvEQ==",
       "type": "package",
@@ -3709,11 +3791,12 @@
       "Microsoft.AspNetCore.Components.Authorization >= 5.*",
       "Microsoft.AspNetCore.Components.Web >= 5.*",
       "Volo.Abp.UI >= 4.4.2",
+      "Volo.Abp.UI.Navigation >= 4.4.2",
       "Zero.Abp.AspNetCore.Components >= 4.4.2"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\weidyg\\.nuget\\packages\\": {},
+    "C:\\Users\\WEIDYG\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
@@ -3780,6 +3863,10 @@
             "version": "[5.*, )"
           },
           "Volo.Abp.UI": {
+            "target": "Package",
+            "version": "[4.4.2, )"
+          },
+          "Volo.Abp.UI.Navigation": {
             "target": "Package",
             "version": "[4.4.2, )"
           }

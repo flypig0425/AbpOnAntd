@@ -36,7 +36,6 @@
           "ConfigureAwait.Fody": "3.3.1",
           "Fody": "6.5.0",
           "Volo.Abp.UI.Navigation": "4.4.2",
-          "Zero.Abp.AntdesignLayout": "1.0.0",
           "Zero.Abp.AntdesignUI": "1.0.0",
           "Microsoft.CSharp": "5.0.0.0",
           "Microsoft.VisualBasic.Core": "10.0.6.0",
@@ -923,16 +922,8 @@
           "System.Threading.Tasks": "4.3.0"
         }
       },
-      "System.Collections.Immutable/5.0.0": {
-        "compile": {
-          "lib/netstandard2.0/System.Collections.Immutable.dll": {}
-        }
-      },
-      "System.ComponentModel.Annotations/5.0.0": {
-        "compile": {
-          "ref/netstandard2.1/System.ComponentModel.Annotations.dll": {}
-        }
-      },
+      "System.Collections.Immutable/5.0.0": {},
+      "System.ComponentModel.Annotations/5.0.0": {},
       "System.Console/4.3.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0",
@@ -1888,19 +1879,6 @@
           "lib/netstandard2.0/Volo.Abp.VirtualFileSystem.dll": {}
         }
       },
-      "Zero.Abp.AntdesignLayout/1.0.0": {
-        "dependencies": {
-          "AntDesign": "0.10.0",
-          "Microsoft.AspNetCore.Components.Web": "5.0.10",
-          "Zero.Abp.AspNetCore.Components.Web": "4.4.2"
-        },
-        "runtime": {
-          "Zero.Abp.AntdesignLayout.dll": {}
-        },
-        "compile": {
-          "Zero.Abp.AntdesignLayout.dll": {}
-        }
-      },
       "Zero.Abp.AntdesignUI/1.0.0": {
         "dependencies": {
           "AntDesign": "0.10.0",
@@ -1934,6 +1912,7 @@
           "Microsoft.AspNetCore.Components.Authorization": "5.0.10",
           "Microsoft.AspNetCore.Components.Web": "5.0.10",
           "Volo.Abp.UI": "4.4.2",
+          "Volo.Abp.UI.Navigation": "4.4.2",
           "Zero.Abp.AspNetCore.Components": "4.4.2"
         },
         "runtime": {
@@ -3885,11 +3864,6 @@
       "sha512": "sha512-0HUcg02y6JubJivXHIfvwpTajrznAYBXRO1QovHdWMO9SZ4HqPBCX10X/GZiKIYNwrx9isH97zhQL2vAFeXRbw==",
       "path": "volo.abp.virtualfilesystem/4.4.2",
       "hashPath": "volo.abp.virtualfilesystem.4.4.2.nupkg.sha512"
-    },
-    "Zero.Abp.AntdesignLayout/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
     },
     "Zero.Abp.AntdesignUI/1.0.0": {
       "type": "project",

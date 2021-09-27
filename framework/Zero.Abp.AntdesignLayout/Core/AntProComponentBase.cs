@@ -128,8 +128,6 @@ namespace Zero.Abp.AntdesignLayout
         [Parameter]
         public RenderFragment ChildContent { get; set; }
 
-
-
         [Inject]
         protected IBrandingProvider BrandingProvider { get; set; }
 

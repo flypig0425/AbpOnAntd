@@ -23,7 +23,7 @@ namespace Antd.AbpDemo.Blazor.Menus
                 0,
                 new ApplicationMenuItem(
                     BlazorServerDemoMenus.Home,
-                    l["Menu:Home"],
+                    "主页",
                     "/",
                     icon: "fas fa-home",
                     order: 0
@@ -32,7 +32,7 @@ namespace Antd.AbpDemo.Blazor.Menus
 
             //if (MultiTenancyConsts.IsEnabled)
             //{
-            //    administration.SetSubItemOrder(TenantManagementMenuNames.GroupName, 1);
+            administration.SetSubItemOrder(TenantManagementMenuNames.GroupName, 1);
             //}
             //else
             //{

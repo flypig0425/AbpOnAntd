@@ -96,6 +96,13 @@ using BlazorServerDemo;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 5 "F:\_MyCode\AbpZero\app\BlazorServerDemo\Pages\Index.razor"
+using Volo.Abp.UI.Navigation;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/")]
     public partial class Index : AbpComponentBase
     {
@@ -105,10 +112,11 @@ using BlazorServerDemo;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 9 "F:\_MyCode\AbpZero\app\BlazorServerDemo\Pages\Index.razor"
+#line 12 "F:\_MyCode\AbpZero\app\BlazorServerDemo\Pages\Index.razor"
       
     protected override void OnInitialized()
     {
+
         Alerts.Warning(
         "We will have a service interruption between 02:00 AM and 04:00 AM at October 23, 2023!",
         "Service Interruption");
@@ -117,10 +125,11 @@ using BlazorServerDemo;
 
     int? percentage = 0;
 
-    public Task DeleteAsync()
+    public async Task DeleteAsync()
     {
+        var dd= await MenuManager.GetMainMenuAsync();
         percentage = percentage + 10;
-        return pageProgressService.Go(percentage);
+        await pageProgressService.Go(percentage);
 
         //await Message.Success( "The product 'Acme Atom Re-Arranger' has been successfully deleted."  );
     }
@@ -128,6 +137,7 @@ using BlazorServerDemo;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IMenuManager MenuManager { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IUiPageProgressService pageProgressService { get; set; }
     }
 }

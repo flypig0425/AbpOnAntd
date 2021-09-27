@@ -1,0 +1,16 @@
+﻿@namespace Zero.Abp.AntdesignUI.Layout
+
+    @if (If)
+    {
+    @ChildContent
+    }
+    else if (Or != null)
+    {
+    @Or
+    }
+
+    @code {
+    [Parameter] public bool If { get; set; }
+    [Parameter] public RenderFragment ChildContent { get; set; }
+    [Parameter] public RenderFragment Or { get; set; }
+    }

@@ -27,6 +27,7 @@
     <Compile Remove="Components\UiMessageAlert.razor.cs" />
     <Compile Remove="Components\UiNotificationAlert.razor.cs" />
     <Compile Remove="Components\UiPageProgress.razor.cs" />
+    <Compile Remove="ObjectExtensionPropertyInfoBlazorExtensions.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,6 +41,12 @@
     <Content Remove="Components\UiMessageAlert.razor" />
     <Content Remove="Components\UiNotificationAlert.razor" />
     <Content Remove="Components\UiPageProgress.razor" />
+    <Content Remove="Layout\ConditionRender.razor" />
+    <Content Remove="Layout\TopNavHeader\TopNavHeader.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Layout\TopNavHeader\TopNavHeader.razor" />
   </ItemGroup>
   
   <ItemGroup>
@@ -51,6 +58,61 @@
   
   <ItemGroup>
     <ProjectReference Include="..\Zero.Abp.AspNetCore.Components.Web\Zero.Abp.AspNetCore.Components.Web.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Content Update="Layout\FooterView.razor">
+      <Pack>false</Pack>
+    </Content>
+    <Content Update="Layout\GlobalFooter\GlobalFooter.razor">
+      <Pack>false</Pack>
+    </Content>
+    <Content Update="Layout\GlobalHeader\Branding.razor">
+      <Pack>false</Pack>
+    </Content>
+    <Content Update="Layout\GlobalHeader\GlobalHeader.razor">
+      <Pack>false</Pack>
+    </Content>
+    <Content Update="Layout\HeaderView.razor">
+      <Pack>false</Pack>
+    </Content>
+    <Content Update="Layout\SettingDrawer\BlockCheckbox.razor">
+      <Pack>false</Pack>
+    </Content>
+    <Content Update="Layout\SettingDrawer\Body.razor">
+      <Pack>false</Pack>
+    </Content>
+    <Content Update="Layout\SettingDrawer\LayoutSetting.razor">
+      <Pack>false</Pack>
+    </Content>
+    <Content Update="Layout\SettingDrawer\OtherSetting.razor">
+      <Pack>false</Pack>
+    </Content>
+    <Content Update="Layout\SettingDrawer\RegionalSetting.razor">
+      <Pack>false</Pack>
+    </Content>
+    <Content Update="Layout\SettingDrawer\SettingDrawer.razor">
+      <Pack>false</Pack>
+    </Content>
+    <Content Update="Layout\SettingDrawer\ThemeColor.razor">
+      <Pack>false</Pack>
+    </Content>
+    <Content Update="Layout\SiderMenu\BaseMenu.razor">
+      <Pack>false</Pack>
+    </Content>
+    <Content Update="Layout\SiderMenu\SiderMenu.razor">
+      <Pack>false</Pack>
+    </Content>
+    <Content Update="Layout\SiderMenu\SiderMenuWrapper.razor">
+      <Pack>false</Pack>
+    </Content>
+    <Content Update="Layout\WrapContent.razor">
+      <Pack>false</Pack>
+    </Content>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="wwwroot\css\" />
   </ItemGroup>
   
 </Project>

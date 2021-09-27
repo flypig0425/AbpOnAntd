@@ -4,78 +4,6 @@
     "F:\\_MyCode\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components.Web.Theming\\Zero.Abp.AspNetCore.Components.Web.Theming.csproj": {}
   },
   "projects": {
-    "F:\\_MyCode\\AbpZero\\framework\\Zero.Abp.AntdesignLayout\\Zero.Abp.AntdesignLayout.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "F:\\_MyCode\\AbpZero\\framework\\Zero.Abp.AntdesignLayout\\Zero.Abp.AntdesignLayout.csproj",
-        "projectName": "Zero.Abp.AntdesignLayout",
-        "projectPath": "F:\\_MyCode\\AbpZero\\framework\\Zero.Abp.AntdesignLayout\\Zero.Abp.AntdesignLayout.csproj",
-        "packagesPath": "C:\\Users\\WEIDYG\\.nuget\\packages\\",
-        "outputPath": "F:\\_MyCode\\AbpZero\\framework\\Zero.Abp.AntdesignLayout\\obj\\",
-        "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-        ],
-        "configFilePaths": [
-          "C:\\Users\\WEIDYG\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "net5.0"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
-            "projectReferences": {
-              "F:\\_MyCode\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components.Web\\Zero.Abp.AspNetCore.Components.Web.csproj": {
-                "projectPath": "F:\\_MyCode\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components.Web\\Zero.Abp.AspNetCore.Components.Web.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
-          "dependencies": {
-            "AntDesign": {
-              "target": "Package",
-              "version": "[0.10.0, )"
-            },
-            "Microsoft.AspNetCore.Components.Web": {
-              "target": "Package",
-              "version": "[5.0.10, )"
-            }
-          },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
     "F:\\_MyCode\\AbpZero\\framework\\Zero.Abp.AntdesignUI\\Zero.Abp.AntdesignUI.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -180,9 +108,6 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "F:\\_MyCode\\AbpZero\\framework\\Zero.Abp.AntdesignLayout\\Zero.Abp.AntdesignLayout.csproj": {
-                "projectPath": "F:\\_MyCode\\AbpZero\\framework\\Zero.Abp.AntdesignLayout\\Zero.Abp.AntdesignLayout.csproj"
-              },
               "F:\\_MyCode\\AbpZero\\framework\\Zero.Abp.AntdesignUI\\Zero.Abp.AntdesignUI.csproj": {
                 "projectPath": "F:\\_MyCode\\AbpZero\\framework\\Zero.Abp.AntdesignUI\\Zero.Abp.AntdesignUI.csproj"
               }
@@ -298,6 +223,10 @@
               "version": "[5.*, )"
             },
             "Volo.Abp.UI": {
+              "target": "Package",
+              "version": "[4.4.2, )"
+            },
+            "Volo.Abp.UI.Navigation": {
               "target": "Package",
               "version": "[4.4.2, )"
             }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Antd.AbpDemo.Blazor.Menus;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +16,7 @@ using Volo.Abp.Autofac;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.Swashbuckle;
+using Volo.Abp.UI.Navigation;
 using Volo.Abp.UI.Navigation.Urls;
 using Zero.Abp.AspNetCore.Components.Server.BasicTheme;
 using Zero.Abp.AspNetCore.Components.Server.BasicTheme.Bundling;
@@ -47,7 +49,7 @@ namespace BlazorServerDemo
             ConfigureHttpClient(context);
             //ConfigureAntDesign(context);
             ConfigureRouter(context);
-            //ConfigureMenu(context);
+            ConfigureMenu(context);
             ConfigureCors(context, configuration);
             ConfigureSwaggerServices(context.Services);
         }
@@ -123,13 +125,14 @@ namespace BlazorServerDemo
                 .AddAntDesign();
         }
 
-        //private void ConfigureMenu(ServiceConfigurationContext context)
-        //{
-        //    Configure<AbpNavigationOptions>(options =>
-        //    {
-        //        options.MenuContributors.Add(new AbpDemoMenuContributor());
-        //    });
-        //}
+        private void ConfigureMenu(ServiceConfigurationContext context)
+        {
+            Configure<AbpNavigationOptions>(options =>
+            {
+                options.MenuContributors.Add(new BlazorServerDemoMenuContributor());
+                options.MenuContributors.Add(new TenantManagementWebMainMenuContributor());
+            });
+        }
 
         private void ConfigureRouter(ServiceConfigurationContext context)
         {

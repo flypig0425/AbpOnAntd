@@ -164,6 +164,10 @@
             "Volo.Abp.UI": {
               "target": "Package",
               "version": "[4.4.2, )"
+            },
+            "Volo.Abp.UI.Navigation": {
+              "target": "Package",
+              "version": "[4.4.2, )"
             }
           },
           "imports": [

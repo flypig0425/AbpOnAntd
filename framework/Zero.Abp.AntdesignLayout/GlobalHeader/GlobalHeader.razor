@@ -4,16 +4,16 @@
 @if (Layout == Layout.Mix && !IsMobile && SplitMenus)
 {
     <TopNavHeader Mode="MenuMode.Horizontal"
-              @*MenuData="NoChildrenMenuData"*@
-              NavTheme="MenuTheme.Dark"
-              Theme="MenuTheme.Dark" />
+                  OnlyTopMenu
+                  NavTheme="MenuTheme.Dark"
+                  Theme="MenuTheme.Dark" />
 }
 else
 {
     <div class="@ClassMapper.Class" Style="@Style">
         @if (IsMobile)
         {
-            <span class=@BaseClassName-logo key="logo">
+            <span class=@BaseClassName -logo key="logo">
                 <a>
                     @if (!BrandingProvider.LogoUrl.IsNullOrWhiteSpace())
                     {

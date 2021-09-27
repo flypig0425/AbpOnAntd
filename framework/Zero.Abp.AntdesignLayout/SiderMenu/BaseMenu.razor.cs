@@ -1,8 +1,8 @@
-using System;
-using System.Threading.Tasks;
 using AntDesign;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
+using Volo.Abp.UI.Navigation;
 
 namespace Zero.Abp.AntdesignLayout
 {
@@ -19,17 +19,28 @@ namespace Zero.Abp.AntdesignLayout
 
     public partial class BaseMenu : IBaseMenu
     {
+        [Parameter] public bool OnlyTopMenu { get; set; }
+
         [Parameter] public bool Collapsed { get; set; }
         [Parameter] public EventCallback<bool> HandleOpenChange { get; set; }
         [Parameter] public bool IsMobile { get; set; }
+
         //[Parameter] public MenuDataItem[] MenuData { get; set; } = { };
+
         [Parameter] public MenuMode Mode { get; set; }
         [Parameter] public EventCallback<bool> OnCollapse { get; set; }
         [Parameter] public string[] OpenKeys { get; set; } = { };
         [Inject] public ILogger<BaseMenu> Logger { get; set; }
 
-        protected override void OnInitialized()
+
+        [Inject] protected IMenuManager MenuManager { get; set; }
+
+        protected ApplicationMenuItemList Menus { get; set; }
+
+
+        protected override async Task OnInitializedAsync()
         {
+            Menus = (await MenuManager.GetMainMenuAsync()).Items;
             Logger.LogInformation("BaseMenu initialized.");
         }
 

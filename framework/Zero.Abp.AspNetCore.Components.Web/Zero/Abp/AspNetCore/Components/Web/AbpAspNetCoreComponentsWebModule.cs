@@ -3,12 +3,14 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Volo.Abp.Modularity;
 using Volo.Abp.UI;
+using Volo.Abp.UI.Navigation;
 using Zero.Abp.AspNetCore.Components.DependencyInjection;
 
 namespace Zero.Abp.AspNetCore.Components.Web
 {
     [DependsOn(
         typeof(AbpUiModule),
+        typeof(AbpUiNavigationModule),
         typeof(AbpAspNetCoreComponentsModule)
         )]
     public class AbpAspNetCoreComponentsWebModule : AbpModule

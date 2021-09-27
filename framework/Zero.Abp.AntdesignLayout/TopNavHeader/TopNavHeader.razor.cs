@@ -14,7 +14,13 @@ namespace Zero.Abp.AntdesignLayout
     {
         public string BaseClassName => "ant-pro-top-nav-header";
         public ClassMapper MainClassMapper { get; } = new ClassMapper();
+
+
+
         [Parameter] public bool Collapsed { get; set; }
+
+        [Parameter] public bool OnlyTopMenu { get; set; }
+
         [Parameter] public EventCallback<bool> HandleOpenChange { get; set; }
         [Parameter] public bool IsMobile { get; set; }
         //[Parameter] public MenuDataItem[] MenuData { get; set; }
