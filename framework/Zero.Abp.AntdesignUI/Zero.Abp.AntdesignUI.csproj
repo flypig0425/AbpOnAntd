@@ -79,7 +79,7 @@
     <Content Update="Layout\SettingDrawer\BlockCheckbox.razor">
       <Pack>false</Pack>
     </Content>
-    <Content Update="Layout\SettingDrawer\Body.razor">
+    <Content Update="Layout\SettingDrawer\SettingDrawerBody.razor">
       <Pack>false</Pack>
     </Content>
     <Content Update="Layout\SettingDrawer\LayoutSetting.razor">

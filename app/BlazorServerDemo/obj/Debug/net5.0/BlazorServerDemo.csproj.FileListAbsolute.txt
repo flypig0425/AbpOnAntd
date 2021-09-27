@@ -955,9 +955,6 @@ F:\_MyCode\AbpZero\app\BlazorServerDemo\obj\Debug\net5.0\BlazorServerDemo.genrun
 F:\_MyCode\AbpZero\app\BlazorServerDemo\bin\Debug\net5.0\package.json
 D:\DevCodes\AbpZero\app\BlazorServerDemo\bin\Debug\net5.0\package-lock.json
 D:\DevCodes\AbpZero\app\BlazorServerDemo\bin\Debug\net5.0\package.json
-D:\DevCodes\AbpZero\app\BlazorServerDemo\bin\Debug\net5.0\Zero.Abp.AntdesignLayout.StaticWebAssets.xml
-D:\DevCodes\AbpZero\app\BlazorServerDemo\bin\Debug\net5.0\Zero.Abp.AntdesignLayout.dll
-D:\DevCodes\AbpZero\app\BlazorServerDemo\bin\Debug\net5.0\Zero.Abp.AntdesignLayout.pdb
 F:\_MyCode\AbpZero\app\BlazorServerDemo\bin\Debug\net5.0\Zero.Abp.AspNetCore.Components.Web.BasicTheme.StaticWebAssets.xml
 F:\_MyCode\AbpZero\app\BlazorServerDemo\bin\Debug\net5.0\Zero.Abp.AspNetCore.Components.Server.BasicTheme.StaticWebAssets.xml
 F:\_MyCode\AbpZero\app\BlazorServerDemo\bin\Debug\net5.0\Zero.Abp.AspNetCore.Components.Web.Theming.StaticWebAssets.xml

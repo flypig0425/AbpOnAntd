@@ -620,9 +620,6 @@ F:\_MyCode\AbpZero\framework\Zero.Abp.AspNetCore.Components.Server.Theming\bin\D
 F:\_MyCode\AbpZero\framework\Zero.Abp.AspNetCore.Components.Server.Theming\bin\Debug\net5.0\package.json
 D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components.Server.Theming\bin\Debug\net5.0\package-lock.json
 D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components.Server.Theming\bin\Debug\net5.0\package.json
-D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components.Server.Theming\bin\Debug\net5.0\Zero.Abp.AntdesignLayout.StaticWebAssets.xml
-D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components.Server.Theming\bin\Debug\net5.0\Zero.Abp.AntdesignLayout.dll
-D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components.Server.Theming\bin\Debug\net5.0\Zero.Abp.AntdesignLayout.pdb
 D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components.Server.Theming\obj\Debug\net5.0\Zero.Abp.AspNetCore.Components.Server.Theming.csproj.CopyComplete
 F:\_MyCode\AbpZero\framework\Zero.Abp.AspNetCore.Components.Server.Theming\bin\Debug\net5.0\package-lock.json
 F:\_MyCode\AbpZero\framework\Zero.Abp.AspNetCore.Components.Server.Theming\bin\Debug\net5.0\Zero.Abp.AntdesignUI.StaticWebAssets.xml

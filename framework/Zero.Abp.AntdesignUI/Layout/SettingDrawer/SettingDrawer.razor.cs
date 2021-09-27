@@ -110,15 +110,15 @@ namespace Zero.Abp.AntdesignUI.Layout
                 Duration = 0
             });
             task.Start();
-            var key = SettingState.Value.PrimaryColor;
+            var key = SettingState.Value.PrimaryColor?? "default";
             string fileName;
             if (SettingState.Value.NavTheme == "realDark")
             {
-                fileName = key == "daybreak" ? "dark" : $"dark-{key}";
+                fileName = key == "default" ? "dark" : $"dark-{key}";
             }
             else
             {
-                fileName = key == "daybreak" ? "" : key;
+                fileName = key == "default" ? "" : key;
             }
             _url = $"/_content/Zero.Abp.AntdesignUI/theme/{fileName}.css";
             await JsInvokeAsync(JSInteropConstants.AddElementToBody, _linkRef);
