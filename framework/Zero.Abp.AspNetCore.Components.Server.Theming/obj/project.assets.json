@@ -9437,20 +9437,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\weidyg\\.nuget\\packages\\": {}
+    "C:\\Users\\weidyg\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "4.4.2",
     "restore": {
-      "projectUniqueName": "D:\\DevCodes\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components.Server.Theming\\Zero.Abp.AspNetCore.Components.Server.Theming.csproj",
+      "projectUniqueName": "F:\\_MyCode\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components.Server.Theming\\Zero.Abp.AspNetCore.Components.Server.Theming.csproj",
       "projectName": "Zero.Abp.AspNetCore.Components.Server.Theming",
-      "projectPath": "D:\\DevCodes\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components.Server.Theming\\Zero.Abp.AspNetCore.Components.Server.Theming.csproj",
-      "packagesPath": "C:\\Users\\weidyg\\.nuget\\packages\\",
-      "outputPath": "D:\\DevCodes\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components.Server.Theming\\obj\\",
+      "projectPath": "F:\\_MyCode\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components.Server.Theming\\Zero.Abp.AspNetCore.Components.Server.Theming.csproj",
+      "packagesPath": "C:\\Users\\WEIDYG\\.nuget\\packages\\",
+      "outputPath": "F:\\_MyCode\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components.Server.Theming\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+      ],
       "configFilePaths": [
-        "C:\\Users\\weidyg\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\WEIDYG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
@@ -9463,14 +9468,14 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "D:\\DevCodes\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components.Server\\Zero.Abp.AspNetCore.Components.Server.csproj": {
-              "projectPath": "D:\\DevCodes\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components.Server\\Zero.Abp.AspNetCore.Components.Server.csproj"
+            "F:\\_MyCode\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components.Server\\Zero.Abp.AspNetCore.Components.Server.csproj": {
+              "projectPath": "F:\\_MyCode\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components.Server\\Zero.Abp.AspNetCore.Components.Server.csproj"
             },
-            "D:\\DevCodes\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components.Web.Theming\\Zero.Abp.AspNetCore.Components.Web.Theming.csproj": {
-              "projectPath": "D:\\DevCodes\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components.Web.Theming\\Zero.Abp.AspNetCore.Components.Web.Theming.csproj"
+            "F:\\_MyCode\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components.Web.Theming\\Zero.Abp.AspNetCore.Components.Web.Theming.csproj": {
+              "projectPath": "F:\\_MyCode\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components.Web.Theming\\Zero.Abp.AspNetCore.Components.Web.Theming.csproj"
             },
-            "D:\\DevCodes\\AbpZero\\framework\\Zero.Abp.AspNetCore.Mvc.UI.Bundling\\Zero.Abp.AspNetCore.Mvc.UI.Bundling.csproj": {
-              "projectPath": "D:\\DevCodes\\AbpZero\\framework\\Zero.Abp.AspNetCore.Mvc.UI.Bundling\\Zero.Abp.AspNetCore.Mvc.UI.Bundling.csproj"
+            "F:\\_MyCode\\AbpZero\\framework\\Zero.Abp.AspNetCore.Mvc.UI.Bundling\\Zero.Abp.AspNetCore.Mvc.UI.Bundling.csproj": {
+              "projectPath": "F:\\_MyCode\\AbpZero\\framework\\Zero.Abp.AspNetCore.Mvc.UI.Bundling\\Zero.Abp.AspNetCore.Mvc.UI.Bundling.csproj"
             }
           }
         }
@@ -9515,7 +9520,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100-preview.7.21379.14\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
       }
     }
   }

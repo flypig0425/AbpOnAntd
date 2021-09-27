@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yiCBwg62oJh7m9L+m48z62MCi4ROmucdTwbP9ZUnAHBQf1Li7MPZVYQdjfGO9FtlEUVu9eC7eEd+jBZRg20c6w==",
+  "dgSpecHash": "v472RwyYYLcYcLmG1zMIi2Cq/w2/00RSz0kfQ+u4OJ6CGoGeicemVURt63sK9qFWeA00FPrFN3WUGx1jUnl57Q==",
   "success": true,
-  "projectFilePath": "D:\\DevCodes\\AbpZero\\basic-theme\\Zero.Abp.AspNetCore.Components.Server.BasicTheme\\Zero.Abp.AspNetCore.Components.Server.BasicTheme.csproj",
+  "projectFilePath": "F:\\_MyCode\\AbpZero\\basic-theme\\Zero.Abp.AspNetCore.Components.Server.BasicTheme\\Zero.Abp.AspNetCore.Components.Server.BasicTheme.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\weidyg\\.nuget\\packages\\antdesign\\0.10.0\\antdesign.0.10.0.nupkg.sha512",
     "C:\\Users\\weidyg\\.nuget\\packages\\castle.core\\4.4.1\\castle.core.4.4.1.nupkg.sha512",

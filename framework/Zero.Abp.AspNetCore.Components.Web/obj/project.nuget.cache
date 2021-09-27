@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "naS3I3b6bXIGY0nvMgb7S+wpBiAmO+xKpTOqO6dUiYXPRnlIAaD406VJIHIDhRShvYs5mOK4yJwgCviUtKNtYA==",
+  "dgSpecHash": "Z63uTYxTP9TAHmwIbiXNNoZHfWy2YZdOABvrK+5ALeCrlMusHduggk1/K/y94720NsmbCJzuIeklWMXQvcUn9A==",
   "success": true,
-  "projectFilePath": "D:\\DevCodes\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components.Web\\Zero.Abp.AspNetCore.Components.Web.csproj",
+  "projectFilePath": "F:\\_MyCode\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components.Web\\Zero.Abp.AspNetCore.Components.Web.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\weidyg\\.nuget\\packages\\configureawait.fody\\3.3.1\\configureawait.fody.3.3.1.nupkg.sha512",
     "C:\\Users\\weidyg\\.nuget\\packages\\fody\\6.5.0\\fody.6.5.0.nupkg.sha512",

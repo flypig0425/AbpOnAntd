@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NW5OtC6P5Mr1JehiwFnPVNBYv7UTFri5RvAvzv1rX8SmnmYCgs5n3OyAU0MmngI3F532GULKPGMCeX4MqK9ZmQ==",
+  "dgSpecHash": "0KYEtqfTrJ+ta/UbKLG4nbVnlmJEIHCyd0LZk63+IPuKmox8i6RtkE8XKPVrnKcjKpE1zIBLOtQkNwUhB84c4w==",
   "success": true,
-  "projectFilePath": "D:\\DevCodes\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components.Server\\Zero.Abp.AspNetCore.Components.Server.csproj",
+  "projectFilePath": "F:\\_MyCode\\AbpZero\\framework\\Zero.Abp.AspNetCore.Components.Server\\Zero.Abp.AspNetCore.Components.Server.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\weidyg\\.nuget\\packages\\castle.core\\4.4.1\\castle.core.4.4.1.nupkg.sha512",
     "C:\\Users\\weidyg\\.nuget\\packages\\castle.core.asyncinterceptor\\2.0.0\\castle.core.asyncinterceptor.2.0.0.nupkg.sha512",

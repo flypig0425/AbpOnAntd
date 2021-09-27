@@ -10466,20 +10466,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\weidyg\\.nuget\\packages\\": {}
+    "C:\\Users\\weidyg\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\DevCodes\\AbpZero\\app\\BlazorServerDemo\\BlazorServerDemo.csproj",
+      "projectUniqueName": "F:\\_MyCode\\AbpZero\\app\\BlazorServerDemo\\BlazorServerDemo.csproj",
       "projectName": "BlazorServerDemo",
-      "projectPath": "D:\\DevCodes\\AbpZero\\app\\BlazorServerDemo\\BlazorServerDemo.csproj",
-      "packagesPath": "C:\\Users\\weidyg\\.nuget\\packages\\",
-      "outputPath": "D:\\DevCodes\\AbpZero\\app\\BlazorServerDemo\\obj\\",
+      "projectPath": "F:\\_MyCode\\AbpZero\\app\\BlazorServerDemo\\BlazorServerDemo.csproj",
+      "packagesPath": "C:\\Users\\WEIDYG\\.nuget\\packages\\",
+      "outputPath": "F:\\_MyCode\\AbpZero\\app\\BlazorServerDemo\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+      ],
       "configFilePaths": [
-        "C:\\Users\\weidyg\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\WEIDYG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
@@ -10492,8 +10497,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "D:\\DevCodes\\AbpZero\\basic-theme\\Zero.Abp.AspNetCore.Components.Server.BasicTheme\\Zero.Abp.AspNetCore.Components.Server.BasicTheme.csproj": {
-              "projectPath": "D:\\DevCodes\\AbpZero\\basic-theme\\Zero.Abp.AspNetCore.Components.Server.BasicTheme\\Zero.Abp.AspNetCore.Components.Server.BasicTheme.csproj"
+            "F:\\_MyCode\\AbpZero\\basic-theme\\Zero.Abp.AspNetCore.Components.Server.BasicTheme\\Zero.Abp.AspNetCore.Components.Server.BasicTheme.csproj": {
+              "projectPath": "F:\\_MyCode\\AbpZero\\basic-theme\\Zero.Abp.AspNetCore.Components.Server.BasicTheme\\Zero.Abp.AspNetCore.Components.Server.BasicTheme.csproj"
             }
           }
         }
@@ -10551,7 +10556,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100-preview.7.21379.14\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
       }
     }
   }

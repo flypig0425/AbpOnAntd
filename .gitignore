@@ -260,3 +260,5 @@ src/Antd.AbpDemo.HttpApi.HostWithIds/Logs/*
 src/Antd.AbpDemo.DbMigrator/Logs/*
 src/Antd.AbpDemo.Blazor/Logs/*
 src/Antd.AbpDemo.Blazor.Tiered/Logs/*
+obj
+bin

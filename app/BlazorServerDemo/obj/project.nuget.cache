@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "294bYpVdw6srNzVlHrcWcmHv+eIqcj3MKUyOArhfqXZoZN0T3v6ztY8+cpz0lSbzjJAdpOJ8L7TVfTdddLBssQ==",
+  "dgSpecHash": "fJDu1hhCqg/6AaC3dMdfDabrKgmZYFugzki77Dx8eaXltcGG4VsOO4Z+sa06yB5vfQzi0Irw+To4Fe6TFYwMAQ==",
   "success": true,
-  "projectFilePath": "D:\\DevCodes\\AbpZero\\app\\BlazorServerDemo\\BlazorServerDemo.csproj",
+  "projectFilePath": "F:\\_MyCode\\AbpZero\\app\\BlazorServerDemo\\BlazorServerDemo.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\weidyg\\.nuget\\packages\\antdesign\\0.10.0\\antdesign.0.10.0.nupkg.sha512",
     "C:\\Users\\weidyg\\.nuget\\packages\\autofac\\6.1.0\\autofac.6.1.0.nupkg.sha512",
