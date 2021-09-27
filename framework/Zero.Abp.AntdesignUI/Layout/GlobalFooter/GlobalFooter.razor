@@ -1,17 +1,13 @@
 ﻿@namespace Zero.Abp.AntdesignUI.Layout
 @inherits AntDomComponentBase
 
-<footer class="@ClassMapper.Class" style="@Style" id="@Id">
-    @if (Links != null && Links.Length > 0)
+<div class="@ClassMapper.Class" style="@Style">
+    @if (Links?.Any() ?? false)
     {
         <div class="@BaseClassName-links">
             @foreach (var link in Links)
             {
-                <a key="@link.Key"
-                   title="@link.Key"
-                   target="@link.Target"
-                   href=@link.Href>
-
+                <a key="@link.Key" title="@link.Key" target="@link.Target" href=@link.Href>
                     @if (link.Title.IsT0)
                     {
                         @link.Title.AsT0
@@ -28,4 +24,18 @@
     {
         <div class="@BaseClassName-copyright">@Copyright</div>
     }
-</footer>
+</div>
+
+@code {
+    [Parameter] public LinkItem[] Links { get; set; }
+    [Parameter] public RenderFragment Copyright { get; set; }
+
+    public const string PrefixCls = "ant-pro";
+    private const string BaseClassName = PrefixCls + "-global-footer";
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        ClassMapper.Clear().Add(BaseClassName);
+    }
+}

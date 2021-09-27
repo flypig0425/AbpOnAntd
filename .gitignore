@@ -262,3 +262,5 @@ src/Antd.AbpDemo.Blazor/Logs/*
 src/Antd.AbpDemo.Blazor.Tiered/Logs/*
 obj
 bin
+obj
+bin
