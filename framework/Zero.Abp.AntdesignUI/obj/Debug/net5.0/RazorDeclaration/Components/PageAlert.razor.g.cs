@@ -13,28 +13,28 @@ namespace Zero.Abp.AntdesignUI.Components
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "D:\DevCodes\AbpZero\framework\Zero.Abp.AntdesignUI\_Imports.razor"
+#line 1 "F:\_MyCode\AbpZero\framework\Zero.Abp.AntdesignUI\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "D:\DevCodes\AbpZero\framework\Zero.Abp.AntdesignUI\_Imports.razor"
+#line 2 "F:\_MyCode\AbpZero\framework\Zero.Abp.AntdesignUI\_Imports.razor"
 using AntDesign;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "D:\DevCodes\AbpZero\framework\Zero.Abp.AntdesignUI\_Imports.razor"
+#line 4 "F:\_MyCode\AbpZero\framework\Zero.Abp.AntdesignUI\_Imports.razor"
 using Zero.Abp.AntdesignUI;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "D:\DevCodes\AbpZero\framework\Zero.Abp.AntdesignUI\_Imports.razor"
+#line 5 "F:\_MyCode\AbpZero\framework\Zero.Abp.AntdesignUI\_Imports.razor"
 using Volo.Abp.Localization;
 
 #line default
