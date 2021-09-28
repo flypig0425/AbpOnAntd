@@ -1,51 +1,6 @@
 ﻿@namespace Zero.Abp.AntdesignUI.Layout
 @inherits AntProComponentBase
 
-@*<div class="@ClassMapper.Class" style="@_weakModeStyle">
-    <Layout Style="min-height: 100%;">
-    @if (MenuRender)
-    {
-    if (Layout == Layout.Top && !IsMobile)
-    {
-    <!--todo: Mobile Top-->
-    }
-    else
-    {
-    <CascadingValue Value="MenuExtraRender" Name="MenuExtraRender">
-    <SiderMenu Mode="Mode"
-    OpenKeys="OpenKeys"
-    SiderWidth="SiderWidth"
-    OnCollapse="HandleCollapse">
-    </SiderMenu>
-    </CascadingValue>
-    }
-    }
-
-    <Layout Style="@_genLayoutStyle">
-    @if (HeaderRender && Pure)
-    {
-    <CascadingValue Value="RightContentRender" Name="RightContentRender">
-    <HeaderView />
-    </CascadingValue>
-    }
-
-    <WrapContent PrefixCls="@PrefixCls"
-    Class="@ContentClassMapper.Class"
-    Style="@ContentStyle">
-
-    @(Loading ? @<PageLoading /> : ChildContent)
-    </WrapContent>
-
-    <FooterView />
-    @if (SettingState.Value.FooterRender)
-    {
-    @(FooterRender == null ? @<FooterView /> : FooterRender)
-    }
-    </Layout>
-    </Layout>
-    </div>
-*@
-
 @if (Pure)
 {
     @ChildContent
@@ -54,15 +9,16 @@ else
 {
     <div class="@ClassMapper.Class" style="@weakModeStyle">
         <Layout Style="min-height: 100%;">
-
-            <CascadingValue Value="MenuExtraRender" Name="MenuExtraRender">
-                <SiderMenu Mode="Mode"
-                       OpenKeys="OpenKeys"
-                       SiderWidth="SiderWidth"
-                       OnCollapse="HandleCollapse">
-                </SiderMenu>
-            </CascadingValue>
-
+            @if (MenuRender)
+            {
+                <CascadingValue Value="MenuExtraRender" Name="MenuExtraRender">
+                    <SiderMenu Mode="Mode"
+                               OpenKeys="OpenKeys"
+                               SiderWidth="SiderWidth"
+                               OnCollapse="HandleCollapse">
+                    </SiderMenu>
+                </CascadingValue>
+            }
             <div style="@genLayoutStyle" class="@layoutCls">
                 @if (HeaderRender)
                 {
@@ -71,15 +27,14 @@ else
                     </CascadingValue>
                 }
                 @*isChildrenLayout={isChildrenLayout}*@
-                <WrapContent 
-                         PrefixCls="@PrefixCls"
-                         Class="@ContentClassMapper.Class"
-                         Style="@ContentStyle">
+                <WrapContent PrefixCls="@PrefixCls"
+                             Class="@ContentClassMapper.Class"
+                             Style="@ContentStyle">
                     @(Loading ? @<PageLoading /> : ChildContent)
                 </WrapContent>
-                @if (SettingState.Value.FooterRender)
+                @if (FooterRender)
                 {
-                    @(FooterRender == null ? @<FooterView /> : FooterRender)
+                    @(Footer == null ? @<FooterView /> : Footer)
                 }
             </div>
         </Layout>
@@ -110,7 +65,6 @@ else
     private readonly bool isChildrenLayout = false;
 
     private string layoutCls = "ant-layout";
-    public string PrefixCls { get; } = "ant-pro";
     public string BaseClassName => $"{PrefixCls}-basicLayout";
     public ClassMapper ContentClassMapper { get; set; } = new ClassMapper();
 
@@ -128,9 +82,9 @@ else
     {
         weakModeStyle = ColorWeak ? "filter: invert(80%);" : "";
         //genLayoutStyle = "position: relative;";
-         var hasLeftPadding = FixSiderbar && Layout != Layout.Top && !IsMobile;
-            var paddingLeft = hasLeftPadding ? Collapsed ? 48 : SiderWidth : 0;
-            genLayoutStyle = MenuRender ? $"padding-left: {paddingLeft}px; position: relative;" : "";
+        var hasLeftPadding = FixSiderbar && Layout != Layout.Top && !IsMobile;
+        var paddingLeft = hasLeftPadding ? Collapsed ? 48 : SiderWidth : 0;
+        genLayoutStyle = MenuRender ? $"padding-left: {paddingLeft}px; position: relative;" : "";
         if (isChildrenLayout || (ContentStyle?.Contains("min-height") ?? false)) { genLayoutStyle += "min-height:0px"; }
     }
 

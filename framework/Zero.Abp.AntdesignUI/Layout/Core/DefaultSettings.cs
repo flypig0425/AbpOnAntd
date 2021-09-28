@@ -3,6 +3,7 @@ using System;
 
 namespace Zero.Abp.AntdesignUI.Layout
 {
+
     public sealed class Layout : EnumValue<Layout>
     {
         public static readonly Layout Side = new(nameof(Side).ToLowerInvariant(), 1);
@@ -14,14 +15,16 @@ namespace Zero.Abp.AntdesignUI.Layout
     internal interface IPureSettings
     {
         MenuTheme NavTheme { get; }
+        string PrimaryColor { get; }
         Layout Layout { get; }
         string ContentWidth { get; }
         bool FixedHeader { get; }
         bool FixSiderbar { get; }
-        string IconfontUrl { get; }
-        string PrimaryColor { get; }
-        bool ColorWeak { get; }
         bool SplitMenus { get; }
+
+
+        bool ColorWeak { get; }
+        string IconfontUrl { get; }
     }
 
     internal interface IRenderSetting
@@ -30,7 +33,13 @@ namespace Zero.Abp.AntdesignUI.Layout
         bool FooterRender { get; }
         bool MenuRender { get; }
         bool MenuHeaderRender { get; }
+
+        bool MenuExtraRender { get; }
+
     }
+
+
+
 
     public class ProSettings
     {
@@ -50,7 +59,7 @@ namespace Zero.Abp.AntdesignUI.Layout
         private int _headerHeight = 48;
 
         public event Action OnStateChange; // todo: replace with service for updating state.
-       
+
         public string NavTheme
         {
             get => _navTheme;

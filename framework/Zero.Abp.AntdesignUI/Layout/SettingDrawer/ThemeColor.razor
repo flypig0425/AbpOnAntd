@@ -10,7 +10,8 @@
             @*             <Tooltip Title="@item.Key"> *@
             @*             </Tooltip> *@
 
-            <div class="theme-color-block" style="background-color: @item.Color" @onclick="@(async x=> await HandleClickAsync(item.Key))">
+            <div class="theme-color-block" style="background-color: @item.Color"
+                 @onclick="@(async x=> await HandleClickAsync(item.Key))">
                 @if (Value == item.Key)
                 {
                     <Icon Type="check" Theme="outline" />

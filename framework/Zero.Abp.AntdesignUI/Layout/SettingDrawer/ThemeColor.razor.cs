@@ -33,13 +33,13 @@ namespace Zero.Abp.AntdesignUI.Layout
         private async Task HandleClickAsync(string value)
         {
             _value = value;
-            if (OnChange.HasDelegate)
-            {
-                await OnChange.InvokeAsync(value);
-            }
             if (ValueChanged.HasDelegate)
             {
                 await ValueChanged.InvokeAsync(value);
+            }
+            if (OnChange.HasDelegate)
+            {
+                await OnChange.InvokeAsync(value);
             }
         }
     }

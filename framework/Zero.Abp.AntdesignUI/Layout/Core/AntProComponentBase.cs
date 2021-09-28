@@ -1,11 +1,14 @@
 ﻿using AntDesign;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Options;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Volo.Abp.Ui.Branding;
 
 namespace Zero.Abp.AntdesignUI.Layout
 {
-    public abstract class AntProComponentBase : AntDomComponentBase, IPureSettings
+    public abstract class AntProComponentBase : AntDomComponentBase, IPureSettings, IRenderSetting
     {
         [Parameter]
         public MenuTheme NavTheme
@@ -102,7 +105,11 @@ namespace Zero.Abp.AntdesignUI.Layout
         }
 
         [Parameter]
-        public RenderFragment FooterRender { get; set; }
+        public bool FooterRender
+        {
+            get => SettingState.Value.FooterRender;
+            set => SettingState.Value.FooterRender = value;
+        }
 
         [Parameter]
         public bool MenuRender
@@ -119,7 +126,24 @@ namespace Zero.Abp.AntdesignUI.Layout
         }
 
         [Parameter]
-        public RenderFragment ChildContent { get; set; }
+        public RenderFragment Footer { get; set; }
+
+
+
+
+        #region MyRegion
+
+        [Parameter] public string PrefixCls { get; set; } = "ant-pro";
+
+        [Parameter] public RenderFragment ChildContent { get; set; }
+
+        protected string ClassNames(params string[] classNames)
+        {
+            classNames ??= Array.Empty<string>();
+            classNames = classNames.Where(w => !w.IsNullOrWhiteSpace()).Distinct().ToArray();
+            return string.Join("", classNames);
+        }
+        #endregion
 
         [Inject]
         protected IOptions<ProSettings> SettingState { get; set; }
