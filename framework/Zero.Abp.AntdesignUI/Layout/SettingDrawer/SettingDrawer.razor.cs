@@ -120,7 +120,7 @@ namespace Zero.Abp.AntdesignUI.Layout
             {
                 fileName = key == "daybreak" ? "" : key;
             }
-            _url = $"/_content/Zero.Abp.AntdesignUI/theme/{fileName}.css";
+            _url = $"/_content/{typeof(SettingDrawer).Assembly.GetName()}/theme/{fileName}.css";
             await JsInvokeAsync(JSInteropConstants.AddElementToBody, _linkRef);
         }
 
