@@ -25,6 +25,8 @@ namespace Zero.Abp.AntdesignUI.Layout
 
         bool ColorWeak { get; }
         string IconfontUrl { get; }
+
+
     }
 
     internal interface IRenderSetting

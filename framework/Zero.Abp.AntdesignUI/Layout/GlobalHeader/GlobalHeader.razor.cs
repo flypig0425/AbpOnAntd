@@ -17,7 +17,7 @@ namespace Zero.Abp.AntdesignUI.Layout
     {
         public string BaseClassName => $"{PrefixCls}-global-header";
 
-        [Parameter] public string PrefixCls { get; set; } = "ant-pro";
+        //[Parameter] public string PrefixCls { get; set; } = "ant-pro";
 
         [Parameter] public bool Collapsed { get; set; }
 

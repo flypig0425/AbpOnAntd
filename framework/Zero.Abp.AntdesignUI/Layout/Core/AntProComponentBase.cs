@@ -2,13 +2,11 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Options;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using Volo.Abp.Ui.Branding;
 
 namespace Zero.Abp.AntdesignUI.Layout
 {
-    public abstract class AntProComponentBase : AntDomComponentBase, IPureSettings, IRenderSetting
+    public abstract class AntProComponentBase : AntDomComponentBase, IPureSettings//, IRenderSetting
     {
         [Parameter]
         public MenuTheme NavTheme
@@ -130,6 +128,11 @@ namespace Zero.Abp.AntdesignUI.Layout
 
 
 
+        [Parameter]
+        public MenuSettings Menu { get; set; }=new MenuSettings();
+
+
+
 
         #region MyRegion
 
@@ -137,7 +140,7 @@ namespace Zero.Abp.AntdesignUI.Layout
 
         [Parameter] public RenderFragment ChildContent { get; set; }
 
-        protected string ClassNames(params string[] classNames)
+        protected static string ClassNames(params string[] classNames)
         {
             classNames ??= Array.Empty<string>();
             classNames = classNames.Where(w => !w.IsNullOrWhiteSpace()).Distinct().ToArray();
@@ -164,5 +167,13 @@ namespace Zero.Abp.AntdesignUI.Layout
             SettingState.Value.OnStateChange -= OnStateChanged;
             base.Dispose(disposing);
         }
+    }
+
+    public class MenuSettings
+    {
+        /// <summary>
+        /// 'sub' | 'group'
+        /// </summary>
+        public string  Type { get; set; }
     }
 }

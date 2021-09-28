@@ -39,7 +39,7 @@
 
     <!--flatMenu-->
     <div style="flex: 1; overflow-y: auto; overflow-x: hidden;">
-        <BaseMenu Mode="MenuMode.Inline"
+        <BaseMenu Mode="@Mode"
                   Collapsed="Collapsed"
                   HandleOpenChange="HandleOnOpenChange"
                   Style="width: 100%"
@@ -52,7 +52,7 @@
               Class="@ClassNames($"{baseClassName}-link-menu")"
               SelectedKeys="Array.Empty<string>()"
               OpenKeys="Array.Empty<string>()"
-              Mode="MenuMode.Inline">
+              Mode="@Mode">
             @for (var index = 0; index < Links.Count; index++)
             {
                 <MenuItem Key="@($"{index}")" Class="@ClassNames($"{baseClassName}-link")">
@@ -83,6 +83,7 @@
 
 
 @code {
+    [Parameter] public MenuMode Mode { get; set; }
     [Parameter] public int SiderWidth { get; set; } = 208;
     [Parameter] public bool IsMobile { get; set; }
     [CascadingParameter(Name = nameof(Collapsed))]

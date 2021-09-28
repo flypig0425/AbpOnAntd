@@ -11,13 +11,16 @@ else
         <Layout Style="min-height: 100%;">
             @if (MenuRender)
             {
-                <CascadingValue Value="MenuExtraRender" Name="MenuExtraRender">
-                    <SiderMenu Mode="Mode"
-                               OpenKeys="OpenKeys"
-                               SiderWidth="SiderWidth"
-                               OnCollapse="HandleCollapse">
-                    </SiderMenu>
-                </CascadingValue>
+                @if (Layout != Layout.Top)
+                {
+                    @*OpenKeys="OpenKeys"*@
+                    <CascadingValue Value="MenuExtraRender" Name="MenuExtraRender">
+                        <SiderMenu Mode="Mode"
+                       SiderWidth="SiderWidth"
+                       OnCollapse="HandleCollapse">
+                        </SiderMenu>
+                    </CascadingValue>
+                }
             }
             <div style="@genLayoutStyle" class="@layoutCls">
                 @if (HeaderRender)
@@ -28,8 +31,8 @@ else
                 }
                 @*isChildrenLayout={isChildrenLayout}*@
                 <WrapContent PrefixCls="@PrefixCls"
-                             Class="@ContentClassMapper.Class"
-                             Style="@ContentStyle">
+                         Class="@ContentClassMapper.Class"
+                         Style="@ContentStyle">
                     @(Loading ? @<PageLoading /> : ChildContent)
                 </WrapContent>
                 @if (FooterRender)
@@ -81,10 +84,10 @@ else
     protected void SetStyle()
     {
         weakModeStyle = ColorWeak ? "filter: invert(80%);" : "";
-        //genLayoutStyle = "position: relative;";
-        var hasLeftPadding = FixSiderbar && Layout != Layout.Top && !IsMobile;
-        var paddingLeft = hasLeftPadding ? Collapsed ? 48 : SiderWidth : 0;
-        genLayoutStyle = MenuRender ? $"padding-left: {paddingLeft}px; position: relative;" : "";
+        genLayoutStyle = "position: relative;";
+        //var hasLeftPadding = FixSiderbar && Layout != Layout.Top && !IsMobile;
+        //var paddingLeft = hasLeftPadding ? Collapsed ? 48 : SiderWidth : 0;
+        //genLayoutStyle = MenuRender ? $"padding-left: {paddingLeft}px; position: relative;" : "";
         if (isChildrenLayout || (ContentStyle?.Contains("min-height") ?? false)) { genLayoutStyle += "min-height:0px"; }
     }
 
