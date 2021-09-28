@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
@@ -120,7 +121,7 @@ namespace Zero.Abp.AntdesignUI.Layout
             {
                 fileName = key == "default" ? "" : key;
             }
-            _url = $"/_content/Zero.Abp.AntdesignUI/theme/{fileName}.css";
+            _url = $"/_content/{typeof(SettingDrawer).Assembly.GetName().Name}/theme/{fileName}.css";
             await JsInvokeAsync(JSInteropConstants.AddElementToBody, _linkRef);
         }
 

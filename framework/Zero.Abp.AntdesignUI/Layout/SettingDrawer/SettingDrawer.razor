@@ -14,7 +14,7 @@
     <ChildContent>
         <div class="@BaseClassName-drawer-content">
             <SettingDrawerBody Title="Page style setting"
-                                              PrefixCls="@BaseClassName">
+                               PrefixCls="@BaseClassName">
                 <BlockCheckbox PrefixCls="@BaseClassName"
                                List="ThemeList"
                                @bind-Value="@SettingState.Value.NavTheme"
@@ -24,12 +24,11 @@
             <ThemeColor Title="Theme Color"
                         Colors="LightColorList"
                         @bind-Value="@SettingState.Value.PrimaryColor"
-                        OnChange="@(_=>UpdateTheme())" />
-
+                        OnChange="@(async _=>await UpdateTheme())" />
             <Divider />
 
             <SettingDrawerBody Title="Navigation Mode"
-                                              PrefixCls="@BaseClassName">
+                               PrefixCls="@BaseClassName">
                 <BlockCheckbox PrefixCls="@BaseClassName"
                                List="LayoutList"
                                @bind-Value="@SettingState.Value.Layout"
@@ -41,14 +40,14 @@
             <Divider />
 
             <SettingDrawerBody Title="Regional Settings"
-                                              PrefixCls="@BaseClassName">
+                               PrefixCls="@BaseClassName">
                 <RegionalSetting />
             </SettingDrawerBody>
 
             <Divider />
 
             <SettingDrawerBody Title="Other Settings"
-                                              PrefixCls="@BaseClassName">
+                               PrefixCls="@BaseClassName">
                 <OtherSetting />
             </SettingDrawerBody>
 
@@ -60,10 +59,10 @@
             @if (!HideHintAlert)
             {
                 <Alert Type="warning"
-                   Message="Setting panel shows in development environment only, please manually modify"
-                   Icon="_notification"
-                   ShowIcon="true"
-                   Style="margin-bottom: 16px;" />
+                       Message="Setting panel shows in development environment only, please manually modify"
+                       Icon="_notification"
+                       ShowIcon="true"
+                       Style="margin-bottom: 16px;" />
             }
 
             @if (!HideCopyButton)
@@ -75,9 +74,8 @@
         </div>
     </ChildContent>
 </Drawer>
-
 <link type="text/css" rel="stylesheet" id="theme-style" href="@_url" @ref="_linkRef">
 @code
 {
-    private RenderFragment _notification =@<Icon Type="notification" /> ;
+    private RenderFragment _notification =@<Icon Type="notification" />     ;
 }

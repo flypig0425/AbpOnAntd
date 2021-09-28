@@ -251,21 +251,5 @@ paket-files/
 .idea/
 *.sln.iml
 
-# AbpDemo
-src/Antd.AbpDemo.Web/Logs/*
-src/Antd.AbpDemo.Web.Host/Logs/*
-src/Antd.AbpDemo.IdentityServer/Logs/*
-src/Antd.AbpDemo.HttpApi.Host/Logs/*
-src/Antd.AbpDemo.HttpApi.HostWithIds/Logs/*
-src/Antd.AbpDemo.DbMigrator/Logs/*
-src/Antd.AbpDemo.Blazor/Logs/*
-src/Antd.AbpDemo.Blazor.Tiered/Logs/*
-obj
-bin
-obj
-bin
-obj
-bin
-Logs
 obj
 bin
