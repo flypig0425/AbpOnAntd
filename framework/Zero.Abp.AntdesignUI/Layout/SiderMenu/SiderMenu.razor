@@ -12,7 +12,7 @@
         @Style" />
 }
 
-<Sider Collapsible
+<Sider Collapsible="false"
        Collapsed="@Collapsed"
        Breakpoint="@Breakpoint"
        CollapsedWidth="@collapsedWidth"
@@ -113,7 +113,7 @@
     private string baseClassName => $"{PrefixCls}-sider";
     private string siderClassName => ClassNames(baseClassName
     , FixSiderbar ? $"{baseClassName}-fixed" : null
-    , (Layout != null && !IsMobile) ? $"{baseClassName}-layout-${Layout}" : null
+    , (Layout != null && !IsMobile) ? $"{baseClassName}-layout-{Layout}" : null
     , SiderTheme == SiderTheme.Light ? $"{baseClassName}-light" : null);
     public string siderStyle => $"overflow: hidden; padding-top: {(Layout == Layout.Mix && !IsMobile ? HeaderHeight : 0)}px;";
 

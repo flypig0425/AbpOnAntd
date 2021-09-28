@@ -117,7 +117,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <Folder Include="wwwroot\css\" />
+    <Folder Include="wwwroot\" />
   </ItemGroup>
   
 </Project>

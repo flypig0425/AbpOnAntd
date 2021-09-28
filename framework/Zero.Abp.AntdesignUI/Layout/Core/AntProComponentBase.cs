@@ -144,7 +144,7 @@ namespace Zero.Abp.AntdesignUI.Layout
         {
             classNames ??= Array.Empty<string>();
             classNames = classNames.Where(w => !w.IsNullOrWhiteSpace()).Distinct().ToArray();
-            return string.Join("", classNames);
+            return string.Join(" ", classNames);
         }
         #endregion
 

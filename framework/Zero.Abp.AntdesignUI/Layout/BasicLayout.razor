@@ -85,9 +85,9 @@ else
     {
         weakModeStyle = ColorWeak ? "filter: invert(80%);" : "";
         genLayoutStyle = "position: relative;";
-        //var hasLeftPadding = FixSiderbar && Layout != Layout.Top && !IsMobile;
-        //var paddingLeft = hasLeftPadding ? Collapsed ? 48 : SiderWidth : 0;
-        //genLayoutStyle = MenuRender ? $"padding-left: {paddingLeft}px; position: relative;" : "";
+        var hasLeftPadding = FixSiderbar && Layout != Layout.Top && !IsMobile;
+        var paddingLeft = hasLeftPadding ? Collapsed ? 48 : SiderWidth : 0;
+        genLayoutStyle = MenuRender ? $"padding-left: {paddingLeft}px; position: relative;" : "";
         if (isChildrenLayout || (ContentStyle?.Contains("min-height") ?? false)) { genLayoutStyle += "min-height:0px"; }
     }
 
