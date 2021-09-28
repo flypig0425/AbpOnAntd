@@ -95,9 +95,6 @@ F:\_MyCode\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Web.BasicTheme\bin
 D:\DevCodes\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Web.BasicTheme\obj\Debug\net5.0\RazorDeclaration\Themes\Basic\NavToolbar.razor.g.cs
 D:\DevCodes\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Web.BasicTheme\bin\Debug\net5.0\package-lock.json
 D:\DevCodes\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Web.BasicTheme\bin\Debug\net5.0\package.json
-D:\DevCodes\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Web.BasicTheme\bin\Debug\net5.0\Zero.Abp.AntdesignLayout.StaticWebAssets.xml
-D:\DevCodes\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Web.BasicTheme\bin\Debug\net5.0\Zero.Abp.AntdesignLayout.dll
-D:\DevCodes\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Web.BasicTheme\bin\Debug\net5.0\Zero.Abp.AntdesignLayout.pdb
 D:\DevCodes\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Web.BasicTheme\obj\Debug\net5.0\Razor\Themes\Basic\NavToolbar.razor.g.cs
 D:\DevCodes\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Web.BasicTheme\obj\Debug\net5.0\Zero.Abp.AspNetCore.Components.Web.BasicTheme.csproj.CopyComplete
 F:\_MyCode\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.Web.BasicTheme\bin\Debug\net5.0\Zero.Abp.AspNetCore.Components.Web.Theming.StaticWebAssets.xml

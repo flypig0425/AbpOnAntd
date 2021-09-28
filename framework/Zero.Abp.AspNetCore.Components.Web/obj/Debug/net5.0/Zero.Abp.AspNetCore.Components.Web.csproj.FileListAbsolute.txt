@@ -42,3 +42,4 @@ F:\_MyCode\AbpZero\framework\Zero.Abp.AspNetCore.Components.Web\obj\Debug\net5.0
 F:\_MyCode\AbpZero\framework\Zero.Abp.AspNetCore.Components.Web\obj\Debug\net5.0\ref\Zero.Abp.AspNetCore.Components.Web.dll
 F:\_MyCode\AbpZero\framework\Zero.Abp.AspNetCore.Components.Web\obj\Debug\net5.0\Zero.Abp.AspNetCore.Components.Web.xml
 F:\_MyCode\AbpZero\framework\Zero.Abp.AspNetCore.Components.Web\obj\Debug\net5.0\Zero.Abp.AspNetCore.Components.Web.pdb
+D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components.Web\obj\Debug\net5.0\Zero.Abp.AspNetCore.Components.Web.csproj.CopyComplete

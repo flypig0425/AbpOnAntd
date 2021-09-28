@@ -27,6 +27,8 @@
     <Compile Remove="Components\UiMessageAlert.razor.cs" />
     <Compile Remove="Components\UiNotificationAlert.razor.cs" />
     <Compile Remove="Components\UiPageProgress.razor.cs" />
+    <Compile Remove="Layout\BasicLayout.razor.cs" />
+    <Compile Remove="Layout\GlobalFooter\GlobalFooter.razor.cs" />
     <Compile Remove="ObjectExtensionPropertyInfoBlazorExtensions.cs" />
   </ItemGroup>
 
@@ -76,10 +78,13 @@
     <Content Update="Layout\HeaderView.razor">
       <Pack>false</Pack>
     </Content>
+    <Content Update="Layout\PageLoading\PageLoading.razor">
+      <Pack>false</Pack>
+    </Content>
     <Content Update="Layout\SettingDrawer\BlockCheckbox.razor">
       <Pack>false</Pack>
     </Content>
-    <Content Update="Layout\SettingDrawer\Body.razor">
+    <Content Update="Layout\SettingDrawer\SettingDrawerBody.razor">
       <Pack>false</Pack>
     </Content>
     <Content Update="Layout\SettingDrawer\LayoutSetting.razor">

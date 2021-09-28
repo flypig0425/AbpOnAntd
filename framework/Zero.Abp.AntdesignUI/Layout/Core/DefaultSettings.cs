@@ -34,14 +34,13 @@ namespace Zero.Abp.AntdesignUI.Layout
 
     public class ProSettings
     {
+        private string _primaryColor;
         private string _navTheme = "light";     // light | dark
         private string _layout = "mix";         // side | top | mix
         private string _contentWidth = "Fluid"; // Fluid | Fixed
         private bool _fixedHeader;
         private bool _fixSiderbar = true;
-        private string _title = "Ant Design Pro";
         private string _iconfontUrl;
-        private string _primaryColor;
         private bool _colorWeak;
         private bool _splitMenus;
         private bool _headerRender = true;
@@ -114,17 +113,6 @@ namespace Zero.Abp.AntdesignUI.Layout
             {
                 if (_fixSiderbar == value) return;
                 _fixSiderbar = value;
-                OnStateChange?.Invoke();
-            }
-        }
-
-        public string Title
-        {
-            get => _title;
-            set
-            {
-                if (_title == value) return;
-                _title = value;
                 OnStateChange?.Invoke();
             }
         }
