@@ -6,7 +6,7 @@ namespace Zero.Abp.AntdesignLayout
     {
         public static readonly Dictionary<string, string> ThemeColors = new()
         {
-            { "#1890ff", "daybreak" },
+            { "#1890ff", "default" },
             { "#F5222D", "dust" },
             { "#FA541C", "volcano" },
             { "#FAAD14", "sunset" },

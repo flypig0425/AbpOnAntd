@@ -12,7 +12,7 @@ namespace Zero.Abp.AntdesignUI.Layout
         //[Parameter] public bool? SplitMenus { get; set; }
 
 
-        [Parameter] public string IconPrefixes { get; set; } = "fa-";
+        [Parameter] public string IconPrefixes { get; set; } = "icon-";
 
         [Parameter] public bool DefaultCollapsed { get; set; }
         [Parameter] public bool Collapsed { get; set; }
@@ -20,7 +20,7 @@ namespace Zero.Abp.AntdesignUI.Layout
 
         string[] openKeys = Array.Empty<string>();
         [Parameter]
-        public string[] OpenKeys
+        public string[] OpenKeys 
         {
             get => (!Collapsed && new Layout[] { Layout.Side, Layout.Mix }.Contains(Layout)) ? openKeys : null;
             set => openKeys = value;

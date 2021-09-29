@@ -3,40 +3,61 @@
 
 @if (Layout == Layout.Mix && !IsMobile && SplitMenus)
 {
-    <TopNavHeader OnlyTopMenu
-                  Mode="MenuMode.Horizontal"
-                  Theme="MenuTheme.Dark"
-                  NavTheme="MenuTheme.Dark" />
+    <TopNavHeader Mode="MenuMode.Horizontal"
+                  SplitMenus="false"
+                  NoChildrenMenu
+                  Theme="NavTheme" />
 }
 else
 {
-    <div class="@ClassMapper.Class" Style="@Style">
-        @if (Layout == Layout.Mix || IsMobile)
-        {
-            <div class="@BaseClassName-logo" key="logo">
-                <Branding HideTitle="Collapsed||IsMobile" />
-            </div>
-        }
-
+    <div class="@className" style="@Style">
         @if (IsMobile)
         {
-            @if (CollapsedButtonRender == null)
+            <Branding HideTitle />
+            @if (CollapsedButtonRender != null)
             {
                 <span class="@BaseClassName-collapsed-button" @onclick="@(async () => { await OnCollapse.InvokeAsync(!Collapsed); })">
-                    <Icon Type="@(Collapsed ? "menu-unfold" : "menu-fold")" Theme="outline" />
+                    @*<Icon Type="@(Collapsed ? "menu-unfold" : "menu-fold")" Theme="outline" />*@
+                    @CollapsedButtonRender(Collapsed)
                 </span>
             }
-            else
-            {
-                @CollapsedButtonRender
-            }
         }
-
+        else if (Layout == Layout.Mix)
+        {
+            <div class="@BaseClassName-logo">
+                <Branding />
+            </div>
+        }
         <div style="flex: 1">@ChildContent</div>
-
         @if (RightContentRender != null)
         {
             @RightContentRender
         }
     </div>
+}
+@code{
+    private string BaseClassName => $"{PrefixCls}-global-header";
+    private string className => ClassNames(BaseClassName, Class
+        , ($"{BaseClassName}-layout-{Layout.ToString().ToLower()}", Layout != null)//&& headerTheme === 'dark'
+        );
+
+
+    [Parameter] public bool Collapsed { get; set; }
+
+    [Parameter] public bool IsMobile { get; set; }
+
+    [Parameter] public EventCallback<bool> OnCollapse { get; set; }
+
+    [Parameter]
+    public RenderFragment<bool> CollapsedButtonRender { get; set; } = defaultCollapsedButtonRender;
+
+    [CascadingParameter(Name = nameof(RightContentRender))]
+    public RenderFragment RightContentRender { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+    }
+
+    static readonly RenderFragment<bool> defaultCollapsedButtonRender = collapsed =>@<Icon Type="@(collapsed ? "menu-unfold" : "menu-fold")" Theme="outline" />;
 }

@@ -1,5 +1,4 @@
 ﻿@namespace Zero.Abp.AntdesignUI.Layout
-@inherits AntProComponentBase
 
 @if (Pure)
 {
@@ -7,17 +6,16 @@
 }
 else
 {
-    <div class="@ClassMapper.Class" style="@weakModeStyle">
+    <div class="@LayoutClass" style="@weakModeStyle">
         <Layout Style="min-height: 100%;">
             @if (MenuRender)
             {
-                @if (Layout != Layout.Top)
+                @if (Layout != Layout.Top || IsMobile)
                 {
                     @*OpenKeys="OpenKeys"*@
                     <CascadingValue Value="MenuExtraRender" Name="MenuExtraRender">
-                        <SiderMenu Mode="Mode"
-                       SiderWidth="SiderWidth"
-                       OnCollapse="HandleCollapse">
+                        <SiderMenu SiderWidth="SiderWidth"
+                                   OnCollapse="HandleCollapse">
                         </SiderMenu>
                     </CascadingValue>
                 }
@@ -31,20 +29,20 @@ else
                 }
                 @*isChildrenLayout={isChildrenLayout}*@
                 <WrapContent PrefixCls="@PrefixCls"
-                         Class="@ContentClassMapper.Class"
-                         Style="@ContentStyle">
+                             Class="@ContentClass"
+                             Style="@ContentStyle">
                     @(Loading ? @<PageLoading /> : ChildContent)
                 </WrapContent>
                 @if (FooterRender)
                 {
-                    @(Footer == null ? @<FooterView /> : Footer)
+                    @(FooterContent == null ? @<FooterView /> : FooterContent)
                 }
             </div>
         </Layout>
     </div>
 }
 
-
+@inherits AntProComponentBase
 @code {
     [Parameter] public bool Pure { get; set; }
     [Parameter] public bool Loading { get; set; }
@@ -68,16 +66,24 @@ else
     private readonly bool isChildrenLayout = false;
 
     private string layoutCls = "ant-layout";
-    public string BaseClassName => $"{PrefixCls}-basicLayout";
-    public ClassMapper ContentClassMapper { get; set; } = new ClassMapper();
-
+    private string BaseClassName => $"{PrefixCls}-basicLayout";
+    private string LayoutClass => ClassNames("ant-design-pro", BaseClassName, $"screen-{ColSize}"
+        , ($"{BaseClassName}-top-menu", Layout == Layout.Top)
+        , ($"{BaseClassName}-is-children", isChildrenLayout)
+        , ($"{BaseClassName}-fix-siderbar", FixSiderbar)
+        , ($"{BaseClassName}-mobile", IsMobile)
+        );
+    public string ContentClass => ClassNames($"{BaseClassName}-content"
+    , ($"{BaseClassName}-has-header", HeaderRender)
+    , ($"{BaseClassName}-content-disable-margin", DisableContentMargin)
+    );
 
     protected string ColSize { get; set; } = "lg";//useAntdMediaQuery();
     protected bool IsMobile => (ColSize == "sm" || ColSize == "xs") && !DisableMobile;
+
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        SetClassMap();
         SetStyle();
     }
 
@@ -89,25 +95,6 @@ else
         var paddingLeft = hasLeftPadding ? Collapsed ? 48 : SiderWidth : 0;
         genLayoutStyle = MenuRender ? $"padding-left: {paddingLeft}px; position: relative;" : "";
         if (isChildrenLayout || (ContentStyle?.Contains("min-height") ?? false)) { genLayoutStyle += "min-height:0px"; }
-    }
-
-    protected void SetClassMap()
-    {
-        ClassMapper
-            .Clear()
-            .Add("ant-design-pro")
-            .Add(BaseClassName)
-            .Add($"screen-{ColSize}")
-            .If($"{BaseClassName}-top-menu", () => Layout == Layout.Top)
-            .If($"{BaseClassName}-is-children", () => isChildrenLayout)
-            .If($"{BaseClassName}-fix-siderbar", () => FixSiderbar)
-            .If($"{BaseClassName}-mobile", () => IsMobile);
-
-        ContentClassMapper
-            .Clear()
-            .Add($"{BaseClassName}-content")
-            .If($"{BaseClassName}-has-header", () => HeaderRender)
-            .If($"{BaseClassName}-content-disable-margin", () => DisableContentMargin);
     }
 
     protected override void OnStateChanged()

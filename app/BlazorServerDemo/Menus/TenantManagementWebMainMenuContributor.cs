@@ -20,7 +20,7 @@ namespace Antd.AbpDemo.Blazor.Menus
             var tenantManagementMenuItem = new ApplicationMenuItem(
                 TenantManagementMenuNames.GroupName,
                 "租户管理",
-                icon: "fa fa-users");
+                icon: "team");
 
             administrationMenu.AddItem(tenantManagementMenuItem);
 

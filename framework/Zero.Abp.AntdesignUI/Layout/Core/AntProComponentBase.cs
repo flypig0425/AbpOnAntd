@@ -1,6 +1,7 @@
 ﻿using AntDesign;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Options;
+using OneOf;
 using System;
 using System.Linq;
 
@@ -124,12 +125,12 @@ namespace Zero.Abp.AntdesignUI.Layout
         }
 
         [Parameter]
-        public RenderFragment Footer { get; set; }
+        public RenderFragment FooterContent { get; set; }
 
 
 
         [Parameter]
-        public MenuSettings Menu { get; set; }=new MenuSettings();
+        public MenuSettings Menu { get; set; } = new MenuSettings();
 
 
 
@@ -140,11 +141,24 @@ namespace Zero.Abp.AntdesignUI.Layout
 
         [Parameter] public RenderFragment ChildContent { get; set; }
 
-        protected static string ClassNames(params string[] classNames)
+        /// <summary>
+        /// Example:
+        /// ClassNames(className
+        ///  ,(className,true|flase)
+        ///  ,(()=>className,true|flase)
+        /// )
+        /// </summary>
+        /// <param name="classNames"></param>
+        /// <returns></returns>
+        protected static string ClassNames(params OneOf<string, (string s, bool b), (Func<string> func, bool b)>[] classNames)
         {
-            classNames ??= Array.Empty<string>();
-            classNames = classNames.Where(w => !w.IsNullOrWhiteSpace()).Distinct().ToArray();
-            return string.Join(" ", classNames);
+            var tempClassNames = classNames?.Select(s => s.Match(
+                m0 => m0,
+                m1 => m1.b ? m1.s : null,
+                m2 => m2.b ? m2.func?.Invoke() : null
+                ));
+            tempClassNames = tempClassNames?.Where(w => !w.IsNullOrWhiteSpace())?.Distinct()?.ToArray();
+            return string.Join(" ", tempClassNames ?? Array.Empty<string>());
         }
         #endregion
 
@@ -174,6 +188,6 @@ namespace Zero.Abp.AntdesignUI.Layout
         /// <summary>
         /// 'sub' | 'group'
         /// </summary>
-        public string  Type { get; set; }
+        public string Type { get; set; }
     }
 }

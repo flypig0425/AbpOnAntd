@@ -114,11 +114,11 @@ namespace Zero.Abp.AntdesignLayout
             string fileName;
             if (SettingState.Value.NavTheme == "realDark")
             {
-                fileName = key == "daybreak" ? "dark" : $"dark-{key}";
+                fileName = key == "default" ? "dark" : $"dark-{key}";
             }
             else
             {
-                fileName = key == "daybreak" ? "" : key;
+                fileName = key == "default" ? "" : key;
             }
             _url = $"/_content/Zero.Abp.AntdesignLayout/theme/{fileName}.css";
             await JsInvokeAsync(JSInteropConstants.AddElementToBody, _linkRef);

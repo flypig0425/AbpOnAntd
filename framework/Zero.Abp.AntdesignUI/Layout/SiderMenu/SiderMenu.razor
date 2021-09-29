@@ -1,5 +1,6 @@
 @namespace Zero.Abp.AntdesignUI.Layout
 @inherits AntProComponentBase
+@using OneOf
 
 @if (FixedHeader)
 {
@@ -14,48 +15,49 @@
 
 <Sider Collapsible="false"
        Collapsed="@Collapsed"
-       Breakpoint="@Breakpoint"
        CollapsedWidth="@collapsedWidth"
        Width="@SiderWidth"
        Theme="@SiderTheme"
        Style="@siderStyle"
        Class="@siderClassName"
+       Breakpoint="@Breakpoint"
        OnCollapse="HandleSiderCollapse">
 
     @if (HasHeaderDom)
     {
         <div id="logo" style="@LogoStyle"
-             class="@ClassNames($"{baseClassName}-logo", Collapsed?$"{baseClassName}-collapsed":null)">
+             class="@ClassNames($"{baseClassName}-logo", ($"{baseClassName}-collapsed",Collapsed))">
             <Branding HideTitle="Collapsed" />
         </div>
     }
 
-    @if (MenuExtraRender)
+    @if (MenuExtraRender)//TODO:MenuExtraRender
     {
-        <div class="@ClassNames($"{baseClassName}-extra", HasHeaderDom?$"{baseClassName}-extra-no-logo":null)">
+        <div class="@ClassNames($"{baseClassName}-extra", ($"{baseClassName}-extra-no-logo",HasHeaderDom))">
             @*{extraDom}*@
         </div>
     }
 
     <!--flatMenu-->
     <div style="flex: 1; overflow-y: auto; overflow-x: hidden;">
-        <BaseMenu Mode="@Mode"
+        <BaseMenu Mode="MenuMode.Inline"
                   Collapsed="Collapsed"
                   HandleOpenChange="HandleOnOpenChange"
                   Style="width: 100%"
                   Class="@($"{baseClassName}-menu")" />
     </div>
 
-    <div class="@ClassNames($"{baseClassName}-links")">
+    <div class="@baseClassName-links">
         <Menu Theme="NavTheme"
               InlineIndent="16"
-              Class="@ClassNames($"{baseClassName}-link-menu")"
+              Class="@($"{baseClassName}-link-menu")"
               SelectedKeys="Array.Empty<string>()"
               OpenKeys="Array.Empty<string>()"
-              Mode="@Mode">
+              Mode="MenuMode.Inline"
+              Selectable="false">
             @for (var index = 0; index < Links.Count; index++)
             {
-                <MenuItem Key="@($"{index}")" Class="@ClassNames($"{baseClassName}-link")">
+                <MenuItem Key="@($"{index}")" Class="@($"{baseClassName}-link")">
                     @Links[index]
                 </MenuItem>
             }
@@ -69,8 +71,6 @@
             }
         </Menu>
     </div>
-
-
     @*
         {menuFooterRender && (
         <div className={classNames(`${baseClassName}-footer`, {
@@ -83,7 +83,6 @@
 
 
 @code {
-    [Parameter] public MenuMode Mode { get; set; }
     [Parameter] public int SiderWidth { get; set; } = 208;
     [Parameter] public bool IsMobile { get; set; }
     [CascadingParameter(Name = nameof(Collapsed))]
@@ -105,17 +104,20 @@
     [Parameter] public EventCallback<string[]> OnOpenChange { get; set; }
     [Parameter] public List<RenderFragment> Links { get; set; } = new List<RenderFragment>();
 
-
-    private int collapsedWidth = 48;
-    private string siderWidth => $"{(Collapsed ? collapsedWidth : SiderWidth)}px";
     private bool HasHeaderDom => MenuHeaderRender && Layout != Layout.Mix;
 
+    private string siderStyle => $"overflow: hidden; padding-top: {(Layout == Layout.Mix && !IsMobile ? HeaderHeight : 0)}px;";
+    private int collapsedWidth = 48;
+    private string siderWidth => $"{(Collapsed ? collapsedWidth : SiderWidth)}px";
     private string baseClassName => $"{PrefixCls}-sider";
     private string siderClassName => ClassNames(baseClassName
-    , FixSiderbar ? $"{baseClassName}-fixed" : null
-    , (Layout != null && !IsMobile) ? $"{baseClassName}-layout-{Layout}" : null
-    , SiderTheme == SiderTheme.Light ? $"{baseClassName}-light" : null);
-    public string siderStyle => $"overflow: hidden; padding-top: {(Layout == Layout.Mix && !IsMobile ? HeaderHeight : 0)}px;";
+        , ($"{baseClassName}-fixed", FixSiderbar)
+        , ($"{baseClassName}-layout-{Layout}", Layout != null && !IsMobile)
+        , ($"{baseClassName}-light", SiderTheme == SiderTheme.Light)
+        );
+
+
+
 
     private async Task HandleOnOpenChange(string[] openKeys)
     {
@@ -124,8 +126,6 @@
             await OnOpenChange.InvokeAsync(openKeys);
         }
     }
-
-
     private async Task HandleOnCollapse(bool collapsed)
     {
         if (!IsMobile && OnCollapse.HasDelegate)
@@ -138,9 +138,6 @@
         Collapsed = collapsed;
         await HandleOnCollapse(collapsed);
     }
-
-
-
 
     [Parameter]
     public RenderFragment<bool> CollapsedButtonRender { get; set; } = (collapsed) =>@<Icon Type="@(collapsed ? "menu-unfold" : "menu-fold")" />;

@@ -1,197 +1,137 @@
 @namespace Zero.Abp.AntdesignUI.Layout
 @using System.Text.RegularExpressions
 @using Volo.Abp.UI.Navigation
-@*<Menu Mode="Mode"
-    DefaultOpenKeys="OpenKeys"
-    Theme="NavTheme"
-    Style="@Style"
-    Class="@ClassMapper.Class"
-    OnOpenChange="SetOpenKeys"
-    InlineCollapsed="Collapsed">
-    @menuItemTemplate((Menus, !OnlyTopMenu))
-    </Menu>
 
-    @code
-    {
-    static readonly RenderFragment<ApplicationMenuItem> title = menuItem =>
-    @<span>
-    @if (!string.IsNullOrEmpty(menuItem.Icon))
-    {
-    if (menuItem.Icon.StartsWith("fa"))
-    {
-    <i class="@menuItem.Icon"></i> }
-    else
-    {
-    <Icon Type="@menuItem.Icon" Theme="outline" />
-    }
-    }
-    <span>@menuItem.DisplayName</span>
-    </span>
-    ;
-
-    static readonly RenderFragment<(ApplicationMenuItemList items, bool isRenderChildren)> menuItemTemplate = context =>
-    @<Template>
-    @if (context.items != null)
-    {
-    @foreach (var menuItem in context.items)
-    {
-    var elementId = menuItem.ElementId ?? "MenuItem_" + menuItem.Name.Replace(".", "_");
-    var cssClass = string.IsNullOrEmpty(menuItem.CssClass) ? string.Empty : menuItem.CssClass;
-    var url = menuItem.Url == null ? "#" : menuItem.Url.TrimStart('/', '~');
-
-    if (menuItem.IsLeaf)
-    {
-    <MenuItem Key="@elementId" Disabled="menuItem.IsDisabled" Class="cssClass">
-    <MenuLink href="@url" target="@menuItem.Target">
-    @title(menuItem)
-    </MenuLink>
-    </MenuItem>
-    }
-    else
-    {
-    <SubMenu Key="@elementId" TitleTemplate="@title(menuItem)">
-    @if (context.isRenderChildren)
-    {
-    @menuItemTemplate((menuItem.Items, true))
-    }
-    </SubMenu>
-    }
-    }
-    }
-    </Template>
-    ;
-    }*@
-
-
-    @*  DefaultOpenKeys={defaultOpenKeysRef.current}
-    {...props.menuProps}*@
 <Menu Mode="@Mode"
       InlineIndent="16"
       Theme="@NavTheme"
       Style="@Style"
-      Class="@ClassNames(Class,Mode==MenuMode.Horizontal?"top-nav-menu":null)"
+      Class="@ClassNames(Class,("top-nav-menu",Mode==MenuMode.Horizontal))"
       OpenKeys="@OpenKeys"
-      SelectedKeys="@selectedKeys"
-      OnOpenChange="@SetOpenKeys">
-    @getNavMenuItems((MenuDatas,this))
+      OnOpenChange="@SetOpenKeys"
+      InlineCollapsed="Collapsed">
+    @getNavMenuItems((MenuDatas, this))
 </Menu>
+
 
 @inherits BaseMenuProps
 @code {
     static readonly RenderFragment<(ApplicationMenuItemList items, BaseMenu that)> getNavMenuItems = context =>
     @<Template>
         @foreach (var item in context.items)
-            {
-                @getSubMenuOrItem((item,context.that))
-            }
-        </Template>
+        {
+            @getSubMenuOrItem((item, context.that))
+        }
+    </Template>
     ;
+
     static readonly RenderFragment<(ApplicationMenuItem menuItem, BaseMenu that)> defaultTitle = context =>
     @<span>
-        @if (!string.IsNullOrEmpty( context.menuItem.Icon))
-            {  
-                var that = context.that;
-                var menuItem = context.menuItem;
+        @if (!string.IsNullOrEmpty(context.menuItem.Icon))
+        {
+            var that = context.that;
+            var menuItem = context.menuItem;
 
-                var isHttpUrl = menuItem?.Url?.Contains("http")??false;
-                var cssClass = string.IsNullOrEmpty(menuItem.CssClass) ? string.Empty : menuItem.CssClass;
-                <span class="@ClassNames($"{that.PrefixCls}-menu-item",isHttpUrl?$"{that.PrefixCls}-menu-item-link":null,cssClass)" title="@menuItem.DisplayName">
-                    @if (!menuItem.IsLeaf)
-                    {
-                        if (menuItem.Icon.StartsWith(that.IconPrefixes))
-                        {
-                            <IconFont Type="@menuItem.Icon" />
-                        }
-                        else if (menuItem.Icon.StartsWith("http") || Regex.IsMatch(menuItem.Icon, @"\w.(png|jpg|jpeg|svg|webp|gif|bmp)$"))
-                        {
-                            <img src="@menuItem.Icon" alt="icon" class="@($"{that.PrefixCls}-sider-menu-icon")" />
-                        }
-                        else
-                        {
-                            <Icon Type="@menuItem.Icon" Theme="outline" />
-                        }
-                    }
-                    <span class="@($"{that.PrefixCls}-menu-item-title")">
-                        @menuItem.DisplayName
-                    </span>
-                </span>
-            }
-            else
-            {    var that = context.that;
-                var menuItem = context.menuItem;
-                var isHttpUrl = menuItem?.Url?.Contains("http")??false;
-                var cssClass = string.IsNullOrEmpty(menuItem.CssClass) ? string.Empty : menuItem.CssClass;
-                <span class="@ClassNames($"{that.PrefixCls}-menu-item",isHttpUrl?$"{that.PrefixCls}-menu-item-link":null,cssClass)" title="@menuItem.DisplayName">
-                    @menuItem.DisplayName
-                </span>
-            }
-        </span>
-    ;
-    static readonly RenderFragment<(ApplicationMenuItem menuItem, BaseMenu that)> getMenuItemPath = context =>
-    @<Template>
-        @if (context.that.MenuItemRender != null)
-            {
-                @context.that.MenuItemRender(context.menuItem)
-            }
-            else
-            {  
-                var menuItem = context.menuItem;
-                var elementId = menuItem.ElementId ?? "MenuItem_" + menuItem.Name.Replace(".", "_");
-                var url = menuItem.Url == null ? "#" : menuItem.Url.TrimStart('/', '~');
-                <MenuLink @key="elementId" href="@url" target="@menuItem.Target">
-                    @defaultTitle((menuItem,context.that))
-                </MenuLink>
-            }
-        </Template>
-    ;
-
-   static  readonly RenderFragment<(ApplicationMenuItem menuItem, BaseMenu that)> getSubMenuOrItem = context =>
-    @<Template>
-        @if (context.menuItem != null)
-            {
-                var that = context.that;
-                var menuItem = context.menuItem;
-                var elementId = menuItem.ElementId ?? "MenuItem_" + menuItem.Name.Replace(".", "_");
-                var cssClass = string.IsNullOrEmpty(menuItem.CssClass) ? string.Empty : menuItem.CssClass;
-                @if (menuItem?.Items?.Any() ?? false)
+            var isHttpUrl = menuItem?.Url?.Contains("http") ?? false;
+            var cssClass = string.IsNullOrEmpty(menuItem.CssClass) ? string.Empty : menuItem.CssClass;
+            <span class="@ClassNames($"{that.PrefixCls}-menu-item",($"{that.PrefixCls}-menu-item-link",isHttpUrl),cssClass)"
+                  title="@menuItem.DisplayName">
+                @if (!menuItem.IsLeaf)
                 {
-                    var title = that.SubMenuItemRender != null ? that.SubMenuItemRender(menuItem) : defaultTitle((menuItem, that));
-                    @if (that.Menu?.Type == "group")
+                    var menuIcon = menuItem?.Icon ?? "";
+                    if (menuIcon.StartsWith("fa"))
                     {
-                        <MenuItemGroup TitleTemplate="@title" Key="@elementId" Class="@cssClass">
-                            @getNavMenuItems((menuItem?.Items,that))
-                        </MenuItemGroup>
+                        <span class="anticon anticon-team">
+                            <i class="@ClassNames(menuIcon,$"{that.PrefixCls}-sider-icon")"></i>
+                        </span>
+                    }
+                    else if (menuIcon.StartsWith(that.IconPrefixes))
+                    {
+                        <IconFont Type="@menuIcon" />
+                    }
+                    else if (menuIcon.StartsWith("http") || Regex.IsMatch(menuIcon, @"\w.(png|jpg|jpeg|svg|webp|gif|bmp)$"))
+                    {
+                        <img src="@menuIcon" alt="icon" class="@($"{that.PrefixCls}-sider-icon")" />
                     }
                     else
                     {
-                        <SubMenu TitleTemplate="@title" Key="@elementId" Class="@cssClass">
-                            @getNavMenuItems((menuItem?.Items,that))
-                        </SubMenu>
+                        <Icon Type="@menuIcon" Theme="outline" />
                     }
                 }
-                else
+                <span class="@($"{that.PrefixCls}-menu-item-title")">
+                    @menuItem.DisplayName
+                </span>
+            </span>
+        }
+        else
+        {
+            var that = context.that;
+            var menuItem = context.menuItem;
+            var isHttpUrl = menuItem?.Url?.Contains("http") ?? false;
+            var cssClass = string.IsNullOrEmpty(menuItem.CssClass) ? string.Empty : menuItem.CssClass;
+            <span class="@ClassNames($"{that.PrefixCls}-menu-item",($"{that.PrefixCls}-menu-item-link",isHttpUrl),cssClass)"
+                  title="@menuItem.DisplayName">
+                @menuItem.DisplayName
+            </span>
+        }
+    </span>
+    ;
+
+    static readonly RenderFragment<(ApplicationMenuItem menuItem, BaseMenu that)> getSubMenuOrItem = context =>
+    @<Template>
+        @if (context.menuItem != null)
+        {
+            var that = context.that;
+            var menuItem = context.menuItem;
+            var elementId = menuItem.ElementId ?? "MenuItem_" + menuItem.Name.Replace(".", "_");
+            var cssClass = string.IsNullOrEmpty(menuItem.CssClass) ? string.Empty : menuItem.CssClass;
+            var url = menuItem.Url == null ? "#" : menuItem.Url.TrimStart('/', '~');
+            @if (menuItem?.Items?.Any() ?? false)
+            {
+                var title = that.SubMenuItemRender != null ? that.SubMenuItemRender(menuItem) : defaultTitle((menuItem, that));
+                var MenuComponents = that.Menu?.Type == "group" ? typeof(MenuItemGroup) : typeof(SubMenu);
+                <Component Type="@MenuComponents" Parameters="@(new Dictionary<string, object>()
                 {
-                    <MenuItem Disabled="@menuItem.IsDisabled" Key="@elementId" Class="@cssClass">
-                        @getMenuItemPath((menuItem,that))
-                    </MenuItem>
-                }
+                    {"Key",elementId },
+                    {"Class",cssClass },
+                    {"TitleTemplate",title },
+                    {"ChildContent", getNavMenuItems((menuItem?.Items, that)) }
+                })" />
             }
-        </Template>
+            else
+            {
+                <MenuItem Disabled="@menuItem.IsDisabled" Key="@elementId" Class="@cssClass">
+                    @if (that.MenuItemRender != null)
+                    {
+                        @that.MenuItemRender(menuItem)
+                    }
+                    else
+                    {
+                        <MenuLink @key="elementId" href="@url" target="@menuItem.Target">
+                            @defaultTitle((menuItem, that))
+                        </MenuLink>
+                    }
+                </MenuItem>
+            }
+        }
+    </Template>
     ;
 
 
+    [Parameter] public bool NoChildrenMenu { get; set; }
 
 
     [Inject] protected IMenuManager MenuManager { get; set; }
     protected ApplicationMenuItemList MenuDatas { get; set; }
     protected override async Task OnInitializedAsync()
     {
-        MenuDatas = (await MenuManager.GetMainMenuAsync()).Items;
+        MenuDatas = (await MenuManager.GetMainMenuAsync()).GetAdministration().Items;
+        if (NoChildrenMenu) { MenuDatas.ForEach(f => f.Items.Clear()); }
     }
 
-    string[] selectedKeys;
+    //string[] selectedKeys;
     public void SetOpenKeys(string[] keys)
     {
-
+        OpenKeys = keys;
     }
 }
