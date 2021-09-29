@@ -48,5 +48,5 @@
     $"height:{headerHeight}px;line-height:{headerHeight}px;background:transparent";
 
     private string HeaderStyle =>
-    $"padding:0px;height:{headerHeight}px;width:{headerWidth};z-index:{(Layout == Layout.Mix ? 100 : 9)};{(headerRight.HasValue ? $"right:{headerRight}px;" : "")}{Style}";
+    $"padding:0px;height:{headerHeight}px;line-height:{headerHeight}px;width:{headerWidth};z-index:{(Layout == Layout.Mix ? 100 : 9)};{(headerRight.HasValue ? $"right:{headerRight}px;" : "")}{Style}";
 }
