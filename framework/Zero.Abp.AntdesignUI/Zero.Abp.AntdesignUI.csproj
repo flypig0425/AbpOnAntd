@@ -33,6 +33,7 @@
     <Compile Remove="Components\UiPageProgress.razor.cs" />
     <Compile Remove="Layout\BasicLayout.razor.cs" />
     <Compile Remove="Layout\GlobalFooter\GlobalFooter.razor.cs" />
+    <Compile Remove="Layout\GlobalHeader\GlobalHeader.razor.cs" />
     <Compile Remove="ObjectExtensionPropertyInfoBlazorExtensions.cs" />
   </ItemGroup>
 

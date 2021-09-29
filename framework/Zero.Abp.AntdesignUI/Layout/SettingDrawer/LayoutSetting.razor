@@ -39,17 +39,17 @@
             new SettingItem
             {
                 Title="Fixed Header",
-                Action = @<Switch Size="small" @bind-Value="SettingState.Value.FixedHeader" />
+                Action = @<Switch Size="small" @bind-Checked="SettingState.Value.FixedHeader" />
             },
             new SettingItem
             {
-                Title="Works on Side Menu Layout",
-                Action = @<Switch Size="small" @bind-Value="SettingState.Value.FixSiderbar" />
+                Title="Fixed Sidebar",
+                Action = @<Switch Size="small" @bind-Checked="SettingState.Value.FixSiderbar" />
             },
             new SettingItem
             {
                 Title="Split Menus",
-                Action = @<Switch Size="small" @bind-Value="SettingState.Value.SplitMenus" />
+                Action = @<Switch Size="small" @bind-Checked="SettingState.Value.SplitMenus" />
             },
         };
         }

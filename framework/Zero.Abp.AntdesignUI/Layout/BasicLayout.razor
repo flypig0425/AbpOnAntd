@@ -8,29 +8,24 @@ else
 {
     <div class="@LayoutClass" style="@weakModeStyle">
         <Layout Style="min-height: 100%;">
-            @if (MenuRender)
+            @if (hasSiderMenu)
             {
-                @if (Layout != Layout.Top || IsMobile)
-                {
-                    @*OpenKeys="OpenKeys"*@
-                    <CascadingValue Value="MenuExtraRender" Name="MenuExtraRender">
-                        <SiderMenu SiderWidth="SiderWidth"
-                                   OnCollapse="HandleCollapse">
-                        </SiderMenu>
-                    </CascadingValue>
-                }
+                <CascadingValue Value="MenuExtraRender" Name="MenuExtraRender">
+                    <SiderMenuWrapper Hide="Layout == Layout.Top && !IsMobile"
+                              SiderWidth="SiderWidth" OnCollapse="HandleCollapse">
+                    </SiderMenuWrapper>
+                </CascadingValue>
             }
             <div style="@genLayoutStyle" class="@layoutCls">
                 @if (HeaderRender)
                 {
                     <CascadingValue Value="RightContentRender" Name="RightContentRender">
-                        <HeaderView />
+                        <HeaderView HasSiderMenu="@hasSiderMenu" />
                     </CascadingValue>
                 }
-                @*isChildrenLayout={isChildrenLayout}*@
                 <WrapContent PrefixCls="@PrefixCls"
-                             Class="@ContentClass"
-                             Style="@ContentStyle">
+                         Class="@ContentClass"
+                         Style="@ContentStyle">
                     @(Loading ? @<PageLoading /> : ChildContent)
                 </WrapContent>
                 @if (FooterRender)
@@ -47,7 +42,7 @@ else
     [Parameter] public bool Pure { get; set; }
     [Parameter] public bool Loading { get; set; }
     [Parameter] public bool DisableMobile { get; set; }
-    [Parameter] public bool DisableContentMargin { get; set; }
+    [Parameter] public bool DisableContentMargin { get; set; } = true;
     [Parameter] public string ContentStyle { get; set; }
 
 
@@ -80,6 +75,8 @@ else
 
     protected string ColSize { get; set; } = "lg";//useAntdMediaQuery();
     protected bool IsMobile => (ColSize == "sm" || ColSize == "xs") && !DisableMobile;
+
+    protected bool hasSiderMenu => MenuRender && !Pure;
 
     protected override void OnInitialized()
     {

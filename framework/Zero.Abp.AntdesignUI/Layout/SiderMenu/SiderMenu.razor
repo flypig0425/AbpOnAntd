@@ -2,7 +2,7 @@
 @inherits AntProComponentBase
 @using OneOf
 
-@if (FixedHeader)
+@*@if (FixedHeader)
 {
     <div style="width: @siderWidth;
         overflow: hidden;
@@ -11,7 +11,7 @@
         min-width: @siderWidth;
         transition: background-color 0.3s, min-width 0.3s, max-width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
         @Style" />
-}
+}*@
 
 <Sider Collapsible="false"
        Collapsed="@Collapsed"
@@ -27,7 +27,7 @@
     {
         <div id="logo" style="@LogoStyle"
              class="@ClassNames($"{baseClassName}-logo", ($"{baseClassName}-collapsed",Collapsed))">
-            <Branding HideTitle="Collapsed" />
+            <Branding HideTitle="@Collapsed" />
         </div>
     }
 
@@ -41,8 +41,8 @@
     <!--flatMenu-->
     <div style="flex: 1; overflow-y: auto; overflow-x: hidden;">
         <BaseMenu Mode="MenuMode.Inline"
-                  Collapsed="Collapsed"
-                  HandleOpenChange="HandleOnOpenChange"
+                  Collapsed="@Collapsed"
+                  HandleOpenChange="@HandleOnOpenChange"
                   Style="width: 100%"
                   Class="@($"{baseClassName}-menu")" />
     </div>
@@ -85,7 +85,6 @@
 @code {
     [Parameter] public int SiderWidth { get; set; } = 208;
     [Parameter] public bool IsMobile { get; set; }
-    [CascadingParameter(Name = nameof(Collapsed))]
     [Parameter] public bool Collapsed { get; set; }
     [Parameter] public string LogoStyle { get; set; }
     [Parameter] public BreakpointType Breakpoint { get; set; } = BreakpointType.Lg;
@@ -112,7 +111,7 @@
     private string baseClassName => $"{PrefixCls}-sider";
     private string siderClassName => ClassNames(baseClassName
         , ($"{baseClassName}-fixed", FixSiderbar)
-        , ($"{baseClassName}-layout-{Layout}", Layout != null && !IsMobile)
+        , ($"{baseClassName}-layout-{Layout.Name}", Layout != null && !IsMobile)
         , ($"{baseClassName}-light", SiderTheme == SiderTheme.Light)
         );
 

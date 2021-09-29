@@ -1,14 +1,16 @@
 ﻿@namespace Zero.Abp.AntdesignUI.Layout
 @inherits AntProComponentBase
+@using System.Text;
 
-@if (_needFixedHeader)
+@if (needFixedHeader)
 {
-    <Header Style="@_fixedHeaderStyle"></Header>
+    <Header Style="@FixedHeaderStyle" />
 }
-<Header Class="@HeaderClass" Style="@_headerStyle">
-    @if (_isTop && !IsMobile)
+<Header Style="@HeaderStyle"
+        Class="@HeaderClass">
+    @if (isTop && !IsMobile)
     {
-        <TopNavHeader Mode="MenuMode.Horizontal" />
+        <TopNavHeader Theme="@NavTheme" Mode="MenuMode.Horizontal" />
     }
     else
     {
@@ -18,14 +20,7 @@
     }
 </Header>
 
-@using System.Text;
-@code{
-
-    private string _headerStyle;
-    private string _fixedHeaderStyle;
-    private bool _needFixedHeader;
-    private bool _needSettingWidth;
-    private bool _isTop;
+@code {
 
     [Parameter] public int SiderWidth { get; set; } = 208;
     [Parameter] public bool Collapsed { get; set; }
@@ -33,42 +28,25 @@
     [Parameter] public bool HasSiderMenu { get; set; }
     [Parameter] public RenderFragment HeaderContentRender { get; set; }
 
+    private bool isTop => Layout == Layout.Top;
+    private bool needFixedHeader => FixedHeader || Layout == Layout.Mix;
+    private int headerHeight => HeaderHeight;
+
+    private bool needSettingWidth => needFixedHeader && HasSiderMenu && !isTop && !IsMobile;
+    private string headerWidth => Layout != Layout.Mix && needSettingWidth
+      ? $"calc(100% - {(Collapsed ? 48 : SiderWidth)}px)" : "100%";
+    private int? headerRight => needFixedHeader ? 0 : null;
 
     private string HeaderClass => ClassNames(
-         ($"{PrefixCls}-fixed-header", _needFixedHeader)
-        , ($"{PrefixCls}-top-menu", Layout == Layout.Top)
+         ($"{PrefixCls}-fixed-header", needFixedHeader)
+       , ($"{PrefixCls}-fixed-header-action", !Collapsed)
+       , ($"{PrefixCls}-top-menu", Layout == Layout.Top)
+       , ($"{PrefixCls}-header-{NavTheme.Name}", Layout != Layout.Mix)
         );
 
+    private string FixedHeaderStyle =>
+    $"height:{headerHeight}px;line-height:{headerHeight}px;background:transparent";
 
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-        SetStyle();
-    }
-
-    protected void SetStyle()
-    {
-        _isTop = Layout == Layout.Top;
-        _needFixedHeader = FixedHeader || Layout == Layout.Mix;
-        _needSettingWidth = _needFixedHeader && HasSiderMenu && !_isTop && !IsMobile;
-        var width = Layout == Layout.Mix && _needSettingWidth ? $"calc(100% - {(Collapsed ? "48" : SiderWidth.ToString())}px)" : "100%";
-        var zIndex = Layout == Layout.Mix ? 100 : 9;
-        var sb = new StringBuilder();
-        sb.Append("padding: 0;");
-        sb.Append($"height: {HeaderHeight}px;");
-        sb.Append($"line-height: {HeaderHeight}px;");
-        sb.Append($"width: {width};");
-        sb.Append($"z-index: {zIndex};");
-        if (_needFixedHeader) { sb.Append("right: 0;"); }
-        sb.Append(Style);
-        _headerStyle = sb.ToString();
-        _fixedHeaderStyle = $"height:{HeaderHeight}px; line-height: {HeaderHeight}px; background: transparent;";
-    }
-
-
-    protected override void OnStateChanged()
-    {
-        SetStyle();
-        base.OnStateChanged();
-    }
+    private string HeaderStyle =>
+    $"padding:0px;height:{headerHeight}px;width:{headerWidth};z-index:{(Layout == Layout.Mix ? 100 : 9)};{(headerRight.HasValue ? $"right:{headerRight}px;" : "")}{Style}";
 }

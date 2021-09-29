@@ -2,35 +2,35 @@
 @inherits AntProComponentBase
 
 @if (!Hide)
+{
     @if (IsMobile)
     {
         <Drawer Visible="@(!Collapsed)"
-                Placement="left"
-                Class="@($"{PrefixCls}-drawer-sider")"
-                Width="@SiderWidth"
-                Style="@("padding: 0; height: 100vh; "+Style)"
-                BodyStyle="height: 100vh; padding: 0; display: flex; flex-direction: row"
-                OnClose="async ()=> { await HandleOnCollapse(true); }">
+        Placement="left"
+        Class="@($"{PrefixCls}-drawer-sider")"
+        Width="@SiderWidth"
+        Style="@("padding: 0; height: 100vh; "+Style)"
+        BodyStyle="height: 100vh; padding: 0; display: flex; flex-direction: row"
+        OnClose="async ()=> { await HandleOnCollapse(true); }">
             <SiderMenu Class="@ClassNames($"{PrefixCls}-sider",Class)"
-                       Collapsed="@(IsMobile?false:Collapsed)"
-                       SplitMenus="@false" />
+               Collapsed="@(!IsMobile&&Collapsed)"
+               SplitMenus="@false" />
         </Drawer>
     }
     else
     {
-        <SiderMenu Class="@ClassNames($"{PrefixCls}-sider",Class)"
-                   Collapsed="@Collapsed"
-                   Style="@Style" />
+            <SiderMenu Class="@ClassNames($"{PrefixCls}-sider",Class)"
+            Collapsed="@Collapsed"
+            Style="@Style" />
     }
 }
-@code{
+@code {
     [Parameter] public bool Hide { get; set; }
     [Parameter] public bool IsMobile { get; set; }
     [Parameter] public bool Collapsed { get; set; }
     [Parameter] public int SiderWidth { get; set; }
 
     [Parameter] public EventCallback<bool> OnCollapse { get; set; }
-
 
     protected override async Task OnInitializedAsync()
     {
