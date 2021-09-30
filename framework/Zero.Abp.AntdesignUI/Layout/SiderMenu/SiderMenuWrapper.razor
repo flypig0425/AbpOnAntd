@@ -16,7 +16,13 @@
             <SiderMenu SplitMenus="@false"
                        Collapsed="@(!IsMobile&&Collapsed)"
                        OnCollapse="HandleOnCollapse"
-                       Class="@ClassNames($"{PrefixCls}-sider",Class)" />
+                       Class="@ClassNames($"{PrefixCls}-sider",Class)" Mode="Mode"
+                       Links="Links"
+                       OpenKeys="OpenKeys"
+                       LogoStyle="LogoStyle"
+                       Breakpoint="Breakpoint"
+                       SiderTheme="SiderTheme"
+                       OnOpenChange="HandleOnOpenChange" />
         </Drawer>
     }
     else
@@ -24,20 +30,16 @@
         <SiderMenu Style="@Style"
                    Collapsed="@Collapsed"
                    OnCollapse="HandleOnCollapse"
-                   Class="@ClassNames($"{PrefixCls}-sider",Class)" />
-        @*<SiderMenu Style="@Style"
-            Collapsed="@Collapsed"
-            OnCollapse="HandleOnCollapse"
-            Class="@ClassNames($"{PrefixCls}-sider",Class)"
-            Mode="Mode"
-            Links="Links"
-            OpenKeys="OpenKeys"
-            LogoStyle="LogoStyle"
-            Breakpoint="Breakpoint"
-            SiderTheme="SiderTheme"
-            OnOpenChange="HandleOnOpenChange"
-            MenuFooterRender="MenuFooterRender"
-            CollapsedButtonRender="CollapsedButtonRender" />*@
+                   Class="@ClassNames($"{PrefixCls}-sider",Class)"
+                   Mode="Mode"
+                   Links="Links"
+                   OpenKeys="OpenKeys"
+                   LogoStyle="LogoStyle"
+                   Breakpoint="Breakpoint"
+                   SiderTheme="SiderTheme"
+                   OnOpenChange="HandleOnOpenChange" />
+        //MenuFooterRender = "MenuFooterRender"
+        //           CollapsedButtonRender = "CollapsedButtonRender"
     }
 }
 @code {
