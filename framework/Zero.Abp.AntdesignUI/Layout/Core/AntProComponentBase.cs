@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Options;
 using OneOf;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Zero.Abp.AntdesignUI.Layout
@@ -151,14 +152,20 @@ namespace Zero.Abp.AntdesignUI.Layout
         /// <param name="classNames"></param>
         /// <returns></returns>
         protected static string ClassNames(params OneOf<string, (string s, bool b), (Func<string> func, bool b)>[] classNames)
+            => string.Join(" ", StyleOrClassNames(classNames));
+
+        protected static string StyleValues(params OneOf<string, (string s, bool b), (Func<string> func, bool b)>[] styleValues)
+            => string.Join(";", StyleOrClassNames(styleValues)?.Select(s => s.TrimEnd(';')));
+
+        private static IEnumerable<string> StyleOrClassNames(params OneOf<string, (string s, bool b), (Func<string> func, bool b)>[] values)
         {
-            var tempClassNames = classNames?.Select(s => s.Match(
+            var tempClassNames = values?.Select(s => s.Match(
                 m0 => m0,
                 m1 => m1.b ? m1.s : null,
                 m2 => m2.b ? m2.func?.Invoke() : null
                 ));
             tempClassNames = tempClassNames?.Where(w => !w.IsNullOrWhiteSpace())?.Distinct()?.ToArray();
-            return string.Join(" ", tempClassNames ?? Array.Empty<string>());
+            return tempClassNames ?? Array.Empty<string>();
         }
         #endregion
 

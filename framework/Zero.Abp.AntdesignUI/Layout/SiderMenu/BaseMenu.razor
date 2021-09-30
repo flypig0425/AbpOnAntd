@@ -14,7 +14,7 @@
 </Menu>
 
 
-@inherits BaseMenuProps
+@inherits AntProComponentBase
 @code {
     static readonly RenderFragment<(ApplicationMenuItemList items, BaseMenu that)> getNavMenuItems = context =>
     @<Template>
@@ -77,6 +77,7 @@
                 var elementId = menuItem.ElementId ?? "MenuItem_" + menuItem.Name.Replace(".", "_");
                 var cssClass = string.IsNullOrEmpty(menuItem.CssClass) ? string.Empty : menuItem.CssClass;
                 var url = menuItem.Url == null ? "#" : menuItem.Url.TrimStart('/', '~');
+
                 @if (menuItem?.Items?.Any() ?? false)
                 {
                     var title = that.SubMenuItemRender != null ? that.SubMenuItemRender(menuItem) : defaultTitle((menuItem, that));
@@ -109,8 +110,25 @@
         </Template>
     ;
 
+    //[Parameter] public MenuDataItem[] MenuData { get; set; } = { };
+    [Parameter] public bool Collapsed { get; set; }
+    [Parameter] public bool IsMobile { get; set; }
+    [Parameter] public MenuMode Mode { get; set; }//  //ToDo: 'vertical' | 'vertical-left' | 'vertical-right' | 'horizontal' | 'inline';
+    [Parameter]
+    public string[] OpenKeys
+    {
+        get => (!Collapsed && new Layout[] { Layout.Side, Layout.Mix }.Contains(Layout)) ? openKeys : null;
+        set => openKeys = value;
+    }
+    [Parameter] public EventCallback<string[]> OnOpenChange { get; set; }
+
 
     [Parameter] public bool NoChildrenMenu { get; set; }
+    [Parameter] public string IconPrefixes { get; set; } = "icon-";
+    [Parameter] public bool DefaultCollapsed { get; set; }
+
+    [Parameter] public RenderFragment<ApplicationMenuItem> MenuItemRender { get; set; }
+    [Parameter] public RenderFragment<ApplicationMenuItem> SubMenuItemRender { get; set; }
 
 
     [Inject] protected IMenuManager MenuManager { get; set; }
@@ -122,8 +140,14 @@
     }
 
     //string[] selectedKeys;
-    public void SetOpenKeys(string[] keys)
+
+    string[] openKeys = Array.Empty<string>();
+    public async void SetOpenKeys(string[] keys)
     {
         OpenKeys = keys;
+        if (!IsMobile && OnOpenChange.HasDelegate)
+        {
+            await OnOpenChange.InvokeAsync(keys);
+        }
     }
 }

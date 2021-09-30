@@ -6,31 +6,61 @@
     @if (IsMobile)
     {
         <Drawer Visible="@(!Collapsed)"
-        Placement="left"
-        Class="@($"{PrefixCls}-drawer-sider")"
-        Width="@SiderWidth"
-        Style="@("padding: 0; height: 100vh; "+Style)"
-        BodyStyle="height: 100vh; padding: 0; display: flex; flex-direction: row"
-        OnClose="async ()=> { await HandleOnCollapse(true); }">
-            <SiderMenu Class="@ClassNames($"{PrefixCls}-sider",Class)"
-               Collapsed="@(!IsMobile&&Collapsed)"
-               SplitMenus="@false" />
+                Placement="left"
+                Class="@($"{PrefixCls}-drawer-sider")"
+                Width="@SiderWidth"
+                Style="@("padding: 0; height: 100vh; "+Style)"
+                BodyStyle="height: 100vh; padding: 0; display: flex; flex-direction: row"
+                OnClose="async ()=> { await HandleOnCollapse(true); }">
+
+            <SiderMenu SplitMenus="@false"
+                       Collapsed="@(!IsMobile&&Collapsed)"
+                       OnCollapse="HandleOnCollapse"
+                       Class="@ClassNames($"{PrefixCls}-sider",Class)" />
         </Drawer>
     }
     else
     {
-            <SiderMenu Class="@ClassNames($"{PrefixCls}-sider",Class)"
+        <SiderMenu Style="@Style"
+                   Collapsed="@Collapsed"
+                   OnCollapse="HandleOnCollapse"
+                   Class="@ClassNames($"{PrefixCls}-sider",Class)" />
+        @*<SiderMenu Style="@Style"
             Collapsed="@Collapsed"
-            Style="@Style" />
+            OnCollapse="HandleOnCollapse"
+            Class="@ClassNames($"{PrefixCls}-sider",Class)"
+            Mode="Mode"
+            Links="Links"
+            OpenKeys="OpenKeys"
+            LogoStyle="LogoStyle"
+            Breakpoint="Breakpoint"
+            SiderTheme="SiderTheme"
+            OnOpenChange="HandleOnOpenChange"
+            MenuFooterRender="MenuFooterRender"
+            CollapsedButtonRender="CollapsedButtonRender" />*@
     }
 }
 @code {
     [Parameter] public bool Hide { get; set; }
     [Parameter] public bool IsMobile { get; set; }
-    [Parameter] public bool Collapsed { get; set; }
     [Parameter] public int SiderWidth { get; set; }
-
+    [Parameter] public bool Collapsed { get; set; }
     [Parameter] public EventCallback<bool> OnCollapse { get; set; }
+
+    //[Parameter] public MenuDataItem[] MenuData { get; set; }
+    //[CascadingParameter(Name = nameof(MenuExtraRender))]
+    //public RenderFragment MenuExtraRender { get; set; }
+    [Parameter] public string[] OpenKeys { get; set; } = { };
+    [Parameter] public string LogoStyle { get; set; }
+    [Parameter] public BreakpointType Breakpoint { get; set; } = BreakpointType.Lg;
+    [Parameter] public MenuMode Mode { get; set; } = MenuMode.Inline;
+    [Parameter] public SiderTheme SiderTheme { get; set; }
+    [Parameter] public RenderFragment<bool> CollapsedButtonRender { get; set; }
+    [Parameter] public RenderFragment<bool> MenuFooterRender { get; set; }
+    [Parameter] public List<RenderFragment> Links { get; set; } = new List<RenderFragment>();
+
+    [Parameter] public EventCallback<string[]> OnOpenChange { get; set; }
+    [Parameter] public EventCallback<MouseEventArgs> OnMenuHeaderClick { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -40,7 +70,6 @@
             await HandleOnCollapse(true);
         }
     }
-
     private async Task HandleOnCollapse(bool collapsed)
     {
         Collapsed = collapsed;
@@ -49,5 +78,12 @@
             await OnCollapse.InvokeAsync(Collapsed);
         }
     }
-
+    private async Task HandleOnOpenChange(string[] openKeys)
+    {
+        OpenKeys = openKeys;
+        if (OnOpenChange.HasDelegate)
+        {
+            await OnOpenChange.InvokeAsync(openKeys);
+        }
+    }
 }

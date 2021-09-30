@@ -1,69 +1,67 @@
 @namespace Zero.Abp.AntdesignUI.Layout
 @inherits AntProComponentBase
-@using OneOf
-
 @*@if (FixedHeader)
-{
-    <div style="width: @siderWidth;
-        overflow: hidden;
-        flex: 0 0 @siderWidth;
-        max-width: @siderWidth;
-        min-width: @siderWidth;
-        transition: background-color 0.3s, min-width 0.3s, max-width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-        @Style" />
-}*@
+    {
+        <div style="width: @siderWidth;
+            overflow: hidden;
+            flex: 0 0 @siderWidth;
+            max-width: @siderWidth;
+            min-width: @siderWidth;
+            transition: background-color 0.3s, min-width 0.3s, max-width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+            @Style" />
+    }*@
 
 <Sider Collapsible="false"
        Collapsed="@Collapsed"
        CollapsedWidth="@collapsedWidth"
        Width="@SiderWidth"
        Theme="@SiderTheme"
-       Style="@siderStyle"
-       Class="@siderClassName"
+       Style="@SiderStyle"
+       Class="@SiderClassName"
        Breakpoint="@Breakpoint"
-       OnCollapse="HandleSiderCollapse">
+       OnCollapse="@HandleSiderCollapse">
 
     @if (HasHeaderDom)
     {
-        <div id="logo" style="@LogoStyle"
-             class="@ClassNames($"{baseClassName}-logo", ($"{baseClassName}-collapsed",Collapsed))">
+        <div id="logo" style="@LogoStyle"  @onclick="@OnMenuHeaderClick"
+             class="@ClassNames($"{BaseClassName}-logo", ($"{BaseClassName}-collapsed",Collapsed))">
             <Branding HideTitle="@Collapsed" />
         </div>
     }
 
-    @if (MenuExtraRender)//TODO:MenuExtraRender
+    @if (MenuExtraRender != null && !Collapsed)
     {
-        <div class="@ClassNames($"{baseClassName}-extra", ($"{baseClassName}-extra-no-logo",HasHeaderDom))">
-            @*{extraDom}*@
+        <div class="@ClassNames($"{BaseClassName}-extra", ($"{BaseClassName}-extra-no-logo",HasHeaderDom))">
+            @MenuExtraRender
         </div>
     }
 
-    <!--flatMenu-->
     <div style="flex: 1; overflow-y: auto; overflow-x: hidden;">
-        <BaseMenu Mode="MenuMode.Inline"
+        <BaseMenu Mode="Mode"
                   Collapsed="@Collapsed"
-                  HandleOpenChange="@HandleOnOpenChange"
+                  OpenKeys="@OpenKeys"
+                  OnOpenChange="@HandleOnOpenChange"
                   Style="width: 100%"
-                  Class="@($"{baseClassName}-menu")" />
+                  Class="@($"{BaseClassName}-menu")" />
     </div>
 
-    <div class="@baseClassName-links">
+    <div class="@BaseClassName-links">
         <Menu Theme="NavTheme"
               InlineIndent="16"
-              Class="@($"{baseClassName}-link-menu")"
+              Class="@($"{BaseClassName}-link-menu")"
               SelectedKeys="Array.Empty<string>()"
               OpenKeys="Array.Empty<string>()"
-              Mode="MenuMode.Inline"
+              Mode="Mode"
               Selectable="false">
             @for (var index = 0; index < Links.Count; index++)
             {
-                <MenuItem Key="@($"{index}")" Class="@($"{baseClassName}-link")">
+                <MenuItem Key="@(index.ToString())" Class="@($"{BaseClassName}-link")">
                     @Links[index]
                 </MenuItem>
             }
             @if (CollapsedButtonRender != null && !IsMobile)
             {
-                <MenuItem Class="@($"{baseClassName}-collapsed-button")"
+                <MenuItem Class="@($"{BaseClassName}-collapsed-button")"
                           Key="Collapsed" Title="@null"
                           OnClick="@(async arg => await HandleOnCollapse(Collapsed = !Collapsed))">
                     @CollapsedButtonRender(Collapsed)
@@ -71,18 +69,17 @@
             }
         </Menu>
     </div>
-    @*
-        {menuFooterRender && (
-        <div className={classNames(`${baseClassName}-footer`, {
-             [`${baseClassName}-footer-collapsed`]: !collapsed,
-             })}>
-            {menuFooterRender(props)}
+    @if (MenuFooterRender != null)
+    {
+        <div class="@ClassNames($"{BaseClassName}-footer",($"{BaseClassName}-footer-collapsed", !Collapsed))">
+            @MenuFooterRender
         </div>
-        )}*@
+    }
 </Sider>
 
 
 @code {
+    [Parameter] public string[] OpenKeys { get; set; } = { };
     [Parameter] public int SiderWidth { get; set; } = 208;
     [Parameter] public bool IsMobile { get; set; }
     [Parameter] public bool Collapsed { get; set; }
@@ -95,28 +92,42 @@
         set => NavTheme = value == SiderTheme.Light ? MenuTheme.Light : MenuTheme.Dark;
     }
 
-    //[Parameter] public bool SplitMenus { get; set; }
-    [Parameter] public bool MenuExtraRender { get; set; }//TODO:MenuExtraRender
+    [CascadingParameter(Name = nameof(MenuExtraRender))]
+    public RenderFragment MenuExtraRender { get; set; }
 
+    [Parameter]
+    public RenderFragment<bool> CollapsedButtonRender { get; set; } = (collapsed) =>
+    @<Template>
+        <Icon Type="@(collapsed ? "menu-unfold" : "menu-fold")" />
+    </Template>
+    ;
+    [Parameter] public RenderFragment<bool> MenuFooterRender { get; set; }
 
     [Parameter] public EventCallback<bool> OnCollapse { get; set; }
     [Parameter] public EventCallback<string[]> OnOpenChange { get; set; }
     [Parameter] public List<RenderFragment> Links { get; set; } = new List<RenderFragment>();
 
-    private bool HasHeaderDom => MenuHeaderRender && Layout != Layout.Mix;
+    //[Parameter] public MenuDataItem[] MenuData { get; set; }
+    [Parameter] public MenuMode Mode { get; set; } = MenuMode.Inline;
+    [Parameter] public EventCallback<MouseEventArgs> OnMenuHeaderClick { get; set; }
 
-    private string siderStyle => $"overflow: hidden; padding-top: {(Layout == Layout.Mix && !IsMobile ? HeaderHeight : 0)}px;";
+    #region private
     private int collapsedWidth = 48;
-    private string siderWidth => $"{(Collapsed ? collapsedWidth : SiderWidth)}px";
-    private string baseClassName => $"{PrefixCls}-sider";
-    private string siderClassName => ClassNames(baseClassName
-        , ($"{baseClassName}-fixed", FixSiderbar)
-        , ($"{baseClassName}-layout-{Layout.Name}", Layout != null && !IsMobile)
-        , ($"{baseClassName}-light", SiderTheme == SiderTheme.Light)
+    private bool HasHeaderDom => MenuHeaderRender && Layout != Layout.Mix;
+    #endregion
+
+    #region StyleOrClass
+    //private string siderWidth => $"{(Collapsed ? collapsedWidth : SiderWidth)}px";
+    private string BaseClassName => $"{PrefixCls}-sider";
+    private string SiderClassName => ClassNames(SiderClassName
+    , ($"{BaseClassName}-fixed", FixSiderbar)
+    , ($"{BaseClassName}-layout-{Layout.Name}", Layout != null && !IsMobile)
+    , ($"{BaseClassName}-light", SiderTheme == SiderTheme.Light)
+    );
+    private string SiderStyle => StyleValues("overflow: hidden"
+        , $"padding-top: {(Layout == Layout.Mix && !IsMobile ? HeaderHeight : 0)}px;"
         );
-
-
-
+    #endregion
 
     private async Task HandleOnOpenChange(string[] openKeys)
     {
@@ -137,8 +148,4 @@
         Collapsed = collapsed;
         await HandleOnCollapse(collapsed);
     }
-
-    [Parameter]
-    public RenderFragment<bool> CollapsedButtonRender { get; set; } = (collapsed) =>@<Icon Type="@(collapsed ? "menu-unfold" : "menu-fold")" />;
-
 }

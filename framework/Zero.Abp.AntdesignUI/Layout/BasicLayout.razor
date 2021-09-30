@@ -6,26 +6,28 @@
 }
 else
 {
-    <div class="@LayoutClass" style="@weakModeStyle">
+    <div class="@_layoutClass" style="@_weakModeStyle">
         <Layout Style="min-height: 100%;">
             @if (hasSiderMenu)
             {
                 <CascadingValue Value="MenuExtraRender" Name="MenuExtraRender">
                     <SiderMenuWrapper Hide="Layout == Layout.Top && !IsMobile"
-                              SiderWidth="SiderWidth" OnCollapse="HandleCollapse">
+                                      SiderWidth="SiderWidth" 
+                                      Collapsed="@Collapsed"
+                                      OnCollapse="HandleCollapse">
                     </SiderMenuWrapper>
                 </CascadingValue>
             }
-            <div style="@genLayoutStyle" class="@layoutCls">
+            <div style="@_genLayoutStyle" class="@layoutCls">
                 @if (HeaderRender)
                 {
                     <CascadingValue Value="RightContentRender" Name="RightContentRender">
                         <HeaderView HasSiderMenu="@hasSiderMenu" />
                     </CascadingValue>
-                }
+                } 
                 <WrapContent PrefixCls="@PrefixCls"
-                         Class="@ContentClass"
-                         Style="@ContentStyle">
+                             Class="@_contentClass"
+                             Style="@ContentStyle">
                     @(Loading ? @<PageLoading /> : ChildContent)
                 </WrapContent>
                 @if (FooterRender)
@@ -42,67 +44,54 @@ else
     [Parameter] public bool Pure { get; set; }
     [Parameter] public bool Loading { get; set; }
     [Parameter] public bool DisableMobile { get; set; }
-    [Parameter] public bool DisableContentMargin { get; set; } = true;
+    [Parameter] public bool DisableContentMargin { get; set; }
     [Parameter] public string ContentStyle { get; set; }
 
 
-    [Parameter] public bool Collapsed { get; set; }
-    [Parameter] public MenuMode Mode { get; set; }
-    [Parameter] public string[] OpenKeys { get; set; } = { };
+    //[Parameter] public MenuMode Mode { get; set; }
+    //[Parameter] public string[] OpenKeys { get; set; } = { };
     [Parameter] public int SiderWidth { get; set; } = 208;
 
+    [Parameter] public bool Collapsed { get; set; }
     [Parameter] public EventCallback<bool> OnCollapse { get; set; }
 
     [Parameter] public RenderFragment MenuExtraRender { get; set; }
     [Parameter] public RenderFragment RightContentRender { get; set; }
 
-    private string weakModeStyle;
-    private string genLayoutStyle;
     private readonly bool isChildrenLayout = false;
 
-    private string layoutCls = "ant-layout";
+    #region StyleOrClass
+    bool hasLeftPadding => FixSiderbar && Layout != Layout.Top && !IsMobile;
+    int paddingLeft => hasLeftPadding ? (Collapsed ? 48 : SiderWidth) : 0;
+
+    private string _weakModeStyle => StyleValues(("filter: invert(80%)", ColorWeak));
+    private string _genLayoutStyle => StyleValues("position: relative"
+        , ("min-height:0px", isChildrenLayout || (ContentStyle?.Contains("min-height") ?? false))
+        , ($"padding-left: {paddingLeft}px", MenuRender)
+        );
+
     private string BaseClassName => $"{PrefixCls}-basicLayout";
-    private string LayoutClass => ClassNames("ant-design-pro", BaseClassName, $"screen-{ColSize}"
+
+    private string layoutCls = "ant-layout";
+    private string _layoutClass => ClassNames("ant-design-pro", BaseClassName, $"screen-{ColSize}"
         , ($"{BaseClassName}-top-menu", Layout == Layout.Top)
         , ($"{BaseClassName}-is-children", isChildrenLayout)
         , ($"{BaseClassName}-fix-siderbar", FixSiderbar)
         , ($"{BaseClassName}-mobile", IsMobile)
         );
-    public string ContentClass => ClassNames($"{BaseClassName}-content"
-    , ($"{BaseClassName}-has-header", HeaderRender)
-    , ($"{BaseClassName}-content-disable-margin", DisableContentMargin)
-    );
+    private string _contentClass => ClassNames($"{BaseClassName}-content"
+        , ($"{BaseClassName}-has-header", HeaderRender)
+        , ($"{BaseClassName}-content-disable-margin", DisableContentMargin)
+        );
+    #endregion
 
     protected string ColSize { get; set; } = "lg";//useAntdMediaQuery();
     protected bool IsMobile => (ColSize == "sm" || ColSize == "xs") && !DisableMobile;
-
     protected bool hasSiderMenu => MenuRender && !Pure;
 
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-        SetStyle();
-    }
-
-    protected void SetStyle()
-    {
-        weakModeStyle = ColorWeak ? "filter: invert(80%);" : "";
-        genLayoutStyle = "position: relative;";
-        var hasLeftPadding = FixSiderbar && Layout != Layout.Top && !IsMobile;
-        var paddingLeft = hasLeftPadding ? Collapsed ? 48 : SiderWidth : 0;
-        genLayoutStyle = MenuRender ? $"padding-left: {paddingLeft}px; position: relative;" : "";
-        if (isChildrenLayout || (ContentStyle?.Contains("min-height") ?? false)) { genLayoutStyle += "min-height:0px"; }
-    }
-
-    protected override void OnStateChanged()
-    {
-        base.OnStateChanged();
-        SetStyle();
-    }
     private async Task HandleCollapse(bool collapsed)
     {
         Collapsed = collapsed;
-        SetStyle();
         await OnCollapse.InvokeAsync(collapsed);
     }
 }

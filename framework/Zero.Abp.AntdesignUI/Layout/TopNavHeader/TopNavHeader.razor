@@ -1,6 +1,6 @@
 ﻿@namespace Zero.Abp.AntdesignUI.Layout
 
-<div class="@className" style="@Style">
+<div class="@TopNavHeaderClass" style="@Style">
     <div class="@ClassNames($"{BaseClassName}-main",("wide", ContentWidth == "Fixed"))">
         <div class="@($"{BaseClassName}-main-left")" @onclick="OnMenuHeaderClick">
             <div class="@($"{BaseClassName}-logo")" id="logo">
@@ -27,7 +27,7 @@
 @code {
     private string BaseClassName => $"{PrefixCls}-top-nav-header";
 
-    private string className => ClassNames(
+    private string TopNavHeaderClass => ClassNames(
         BaseClassName, Class
         , ("light", NavTheme == MenuTheme.Light)
         );
