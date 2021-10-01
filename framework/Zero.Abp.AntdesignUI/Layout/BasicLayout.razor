@@ -12,9 +12,9 @@ else
             {
                 <CascadingValue Value="MenuExtraRender" Name="MenuExtraRender">
                     <SiderMenuWrapper Hide="Layout == Layout.Top && !IsMobile"
-                                      SiderWidth="SiderWidth" 
-                                      Collapsed="@Collapsed"
-                                      OnCollapse="HandleCollapse">
+                              SiderWidth="SiderWidth"
+                              Collapsed="@Collapsed"
+                              OnCollapse="HandleCollapse">
                     </SiderMenuWrapper>
                 </CascadingValue>
             }
@@ -22,12 +22,14 @@ else
                 @if (HeaderRender)
                 {
                     <CascadingValue Value="RightContentRender" Name="RightContentRender">
-                        <HeaderView HasSiderMenu="@hasSiderMenu" />
+                        <HeaderView HasSiderMenu="@hasSiderMenu"
+                            SiderWidth="SiderWidth"
+                            Collapsed="@Collapsed" />
                     </CascadingValue>
-                } 
+                }
                 <WrapContent PrefixCls="@PrefixCls"
-                             Class="@_contentClass"
-                             Style="@ContentStyle">
+                         Class="@_contentClass"
+                         Style="@ContentStyle">
                     @(Loading ? @<PageLoading /> : ChildContent)
                 </WrapContent>
                 @if (FooterRender)

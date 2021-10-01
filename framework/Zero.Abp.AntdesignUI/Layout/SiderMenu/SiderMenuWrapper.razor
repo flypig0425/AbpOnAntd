@@ -21,7 +21,6 @@
                        OpenKeys="OpenKeys"
                        LogoStyle="LogoStyle"
                        Breakpoint="Breakpoint"
-                       SiderTheme="SiderTheme"
                        OnOpenChange="HandleOnOpenChange" />
         </Drawer>
     }
@@ -36,8 +35,9 @@
                    OpenKeys="OpenKeys"
                    LogoStyle="LogoStyle"
                    Breakpoint="Breakpoint"
-                   SiderTheme="SiderTheme"
+                  
                    OnOpenChange="HandleOnOpenChange" />
+        // SiderTheme="SiderTheme"
         //MenuFooterRender = "MenuFooterRender"
         //           CollapsedButtonRender = "CollapsedButtonRender"
     }
@@ -56,7 +56,7 @@
     [Parameter] public string LogoStyle { get; set; }
     [Parameter] public BreakpointType Breakpoint { get; set; } = BreakpointType.Lg;
     [Parameter] public MenuMode Mode { get; set; } = MenuMode.Inline;
-    [Parameter] public SiderTheme SiderTheme { get; set; }
+    @*[Parameter] public SiderTheme SiderTheme { get; set; }*@
     [Parameter] public RenderFragment<bool> CollapsedButtonRender { get; set; }
     [Parameter] public RenderFragment<bool> MenuFooterRender { get; set; }
     [Parameter] public List<RenderFragment> Links { get; set; } = new List<RenderFragment>();
