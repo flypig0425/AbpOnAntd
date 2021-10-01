@@ -6,13 +6,13 @@
   @*      SelectedKeysChanged="@SetSelectedKeys"
     OnOpenChange="@SetOpenKeys"*@
 
-@*<br />
-    @string.Join("|",OpenKeys)
 <br />
-    @string.Join("|",SelectedKeys)
+ OpenKeys:   @string.Join("|",OpenKeys??new string[]{})
 <br />
-    @string.Join("|",MatchMenuKeys)
-*@
+ SelectedKeys:   @string.Join("|",SelectedKeys??new string[]{})
+<br />
+   MatchMenuKeys: @string.Join("|",MatchMenuKeys??new string[]{})
+
 <Menu Mode="@Mode"
       Theme="@NavTheme"
       InlineIndent="16"

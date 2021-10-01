@@ -35,11 +35,9 @@ else
                 <WrapContent PrefixCls="@PrefixCls"
                          Class="@_contentClass"
                          Style="@ContentStyle">
-                  Location:  @Location
-                IsNavigationIntercepted:    @IsNavigationIntercepted
-                   
-                
-                @(Loading ? @<PageLoading /> : ChildContent)
+                    MatchMenuKeys: @string.Join("|",MatchMenuKeys)
+                    Uri:@NavigationManager.Uri
+                    @(Loading ? @<PageLoading /> : ChildContent)
                 </WrapContent>
                 @footerDom
                 @*   @if (FooterRender)
@@ -110,8 +108,15 @@ else
 
     protected override async Task OnInitializedAsync()
     {
+
+        //MatchMenuKeys = new string[] { "TenantManagement3", "TenantManagement.Tenants30" };
+
         MenuDatas = (await MenuManager.GetMainMenuAsync()).GetAdministration().Items;
         NavigationManager.LocationChanged += OnLocationChanged;
+
+        
+
+
     }
     protected override void Dispose(bool disposing)
     {
@@ -119,12 +124,8 @@ else
         base.Dispose(disposing);
     }
 
-    private string Location;
-    private bool IsNavigationIntercepted;
     private void OnLocationChanged(object sender, LocationChangedEventArgs args)
     {
-        Location = args.Location;
-        IsNavigationIntercepted = args.IsNavigationIntercepted;
         // We could just re-render always, but for this component we know the
         // only relevant state change is to the _isActive property.
         //bool shouldBeActiveNow = ShouldMatch(args.Location);
@@ -149,7 +150,8 @@ else
     }
 
 
-    public bool OpenKeys { get; set; }
+    public bool OpenKeys { get; set; } = true;
+
     public string[] MatchMenuKeys { get; set; } = { };
 
     RenderFragment siderMenuDom => renderSiderMenu();
@@ -172,6 +174,7 @@ else
         <HeaderView HasSiderMenu="@(siderMenuDom!=null)"
                 SiderWidth="SiderWidth"
                 Collapsed="@Collapsed"
+                MatchMenuKeys="MatchMenuKeys"
                 MenuData="menuData" />
     </Template>
     ;
@@ -212,7 +215,7 @@ else
             }
         }
         var clearMenuData = menuData;  /*clearMenuItem(menuData || []);*/
-        if ((clearMenuData?.Any() ?? false) && SplitMenus)
+        if (!(clearMenuData?.Any() ?? false) && SplitMenus)
         {
             return null;
         }
