@@ -42,7 +42,9 @@
                   OpenKeys="@OpenKeys"
                   OnOpenChange="@HandleOnOpenChange"
                   Style="width: 100%"
-                  Class="@($"{BaseClassName}-menu")" />
+                  Class="@($"{BaseClassName}-menu")"
+                  MenuData="@MenuData"
+                  MatchMenuKeys="MatchMenuKeys"/>
     </div>
 
     <div class="@BaseClassName-links">
@@ -79,7 +81,11 @@
 
 
 @code {
+      [Parameter]public string[] MatchMenuKeys { get; set; } = { };
+    [Parameter] public ApplicationMenuItemList MenuData { get; set; }
+
     [Parameter] public string[] OpenKeys { get; set; } = { };
+
     [Parameter] public int SiderWidth { get; set; } = 208;
     [Parameter] public bool IsMobile { get; set; }
     [Parameter] public bool Collapsed { get; set; }

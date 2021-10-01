@@ -79,19 +79,26 @@ namespace Zero.Abp.AntdesignUI.Layout
                 }
             };
 
-            if (SettingState.Value.Layout != "mix")
+            //if (SettingState.Value.Layout != "mix")
+            //{
+            //    list.Add(new CheckboxItem
+            //    {
+            //        Key = "dark",
+            //        Url = "https://gw.alipayobjects.com/zos/antfincdn/XwFOFbLkSM/LCkqqYNmvBEbokSDscrm.svg",
+            //        Title = "Dark style"
+            //    });
+            //}
+            //else if (SettingState.Value.NavTheme == "dark")
+            //{
+            //    SettingState.Value.NavTheme = "light";
+            //}
+
+            list.Add(new CheckboxItem
             {
-                list.Add(new CheckboxItem
-                {
-                    Key = "dark",
-                    Url = "https://gw.alipayobjects.com/zos/antfincdn/XwFOFbLkSM/LCkqqYNmvBEbokSDscrm.svg",
-                    Title = "Dark style"
-                });
-            }
-            else if (SettingState.Value.NavTheme == "dark")
-            {
-                SettingState.Value.NavTheme = "light";
-            }
+                Key = "dark",
+                Url = "https://gw.alipayobjects.com/zos/antfincdn/XwFOFbLkSM/LCkqqYNmvBEbokSDscrm.svg",
+                Title = "Dark style"
+            });
 
             list.Add(new CheckboxItem
             {

@@ -104,11 +104,21 @@ namespace Zero.Abp.AntdesignUI.Layout
             set => SettingState.Value.HeaderRender = value;
         }
 
+        [Parameter] public RenderFragment HeaderContent { get; set; }
         [Parameter]
         public bool FooterRender
         {
             get => SettingState.Value.FooterRender;
             set => SettingState.Value.FooterRender = value;
+        }
+
+        [Parameter] public RenderFragment FooterContent { get; set; }
+
+        [Parameter]
+        public OneOf<bool, RenderFragment<RenderFragment>> FooterRender1
+        {
+            get;
+            set;
         }
 
         [Parameter]
@@ -125,8 +135,6 @@ namespace Zero.Abp.AntdesignUI.Layout
             set => SettingState.Value.MenuHeaderRender = value;
         }
 
-        [Parameter]
-        public RenderFragment FooterContent { get; set; }
 
 
 

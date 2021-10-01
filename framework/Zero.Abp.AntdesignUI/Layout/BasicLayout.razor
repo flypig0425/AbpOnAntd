@@ -8,39 +8,51 @@ else
 {
     <div class="@_layoutClass" style="@_weakModeStyle">
         <Layout Style="min-height: 100%;">
-            @if (hasSiderMenu)
-            {
-                <CascadingValue Value="MenuExtraRender" Name="MenuExtraRender">
-                    <SiderMenuWrapper Hide="Layout == Layout.Top && !IsMobile"
-                              SiderWidth="SiderWidth"
-                              Collapsed="@Collapsed"
-                              OnCollapse="HandleCollapse">
-                    </SiderMenuWrapper>
-                </CascadingValue>
-            }
-            <div style="@_genLayoutStyle" class="@layoutCls">
-                @if (HeaderRender)
+
+            @siderMenuDom
+            @*  @if (hasSiderMenu)
                 {
+                <CascadingValue Value="MenuExtraRender" Name="MenuExtraRender">
+                <SiderMenuWrapper Hide="Layout == Layout.Top && !IsMobile"
+                SiderWidth="SiderWidth"
+                Collapsed="@Collapsed"
+                OnCollapse="HandleCollapse">
+                </SiderMenuWrapper>
+                </CascadingValue>
+                }*@
+            <div style="@_genLayoutStyle" class="@layoutCls">
+                @headerDom
+                @*  @if (HeaderRender)
+                    {
                     <CascadingValue Value="RightContentRender" Name="RightContentRender">
-                        <HeaderView HasSiderMenu="@hasSiderMenu"
-                            SiderWidth="SiderWidth"
-                            Collapsed="@Collapsed" />
+                    <HeaderView HasSiderMenu="@hasSiderMenu"
+                    SiderWidth="SiderWidth"
+                    Collapsed="@Collapsed"
+                    MenuDatas="TopMenuDatas" />
                     </CascadingValue>
-                }
+                    }*@
+
                 <WrapContent PrefixCls="@PrefixCls"
                          Class="@_contentClass"
                          Style="@ContentStyle">
-                    @(Loading ? @<PageLoading /> : ChildContent)
+                  Location:  @Location
+                IsNavigationIntercepted:    @IsNavigationIntercepted
+                   
+                
+                @(Loading ? @<PageLoading /> : ChildContent)
                 </WrapContent>
-                @if (FooterRender)
-                {
+                @footerDom
+                @*   @if (FooterRender)
+                    {
                     @(FooterContent == null ? @<FooterView /> : FooterContent)
-                }
+                    }*@
             </div>
         </Layout>
     </div>
 }
-
+@implements IDisposable
+@inject NavigationManager NavigationManager
+@using Microsoft.AspNetCore.Components.Routing
 @inherits AntProComponentBase
 @code {
     [Parameter] public bool Pure { get; set; }
@@ -89,7 +101,147 @@ else
 
     protected string ColSize { get; set; } = "lg";//useAntdMediaQuery();
     protected bool IsMobile => (ColSize == "sm" || ColSize == "xs") && !DisableMobile;
-    protected bool hasSiderMenu => MenuRender && !Pure;
+    //protected bool hasSiderMenu => MenuRender && !Pure;
+
+    [Inject] protected IMenuManager MenuManager { get; set; }
+
+    protected ApplicationMenuItemList MenuDatas { get; set; }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        MenuDatas = (await MenuManager.GetMainMenuAsync()).GetAdministration().Items;
+        NavigationManager.LocationChanged += OnLocationChanged;
+    }
+    protected override void Dispose(bool disposing)
+    {
+        NavigationManager.LocationChanged -= OnLocationChanged;
+        base.Dispose(disposing);
+    }
+
+    private string Location;
+    private bool IsNavigationIntercepted;
+    private void OnLocationChanged(object sender, LocationChangedEventArgs args)
+    {
+        Location = args.Location;
+        IsNavigationIntercepted = args.IsNavigationIntercepted;
+        // We could just re-render always, but for this component we know the
+        // only relevant state change is to the _isActive property.
+        //bool shouldBeActiveNow = ShouldMatch(args.Location);
+        //if (shouldBeActiveNow != _isActive)
+        //{
+        //    _isActive = shouldBeActiveNow;
+
+        //    if (MenuItem != null)
+        //    {
+        //        if (_isActive && !MenuItem.IsSelected)
+        //        {
+        //            Menu.SelectItem(MenuItem);
+        //        }
+        //        else if (!_isActive && MenuItem.IsSelected)
+        //        {
+        //            MenuItem.Deselect();
+        //        }
+        //    }
+
+        //    Menu.MarkStateHasChanged();
+        //}
+    }
+
+
+    public bool OpenKeys { get; set; }
+    public string[] MatchMenuKeys { get; set; } = { };
+
+    RenderFragment siderMenuDom => renderSiderMenu();
+    RenderFragment headerDom => headerRender();
+    RenderFragment footerDom => footerRender();
+
+    private RenderFragment headerRender()
+    {
+        @if ((HeaderRender == false) || Pure)
+        {
+            return null;
+        }
+        @if (HeaderContent != null)
+        {
+            return HeaderContent;
+        }
+        var menuData = new ApplicationMenuItemList(MenuDatas);
+        return
+    @<Template>
+        <HeaderView HasSiderMenu="@(siderMenuDom!=null)"
+                SiderWidth="SiderWidth"
+                Collapsed="@Collapsed"
+                MenuData="menuData" />
+    </Template>
+    ;
+    }
+
+    private RenderFragment footerRender()
+    {
+        @if ((FooterRender == false) || Pure)
+        {
+            return null;
+        }
+        return FooterContent == null ?
+    @<Template><FooterView /></Template>
+        : FooterContent;
+    }
+
+
+
+
+    private RenderFragment renderSiderMenu()
+    {
+        @if (MenuRender == false || Pure)
+        {
+            return null;
+        }
+
+        var menuData = new ApplicationMenuItemList(MenuDatas);
+        if (SplitMenus && (OpenKeys != false || Layout == Layout.Mix) && !IsMobile)
+        {
+            var key = MatchMenuKeys?.FirstOrDefault();
+            if (!key.IsNullOrWhiteSpace())
+            {
+                menuData = menuData?.Find(f => f.Name == key)?.Items ?? new ApplicationMenuItemList();
+            }
+            else
+            {
+                menuData = new ApplicationMenuItemList();
+            }
+        }
+        var clearMenuData = menuData;  /*clearMenuItem(menuData || []);*/
+        if ((clearMenuData?.Any() ?? false) && SplitMenus)
+        {
+            return null;
+        }
+
+        if (Layout == Layout.Top && !IsMobile)
+        {
+            return siderMenuWrapper(null, true);
+        }
+
+        if (MenuRender)
+        {
+            //var defaultDom = @<SiderMenu MatchMenuKeys="@MatchMenuKeys" MenuDatas="@clearMenuData" />;//{...props}
+            //return MenuRender(props, defaultDom);
+        }
+        return siderMenuWrapper(clearMenuData);
+    }
+    private RenderFragment siderMenuWrapper(ApplicationMenuItemList clearMenuData = null, bool hide = false) =>
+    @<Template>
+        <SiderMenuWrapper Hide="@hide" MenuData="@clearMenuData"
+                      MatchMenuKeys="@MatchMenuKeys"
+                      SiderWidth="SiderWidth"
+                      Collapsed="Collapsed"
+                      OnCollapse="HandleCollapse" />
+    </Template>
+    ;
+
+
+
+
 
     private async Task HandleCollapse(bool collapsed)
     {

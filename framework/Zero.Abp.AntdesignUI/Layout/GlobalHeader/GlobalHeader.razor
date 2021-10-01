@@ -2,9 +2,9 @@
 @inherits AntProComponentBase
 
 @if (Layout == Layout.Mix && !IsMobile && SplitMenus)
-{
-    <TopNavHeader Mode="MenuMode.Horizontal"
-                  NoChildrenMenu/>
+{   <TopNavHeader Mode="MenuMode.Horizontal"
+MatchMenuKeys="MatchMenuKeys"
+                  MenuData="NoChildrenMenuData"/>
 }
 else
 {
@@ -39,7 +39,8 @@ else
         , ($"{BaseClassName}-layout-{Layout.Name}", Layout != null&&NavTheme==MenuTheme.Dark)//&& headerTheme === 'dark'
         );
 
-
+          [Parameter]public string[] MatchMenuKeys { get; set; } = { };
+    [Parameter] public ApplicationMenuItemList MenuData { get; set; }
     [Parameter] public bool Collapsed { get; set; }
 
     [Parameter] public bool IsMobile { get; set; }
@@ -52,10 +53,22 @@ else
     [CascadingParameter(Name = nameof(RightContentRender))]
     public RenderFragment RightContentRender { get; set; }
 
+
+
+    private ApplicationMenuItemList NoChildrenMenuData
+    {
+        get
+        {
+            var noChildrenMenuData = MenuData.Select(s => new ApplicationMenuItem( s.Name, s.DisplayName,s.Url, s.Icon,  s.Order,  s.CustomData,  s.Target,  s.ElementId , s.CssClass));
+            return new ApplicationMenuItemList(noChildrenMenuData);
+        }
+    }
+
     protected override void OnInitialized()
     {
         base.OnInitialized();
     }
 
-    static readonly RenderFragment<bool> defaultCollapsedButtonRender = collapsed =>@<Icon Type="@(collapsed ? "menu-unfold" : "menu-fold")" Theme="outline" />;
+    static readonly RenderFragment<bool> defaultCollapsedButtonRender = collapsed =>
+    @<Icon Type="@(collapsed ? "menu-unfold" : "menu-fold")" Theme="outline" />;
 }

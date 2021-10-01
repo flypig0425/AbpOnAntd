@@ -17,20 +17,25 @@ namespace Antd.AbpDemo.Blazor.Menus
 
             var l = context.GetLocalizer<AbpUiResource>();
 
-            var tenantManagementMenuItem = new ApplicationMenuItem(
-                TenantManagementMenuNames.GroupName,
-                "租户管理",
-                icon: "team");
-
-            administrationMenu.AddItem(tenantManagementMenuItem);
-            for (int i = 0; i < 100; i++)
+            for (int t = 0; t < 10; t++)
             {
-                tenantManagementMenuItem.AddItem(new ApplicationMenuItem(
-               $"{ TenantManagementMenuNames.Tenants}{i}",
-             $"租户列表{i}",
-             url: $"~/TenantManagement/Tenants?{i}")
-             );
+                var tenantManagementMenuItem = new ApplicationMenuItem(
+                    $"{  TenantManagementMenuNames.GroupName}{t}",
+                  $"租户管理{t}",
+                  icon: "team");
+
+                administrationMenu.AddItem(tenantManagementMenuItem);
+                for (int i = 0; i < 10; i++)
+                {
+                    tenantManagementMenuItem.AddItem(new ApplicationMenuItem(
+                   $"{ TenantManagementMenuNames.Tenants}{t}{i}",
+                 $"租户列表{t}{i}",
+                 url: $"~/TenantManagement/Tenants?{t}{i}")
+                 );
+                }
             }
+
+
             return Task.CompletedTask;
         }
     }
