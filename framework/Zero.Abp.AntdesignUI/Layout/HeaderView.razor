@@ -4,26 +4,25 @@
 
 @if (needFixedHeader)
 {
-    <Header Style="@FixedHeaderStyle"/>
+    <Header Style="@FixedHeaderStyle" />
 }
 <Header Style="@HeaderStyle"
         Class="@HeaderClass">
     @if (isTop && !IsMobile)
     {
-        <TopNavHeader Mode="MenuMode.Horizontal" MatchMenuKeys="MatchMenuKeys" MenuData="MenuData"/>
+        <TopNavHeader Mode="MenuMode.Horizontal" MatchMenuKeys="MatchMenuKeys" MenuData="MenuData" />
     }
     else
     {
-        <GlobalHeader 
-        MatchMenuKeys="MatchMenuKeys"
-        MenuData="MenuData">
+        <GlobalHeader MatchMenuKeys="MatchMenuKeys"
+                  MenuData="MenuData">
             @HeaderContentRender
         </GlobalHeader>
     }
 </Header>
 
 @code {
-      [Parameter]public string[] MatchMenuKeys { get; set; } = { };
+    [Parameter] public string[] MatchMenuKeys { get; set; } = { };
     [Parameter] public ApplicationMenuItemList MenuData { get; set; }
 
     [Parameter] public int SiderWidth { get; set; } = 208;

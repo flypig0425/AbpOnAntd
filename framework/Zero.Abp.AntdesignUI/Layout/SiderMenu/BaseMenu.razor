@@ -1,17 +1,11 @@
 @namespace Zero.Abp.AntdesignUI.Layout
-@using System.Text.RegularExpressions
-@using Volo.Abp.UI.Navigation
-@*  SelectedKeys="@OpenKeys"
-    OpenKeys="@OpenKeys"*@
-  @*      SelectedKeysChanged="@SetSelectedKeys"
-    OnOpenChange="@SetOpenKeys"*@
-
-<br />
- OpenKeys:   @string.Join("|",OpenKeys??new string[]{})
-<br />
- SelectedKeys:   @string.Join("|",SelectedKeys??new string[]{})
-<br />
-   MatchMenuKeys: @string.Join("|",MatchMenuKeys??new string[]{})
+@*<br />
+    OpenKeys:   @string.Join("|",OpenKeys??new string[]{})
+    <br />
+    SelectedKeys:   @string.Join("|",SelectedKeys??new string[]{})
+    <br />
+    MatchMenuKeys: @string.Join("|",MatchMenuKeys??new string[]{})
+*@
 
 <Menu Mode="@Mode"
       Theme="@NavTheme"
@@ -23,11 +17,32 @@
       SelectedKeysChanged="@SetSelectedKeys"
       OnOpenChange="@SetOpenKeys"
       InlineCollapsed="Collapsed">
-    @getNavMenuItems((MenuData, this))
+    @if (Mode == MenuMode.Horizontal && MenuData.Count > maxTopMenuCount)
+    {
+        @for (var i = 0; i < maxTopMenuCount; i++)
+        {
+            @getSubMenuOrItem((MenuData[i],this))
+        }
+        <SubMenu>
+            <TitleTemplate><Icon Type="dash" Theme="outline" /></TitleTemplate>
+            <ChildContent>
+                @for (var i = maxTopMenuCount; i < MenuData.Count; i++)
+                {
+                    @getSubMenuOrItem((MenuData[i],this))
+                }
+            </ChildContent>
+        </SubMenu>
+    }
+    else
+    {
+        @getNavMenuItems((MenuData,this))
+    }
 </Menu>
 
 @inherits AntProComponentBase
 @code {
+    int maxTopMenuCount = 5;
+
     static readonly RenderFragment<(ApplicationMenuItemList items, BaseMenu that)> getNavMenuItems = context =>
     @<Template>
         @foreach (var item in context.items ?? new ApplicationMenuItemList())

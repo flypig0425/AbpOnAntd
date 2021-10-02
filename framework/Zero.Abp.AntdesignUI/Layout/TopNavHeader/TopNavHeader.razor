@@ -10,16 +10,17 @@
         <div style="flex: 1;" class="@BaseClassName-menu">
             <BaseMenu Mode="Mode" MenuData="MenuData" MatchMenuKeys="MatchMenuKeys" />
         </div>
-        @if (RightContentRender != null)
-        {
+       @* @if (RightContentRender != null)
+        {*@
             <div style="min-width:@rightSize">
                 <div style="padding-right:8px">
                     <div>
-                        @RightContentRender
+                        @*@RightContentRender*@
+                        <HeaderRight/>
                     </div>
                 </div>
             </div>
-        }
+        @*}*@
     </div>
 </div>
 
@@ -43,8 +44,8 @@
     //[Parameter] public MenuTheme Theme { get; set; }
     [Parameter] public EventCallback<MouseEventArgs> OnMenuHeaderClick { get; set; }
 
-    [CascadingParameter(Name = nameof(RightContentRender))]
-    public RenderFragment RightContentRender { get; set; }
+    //[CascadingParameter(Name = nameof(RightContentRender))]
+    //public RenderFragment RightContentRender { get; set; }
 
     string rightSize = "auto";
     public void SetRightSize(string value)

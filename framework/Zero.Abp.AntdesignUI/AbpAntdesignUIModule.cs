@@ -3,11 +3,13 @@ using Volo.Abp.Application;
 using Volo.Abp.Authorization;
 using Volo.Abp.Modularity;
 using Zero.Abp.AspNetCore.Components.Web;
+using Zero.Abp.AspNetCore.Components.Web.Theming;
 
 namespace Zero.Abp.AntdesignUI
 {
     [DependsOn(
         typeof(AbpAspNetCoreComponentsWebModule),
+        typeof(AbpAspNetCoreComponentsWebThemingModule),
         typeof(AbpDddApplicationContractsModule),
         typeof(AbpAuthorizationModule)
         )]

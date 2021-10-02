@@ -1,7 +1,7 @@
-﻿@using Zero.Abp.AspNetCore.Components.Web.Theming.Toolbars;
-@inherits AntDomComponentBase
+﻿@namespace Zero.Abp.AntdesignUI.Layout
+@inherits AntProComponentBase
 
-<Space Class="@ClassMapper.Class" Size="@("24")">
+<Space Class="@ClassNames(Class,"right")" Size="@("24")">
     @foreach (var render in ToolbarItemRenders)
     {
         <SpaceItem>
@@ -13,16 +13,11 @@
 @code {
     [Inject]
     private IToolbarManager ToolbarManager { get; set; }
-
     private List<RenderFragment> ToolbarItemRenders { get; set; } = new List<RenderFragment>();
-
     protected override async Task OnInitializedAsync()
     {
-        SetClassMap();
         var toolbar = await ToolbarManager.GetAsync(StandardToolbars.Main);
-
         ToolbarItemRenders.Clear();
-
         var sequence = 0;
         foreach (var item in toolbar.Items)
         {
@@ -32,12 +27,5 @@
                 builder.CloseComponent();
             });
         }
-    }
-
-    protected void SetClassMap()
-    {
-        ClassMapper
-            .Clear()
-            .Add("right");
     }
 }

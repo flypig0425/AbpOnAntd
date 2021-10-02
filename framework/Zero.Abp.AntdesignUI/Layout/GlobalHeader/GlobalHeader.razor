@@ -2,9 +2,10 @@
 @inherits AntProComponentBase
 
 @if (Layout == Layout.Mix && !IsMobile && SplitMenus)
-{   <TopNavHeader Mode="MenuMode.Horizontal"
-MatchMenuKeys="MatchMenuKeys"
-                  MenuData="NoChildrenMenuData"/>
+{   
+    <TopNavHeader Mode="MenuMode.Horizontal"
+    MatchMenuKeys="MatchMenuKeys"
+    MenuData="NoChildrenMenuData"/>
 }
 else
 {
@@ -27,10 +28,11 @@ else
             </div>
         }
         <div style="flex: 1">@ChildContent</div>
-        @if (RightContentRender != null)
+        <HeaderRight/>
+      @*  @if (RightContentRender != null)
         {
             @RightContentRender
-        }
+        }*@
     </div>
 }
 @code{
@@ -49,11 +51,6 @@ else
 
     [Parameter]
     public RenderFragment<bool> CollapsedButtonRender { get; set; } = defaultCollapsedButtonRender;
-
-    [CascadingParameter(Name = nameof(RightContentRender))]
-    public RenderFragment RightContentRender { get; set; }
-
-
 
     private ApplicationMenuItemList NoChildrenMenuData
     {

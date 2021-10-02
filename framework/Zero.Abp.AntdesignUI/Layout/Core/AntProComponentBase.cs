@@ -104,21 +104,11 @@ namespace Zero.Abp.AntdesignUI.Layout
             set => SettingState.Value.HeaderRender = value;
         }
 
-        [Parameter] public RenderFragment HeaderContent { get; set; }
         [Parameter]
         public bool FooterRender
         {
             get => SettingState.Value.FooterRender;
             set => SettingState.Value.FooterRender = value;
-        }
-
-        [Parameter] public RenderFragment FooterContent { get; set; }
-
-        [Parameter]
-        public OneOf<bool, RenderFragment<RenderFragment>> FooterRender1
-        {
-            get;
-            set;
         }
 
         [Parameter]
@@ -135,9 +125,6 @@ namespace Zero.Abp.AntdesignUI.Layout
             set => SettingState.Value.MenuHeaderRender = value;
         }
 
-
-
-
         [Parameter]
         public MenuSettings Menu { get; set; } = new MenuSettings();
 
@@ -148,6 +135,11 @@ namespace Zero.Abp.AntdesignUI.Layout
 
         [Parameter] public string PrefixCls { get; set; } = "ant-pro";
 
+        //[Parameter] public RenderFragment HeaderContent { get; set; }
+        //[Parameter] public RenderFragment RightContentRender { get; set; }
+        //[Parameter] public RenderFragment FooterContent { get; set; }
+        //[Parameter] public RenderFragment MenuContent { get; set; }
+        //[Parameter] public RenderFragment MenuExtraRender { get; set; }
         [Parameter] public RenderFragment ChildContent { get; set; }
 
         /// <summary>

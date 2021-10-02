@@ -16,9 +16,12 @@
 {
     [Parameter] public string Copyright { get; set; } = "2019 蚂蚁金服体验技术部出品";
 
-    [Parameter]
-    public LinkItem[] Links { get; set; } =new  LinkItem[]
+    [Parameter] public LinkItem[] Links { get; set; }
+
+    protected override void OnInitialized()
     {
+        Links = new LinkItem[]
+        {
         new LinkItem
         {
             Key = "Ant Design Pro",
@@ -40,5 +43,6 @@
             Href = "https://ant.design",
             Target = "_blank",
         }
-    };
+        };
+    }
 }

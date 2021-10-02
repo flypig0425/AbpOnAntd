@@ -9,7 +9,7 @@ gulp.task('less', function () {
     return gulp
         .src([
             '**/*.less',
-            '!themes/**/*.less',
+            '!styles/themes/**/*.less',
             '!node_modules/**/*.less'
         ])
         .pipe(less({
@@ -23,8 +23,8 @@ gulp.task('less', function () {
 
 gulp.task('themes', function () {
     return gulp.src([
-        'themes/**/*.less',
-        '!themes/components.less',
+        'styles/themes/**/*.less',
+        '!styles/themes/components.less',
     ])
         .pipe(less({
             javascriptEnabled: true,

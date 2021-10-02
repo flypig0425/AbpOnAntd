@@ -8,47 +8,20 @@ else
 {
     <div class="@_layoutClass" style="@_weakModeStyle">
         <Layout Style="min-height: 100%;">
-
             @siderMenuDom
-            @*  @if (hasSiderMenu)
-                {
-                <CascadingValue Value="MenuExtraRender" Name="MenuExtraRender">
-                <SiderMenuWrapper Hide="Layout == Layout.Top && !IsMobile"
-                SiderWidth="SiderWidth"
-                Collapsed="@Collapsed"
-                OnCollapse="HandleCollapse">
-                </SiderMenuWrapper>
-                </CascadingValue>
-                }*@
             <div style="@_genLayoutStyle" class="@layoutCls">
                 @headerDom
-                @*  @if (HeaderRender)
-                    {
-                    <CascadingValue Value="RightContentRender" Name="RightContentRender">
-                    <HeaderView HasSiderMenu="@hasSiderMenu"
-                    SiderWidth="SiderWidth"
-                    Collapsed="@Collapsed"
-                    MenuDatas="TopMenuDatas" />
-                    </CascadingValue>
-                    }*@
-
                 <WrapContent PrefixCls="@PrefixCls"
                          Class="@_contentClass"
                          Style="@ContentStyle">
-                    MatchMenuKeys: @string.Join("|",MatchMenuKeys)
-                    Uri:@NavigationManager.Uri
                     @(Loading ? @<PageLoading /> : ChildContent)
                 </WrapContent>
                 @footerDom
-                @*   @if (FooterRender)
-                    {
-                    @(FooterContent == null ? @<FooterView /> : FooterContent)
-                    }*@
             </div>
         </Layout>
     </div>
 }
-@implements IDisposable
+
 @inject NavigationManager NavigationManager
 @using Microsoft.AspNetCore.Components.Routing
 @inherits AntProComponentBase
@@ -57,23 +30,14 @@ else
     [Parameter] public bool Loading { get; set; }
     [Parameter] public bool DisableMobile { get; set; }
     [Parameter] public bool DisableContentMargin { get; set; }
-    [Parameter] public string ContentStyle { get; set; }
-
-
-    //[Parameter] public MenuMode Mode { get; set; }
-    //[Parameter] public string[] OpenKeys { get; set; } = { };
     [Parameter] public int SiderWidth { get; set; } = 208;
-
+    [Parameter] public string ContentStyle { get; set; }
     [Parameter] public bool Collapsed { get; set; }
     [Parameter] public EventCallback<bool> OnCollapse { get; set; }
 
-    [Parameter] public RenderFragment MenuExtraRender { get; set; }
-    [Parameter] public RenderFragment RightContentRender { get; set; }
-
-    private readonly bool isChildrenLayout = false;
-
     #region StyleOrClass
-    bool hasLeftPadding => FixSiderbar && Layout != Layout.Top && !IsMobile;
+    bool HasSiderMenu => Layout != Layout.Mix || (Layout == Layout.Mix && SplitMenus && siderMenuDom != null);
+    bool hasLeftPadding => HasSiderMenu && FixSiderbar && Layout != Layout.Top && !IsMobile;
     int paddingLeft => hasLeftPadding ? (Collapsed ? 48 : SiderWidth) : 0;
 
     private string _weakModeStyle => StyleValues(("filter: invert(80%)", ColorWeak));
@@ -97,62 +61,21 @@ else
         );
     #endregion
 
+    private readonly bool isChildrenLayout = false;
     protected string ColSize { get; set; } = "lg";//useAntdMediaQuery();
     protected bool IsMobile => (ColSize == "sm" || ColSize == "xs") && !DisableMobile;
-    //protected bool hasSiderMenu => MenuRender && !Pure;
+    protected bool OpenKeys { get; set; } = true;
+
+    protected string[] MatchMenuKeys { get; set; } = { };
+    protected ApplicationMenuItemList MenuData { get; set; }
 
     [Inject] protected IMenuManager MenuManager { get; set; }
-
-    protected ApplicationMenuItemList MenuDatas { get; set; }
-
-
     protected override async Task OnInitializedAsync()
     {
-
         //MatchMenuKeys = new string[] { "TenantManagement3", "TenantManagement.Tenants30" };
-
-        MenuDatas = (await MenuManager.GetMainMenuAsync()).GetAdministration().Items;
-        NavigationManager.LocationChanged += OnLocationChanged;
-
-        
-
-
-    }
-    protected override void Dispose(bool disposing)
-    {
-        NavigationManager.LocationChanged -= OnLocationChanged;
-        base.Dispose(disposing);
+        MenuData = (await MenuManager.GetMainMenuAsync()).GetAdministration().Items;
     }
 
-    private void OnLocationChanged(object sender, LocationChangedEventArgs args)
-    {
-        // We could just re-render always, but for this component we know the
-        // only relevant state change is to the _isActive property.
-        //bool shouldBeActiveNow = ShouldMatch(args.Location);
-        //if (shouldBeActiveNow != _isActive)
-        //{
-        //    _isActive = shouldBeActiveNow;
-
-        //    if (MenuItem != null)
-        //    {
-        //        if (_isActive && !MenuItem.IsSelected)
-        //        {
-        //            Menu.SelectItem(MenuItem);
-        //        }
-        //        else if (!_isActive && MenuItem.IsSelected)
-        //        {
-        //            MenuItem.Deselect();
-        //        }
-        //    }
-
-        //    Menu.MarkStateHasChanged();
-        //}
-    }
-
-
-    public bool OpenKeys { get; set; } = true;
-
-    public string[] MatchMenuKeys { get; set; } = { };
 
     RenderFragment siderMenuDom => renderSiderMenu();
     RenderFragment headerDom => headerRender();
@@ -160,78 +83,49 @@ else
 
     private RenderFragment headerRender()
     {
-        @if ((HeaderRender == false) || Pure)
-        {
-            return null;
-        }
-        @if (HeaderContent != null)
-        {
-            return HeaderContent;
-        }
-        var menuData = new ApplicationMenuItemList(MenuDatas);
+        @if ((HeaderRender == false) || Pure) { return null; }
+        //@if (HeaderContent != null) { return HeaderContent; }
         return
     @<Template>
         <HeaderView HasSiderMenu="@(siderMenuDom!=null)"
-                SiderWidth="SiderWidth"
+                SiderWidth="@SiderWidth"
                 Collapsed="@Collapsed"
-                MatchMenuKeys="MatchMenuKeys"
-                MenuData="menuData" />
+                MatchMenuKeys="@MatchMenuKeys"
+                MenuData="MenuData" />
     </Template>
     ;
     }
 
     private RenderFragment footerRender()
     {
-        @if ((FooterRender == false) || Pure)
-        {
-            return null;
-        }
-        return FooterContent == null ?
-    @<Template><FooterView /></Template>
-        : FooterContent;
+        @if ((FooterRender == false) || Pure) { return null; }
+        //@if (FooterContent != null) { return FooterContent; }
+        return
+    @<Template>
+        <FooterView />
+    </Template>
+    ;
     }
-
-
-
 
     private RenderFragment renderSiderMenu()
     {
-        @if (MenuRender == false || Pure)
-        {
-            return null;
-        }
-
-        var menuData = new ApplicationMenuItemList(MenuDatas);
+        @if (MenuRender == false || Pure) { return null; }
+        var menuData = new ApplicationMenuItemList(MenuData);
         if (SplitMenus && (OpenKeys != false || Layout == Layout.Mix) && !IsMobile)
         {
             var key = MatchMenuKeys?.FirstOrDefault();
-            if (!key.IsNullOrWhiteSpace())
-            {
-                menuData = menuData?.Find(f => f.Name == key)?.Items ?? new ApplicationMenuItemList();
-            }
-            else
-            {
-                menuData = new ApplicationMenuItemList();
-            }
+            if (!key.IsNullOrWhiteSpace()) { menuData = menuData?.Find(f => f.Name == key)?.Items; }
+            else { menuData = new ApplicationMenuItemList(); }
         }
         var clearMenuData = menuData;  /*clearMenuItem(menuData || []);*/
-        if (!(clearMenuData?.Any() ?? false) && SplitMenus)
-        {
-            return null;
-        }
-
-        if (Layout == Layout.Top && !IsMobile)
-        {
-            return siderMenuWrapper(null, true);
-        }
-
-        if (MenuRender)
-        {
-            //var defaultDom = @<SiderMenu MatchMenuKeys="@MatchMenuKeys" MenuDatas="@clearMenuData" />;//{...props}
-            //return MenuRender(props, defaultDom);
-        }
+        if (!(clearMenuData?.Any() ?? false) && SplitMenus) { return null; }
+        if (Layout == Layout.Top && !IsMobile) { return siderMenuWrapper(null, true); }
+        //if (MenuContent != null) { return MenuContent; }
+        // if (MenuContent != null) { var defaultDom = @<SiderMenu MatchMenuKeys="@MatchMenuKeys" MenuDatas="@clearMenuData" />;//{...props}
+        //return MenuRender(props, defaultDom);}
         return siderMenuWrapper(clearMenuData);
     }
+
     private RenderFragment siderMenuWrapper(ApplicationMenuItemList clearMenuData = null, bool hide = false) =>
     @<Template>
         <SiderMenuWrapper Hide="@hide" MenuData="@clearMenuData"
@@ -241,7 +135,6 @@ else
                       OnCollapse="HandleCollapse" />
     </Template>
     ;
-
 
 
 
