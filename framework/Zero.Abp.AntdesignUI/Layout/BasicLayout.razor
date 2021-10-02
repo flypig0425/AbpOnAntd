@@ -36,7 +36,7 @@ else
     [Parameter] public EventCallback<bool> OnCollapse { get; set; }
 
     #region StyleOrClass
-    bool HasSiderMenu => Layout != Layout.Mix || (Layout == Layout.Mix && SplitMenus && siderMenuDom != null);
+    bool HasSiderMenu => (Layout == Layout.Mix && SplitMenus) ? siderMenuDom != null : true;
     bool hasLeftPadding => HasSiderMenu && FixSiderbar && Layout != Layout.Top && !IsMobile;
     int paddingLeft => hasLeftPadding ? (Collapsed ? 48 : SiderWidth) : 0;
 
@@ -87,7 +87,7 @@ else
         //@if (HeaderContent != null) { return HeaderContent; }
         return
     @<Template>
-        <HeaderView HasSiderMenu="@(siderMenuDom!=null)"
+        <HeaderView HasSiderMenu="@HasSiderMenu"
                 SiderWidth="@SiderWidth"
                 Collapsed="@Collapsed"
                 MatchMenuKeys="@MatchMenuKeys"

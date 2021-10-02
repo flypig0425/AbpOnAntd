@@ -30,7 +30,7 @@ namespace Antd.AbpDemo.Blazor.Menus
                     tenantManagementMenuItem.AddItem(new ApplicationMenuItem(
                    $"{ TenantManagementMenuNames.Tenants}{t}{i}",
                  $"租户列表{t}{i}",
-                 url: $"~/TenantManagement/Tenants?{t}{i}")
+                 url: $"~/TenantManagement/Tenants/{t}{i}")
                  );
                 }
             }
