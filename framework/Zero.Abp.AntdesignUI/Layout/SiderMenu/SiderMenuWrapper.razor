@@ -20,8 +20,9 @@
                Links="Links"
                LogoStyle="LogoStyle"
                Breakpoint="Breakpoint"
-               MatchMenuKeys="MatchMenuKeys"
-               MenuData="MenuData"/>
+               MenuData="MenuData"
+               SelectedKeys="SelectedKeys"
+               SelectedKeysChanged="SelectedKeysChanged" />
         </Drawer>
     }
     else
@@ -34,15 +35,17 @@
            Links="Links"
            LogoStyle="LogoStyle"
            Breakpoint="Breakpoint"
-           MatchMenuKeys="MatchMenuKeys"
-           MenuData="MenuData"/>
+           MenuData="MenuData"
+           SelectedKeys="SelectedKeys"
+           SelectedKeysChanged="SelectedKeysChanged" />
         // SiderTheme="SiderTheme"
         //MenuFooterRender = "MenuFooterRender"
         //           CollapsedButtonRender = "CollapsedButtonRender"
     }
 }
 @code {
-    [Parameter] public string[] MatchMenuKeys { get; set; } = { };
+    [Parameter] public string[] SelectedKeys { get; set; }= null;
+    [Parameter] public EventCallback<string[]> SelectedKeysChanged { get; set; }
     [Parameter] public ApplicationMenuItemList MenuData { get; set; }
 
     [Parameter] public bool Hide { get; set; }
@@ -67,10 +70,7 @@
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
-        if (IsMobile)
-        {
-            await HandleOnCollapse(true);
-        }
+        if (IsMobile) { await HandleOnCollapse(true); }
     }
     private async Task HandleOnCollapse(bool collapsed)
     {
@@ -80,12 +80,12 @@
             await OnCollapse.InvokeAsync(Collapsed);
         }
     }
- @*   private async Task HandleOnOpenChange(string[] openKeys)
-    {
+    @*   private async Task HandleOnOpenChange(string[] openKeys)
+        {
         OpenKeys = openKeys;
         if (OnOpenChange.HasDelegate)
         {
-            await OnOpenChange.InvokeAsync(openKeys);
+        await OnOpenChange.InvokeAsync(openKeys);
         }
-    }*@
+        }*@
 }

@@ -8,9 +8,9 @@
             </div>
         </div>
         <div style="flex: 1;" class="@BaseClassName-menu">
-            <BaseMenu Mode="Mode"
-                      MenuData="MenuData"
-                      MatchMenuKeys="MatchMenuKeys"/>
+            <BaseMenu Mode="Mode" MenuData="MenuData"
+                      SelectedKeys="SelectedKeys"
+                      SelectedKeysChanged="SelectedKeysChanged" />
         </div>
         @* @if (RightContentRender != null)
             {*@
@@ -28,10 +28,10 @@
 
 @inherits AntProComponentBase
 @code {
-    [Parameter] public string[] MatchMenuKeys { get; set; } = { };
+    [Parameter] public string[] SelectedKeys { get; set; }= null;
+    [Parameter] public EventCallback<string[]> SelectedKeysChanged { get; set; }
     [Parameter] public ApplicationMenuItemList MenuData { get; set; }
 
-  
     [Parameter] public bool Collapsed { get; set; }
     [Parameter] public MenuMode Mode { get; set; }
     //[Parameter] public MenuTheme Theme { get; set; }
@@ -45,8 +45,6 @@
     {
         rightSize = value;
     }
-
-
 
     private string BaseClassName => $"{PrefixCls}-top-nav-header";
 

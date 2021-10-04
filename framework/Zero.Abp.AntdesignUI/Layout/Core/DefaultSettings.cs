@@ -49,11 +49,11 @@ namespace Zero.Abp.AntdesignUI.Layout
         private string _navTheme = "light";     // light | dark
         private string _layout = "mix";         // side | top | mix
         private string _contentWidth = "Fluid"; // Fluid | Fixed
-        private bool _fixedHeader;
+        private bool _fixedHeader = true;
         private bool _fixSiderbar = true;
         private string _iconfontUrl;
         private bool _colorWeak;
-        private bool _splitMenus;
+        private bool _splitMenus = true;
         private bool _headerRender = true;
         private bool _footerRender = true;
         private bool _menuRender = true;

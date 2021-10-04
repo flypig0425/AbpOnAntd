@@ -40,10 +40,10 @@
         <BaseMenu Style="width: 100%"
                   Class="@($"{BaseClassName}-menu")"
                   Mode="Mode"
-                  Collapsed="@Collapsed"
-                  MenuData="@MenuData"
-                  MatchMenuKeys="MatchMenuKeys"
-/>
+                  Collapsed="Collapsed"
+                  MenuData="MenuData"
+                  SelectedKeys="SelectedKeys"
+                  SelectedKeysChanged="SelectedKeysChanged" />
     </div>
 
     <div class="@BaseClassName-links">
@@ -80,10 +80,9 @@
 
 
 @code {
-    [Parameter] public string[] MatchMenuKeys { get; set; } = { };
+    [Parameter] public string[] SelectedKeys { get; set; } = null;
+    [Parameter] public EventCallback<string[]> SelectedKeysChanged { get; set; }
     [Parameter] public ApplicationMenuItemList MenuData { get; set; }
-
-
 
     [Parameter] public int SiderWidth { get; set; } = 208;
     [Parameter] public bool IsMobile { get; set; }

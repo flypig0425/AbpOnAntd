@@ -1,21 +1,18 @@
 @namespace Zero.Abp.AntdesignUI.Layout
-<br />
+@*<br />
     OpenKeys:   @string.Join("|",OpenKeys??new string[]{})
     <br />
     SelectedKeys:   @string.Join("|",SelectedKeys??new string[]{})
-    <br />
-    MatchMenuKeys: @string.Join("|",MatchMenuKeys??new string[]{})
-
-
-<Menu Mode="@Mode"
-      Theme="@NavTheme"
+*@
+<Menu Mode="Mode"
+      Theme="NavTheme"
       InlineIndent="16"
-      Style="@Style"
+      Style="Style"
       Class="@ClassNames(Class,("top-nav-menu",Mode==MenuMode.Horizontal))"
-      OpenKeys="@OpenKeys"
-      OnOpenChange="@SetOpenKeys"
-      SelectedKeys="@SelectedKeys"
-      SelectedKeysChanged="@SetSelectedKeys"
+      OpenKeys="OpenKeys"
+      OnOpenChange="SetOpenKeys"
+      SelectedKeys="SelectedKeys"
+      SelectedKeysChanged="SetSelectedKeys"
       InlineCollapsed="Collapsed">
     @if (Mode == MenuMode.Horizontal && MenuData.Count > maxTopMenuCount)
     {
@@ -42,31 +39,37 @@
 @inherits AntProComponentBase
 @code {
     int maxTopMenuCount = 5;
-    
+
     [Parameter] public string IconPrefixes { get; set; } = "icon-";
 
     [Parameter] public bool Collapsed { get; set; }
     [Parameter] public bool IsMobile { get; set; }
-    [Parameter] public MenuMode Mode { get; set; }//  //ToDo: 'vertical' | 'vertical-left' | 'vertical-right' | 'horizontal' | 'inline'; 
+    [Parameter] public MenuMode Mode { get; set; }//  //ToDo: 'vertical' | 'vertical-left' | 'vertical-right' | 'horizontal' | 'inline';
     [Parameter] public RenderFragment<ApplicationMenuItem> MenuItemRender { get; set; }
     [Parameter] public RenderFragment<ApplicationMenuItem> SubMenuItemRender { get; set; }
 
     [Parameter] public ApplicationMenuItemList MenuData { get; set; }
-    [Parameter] public string[] MatchMenuKeys { get; set; } = { };
 
-    [Parameter] public string[] OpenKeys { get => (!Collapsed && new Layout[] { Layout.Side, Layout.Mix }.Contains(Layout)) ? openKeys : null; set => openKeys = value; }
-    [Parameter] public string[] SelectedKeys { get => selectedKeys; set => selectedKeys = value; }
+    [Parameter]
+    public string[] OpenKeys
+    {
+        get => (!Collapsed && new Layout[] { Layout.Side, Layout.Mix }.Contains(Layout)) ? openKeys : null;
+        set => openKeys = value;
+    }
+    [Parameter]
+    public string[] SelectedKeys
+    {
+        get => selectedKeys;
+        set => selectedKeys = value.IsNullOrEmpty() ? selectedKeys : value;
+    }
     [Parameter] public EventCallback<string[]> OnOpenChange { get; set; }
     [Parameter] public EventCallback<string[]> SelectedKeysChanged { get; set; }
-    
-
-
 
     string[] openKeys = Array.Empty<string>();
     string[] selectedKeys = Array.Empty<string>();
     async void SetOpenKeys(string[] keys)
     {
-        OpenKeys = keys;
+        openKeys = keys;
         if (!IsMobile && OnOpenChange.HasDelegate)
         {
             await OnOpenChange.InvokeAsync(keys);
@@ -74,7 +77,7 @@
     }
     async void SetSelectedKeys(string[] keys)
     {
-        SelectedKeys = keys;
+        selectedKeys = keys;
         if (SelectedKeysChanged.HasDelegate)
         {
             await SelectedKeysChanged.InvokeAsync(keys);
@@ -84,11 +87,6 @@
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
-        if (MatchMenuKeys?.Any() ?? false)
-        {
-            SetOpenKeys(MatchMenuKeys);
-            SetSelectedKeys(MatchMenuKeys);
-        }
     }
 
 
@@ -105,13 +103,13 @@
     @<Template>
         @if (context.menuItem != null)
             {
-                var that = @context.that;
+                var that = context.that;
                 var menuItem = context.menuItem;
                 var isHttpUrl = menuItem?.Url?.Contains("http") ?? false;
                 var cssClass = string.IsNullOrEmpty(menuItem.CssClass) ? string.Empty : menuItem.CssClass;
                 var menuIcon = menuItem?.Icon ?? "";
                 <span title="@menuItem.DisplayName" class="@ClassNames($"{that.PrefixCls}-menu-item",($"{that.PrefixCls}-menu-item-link",isHttpUrl),cssClass)">
-                    @if (menuIcon.IsNullOrWhiteSpace() || menuItem.IsLeaf)
+                    @if (menuIcon.IsNullOrWhiteSpace())
                     {
                         @menuItem.DisplayName
                     }
@@ -153,7 +151,7 @@
                 var cssClass = string.IsNullOrEmpty(menuItem.CssClass) ? string.Empty : menuItem.CssClass;
                 var url = menuItem?.Url?.TrimStart('/', '~');
 
-                @if (menuItem?.Items?.Any() ?? false)
+                @if (!menuItem.IsLeaf)
                 {
                     var title = that.SubMenuItemRender != null ? that.SubMenuItemRender(menuItem) : defaultTitle((menuItem, that));
                     var MenuComponents = that.Menu?.Type == "group" ? typeof(MenuItemGroup) : typeof(SubMenu);

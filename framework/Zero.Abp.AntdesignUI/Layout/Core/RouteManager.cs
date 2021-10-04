@@ -32,11 +32,11 @@ namespace Zero.Abp.AntdesignUI.Layout
             return GetMatchMenuKeys(flatMenus, fullKeys);
         }
 
-        //public async Task<string[]> GetFullPathsNameAsync(string name)
-        //{
-        //    var flatMenus = await GetFlatMenuAsync();
-        //    return flatMenus.Find(f => f.PathsName.Contains(name)).PathsName.ToArray();
-        //}
+        public async Task<string[]> GetFirstLeafPathsNameAsync(string name)
+        {
+            var flatMenus = await GetFlatMenuAsync();
+            return flatMenus.Find(f => f.IsLeaf && f.PathsName.Contains(name)).PathsName.ToArray();
+        }
 
         public async Task<ApplicationMenuItemList> GetMatchMenusAsync(bool fullKeys)
         {
@@ -53,20 +53,20 @@ namespace Zero.Abp.AntdesignUI.Layout
         /// <param name="menuData">树形菜单数据</param>
         /// <param name="parentsName">父级路径名</param>
         /// <returns></returns>
-        private async Task<List<(string Name, ApplicationMenuItem MenuItem, string[] PathsName, string Url)>> GetFlatMenuAsync(
+        private async Task<List<(string Name, ApplicationMenuItem MenuItem, string[] PathsName, string Url, bool IsLeaf)>> GetFlatMenuAsync(
             ApplicationMenuItemList menuData = null, List<string> parentsName = null)
         {
             parentsName ??= new List<string> { };
             menuData ??= await GetMenuDataAsync();
             menuData = new ApplicationMenuItemList(menuData.OrderBy(o => o.Order));
-            var menus = new List<(string name, ApplicationMenuItem menuItem, string[] pathsName, string url)>();
+            var menus = new List<(string name, ApplicationMenuItem menuItem, string[] pathsName, string url, bool isLeaf)>();
             menuData.ForEach(async item =>
             {
                 if (item?.Name == null) { return; }
                 var tempPathsName = parentsName.Select(s => s).ToList();
                 tempPathsName.AddLast(item.Name);
                 var menuItem = new ApplicationMenuItem(item.Name, item.DisplayName, item.Url, item.Icon, item.Order, item.CustomData, item.Target, item.ElementId, item.CssClass);
-                menus.Add((item.Name, menuItem, tempPathsName.ToArray(), item?.Url?.TrimStart('~')));
+                menus.Add((item.Name, menuItem, tempPathsName.ToArray(), item?.Url?.TrimStart('~'), item.IsLeaf));
                 if (!item.IsLeaf)
                 {
                     menus.AddRange(await GetFlatMenuAsync(item?.Items ?? new ApplicationMenuItemList(), tempPathsName));
@@ -75,7 +75,7 @@ namespace Zero.Abp.AntdesignUI.Layout
             return menus;
         }
 
-        private string[] GetMatchMenuKeys(List<(string Name, ApplicationMenuItem MenuItem, string[] PathsName, string Url)> flatMenus, bool fullKeys)
+        private string[] GetMatchMenuKeys(List<(string Name, ApplicationMenuItem MenuItem, string[] PathsName, string Url, bool IsLeaf)> flatMenus, bool fullKeys)
         {
             if (flatMenus.IsNullOrEmpty()) { return Array.Empty<string>(); }
             var tempFlatMenus = flatMenus
@@ -122,6 +122,7 @@ namespace Zero.Abp.AntdesignUI.Layout
                 return false;
             }).PathsName;
         }
+
         #endregion
     }
 
@@ -129,6 +130,7 @@ namespace Zero.Abp.AntdesignUI.Layout
     {
         Task<ApplicationMenuItemList> GetMenuDataAsync();
         Task<string[]> GetMatchMenuKeysAsync(bool fullKeys);
+        Task<string[]> GetFirstLeafPathsNameAsync(string name);
         Task<ApplicationMenuItemList> GetMatchMenusAsync(bool fullKeys);
     }
 }

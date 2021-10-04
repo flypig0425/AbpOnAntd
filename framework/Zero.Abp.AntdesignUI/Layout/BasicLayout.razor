@@ -15,6 +15,12 @@ else
                          Class="@_contentClass"
                          Style="@ContentStyle">
                     @(Loading ? @<PageLoading /> : ChildContent)
+                    <br />
+                    TopMenuKeys: @string.Join("__",TopMenuKeys)
+                    <br />
+                    SiderMenuKeys: @string.Join("__",SiderMenuKeys)
+              @*      <br />
+                    MatchMenuKeys: @string.Join("__",MatchMenuKeys)*@
                 </WrapContent>
                 @footerDom
             </div>
@@ -39,21 +45,39 @@ else
     protected string ColSize { get; set; } = "lg";//useAntdMediaQuery();
     protected bool IsMobile => (ColSize == "sm" || ColSize == "xs") && !DisableMobile;
 
-    protected string[] MatchMenuKeys { get; set; }
+
+    //protected string[] MatchMenuKeys { get; set; }
     protected ApplicationMenuItemList MenuData { get; set; }
 
     [Inject] protected IRouteManager RouteManager { get; set; }
     protected override async Task OnInitializedAsync()
     {
         MenuData = await RouteManager.GetMenuDataAsync();
-        MatchMenuKeys = await RouteManager.GetMatchMenuKeysAsync(true);
+        //MatchMenuKeys = await RouteManager.GetMatchMenuKeysAsync(true);
+        TopMenuKeys = await RouteManager.GetMatchMenuKeysAsync(true);
     }
+
+    string[] TopMenuKeys = Array.Empty<string>();
+    string[] SiderMenuKeys = Array.Empty<string>();
+    async Task HandleTopMenuSelectedKeysChanged(string[] keys)
+    {
+        TopMenuKeys = await RouteManager.GetFirstLeafPathsNameAsync(keys.LastOrDefault());
+       //SiderMenuKeys = TopMenuKeys;
+    }
+    async Task HandleSiderMenuSelectedKeysChanged(string[] keys)
+    {
+        SiderMenuKeys = await RouteManager.GetFirstLeafPathsNameAsync(keys.FirstOrDefault());
+        //TopMenuKeys = SiderMenuKeys;
+    }
+
 
     private async Task HandleCollapse(bool collapsed)
     {
         Collapsed = collapsed;
         await OnCollapse.InvokeAsync(collapsed);
     }
+
+
 
 
     #region StyleOrClass
@@ -86,21 +110,6 @@ else
     RenderFragment headerDom => headerRender();
     RenderFragment footerDom => footerRender();
 
-    private RenderFragment headerRender()
-    {
-        @if ((HeaderRender == false) || Pure) { return null; }
-        //@if (HeaderContent != null) { return HeaderContent; }
-        return
-    @<Template>
-        <HeaderView HasSiderMenu="@HasSiderMenu"
-                SiderWidth="@SiderWidth"
-                Collapsed="@Collapsed"
-                MatchMenuKeys="@MatchMenuKeys"
-                MenuData="MenuData"/>
-    </Template>
-    ;
-    }
-
     private RenderFragment footerRender()
     {
         @if ((FooterRender == false) || Pure) { return null; }
@@ -112,14 +121,34 @@ else
     ;
     }
 
+    private RenderFragment headerRender()
+    {
+        @if ((HeaderRender == false) || Pure) { return null; }
+        //@if (HeaderContent != null) { return HeaderContent; }
+        return
+    @<Template>
+        <HeaderView HasSiderMenu="HasSiderMenu"
+                SiderWidth="SiderWidth"
+                Collapsed="Collapsed"
+                MenuData="MenuData"
+                SelectedKeys="TopMenuKeys"
+                SelectedKeysChanged="HandleTopMenuSelectedKeysChanged" />
+    </Template>
+    ;
+    }
+
     private RenderFragment renderSiderMenu()
     {
         @if (MenuRender == false || Pure) { return null; }
         var menuData = new ApplicationMenuItemList(MenuData);
         if (SplitMenus && (/*OpenKeys != false ||*/ Layout == Layout.Mix) && !IsMobile)
         {
-            var key = MatchMenuKeys?.FirstOrDefault();
-            if (!key.IsNullOrWhiteSpace()) { menuData = menuData?.Find(f => f.Name == key)?.Items; }
+            //var key = MatchMenuKeys.FirstOrDefault(); 
+            var key = TopMenuKeys.FirstOrDefault(); 
+            if (!key.IsNullOrWhiteSpace())
+            {
+                menuData = new ApplicationMenuItemList(menuData?.Find(f => f.Name == key)?.Items);
+            }
             else { menuData = new ApplicationMenuItemList(); }
         }
         var clearMenuData = menuData;  /*clearMenuItem(menuData || []);*/
@@ -133,12 +162,16 @@ else
 
     private RenderFragment siderMenuWrapper(ApplicationMenuItemList clearMenuData = null, bool hide = false) =>
     @<Template>
-        <SiderMenuWrapper Hide="@hide" MenuData="@clearMenuData"
-                      MatchMenuKeys="@MatchMenuKeys"
+        <SiderMenuWrapper Hide="hide"
                       SiderWidth="SiderWidth"
                       Collapsed="Collapsed"
-                      OnCollapse="HandleCollapse"/>
+                      OnCollapse="HandleCollapse"
+                      MenuData="clearMenuData"
+                      SelectedKeys="SiderMenuKeys"
+                      SelectedKeysChanged="HandleSiderMenuSelectedKeysChanged" />
     </Template>
     ;
 
-    }
+
+
+ }
