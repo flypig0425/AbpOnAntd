@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Zero.Abp.AntdesignUI.Layout
 {
-    public abstract class AntProComponentBase : AntDomComponentBase, IPureSettings//, IRenderSetting
+    public abstract class AntProComponentBase : AntComponentBase, IPureSettings//, IRenderSetting
     {
         [Parameter]
         public MenuTheme NavTheme
@@ -140,6 +140,9 @@ namespace Zero.Abp.AntdesignUI.Layout
         //[Parameter] public RenderFragment FooterContent { get; set; }
         //[Parameter] public RenderFragment MenuContent { get; set; }
         //[Parameter] public RenderFragment MenuExtraRender { get; set; }
+
+        [Parameter] public string Class { get; set; }
+        [Parameter] public string Style { get; set; }
         [Parameter] public RenderFragment ChildContent { get; set; }
 
         /// <summary>

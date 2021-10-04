@@ -21,8 +21,8 @@ else
         </Layout>
     </div>
 }
+<AntContainer />
 
-@inject NavigationManager NavigationManager
 @using Microsoft.AspNetCore.Components.Routing
 @inherits AntProComponentBase
 @code {
@@ -66,7 +66,108 @@ else
     protected bool IsMobile => (ColSize == "sm" || ColSize == "xs") && !DisableMobile;
     protected bool OpenKeys { get; set; } = true;
 
-    protected string[] MatchMenuKeys { get; set; } = { };
+    protected ApplicationMenuItemList MatchMenus { get; set; }
+    protected string[] MatchMenuKeys { get; set; }
+
+    private ApplicationMenuItemList GetMatchMenus(
+        ApplicationMenuItemList menuData,
+        bool fullKeys)
+    {
+        var flatMenus = GetFlatMenu(menuData);
+        var menuPathKeys = GetMenuMatches(flatMenus);
+        if (menuPathKeys.IsNullOrEmpty())
+        {
+            return new ApplicationMenuItemList();
+        }
+        if (!fullKeys)
+        {
+            menuPathKeys = new string[] { menuPathKeys.LastOrDefault() };
+        }
+        var matchMenus = menuPathKeys.Select(menuPathKey => flatMenus.Find(f => f.name == menuPathKey).menuItem);
+        return new ApplicationMenuItemList(matchMenus);
+    }
+
+
+    private string[] GetMatchMenuKeys(
+      ApplicationMenuItemList menuData,
+      bool fullKeys)
+    {
+        var flatMenus = GetFlatMenu(menuData);
+        var menuPathKeys = GetMenuMatches(flatMenus);
+        if (menuPathKeys.IsNullOrEmpty())
+        {
+            return new string[] { };
+        }
+        if (!fullKeys)
+        {
+            menuPathKeys = new string[] { menuPathKeys.LastOrDefault() };
+        }
+        return menuPathKeys;
+    }
+
+
+    private string[] GetMenuMatches(List<(string name, ApplicationMenuItem menuItem, string[] pathsName, string url)> flatMenus)
+    {
+        var tempFlatMenus = flatMenus.Where(w => !w.url.IsNullOrWhiteSpace()).ToList();
+        var currentUriAbsolute = NavigationManager.Uri;
+        return tempFlatMenus.Find(item =>
+         {
+             if (!item.url.StartsWith("http"))
+             {
+                 var _hrefAbsolute = NavigationManager.ToAbsoluteUri(item.url).AbsoluteUri;
+                 if (string.Equals(currentUriAbsolute, _hrefAbsolute, StringComparison.OrdinalIgnoreCase))
+                 {
+                     return true;
+                 }
+                 if (currentUriAbsolute.Length == _hrefAbsolute.Length - 1)
+                 {
+                     if (_hrefAbsolute[^1] == '/' && _hrefAbsolute.StartsWith(currentUriAbsolute, StringComparison.OrdinalIgnoreCase))
+                     {
+                         return true;
+                     }
+                 }
+                 //if (item.menuItem.CustomData["Match"] == NavLinkMatch.Prefix)
+                 //{
+                 //int prefixLength = _hrefAbsolute.Length;
+                 //if (currentUriAbsolute.Length > prefixLength)
+                 //{
+                 //    return currentUriAbsolute.StartsWith(_hrefAbsolute, StringComparison.OrdinalIgnoreCase)
+                 //&& (prefixLength == 0
+                 //|| !char.IsLetterOrDigit(_hrefAbsolute[prefixLength - 1])
+                 //|| !char.IsLetterOrDigit(_hrefAbsolute[prefixLength])
+                 //);
+                 //}
+                 //}
+             }
+             return false;
+         }).pathsName;
+    }
+
+    private List<(string name, ApplicationMenuItem menuItem, string[] pathsName, string url)> GetFlatMenu(
+        ApplicationMenuItemList menuData, List<string> pathsName = null)
+    {
+        pathsName ??= new List<string> { };
+        var menus = new List<(string name, ApplicationMenuItem menuItem, string[] pathsName, string url)>();
+        menuData.ForEach(item =>
+        {
+            if (item?.Name == null) { return; }
+            var tempPathsName = pathsName.Select(s => s).ToList();
+            tempPathsName.AddLast(item.Name);
+            var menuItem = new ApplicationMenuItem(item.Name, item.DisplayName, item.Url, item.Icon, item.Order, item.CustomData, item.Target, item.ElementId, item.CssClass);
+            menus.Add((item.Name, menuItem, tempPathsName.ToArray(), item?.Url?.TrimStart('~')));
+            if (!item.IsLeaf)
+            {
+                menus.AddRange(GetFlatMenu(item.Items, tempPathsName));
+            }
+        });
+        return menus;
+    }
+
+
+
+
+    [Inject] NavigationManager NavigationManager { get; }
+
     protected ApplicationMenuItemList MenuData { get; set; }
 
     [Inject] protected IMenuManager MenuManager { get; set; }
@@ -74,7 +175,18 @@ else
     {
         //MatchMenuKeys = new string[] { "TenantManagement3", "TenantManagement.Tenants30" };
         MenuData = (await MenuManager.GetMainMenuAsync()).GetAdministration().Items;
+        MatchMenus = GetMatchMenus(MenuData, true);
+        MatchMenuKeys = GetMatchMenuKeys(MenuData, true);
+
     }
+
+
+    private async Task HandleCollapse(bool collapsed)
+    {
+        Collapsed = collapsed;
+        await OnCollapse.InvokeAsync(collapsed);
+    }
+
 
 
     RenderFragment siderMenuDom => renderSiderMenu();
@@ -135,13 +247,4 @@ else
                       OnCollapse="HandleCollapse" />
     </Template>
     ;
-
-
-
-
-    private async Task HandleCollapse(bool collapsed)
-    {
-        Collapsed = collapsed;
-        await OnCollapse.InvokeAsync(collapsed);
     }
-}

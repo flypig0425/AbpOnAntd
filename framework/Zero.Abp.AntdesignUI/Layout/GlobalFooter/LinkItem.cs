@@ -14,6 +14,6 @@ namespace Zero.Abp.AntdesignUI.Layout
         /// <summary>
         /// "_blank" or "_self"
         /// </summary>
-        public string Target { get; set; } = "_self";
+        public string Target { get; set; } = "_blank";
     }
 }
