@@ -36,13 +36,9 @@ else
     </div>
 }
 @code{
-    private string BaseClassName => $"{PrefixCls}-global-header";
-    private string className => ClassNames(BaseClassName, Class
-        , ($"{BaseClassName}-layout-{Layout.Name}", Layout != null&&NavTheme==MenuTheme.Dark)//&& headerTheme === 'dark'
-        );
-
           [Parameter]public string[] MatchMenuKeys { get; set; } = { };
     [Parameter] public ApplicationMenuItemList MenuData { get; set; }
+
     [Parameter] public bool Collapsed { get; set; }
 
     [Parameter] public bool IsMobile { get; set; }
@@ -68,4 +64,10 @@ else
 
     static readonly RenderFragment<bool> defaultCollapsedButtonRender = collapsed =>
     @<Icon Type="@(collapsed ? "menu-unfold" : "menu-fold")" Theme="outline" />;
+
+        private string BaseClassName => $"{PrefixCls}-global-header";
+    private string className => ClassNames(BaseClassName, Class
+        , ($"{BaseClassName}-layout-{Layout.Name}", Layout != null&&NavTheme==MenuTheme.Dark)//&& headerTheme === 'dark'
+        );
+
 }

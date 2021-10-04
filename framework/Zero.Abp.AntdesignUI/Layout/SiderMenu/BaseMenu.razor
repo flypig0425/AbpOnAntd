@@ -1,21 +1,21 @@
 @namespace Zero.Abp.AntdesignUI.Layout
-@*<br />
+<br />
     OpenKeys:   @string.Join("|",OpenKeys??new string[]{})
     <br />
     SelectedKeys:   @string.Join("|",SelectedKeys??new string[]{})
     <br />
     MatchMenuKeys: @string.Join("|",MatchMenuKeys??new string[]{})
-*@
+
 
 <Menu Mode="@Mode"
       Theme="@NavTheme"
       InlineIndent="16"
       Style="@Style"
       Class="@ClassNames(Class,("top-nav-menu",Mode==MenuMode.Horizontal))"
-      SelectedKeys="@SelectedKeys"
       OpenKeys="@OpenKeys"
-      SelectedKeysChanged="@SetSelectedKeys"
       OnOpenChange="@SetOpenKeys"
+      SelectedKeys="@SelectedKeys"
+      SelectedKeysChanged="@SetSelectedKeys"
       InlineCollapsed="Collapsed">
     @if (Mode == MenuMode.Horizontal && MenuData.Count > maxTopMenuCount)
     {
@@ -42,6 +42,55 @@
 @inherits AntProComponentBase
 @code {
     int maxTopMenuCount = 5;
+    
+    [Parameter] public string IconPrefixes { get; set; } = "icon-";
+
+    [Parameter] public bool Collapsed { get; set; }
+    [Parameter] public bool IsMobile { get; set; }
+    [Parameter] public MenuMode Mode { get; set; }//  //ToDo: 'vertical' | 'vertical-left' | 'vertical-right' | 'horizontal' | 'inline'; 
+    [Parameter] public RenderFragment<ApplicationMenuItem> MenuItemRender { get; set; }
+    [Parameter] public RenderFragment<ApplicationMenuItem> SubMenuItemRender { get; set; }
+
+    [Parameter] public ApplicationMenuItemList MenuData { get; set; }
+    [Parameter] public string[] MatchMenuKeys { get; set; } = { };
+
+    [Parameter] public string[] OpenKeys { get => (!Collapsed && new Layout[] { Layout.Side, Layout.Mix }.Contains(Layout)) ? openKeys : null; set => openKeys = value; }
+    [Parameter] public string[] SelectedKeys { get => selectedKeys; set => selectedKeys = value; }
+    [Parameter] public EventCallback<string[]> OnOpenChange { get; set; }
+    [Parameter] public EventCallback<string[]> SelectedKeysChanged { get; set; }
+    
+
+
+
+    string[] openKeys = Array.Empty<string>();
+    string[] selectedKeys = Array.Empty<string>();
+    async void SetOpenKeys(string[] keys)
+    {
+        OpenKeys = keys;
+        if (!IsMobile && OnOpenChange.HasDelegate)
+        {
+            await OnOpenChange.InvokeAsync(keys);
+        }
+    }
+    async void SetSelectedKeys(string[] keys)
+    {
+        SelectedKeys = keys;
+        if (SelectedKeysChanged.HasDelegate)
+        {
+            await SelectedKeysChanged.InvokeAsync(keys);
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        if (MatchMenuKeys?.Any() ?? false)
+        {
+            SetOpenKeys(MatchMenuKeys);
+            SetSelectedKeys(MatchMenuKeys);
+        }
+    }
+
 
     static readonly RenderFragment<(ApplicationMenuItemList items, BaseMenu that)> getNavMenuItems = context =>
     @<Template>
@@ -139,65 +188,4 @@
             }
         </Template>
     ;
-
-    //[Parameter] public MenuDataItem[] MenuData { get; set; } = { };
-    [Parameter] public bool Collapsed { get; set; }
-    [Parameter] public bool IsMobile { get; set; }
-    [Parameter] public MenuMode Mode { get; set; }//  //ToDo: 'vertical' | 'vertical-left' | 'vertical-right' | 'horizontal' | 'inline';
-    [Parameter]
-    public string[] OpenKeys
-    {
-        get => (!Collapsed && new Layout[] { Layout.Side, Layout.Mix }.Contains(Layout)) ? openKeys : null;
-        set => openKeys = value;
-    }
-
-    [Parameter]
-    public string[] SelectedKeys
-    {
-        get => selectedKeys;
-        set => selectedKeys = value;
-    }
-
-    [Parameter] public EventCallback<string[]> OnOpenChange { get; set; }
-    [Parameter] public EventCallback<string[]> OnSelected { get; set; }
-
-    [Parameter] public string IconPrefixes { get; set; } = "icon-";
-    [Parameter] public bool DefaultCollapsed { get; set; }
-
-    [Parameter] public RenderFragment<ApplicationMenuItem> MenuItemRender { get; set; }
-    [Parameter] public RenderFragment<ApplicationMenuItem> SubMenuItemRender { get; set; }
-
-    [Parameter] public ApplicationMenuItemList MenuData { get; set; }
-
-    //string[] selectedKeys;
-
-    string[] openKeys = Array.Empty<string>();
-    string[] selectedKeys = Array.Empty<string>();
-    async void SetOpenKeys(string[] keys)
-    {
-        OpenKeys = keys;
-        if (!IsMobile && OnOpenChange.HasDelegate)
-        {
-            await OnOpenChange.InvokeAsync(keys);
-        }
-    }
-    async void SetSelectedKeys(string[] keys)
-    {
-        SelectedKeys = keys;
-        if (OnSelected.HasDelegate)
-        {
-            await OnSelected.InvokeAsync(keys);
-        }
-    }
-
-    [Parameter] public string[] MatchMenuKeys { get; set; } = { };
-    protected override async Task OnInitializedAsync()
-    {
-        await base.OnInitializedAsync();
-        if (MatchMenuKeys?.Any() ?? false)
-        {
-            SetOpenKeys(MatchMenuKeys);
-            SetSelectedKeys(MatchMenuKeys);
-        }
-    }
 }

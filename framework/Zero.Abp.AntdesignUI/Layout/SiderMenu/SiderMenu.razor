@@ -2,13 +2,13 @@
 @inherits AntProComponentBase
 @*@if (FixedHeader)
     {
-        <div style="width: @siderWidth;
-            overflow: hidden;
-            flex: 0 0 @siderWidth;
-            max-width: @siderWidth;
-            min-width: @siderWidth;
-            transition: background-color 0.3s, min-width 0.3s, max-width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-            @Style" />
+    <div style="width: @siderWidth;
+    overflow: hidden;
+    flex: 0 0 @siderWidth;
+    max-width: @siderWidth;
+    min-width: @siderWidth;
+    transition: background-color 0.3s, min-width 0.3s, max-width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    @Style" />
     }*@
 
 <Sider Collapsible="false"
@@ -23,8 +23,8 @@
 
     @if (HasHeaderDom)
     {
-        <div id="logo" style="@LogoStyle"  @onclick="@OnMenuHeaderClick"
-             class="@ClassNames($"{BaseClassName}-logo", ($"{BaseClassName}-collapsed",Collapsed))">
+        <div id="logo" style="@LogoStyle" @onclick="@OnMenuHeaderClick"
+         class="@ClassNames($"{BaseClassName}-logo", ($"{BaseClassName}-collapsed",Collapsed))">
             <Branding HideTitle="@Collapsed" />
         </div>
     }
@@ -37,14 +37,13 @@
     }
 
     <div style="flex: 1; overflow-y: auto; overflow-x: hidden;">
-        <BaseMenu Mode="Mode"
-                  Collapsed="@Collapsed"
-                  OpenKeys="@OpenKeys"
-                  OnOpenChange="@HandleOnOpenChange"
-                  Style="width: 100%"
+        <BaseMenu Style="width: 100%"
                   Class="@($"{BaseClassName}-menu")"
+                  Mode="Mode"
+                  Collapsed="@Collapsed"
                   MenuData="@MenuData"
-                  MatchMenuKeys="MatchMenuKeys"/>
+                  MatchMenuKeys="MatchMenuKeys"
+/>
     </div>
 
     <div class="@BaseClassName-links">
@@ -64,8 +63,8 @@
             @if (CollapsedButtonRender != null && !IsMobile)
             {
                 <MenuItem Class="@($"{BaseClassName}-collapsed-button")"
-                          Key="Collapsed" Title="@null"
-                          OnClick="@(async arg => await HandleOnCollapse(Collapsed = !Collapsed))">
+                      Key="Collapsed" Title="@null"
+                      OnClick="@(async arg => await HandleOnCollapse(Collapsed = !Collapsed))">
                     @CollapsedButtonRender(Collapsed)
                 </MenuItem>
             }
@@ -81,10 +80,10 @@
 
 
 @code {
-      [Parameter]public string[] MatchMenuKeys { get; set; } = { };
+    [Parameter] public string[] MatchMenuKeys { get; set; } = { };
     [Parameter] public ApplicationMenuItemList MenuData { get; set; }
 
-    [Parameter] public string[] OpenKeys { get; set; } = { };
+
 
     [Parameter] public int SiderWidth { get; set; } = 208;
     [Parameter] public bool IsMobile { get; set; }
@@ -110,7 +109,6 @@
     [Parameter] public RenderFragment<bool> MenuFooterRender { get; set; }
 
     [Parameter] public EventCallback<bool> OnCollapse { get; set; }
-    [Parameter] public EventCallback<string[]> OnOpenChange { get; set; }
     [Parameter] public List<RenderFragment> Links { get; set; } = new List<RenderFragment>();
 
     //[Parameter] public MenuDataItem[] MenuData { get; set; }
@@ -135,13 +133,23 @@
         );
     #endregion
 
-    private async Task HandleOnOpenChange(string[] openKeys)
-    {
-        if (OnOpenChange.HasDelegate)
-        {
-            await OnOpenChange.InvokeAsync(openKeys);
-        }
-    }
+    //private async Task HandleOnOpenChange(string[] openKeys)
+    //{
+    //    OpenKeys = openKeys;
+    //    if (OnOpenChange.HasDelegate)
+    //    {
+    //        await OnOpenChange.InvokeAsync(openKeys);
+    //    }
+    //}
+    //private async void HandleOnSelectedKeys(string[] keys)
+    //{
+    //    SelectedKeys = keys;
+    //    if (OnSelected.HasDelegate)
+    //    {
+    //        await OnSelected.InvokeAsync(keys);
+    //    }
+    //}
+
     private async Task HandleOnCollapse(bool collapsed)
     {
         if (!IsMobile && OnCollapse.HasDelegate)
