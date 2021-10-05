@@ -1,15 +1,6 @@
 @namespace Zero.Abp.AntdesignUI.Layout
 @inherits AntProComponentBase
 
-@*<br />
-    OpenKeys:   @string.Join("|",OpenKeys??new string[]{})
-    <br />
-
-    SelectedKeys:   @string.Join("|",SelectedKeys??new string[]{})
-    <br />
-    MatchMenuKeys: @string.Join("|",MatchMenuKeys??new string[]{})
-*@
-
 <Menu Mode="@Mode"
       Theme="@NavTheme"
       InlineIndent="16"
@@ -100,7 +91,7 @@
                 var that = context.that;
                 var menuItem = context.menuItem;
                 var cssClass = string.IsNullOrEmpty(menuItem.CssClass) ? string.Empty : menuItem.CssClass;
-                var url = menuItem?.Url?.TrimStart('/', '~');
+                var url = menuItem?.Url?.TrimStart('~');
 
                 @if (!menuItem.IsLeaf)
                 {

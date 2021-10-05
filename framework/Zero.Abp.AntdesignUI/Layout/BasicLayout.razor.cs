@@ -17,7 +17,6 @@ namespace Zero.Abp.AntdesignUI.Layout
         [Parameter] public EventCallback<bool> OnCollapse { get; set; }
 
 
-        private readonly bool isChildrenLayout = false;
         protected string ColSize { get; set; } = "lg";//useAntdMediaQuery();
         protected bool IsMobile => (ColSize == "sm" || ColSize == "xs") && !DisableMobile;
 
@@ -69,9 +68,12 @@ namespace Zero.Abp.AntdesignUI.Layout
             await OnCollapse.InvokeAsync(collapsed);
         }
 
-
-
         #region StyleOrClass
+        private readonly bool isChildrenLayout = false;
+
+        private readonly string layoutCls = "ant-layout";
+
+
         bool HasSiderMenu => Layout != Layout.Mix || !SplitMenus || SiderMenuDom != null;
         bool HasLeftPadding => HasSiderMenu && FixSiderbar && Layout != Layout.Top && !IsMobile;
         int PaddingLeft => HasLeftPadding ? (Collapsed ? 48 : SiderWidth) : 0;
@@ -84,18 +86,17 @@ namespace Zero.Abp.AntdesignUI.Layout
 
         private string BaseClassName => $"{PrefixCls}-basicLayout";
 
-        private readonly string layoutCls = "ant-layout";
         private string LayoutClass => ClassNames("ant-design-pro", BaseClassName, $"screen-{ColSize}"
             , ($"{BaseClassName}-top-menu", Layout == Layout.Top)
             , ($"{BaseClassName}-is-children", isChildrenLayout)
             , ($"{BaseClassName}-fix-siderbar", FixSiderbar)
             , ($"{BaseClassName}-mobile", IsMobile)
             );
+
         private string ContentClass => ClassNames($"{BaseClassName}-content"
             , ($"{BaseClassName}-has-header", HeaderRender)
             , ($"{BaseClassName}-content-disable-margin", DisableContentMargin)
             );
         #endregion
-
     }
 }
