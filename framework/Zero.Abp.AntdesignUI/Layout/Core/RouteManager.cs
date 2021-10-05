@@ -31,6 +31,12 @@ namespace Zero.Abp.AntdesignUI.Layout
             var flatMenus = await GetFlatMenuAsync();
             return GetMatchMenuKeys(flatMenus, fullKeys);
         }
+        public async Task<string> GetRootKeyAsync(string name)
+        {
+            if (name.IsNullOrWhiteSpace()) { return name; }
+            var flatMenus = await GetFlatMenuAsync();
+            return flatMenus.Find(f => f.Name == name).PathsName?.FirstOrDefault();
+        }
 
         public async Task<string[]> GetFirstLeafPathsNameAsync(string name)
         {
@@ -128,6 +134,7 @@ namespace Zero.Abp.AntdesignUI.Layout
 
     public interface IRouteManager
     {
+        Task<string> GetRootKeyAsync(string name);
         Task<ApplicationMenuItemList> GetMenuDataAsync();
         Task<string[]> GetMatchMenuKeysAsync(bool fullKeys);
         Task<string[]> GetFirstLeafPathsNameAsync(string name);

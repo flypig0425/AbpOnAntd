@@ -198,6 +198,6 @@ namespace Zero.Abp.AntdesignUI.Layout
         /// <summary>
         /// 'sub' | 'group'
         /// </summary>
-        public string Type { get; set; }
+        public string Type { get; set; } 
     }
 }

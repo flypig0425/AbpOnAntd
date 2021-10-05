@@ -1,18 +1,22 @@
 @namespace Zero.Abp.AntdesignUI.Layout
+@inherits AntProComponentBase
+
 @*<br />
     OpenKeys:   @string.Join("|",OpenKeys??new string[]{})
     <br />
+
     SelectedKeys:   @string.Join("|",SelectedKeys??new string[]{})
+    <br />
+    MatchMenuKeys: @string.Join("|",MatchMenuKeys??new string[]{})
 *@
-<Menu Mode="Mode"
-      Theme="NavTheme"
+
+<Menu Mode="@Mode"
+      Theme="@NavTheme"
       InlineIndent="16"
-      Style="Style"
+      Style="@Style"
       Class="@ClassNames(Class,("top-nav-menu",Mode==MenuMode.Horizontal))"
-      OpenKeys="OpenKeys"
-      OnOpenChange="SetOpenKeys"
       SelectedKeys="SelectedKeys"
-      SelectedKeysChanged="SetSelectedKeys"
+      SelectedKeysChanged="SelectedKeysChanged"
       InlineCollapsed="Collapsed">
     @if (Mode == MenuMode.Horizontal && MenuData.Count > maxTopMenuCount)
     {
@@ -36,60 +40,7 @@
     }
 </Menu>
 
-@inherits AntProComponentBase
 @code {
-    int maxTopMenuCount = 5;
-
-    [Parameter] public string IconPrefixes { get; set; } = "icon-";
-
-    [Parameter] public bool Collapsed { get; set; }
-    [Parameter] public bool IsMobile { get; set; }
-    [Parameter] public MenuMode Mode { get; set; }//  //ToDo: 'vertical' | 'vertical-left' | 'vertical-right' | 'horizontal' | 'inline';
-    [Parameter] public RenderFragment<ApplicationMenuItem> MenuItemRender { get; set; }
-    [Parameter] public RenderFragment<ApplicationMenuItem> SubMenuItemRender { get; set; }
-
-    [Parameter] public ApplicationMenuItemList MenuData { get; set; }
-
-    [Parameter]
-    public string[] OpenKeys
-    {
-        get => (!Collapsed && new Layout[] { Layout.Side, Layout.Mix }.Contains(Layout)) ? openKeys : null;
-        set => openKeys = value;
-    }
-    [Parameter]
-    public string[] SelectedKeys
-    {
-        get => selectedKeys;
-        set => selectedKeys = value.IsNullOrEmpty() ? selectedKeys : value;
-    }
-    [Parameter] public EventCallback<string[]> OnOpenChange { get; set; }
-    [Parameter] public EventCallback<string[]> SelectedKeysChanged { get; set; }
-
-    string[] openKeys = Array.Empty<string>();
-    string[] selectedKeys = Array.Empty<string>();
-    async void SetOpenKeys(string[] keys)
-    {
-        openKeys = keys;
-        if (!IsMobile && OnOpenChange.HasDelegate)
-        {
-            await OnOpenChange.InvokeAsync(keys);
-        }
-    }
-    async void SetSelectedKeys(string[] keys)
-    {
-        selectedKeys = keys;
-        if (SelectedKeysChanged.HasDelegate)
-        {
-            await SelectedKeysChanged.InvokeAsync(keys);
-        }
-    }
-
-    protected override async Task OnInitializedAsync()
-    {
-        await base.OnInitializedAsync();
-    }
-
-
     static readonly RenderFragment<(ApplicationMenuItemList items, BaseMenu that)> getNavMenuItems = context =>
     @<Template>
         @foreach (var item in context.items ?? new ApplicationMenuItemList())
@@ -103,13 +54,13 @@
     @<Template>
         @if (context.menuItem != null)
             {
-                var that = context.that;
+                var that = @context.that;
                 var menuItem = context.menuItem;
                 var isHttpUrl = menuItem?.Url?.Contains("http") ?? false;
                 var cssClass = string.IsNullOrEmpty(menuItem.CssClass) ? string.Empty : menuItem.CssClass;
                 var menuIcon = menuItem?.Icon ?? "";
                 <span title="@menuItem.DisplayName" class="@ClassNames($"{that.PrefixCls}-menu-item",($"{that.PrefixCls}-menu-item-link",isHttpUrl),cssClass)">
-                    @if (menuIcon.IsNullOrWhiteSpace())
+                    @if (menuIcon.IsNullOrWhiteSpace() || menuItem.IsLeaf)
                     {
                         @menuItem.DisplayName
                     }

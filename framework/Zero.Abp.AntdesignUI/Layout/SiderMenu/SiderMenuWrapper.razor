@@ -44,9 +44,9 @@
     }
 }
 @code {
-    [Parameter] public string[] SelectedKeys { get; set; }= null;
-    [Parameter] public EventCallback<string[]> SelectedKeysChanged { get; set; }
     [Parameter] public ApplicationMenuItemList MenuData { get; set; }
+    [Parameter] public string[] SelectedKeys { get; set; }
+    [Parameter] public EventCallback<string[]> SelectedKeysChanged { get; set; }
 
     [Parameter] public bool Hide { get; set; }
     [Parameter] public bool IsMobile { get; set; }

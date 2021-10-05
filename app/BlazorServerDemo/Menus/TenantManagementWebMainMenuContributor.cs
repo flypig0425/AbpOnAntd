@@ -25,9 +25,16 @@ namespace Antd.AbpDemo.Blazor.Menus
                   icon: "team");
 
                 administrationMenu.AddItem(tenantManagementMenuItem);
+
+                var tenantManagementMenuItem1 = new ApplicationMenuItem(
+                  $"{  TenantManagementMenuNames.GroupName}{t}_1",
+                $"租户管理{t}_1",
+                icon: "team");
+
+                tenantManagementMenuItem.AddItem(tenantManagementMenuItem1);
                 for (int i = 0; i < 10; i++)
                 {
-                    tenantManagementMenuItem.AddItem(new ApplicationMenuItem(
+                    tenantManagementMenuItem1.AddItem(new ApplicationMenuItem(
                    $"{ TenantManagementMenuNames.Tenants}{t}{i}",
                  $"租户列表{t}{i}",
                  url: $"~/TenantManagement/Tenants/{t}{i}")

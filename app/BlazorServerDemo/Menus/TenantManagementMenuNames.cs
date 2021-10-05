@@ -4,6 +4,6 @@
     {
         public const string GroupName = "TenantManagement";
 
-        public const string Tenants = GroupName + ".Tenants";
+        public const string Tenants = GroupName + "_Tenants";
     }
 }

@@ -1,4 +1,5 @@
 ﻿@namespace Zero.Abp.AntdesignUI.Layout
+@inherits AntProComponentBase
 
 @if (Pure)
 {
@@ -6,109 +7,37 @@
 }
 else
 {
-    <div class="@_layoutClass" style="@_weakModeStyle">
+    <div class="@LayoutClass" style="@WeakModeStyle">
         <Layout Style="min-height: 100%;">
-            @siderMenuDom
-            <div style="@_genLayoutStyle" class="@layoutCls">
-                @headerDom
+            @*<CascadingValue Value="@MatchMenuKeys" Name="MatchMenuKeys">*@
+            @SiderMenuDom
+            <div style="@GenLayoutStyle" class="@layoutCls">
+                @HeaderDom
                 <WrapContent PrefixCls="@PrefixCls"
-                         Class="@_contentClass"
+                         Class="@ContentClass"
                          Style="@ContentStyle">
                     @(Loading ? @<PageLoading /> : ChildContent)
-                    <br />
-                    TopMenuKeys: @string.Join("__",TopMenuKeys)
-                    <br />
-                    SiderMenuKeys: @string.Join("__",SiderMenuKeys)
-              @*      <br />
-                    MatchMenuKeys: @string.Join("__",MatchMenuKeys)*@
+                    <br />TopSelectedKeys:   @string.Join("--",TopSelectedKeys)
+                    <br />SiderSelectedKeys:   @string.Join("--",SiderSelectedKeys)
+                    @*   <br />
+                        <br />
+                        <br />
+                        TopSelectedKeys:   @string.Join("--",MatchMenuKeys)*@
                 </WrapContent>
-                @footerDom
+                @FooterDom
             </div>
+            @*</CascadingValue>*@
+
         </Layout>
     </div>
 }
 <AntContainer />
 
-@inherits AntProComponentBase
 @code {
-    [Parameter] public bool Pure { get; set; }
-    [Parameter] public bool Loading { get; set; }
-    [Parameter] public bool DisableMobile { get; set; }
-    [Parameter] public bool DisableContentMargin { get; set; }
-    [Parameter] public int SiderWidth { get; set; } = 208;
-    [Parameter] public string ContentStyle { get; set; }
-    [Parameter] public bool Collapsed { get; set; }
-    [Parameter] public EventCallback<bool> OnCollapse { get; set; }
 
-
-    private readonly bool isChildrenLayout = false;
-    protected string ColSize { get; set; } = "lg";//useAntdMediaQuery();
-    protected bool IsMobile => (ColSize == "sm" || ColSize == "xs") && !DisableMobile;
-
-
-    //protected string[] MatchMenuKeys { get; set; }
-    protected ApplicationMenuItemList MenuData { get; set; }
-
-    [Inject] protected IRouteManager RouteManager { get; set; }
-    protected override async Task OnInitializedAsync()
-    {
-        MenuData = await RouteManager.GetMenuDataAsync();
-        //MatchMenuKeys = await RouteManager.GetMatchMenuKeysAsync(true);
-        TopMenuKeys = await RouteManager.GetMatchMenuKeysAsync(true);
-    }
-
-    string[] TopMenuKeys = Array.Empty<string>();
-    string[] SiderMenuKeys = Array.Empty<string>();
-    async Task HandleTopMenuSelectedKeysChanged(string[] keys)
-    {
-        TopMenuKeys = await RouteManager.GetFirstLeafPathsNameAsync(keys.LastOrDefault());
-       //SiderMenuKeys = TopMenuKeys;
-    }
-    async Task HandleSiderMenuSelectedKeysChanged(string[] keys)
-    {
-        SiderMenuKeys = await RouteManager.GetFirstLeafPathsNameAsync(keys.FirstOrDefault());
-        //TopMenuKeys = SiderMenuKeys;
-    }
-
-
-    private async Task HandleCollapse(bool collapsed)
-    {
-        Collapsed = collapsed;
-        await OnCollapse.InvokeAsync(collapsed);
-    }
-
-
-
-
-    #region StyleOrClass
-    bool HasSiderMenu => (Layout == Layout.Mix && SplitMenus) ? siderMenuDom != null : true;
-    bool hasLeftPadding => HasSiderMenu && FixSiderbar && Layout != Layout.Top && !IsMobile;
-    int paddingLeft => hasLeftPadding ? (Collapsed ? 48 : SiderWidth) : 0;
-
-    private string _weakModeStyle => StyleValues(("filter: invert(80%)", ColorWeak));
-    private string _genLayoutStyle => StyleValues("position: relative"
-        , ("min-height:0px", isChildrenLayout || (ContentStyle?.Contains("min-height") ?? false))
-        , ($"padding-left: {paddingLeft}px", MenuRender)
-        );
-
-    private string BaseClassName => $"{PrefixCls}-basicLayout";
-
-    private string layoutCls = "ant-layout";
-    private string _layoutClass => ClassNames("ant-design-pro", BaseClassName, $"screen-{ColSize}"
-        , ($"{BaseClassName}-top-menu", Layout == Layout.Top)
-        , ($"{BaseClassName}-is-children", isChildrenLayout)
-        , ($"{BaseClassName}-fix-siderbar", FixSiderbar)
-        , ($"{BaseClassName}-mobile", IsMobile)
-        );
-    private string _contentClass => ClassNames($"{BaseClassName}-content"
-        , ($"{BaseClassName}-has-header", HeaderRender)
-        , ($"{BaseClassName}-content-disable-margin", DisableContentMargin)
-        );
-    #endregion
-
-    RenderFragment siderMenuDom => renderSiderMenu();
-    RenderFragment headerDom => headerRender();
-    RenderFragment footerDom => footerRender();
+    RenderFragment SiderMenuDom => renderSiderMenu();
+    RenderFragment HeaderDom => headerRender();
+    RenderFragment FooterDom => footerRender();
 
     private RenderFragment footerRender()
     {
@@ -125,31 +54,42 @@ else
     {
         @if ((HeaderRender == false) || Pure) { return null; }
         //@if (HeaderContent != null) { return HeaderContent; }
+
+        var menuData = new ApplicationMenuItemList(MenuData);
+        if (IsSplitMenus)
+        {
+            var noChildrenMenuData = MenuData.Select(s => new ApplicationMenuItem(s.Name, s.DisplayName, s.Url, s.Icon, s.Order, s.CustomData, s.Target, s.ElementId, s.CssClass));
+            menuData = new ApplicationMenuItemList(noChildrenMenuData);
+        }
         return
     @<Template>
+
         <HeaderView HasSiderMenu="HasSiderMenu"
                 SiderWidth="SiderWidth"
                 Collapsed="Collapsed"
-                MenuData="MenuData"
-                SelectedKeys="TopMenuKeys"
-                SelectedKeysChanged="HandleTopMenuSelectedKeysChanged" />
+                MenuData="menuData"
+                    @bind-SelectedKeys="TopSelectedKeys" />
+
     </Template>
     ;
     }
+
 
     private RenderFragment renderSiderMenu()
     {
         @if (MenuRender == false || Pure) { return null; }
         var menuData = new ApplicationMenuItemList(MenuData);
-        if (SplitMenus && (/*OpenKeys != false ||*/ Layout == Layout.Mix) && !IsMobile)
+        if (IsSplitMenus)
         {
-            //var key = MatchMenuKeys.FirstOrDefault(); 
-            var key = TopMenuKeys.FirstOrDefault(); 
+            var key = TopSelectedKeys.FirstOrDefault();
             if (!key.IsNullOrWhiteSpace())
             {
-                menuData = new ApplicationMenuItemList(menuData?.Find(f => f.Name == key)?.Items);
+                menuData = menuData?.Find(f => f.Name == key)?.Items;
             }
-            else { menuData = new ApplicationMenuItemList(); }
+            else
+            {
+                menuData = new ApplicationMenuItemList();
+            }
         }
         var clearMenuData = menuData;  /*clearMenuItem(menuData || []);*/
         if (!(clearMenuData?.Any() ?? false) && SplitMenus) { return null; }
@@ -167,11 +107,8 @@ else
                       Collapsed="Collapsed"
                       OnCollapse="HandleCollapse"
                       MenuData="clearMenuData"
-                      SelectedKeys="SiderMenuKeys"
-                      SelectedKeysChanged="HandleSiderMenuSelectedKeysChanged" />
+                          @bind-SelectedKeys="SiderSelectedKeys" />
     </Template>
     ;
-
-
 
  }
