@@ -1,5 +1,4 @@
 D:\DevCodes\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.WebAssembly.BasicTheme\bin\Debug\net5.0\Zero.Abp.AntdesignUI.StaticWebAssets.xml
-D:\DevCodes\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.WebAssembly.BasicTheme\bin\Debug\net5.0\Zero.Abp.AspNetCore.Components.Web.Theming.StaticWebAssets.xml
 D:\DevCodes\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.WebAssembly.BasicTheme\bin\Debug\net5.0\Zero.Abp.AspNetCore.Components.WebAssembly.StaticWebAssets.xml
 D:\DevCodes\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.WebAssembly.BasicTheme\bin\Debug\net5.0\Zero.Abp.AspNetCore.Components.WebAssembly.Theming.StaticWebAssets.xml
 D:\DevCodes\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.WebAssembly.BasicTheme\bin\Debug\net5.0\Zero.Abp.AspNetCore.Components.Web.BasicTheme.StaticWebAssets.xml
@@ -101,3 +100,5 @@ F:\_MyCode\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.WebAssembly.BasicT
 F:\_MyCode\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.WebAssembly.BasicTheme\obj\Debug\net5.0\Zero.Abp.AspNetCore.Components.WebAssembly.BasicTheme.dll
 F:\_MyCode\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.WebAssembly.BasicTheme\obj\Debug\net5.0\ref\Zero.Abp.AspNetCore.Components.WebAssembly.BasicTheme.dll
 F:\_MyCode\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.WebAssembly.BasicTheme\obj\Debug\net5.0\Zero.Abp.AspNetCore.Components.WebAssembly.BasicTheme.pdb
+D:\DevCodes\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.WebAssembly.BasicTheme\bin\Debug\net5.0\package-lock.json
+D:\DevCodes\AbpZero\basic-theme\Zero.Abp.AspNetCore.Components.WebAssembly.BasicTheme\bin\Debug\net5.0\package.json

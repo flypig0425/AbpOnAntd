@@ -16,7 +16,7 @@ namespace Zero.Abp.AntdesignUI.Layout
 
         public static string[] GetMatchMenuKeys(this NavigationManager navigationManager, ApplicationMenuItemList applicationMenus, bool fullKeys)
         {
-            var flatMenus = GetFlatMenuAsync(applicationMenus);
+            var flatMenus = GetFlatMenu(applicationMenus);
             return navigationManager.GetMatchMenuKeys(flatMenus, fullKeys);
         }
 
@@ -27,7 +27,7 @@ namespace Zero.Abp.AntdesignUI.Layout
         /// <param name="menuData">树形菜单数据</param>
         /// <param name="parentsName">父级路径名</param>
         /// <returns></returns>
-        private static List<(string Name, ApplicationMenuItem MenuItem, string[] PathsName, string Url, bool IsLeaf)> GetFlatMenuAsync(
+        private static List<(string Name, ApplicationMenuItem MenuItem, string[] PathsName, string Url, bool IsLeaf)> GetFlatMenu(
             ApplicationMenuItemList menuData, List<string> parentsName = null)
         {
             var menus = new List<(string name, ApplicationMenuItem menuItem, string[] pathsName, string url, bool isLeaf)>();
@@ -43,7 +43,7 @@ namespace Zero.Abp.AntdesignUI.Layout
                 menus.Add((item.Name, menuItem, tempPathsName.ToArray(), item?.Url?.TrimStart('~'), item.IsLeaf));
                 if (!item.IsLeaf)
                 {
-                    menus.AddRange(await GetFlatMenuAsync(item?.Items ?? new ApplicationMenuItemList(), tempPathsName));
+                    menus.AddRange(GetFlatMenu(item?.Items ?? new ApplicationMenuItemList(), tempPathsName));
                 }
             });
             return menus;

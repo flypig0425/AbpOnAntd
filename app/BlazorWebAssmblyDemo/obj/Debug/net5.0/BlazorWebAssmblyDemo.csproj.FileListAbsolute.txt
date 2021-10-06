@@ -291,7 +291,6 @@ D:\DevCodes\AbpZero\app\BlazorWebAssmblyDemo\obj\Debug\net5.0\ref\BlazorWebAssmb
 D:\DevCodes\AbpZero\app\BlazorWebAssmblyDemo\obj\Debug\net5.0\BlazorWebAssmblyDemo.pdb
 D:\DevCodes\AbpZero\app\BlazorWebAssmblyDemo\bin\Debug\net5.0\wwwroot\_framework\blazor.boot.json
 D:\DevCodes\AbpZero\app\BlazorWebAssmblyDemo\bin\Debug\net5.0\Zero.Abp.AntdesignUI.StaticWebAssets.xml
-D:\DevCodes\AbpZero\app\BlazorWebAssmblyDemo\bin\Debug\net5.0\Zero.Abp.AspNetCore.Components.Web.Theming.StaticWebAssets.xml
 D:\DevCodes\AbpZero\app\BlazorWebAssmblyDemo\bin\Debug\net5.0\Zero.Abp.AspNetCore.Components.WebAssembly.StaticWebAssets.xml
 D:\DevCodes\AbpZero\app\BlazorWebAssmblyDemo\bin\Debug\net5.0\Zero.Abp.AspNetCore.Components.WebAssembly.Theming.StaticWebAssets.xml
 D:\DevCodes\AbpZero\app\BlazorWebAssmblyDemo\bin\Debug\net5.0\Zero.Abp.AspNetCore.Components.Web.BasicTheme.StaticWebAssets.xml
@@ -1727,3 +1726,5 @@ F:\_MyCode\AbpZero\app\BlazorWebAssmblyDemo\obj\Debug\net5.0\BlazorWebAssmblyDem
 F:\_MyCode\AbpZero\app\BlazorWebAssmblyDemo\obj\Debug\net5.0\ref\BlazorWebAssmblyDemo.dll
 F:\_MyCode\AbpZero\app\BlazorWebAssmblyDemo\obj\Debug\net5.0\BlazorWebAssmblyDemo.pdb
 F:\_MyCode\AbpZero\app\BlazorWebAssmblyDemo\bin\Debug\net5.0\Zero.Abp.AspNetCore.Components.WebAssembly.BasicTheme.StaticWebAssets.xml
+D:\DevCodes\AbpZero\app\BlazorWebAssmblyDemo\bin\Debug\net5.0\package-lock.json
+D:\DevCodes\AbpZero\app\BlazorWebAssmblyDemo\bin\Debug\net5.0\package.json

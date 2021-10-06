@@ -11,7 +11,7 @@ namespace Zero.Abp.AspNetCore.Components.WebAssembly.BasicTheme
 
         public void AddStyles(BundleContext context)
         {
-            context.Add("_content/Zero.Abp.AspNetCore.Components.Web.BasicTheme/libs/abp/css/theme.css");
+
         }
     }
 }

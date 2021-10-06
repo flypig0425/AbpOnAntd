@@ -2622,21 +2622,6 @@
           "lib/netstandard2.0/Volo.Abp.VirtualFileSystem.dll": {}
         }
       },
-      "Zero.Abp.AntdesignLayout/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v5.0",
-        "dependencies": {
-          "AntDesign": "0.10.0",
-          "Microsoft.AspNetCore.Components.Web": "5.0.10",
-          "Zero.Abp.AspNetCore.Components.Web": "4.4.2"
-        },
-        "compile": {
-          "bin/placeholder/Zero.Abp.AntdesignLayout.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Zero.Abp.AntdesignLayout.dll": {}
-        }
-      },
       "Zero.Abp.AntdesignUI/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -2644,7 +2629,8 @@
           "AntDesign": "0.10.0",
           "Volo.Abp.Authorization": "4.4.2",
           "Volo.Abp.Ddd.Application.Contracts": "4.4.2",
-          "Zero.Abp.AspNetCore.Components.Web": "4.4.2"
+          "Zero.Abp.AspNetCore.Components.Web": "4.4.2",
+          "Zero.Abp.AspNetCore.Components.Web.Theming": "4.4.2"
         },
         "compile": {
           "bin/placeholder/Zero.Abp.AntdesignUI.dll": {}
@@ -2676,6 +2662,7 @@
           "Microsoft.AspNetCore.Components.Authorization": "5.0.0",
           "Microsoft.AspNetCore.Components.Web": "5.0.0",
           "Volo.Abp.UI": "4.4.2",
+          "Volo.Abp.UI.Navigation": "4.4.2",
           "Zero.Abp.AspNetCore.Components": "4.4.2"
         },
         "compile": {
@@ -2689,6 +2676,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
+          "Zero.Abp.AntdesignUI": "1.0.0",
           "Zero.Abp.AspNetCore.Components.Web.Theming": "4.4.2"
         },
         "compile": {
@@ -2702,9 +2690,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
-          "Volo.Abp.UI.Navigation": "4.4.2",
-          "Zero.Abp.AntdesignLayout": "1.0.0",
-          "Zero.Abp.AntdesignUI": "1.0.0"
+          "Volo.Abp.UI.Navigation": "4.4.2"
         },
         "compile": {
           "bin/placeholder/Zero.Abp.AspNetCore.Components.Web.Theming.dll": {}
@@ -5392,21 +5378,6 @@
           "lib/netstandard2.0/Volo.Abp.VirtualFileSystem.dll": {}
         }
       },
-      "Zero.Abp.AntdesignLayout/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v5.0",
-        "dependencies": {
-          "AntDesign": "0.10.0",
-          "Microsoft.AspNetCore.Components.Web": "5.0.10",
-          "Zero.Abp.AspNetCore.Components.Web": "4.4.2"
-        },
-        "compile": {
-          "bin/placeholder/Zero.Abp.AntdesignLayout.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Zero.Abp.AntdesignLayout.dll": {}
-        }
-      },
       "Zero.Abp.AntdesignUI/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -5414,7 +5385,8 @@
           "AntDesign": "0.10.0",
           "Volo.Abp.Authorization": "4.4.2",
           "Volo.Abp.Ddd.Application.Contracts": "4.4.2",
-          "Zero.Abp.AspNetCore.Components.Web": "4.4.2"
+          "Zero.Abp.AspNetCore.Components.Web": "4.4.2",
+          "Zero.Abp.AspNetCore.Components.Web.Theming": "4.4.2"
         },
         "compile": {
           "bin/placeholder/Zero.Abp.AntdesignUI.dll": {}
@@ -5446,6 +5418,7 @@
           "Microsoft.AspNetCore.Components.Authorization": "5.0.0",
           "Microsoft.AspNetCore.Components.Web": "5.0.0",
           "Volo.Abp.UI": "4.4.2",
+          "Volo.Abp.UI.Navigation": "4.4.2",
           "Zero.Abp.AspNetCore.Components": "4.4.2"
         },
         "compile": {
@@ -5459,6 +5432,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
+          "Zero.Abp.AntdesignUI": "1.0.0",
           "Zero.Abp.AspNetCore.Components.Web.Theming": "4.4.2"
         },
         "compile": {
@@ -5472,9 +5446,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
-          "Volo.Abp.UI.Navigation": "4.4.2",
-          "Zero.Abp.AntdesignLayout": "1.0.0",
-          "Zero.Abp.AntdesignUI": "1.0.0"
+          "Volo.Abp.UI.Navigation": "4.4.2"
         },
         "compile": {
           "bin/placeholder/Zero.Abp.AspNetCore.Components.Web.Theming.dll": {}
@@ -11879,11 +11851,6 @@
         "volo.abp.virtualfilesystem.4.4.2.nupkg.sha512",
         "volo.abp.virtualfilesystem.nuspec"
       ]
-    },
-    "Zero.Abp.AntdesignLayout/1.0.0": {
-      "type": "project",
-      "path": "../../framework/Zero.Abp.AntdesignLayout/Zero.Abp.AntdesignLayout.csproj",
-      "msbuildProject": "../../framework/Zero.Abp.AntdesignLayout/Zero.Abp.AntdesignLayout.csproj"
     },
     "Zero.Abp.AntdesignUI/1.0.0": {
       "type": "project",
