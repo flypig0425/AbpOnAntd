@@ -1,7 +1,7 @@
 @namespace Zero.Abp.AntdesignUI.Layout
 @using Microsoft.Extensions.Options
 @inherits AntDomComponentBase
-@inject IOptions<ProSettings> SettingState
+@*@inject IOptions<ProSettings> SettingState*@
 
 <AntList Split="false"
          DataSource="OtherSettings"
@@ -14,6 +14,16 @@
 
 @code
 {
+
+  protected LayoutSettings Settings { get; set; }
+        [Inject] protected ILayoutConfigProvider LayoutConfigProvider { get; set; }
+        protected override async Task OnInitializedAsync()
+        {
+            await base.OnInitializedAsync();
+            Settings = await LayoutConfigProvider.GetSettingsAsync();
+        }
+
+
     public SettingItem[] OtherSettings { get; set; }
 
     protected override void OnInitialized()
@@ -25,7 +35,7 @@
             new SettingItem
             {
                 Title = "Weakmode",
-                Action = @<Switch Size="small" @bind-Value="SettingState.Value.ColorWeak" />
+                Action = @<Switch Size="small" @bind-Value="Settings.ColorWeak" />
             },
             new SettingItem()
         };

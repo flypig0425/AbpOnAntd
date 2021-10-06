@@ -2,7 +2,13 @@
 {
     public interface ILayoutSettings
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public string NavTheme { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string Layout { get; set; }
         public string PrimaryColor { get; set; }
         public bool FixedHeader { get; set; }

@@ -59,13 +59,19 @@ namespace Zero.Abp.AntdesignUI.Layout
         [Parameter] public bool HideHintAlert { get; set; }
         [Parameter] public bool HideCopyButton { get; set; }
         [Inject] public MessageService Message { get; set; }
-        [Inject] public IOptions<ProSettings> SettingState { get; set; }
 
-        protected override void OnInitialized()
+
+        //[Inject] public IOptions<ProSettings> SettingState { get; set; }
+
+        protected LayoutSettings Settings { get; set; }
+        [Inject] protected ILayoutConfigProvider LayoutConfigProvider { get; set; }
+        protected override async Task OnInitializedAsync()
         {
-            base.OnInitialized();
+            await base.OnInitializedAsync();
+            Settings = await LayoutConfigProvider.GetSettingsAsync();
             SetThemeList();
         }
+
 
         private void SetThemeList()
         {
@@ -118,9 +124,9 @@ namespace Zero.Abp.AntdesignUI.Layout
                 Duration = 0
             });
             task.Start();
-            var key = SettingState.Value.PrimaryColor?? "default";
+            var key = Settings.PrimaryColor?? "default";
             string fileName;
-            if (SettingState.Value.NavTheme == "realDark")
+            if (Settings.NavTheme == "realDark")
             {
                 fileName = key == "default" ? "dark" : $"dark-{key}";
             }
@@ -139,7 +145,7 @@ namespace Zero.Abp.AntdesignUI.Layout
 
         private async Task CopySetting(MouseEventArgs args)
         {
-            var json = JsonSerializer.Serialize(SettingState.Value);
+            var json = JsonSerializer.Serialize(Settings);
             await JsInvokeAsync<object>(JSInteropConstants.Copy, json);
             await Message.Success("copy success, please replace defaultSettings in wwwroot/appsettings.json");
         }

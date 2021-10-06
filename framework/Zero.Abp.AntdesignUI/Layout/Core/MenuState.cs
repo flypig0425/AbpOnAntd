@@ -9,7 +9,7 @@ namespace Zero.Abp.AntdesignUI.Layout
 {
     public class MenuState : IScopedDependency
     {
-        public string[] MatchMenuKeys { get; internal set; }= Array.Empty<string>();
+        public LayoutSettings Settings { get; set; }
 
         // Lets components receive change notifications
         public event Action OnChange;

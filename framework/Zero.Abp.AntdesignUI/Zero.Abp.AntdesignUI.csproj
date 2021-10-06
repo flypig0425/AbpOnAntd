@@ -31,6 +31,8 @@
     <Compile Remove="Components\UiMessageAlert.razor.cs" />
     <Compile Remove="Components\UiNotificationAlert.razor.cs" />
     <Compile Remove="Components\UiPageProgress.razor.cs" />
+    <Compile Remove="Layout\Core\DefaultSettings.cs" />
+    <Compile Remove="Layout\Core\MenuState.cs" />
     <Compile Remove="Layout\GlobalFooter\GlobalFooter.razor.cs" />
     <Compile Remove="Layout\GlobalHeader\GlobalHeader.razor.cs" />
     <Compile Remove="ObjectExtensionPropertyInfoBlazorExtensions.cs" />

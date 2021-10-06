@@ -5,8 +5,8 @@ namespace Zero.Abp.AntdesignUI.Layout
     [Serializable]
     public class LayoutSettings : ILayoutSettings
     {
-        public virtual string NavTheme { get; set; } = "light";
-        public string Layout { get; set; } = "mix";
+        public string NavTheme { get; set; } 
+        public string Layout { get; set; } 
         public string PrimaryColor { get; set; }
         public bool FixedHeader { get; set; }
         public bool FixSiderbar { get; set; }
@@ -17,7 +17,7 @@ namespace Zero.Abp.AntdesignUI.Layout
         public bool MenuRender { get; set; } = true;
         public bool MenuHeaderRender { get; set; } = true;
         public int HeaderHeight { get; set; } = 48;
-        public string ContentWidth { get; set; } = "Fluid";
+        public string ContentWidth { get; set; } 
         public string IconfontUrl { get; set; }
 
         public LayoutSettings()

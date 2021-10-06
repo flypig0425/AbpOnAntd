@@ -4,6 +4,6 @@ namespace Zero.Abp.AntdesignUI.Layout
 {
     public interface ILayoutConfigProvider
     {
-        Task<LayoutSettings> GetAsync();
+        Task<LayoutSettings> GetSettingsAsync();
     }
 }

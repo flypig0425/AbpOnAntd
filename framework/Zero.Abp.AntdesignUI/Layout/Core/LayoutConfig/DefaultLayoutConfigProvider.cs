@@ -17,7 +17,7 @@ namespace Zero.Abp.AntdesignUI.Layout
             Options = options.Value;
         }
 
-        public Task<LayoutSettings> GetAsync()
+        public Task<LayoutSettings> GetSettingsAsync()
         {
             return Task.FromResult(Options.Settings);
         }

@@ -26,8 +26,8 @@ namespace Zero.Abp.AntdesignUI.Layout
         public string[] SiderSelectedKeys { get; set; }
         protected ApplicationMenuItemList MenuData { get; set; }
 
-        [Inject] protected IMenuManager MenuManager { get; }
-        [Inject] protected NavigationManager NavigationManager { get; }
+        [Inject] protected IMenuManager MenuManager { get; set; }
+        [Inject] protected NavigationManager NavigationManager { get; set; }
 
         protected override async Task OnInitializedAsync()
         {

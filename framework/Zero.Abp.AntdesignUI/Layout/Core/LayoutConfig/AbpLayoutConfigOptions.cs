@@ -2,7 +2,7 @@
 {
     public class AbpLayoutConfigOptions
     {
-        public LayoutSettings Settings { get; internal set; }
+        public LayoutSettings Settings { get;  set; }
 
 
         public AbpLayoutConfigOptions()

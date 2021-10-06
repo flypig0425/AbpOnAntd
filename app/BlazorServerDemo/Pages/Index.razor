@@ -6,7 +6,7 @@
 @inject IMenuManager MenuManager
 
 
-<Captcha ImagesPath="@ImagesPath" ImagesName="@ImagesName" @ref="Captcha" OnValid="@OnValid" />
+@*<Captcha ImagesPath="@ImagesPath" ImagesName="@ImagesName" @ref="Captcha" OnValid="@OnValid" />*@
 
 <Button Type="@ButtonType.Primary" OnClick="@DeleteAsync">
     Open the notification box
@@ -18,24 +18,24 @@
     public string ImagesPath { get; set; } = "images";
     public string ImagesName { get; set; } = "Pic.jpg";
 
-    /// <summary>
-    ///
-    /// </summary>
-    private Captcha Captcha { get; set; }
+    ///// <summary>
+    /////
+    ///// </summary>
+    //private Captcha Captcha { get; set; }
 
-    private void OnValid(bool ret)
-    {
-        var result = ret ? "成功" : "失败";
-        Alerts.Warning($"验证码结果 -> {result}");
-        if (ret)
-        {
-            Task.Run(async () =>
-            {
-                await Task.Delay(1000);
-                Captcha?.Reset();
-            });
-        }
-    }
+    //private void OnValid(bool ret)
+    //{
+    //    var result = ret ? "成功" : "失败";
+    //    Alerts.Warning($"验证码结果 -> {result}");
+    //    if (ret)
+    //    {
+    //        Task.Run(async () =>
+    //        {
+    //            await Task.Delay(1000);
+    //            Captcha?.Reset();
+    //        });
+    //    }
+    //}
 
     protected override void OnInitialized()
     {
