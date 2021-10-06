@@ -5,7 +5,7 @@ using Volo.Abp.UI.Navigation;
 
 namespace Zero.Abp.AntdesignUI.Layout
 {
-    public partial class BasicLayout 
+    public partial class BasicLayout
     {
         [Parameter] public bool Pure { get; set; }
         [Parameter] public bool Loading { get; set; }
@@ -26,41 +26,18 @@ namespace Zero.Abp.AntdesignUI.Layout
         public string[] SiderSelectedKeys { get; set; }
         protected ApplicationMenuItemList MenuData { get; set; }
 
-        [Inject] protected IRouteManager RouteManager { get; set; }
+        [Inject] protected IMenuManager MenuManager { get; }
+        [Inject] protected NavigationManager NavigationManager { get; }
+
         protected override async Task OnInitializedAsync()
         {
-            MenuData = await RouteManager.GetMenuDataAsync();
-            if (IsSplitMenus) {
-                var matchMenuKeys = await RouteManager.GetMatchMenuKeysAsync(true);
+            MenuData = await MenuManager.GetMenuDataAsync();
+            if (IsSplitMenus)
+            {
+                var matchMenuKeys = NavigationManager.GetMatchMenuKeys(MenuData, true);
                 TopSelectedKeys = matchMenuKeys;
             }
-
-            //MenuState.UpdateMatchMenuKeys(matchMenuKeys);
-
-            //MenuState.OnChange += StateHasChanged;
-            //TopMenuKeys = await RouteManager.GetMatchMenuKeysAsync(true);
         }
-       
-        //protected override void Dispose(bool disposing)
-        //{
-        //    MenuState.OnChange -= StateHasChanged;
-        //    base.Dispose(disposing);
-        //}
-
-
-        //string[] TopMenuKeys = Array.Empty<string>();
-        //string[] SiderMenuKeys = Array.Empty<string>();
-        //async Task HandleTopMenuSelectedKeysChanged(string[] keys)
-        //{
-        //    TopMenuKeys = await RouteManager.GetFirstLeafPathsNameAsync(keys.LastOrDefault());
-        //    //SiderMenuKeys = TopMenuKeys;
-        //}
-        //async Task HandleSiderMenuSelectedKeysChanged(string[] keys)
-        //{
-        //    SiderMenuKeys = await RouteManager.GetFirstLeafPathsNameAsync(keys.FirstOrDefault());
-        //    //TopMenuKeys = SiderMenuKeys;
-        //}
-
 
         private async Task HandleCollapse(bool collapsed)
         {

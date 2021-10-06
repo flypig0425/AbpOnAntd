@@ -3,53 +3,21 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Volo.Abp.DependencyInjection;
 using Volo.Abp.UI.Navigation;
 
 namespace Zero.Abp.AntdesignUI.Layout
 {
-    public class RouteManager : IRouteManager, ITransientDependency
+    public static class IMenuManagerExtensions
     {
-        protected IMenuManager MenuManager { get; }
-        protected NavigationManager NavigationManager { get; }
-
-        public RouteManager(
-            IMenuManager menuManager,
-            NavigationManager navigationManager)
+        public static async Task<ApplicationMenuItemList> GetMenuDataAsync(this IMenuManager menuManager)
         {
-            MenuManager = menuManager;
-            NavigationManager = navigationManager;
+            return (await menuManager.GetMainMenuAsync())?.GetAdministration()?.Items ?? new ApplicationMenuItemList();
         }
 
-        public async Task<ApplicationMenuItemList> GetMenuDataAsync()
+        public static string[] GetMatchMenuKeys(this NavigationManager navigationManager, ApplicationMenuItemList applicationMenus, bool fullKeys)
         {
-            return (await MenuManager.GetMainMenuAsync())?.GetAdministration()?.Items ?? new ApplicationMenuItemList();
-        }
-
-        public async Task<string[]> GetMatchMenuKeysAsync(bool fullKeys)
-        {
-            var flatMenus = await GetFlatMenuAsync();
-            return GetMatchMenuKeys(flatMenus, fullKeys);
-        }
-        public async Task<string> GetRootKeyAsync(string name)
-        {
-            if (name.IsNullOrWhiteSpace()) { return name; }
-            var flatMenus = await GetFlatMenuAsync();
-            return flatMenus.Find(f => f.Name == name).PathsName?.FirstOrDefault();
-        }
-
-        public async Task<string[]> GetFirstLeafPathsNameAsync(string name)
-        {
-            var flatMenus = await GetFlatMenuAsync();
-            return flatMenus.Find(f => f.IsLeaf && f.PathsName.Contains(name)).PathsName.ToArray();
-        }
-
-        public async Task<ApplicationMenuItemList> GetMatchMenusAsync(bool fullKeys)
-        {
-            var flatMenus = await GetFlatMenuAsync();
-            var menuPathKeys = GetMatchMenuKeys(flatMenus, fullKeys);
-            var matchMenus = menuPathKeys.Select(menuPathKey => flatMenus.Find(f => f.Name == menuPathKey).MenuItem);
-            return new ApplicationMenuItemList(matchMenus);
+            var flatMenus = GetFlatMenuAsync(applicationMenus);
+            return navigationManager.GetMatchMenuKeys(flatMenus, fullKeys);
         }
 
         #region 内部方法
@@ -59,13 +27,13 @@ namespace Zero.Abp.AntdesignUI.Layout
         /// <param name="menuData">树形菜单数据</param>
         /// <param name="parentsName">父级路径名</param>
         /// <returns></returns>
-        private async Task<List<(string Name, ApplicationMenuItem MenuItem, string[] PathsName, string Url, bool IsLeaf)>> GetFlatMenuAsync(
-            ApplicationMenuItemList menuData = null, List<string> parentsName = null)
+        private static List<(string Name, ApplicationMenuItem MenuItem, string[] PathsName, string Url, bool IsLeaf)> GetFlatMenuAsync(
+            ApplicationMenuItemList menuData, List<string> parentsName = null)
         {
-            parentsName ??= new List<string> { };
-            menuData ??= await GetMenuDataAsync();
-            menuData = new ApplicationMenuItemList(menuData.OrderBy(o => o.Order));
             var menus = new List<(string name, ApplicationMenuItem menuItem, string[] pathsName, string url, bool isLeaf)>();
+            if (menuData.IsNullOrEmpty()) { return menus; }
+            parentsName ??= new List<string> { };
+            menuData = new ApplicationMenuItemList(menuData.OrderBy(o => o.Order));
             menuData.ForEach(async item =>
             {
                 if (item?.Name == null) { return; }
@@ -81,26 +49,29 @@ namespace Zero.Abp.AntdesignUI.Layout
             return menus;
         }
 
-        private string[] GetMatchMenuKeys(List<(string Name, ApplicationMenuItem MenuItem, string[] PathsName, string Url, bool IsLeaf)> flatMenus, bool fullKeys)
+
+        private static string[] GetMatchMenuKeys(this NavigationManager navigationManager,
+            List<(string Name, ApplicationMenuItem MenuItem, string[] PathsName, string Url, bool IsLeaf)> flatMenus, bool fullKeys)
         {
             if (flatMenus.IsNullOrEmpty()) { return Array.Empty<string>(); }
             var tempFlatMenus = flatMenus
                 .Where(w => !w.Url.IsNullOrWhiteSpace())
                 .Select(item => (item.PathsName, item.Url)).ToList();
-            var menuPathKeys = GetMenuMatches(tempFlatMenus);
+            var menuPathKeys = navigationManager.GetMenuMatches(tempFlatMenus);
             if (menuPathKeys.IsNullOrEmpty()) { return Array.Empty<string>(); }
             if (!fullKeys) { menuPathKeys = new string[] { menuPathKeys.LastOrDefault() }; }
             return menuPathKeys;
         }
-        private string[] GetMenuMatches(List<(string[] PathsName, string Url)> flatMenus)
+
+        private static string[] GetMenuMatches(this NavigationManager navigationManager, List<(string[] PathsName, string Url)> flatMenus)
         {
             var tempFlatMenus = flatMenus.Where(w => !w.Url.IsNullOrWhiteSpace()).ToList();
-            var currentUriAbsolute = NavigationManager.Uri;
+            var currentUriAbsolute = navigationManager.Uri;
             return tempFlatMenus.Find(item =>
             {
                 if (!item.Url.StartsWith("http"))
                 {
-                    var _hrefAbsolute = NavigationManager.ToAbsoluteUri(item.Url).AbsoluteUri;
+                    var _hrefAbsolute = navigationManager.ToAbsoluteUri(item.Url).AbsoluteUri;
                     if (string.Equals(currentUriAbsolute, _hrefAbsolute, StringComparison.OrdinalIgnoreCase))
                     {
                         return true;
@@ -130,14 +101,5 @@ namespace Zero.Abp.AntdesignUI.Layout
         }
 
         #endregion
-    }
-
-    public interface IRouteManager
-    {
-        Task<string> GetRootKeyAsync(string name);
-        Task<ApplicationMenuItemList> GetMenuDataAsync();
-        Task<string[]> GetMatchMenuKeysAsync(bool fullKeys);
-        Task<string[]> GetFirstLeafPathsNameAsync(string name);
-        Task<ApplicationMenuItemList> GetMatchMenusAsync(bool fullKeys);
     }
 }

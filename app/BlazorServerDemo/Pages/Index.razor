@@ -5,11 +5,38 @@
 @using Volo.Abp.UI.Navigation
 @inject IMenuManager MenuManager
 
+
+<Captcha ImagesPath="@ImagesPath" ImagesName="@ImagesName" @ref="Captcha" OnValid="@OnValid" />
+
 <Button Type="@ButtonType.Primary" OnClick="@DeleteAsync">
     Open the notification box
 </Button>
+
+
 <Result Status="500"></Result>
-@code{
+@code {
+    public string ImagesPath { get; set; } = "images";
+    public string ImagesName { get; set; } = "Pic.jpg";
+
+    /// <summary>
+    ///
+    /// </summary>
+    private Captcha Captcha { get; set; }
+
+    private void OnValid(bool ret)
+    {
+        var result = ret ? "成功" : "失败";
+        Alerts.Warning($"验证码结果 -> {result}");
+        if (ret)
+        {
+            Task.Run(async () =>
+            {
+                await Task.Delay(1000);
+                Captcha?.Reset();
+            });
+        }
+    }
+
     protected override void OnInitialized()
     {
 
@@ -23,7 +50,7 @@
 
     public async Task DeleteAsync()
     {
-        var dd= await MenuManager.GetMainMenuAsync();
+        var dd = await MenuManager.GetMainMenuAsync();
         percentage = percentage + 10;
         await pageProgressService.Go(percentage);
 

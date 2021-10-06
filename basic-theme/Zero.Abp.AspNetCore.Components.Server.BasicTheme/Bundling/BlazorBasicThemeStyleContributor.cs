@@ -7,7 +7,7 @@ namespace Zero.Abp.AspNetCore.Components.Server.BasicTheme.Bundling
     {
         public override void ConfigureBundle(BundleConfigurationContext context)
         {
-            context.Files.AddIfNotContains("/_content/Zero.Abp.AspNetCore.Components.Web.BasicTheme/libs/abp/css/theme.css");
+      
         }
     }
 }

@@ -8,7 +8,6 @@
     <IsPackable>true</IsPackable>
     <OutputType>Library</OutputType>
     <NoDefaultLaunchSettingsFile>true</NoDefaultLaunchSettingsFile>
-    <RootNamespace />
   </PropertyGroup>
 
   <ItemGroup>

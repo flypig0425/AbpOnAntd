@@ -11,15 +11,7 @@
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <RootNamespace />
   </PropertyGroup>
-  
-  <ItemGroup>
-    <Compile Remove="Zero\Abp\AspNetCore\Components\Notifications\**" />
-    <Content Remove="Zero\Abp\AspNetCore\Components\Notifications\**" />
-    <EmbeddedResource Remove="Zero\Abp\AspNetCore\Components\Notifications\**" />
-    <None Remove="Zero\Abp\AspNetCore\Components\Notifications\**" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Volo.Abp.ObjectMapping" Version="$(AbpPackageVersion)" />
