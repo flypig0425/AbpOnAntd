@@ -15,13 +15,8 @@
 @code
 {
 
-  protected LayoutSettings Settings { get; set; }
-        [Inject] protected ILayoutConfigProvider LayoutConfigProvider { get; set; }
-        protected override async Task OnInitializedAsync()
-        {
-            await base.OnInitializedAsync();
-            Settings = await LayoutConfigProvider.GetSettingsAsync();
-        }
+
+    [Inject] protected LayoutState LayoutState { get; set; }
 
 
     public SettingItem[] OtherSettings { get; set; }
@@ -35,7 +30,7 @@
             new SettingItem
             {
                 Title = "Weakmode",
-                Action = @<Switch Size="small" @bind-Value="Settings.ColorWeak" />
+                Action = @<Switch Size="small" @bind-Value="LayoutState.Settings.ColorWeak" />
             },
             new SettingItem()
         };

@@ -15,13 +15,7 @@
 @code
 {
 
-    protected LayoutSettings Settings { get; set; }
-        [Inject] protected ILayoutConfigProvider LayoutConfigProvider { get; set; }
-        protected override async Task OnInitializedAsync()
-        {
-            await base.OnInitializedAsync();
-            Settings = await LayoutConfigProvider.GetSettingsAsync();
-        }
+    [Inject] protected LayoutState LayoutState { get; set; }
 
     public SettingItem[] SettingItems { get; set; }
 
@@ -37,8 +31,8 @@
                                   TItemValue="string"
                                   Size="small"
                                   Style="width: 80px;"
-                                  DefaultValue="Settings.ContentWidth"
-                                  @bind-Value="Settings.ContentWidth">
+                                  DefaultValue="LayoutState.Settings.ContentWidth"
+                                  @bind-Value="LayoutState.Settings.ContentWidth">
     <SelectOptions>
         <SelectOption TItem="string" TItemValue="string" Value="@("Fixed")" Label="Fixed" />
         <SelectOption TItem="string" TItemValue="string" Value="@("Fluid")" Label="Fluid" />
@@ -48,17 +42,17 @@
             new SettingItem
             {
                 Title="Fixed Header",
-                Action = @<Switch Size="small" @bind-Checked="Settings.FixedHeader" />
+                Action = @<Switch Size="small" @bind-Checked="LayoutState.Settings.FixedHeader" />
             },
             new SettingItem
             {
                 Title="Fixed Sidebar",
-                Action = @<Switch Size="small" @bind-Checked="Settings.FixSiderbar" />
+                Action = @<Switch Size="small" @bind-Checked="LayoutState.Settings.FixSiderbar" />
             },
             new SettingItem
             {
                 Title="Split Menus",
-                Action = @<Switch Size="small" @bind-Checked="Settings.SplitMenus" />
+                Action = @<Switch Size="small" @bind-Checked="LayoutState.Settings.SplitMenus" />
             },
         };
         }

@@ -14,21 +14,21 @@ namespace Zero.Abp.AntdesignUI.Layout
         {
             get
             {
-                return Settings.NavTheme switch
+                return LayoutState.Settings.NavTheme switch
                 {
                     "light" => MenuTheme.Light,
                     "dark" => MenuTheme.Dark,
                     _ => MenuTheme.Dark
                 };
             }
-            set => Settings.NavTheme = value.Name;
+            set => LayoutState.Settings.NavTheme = value.Name;
         }
 
         [Parameter]
         public int HeaderHeight
         {
-            get => Settings.HeaderHeight;
-            set => Settings.HeaderHeight = value;
+            get => LayoutState.Settings.HeaderHeight;
+            set => LayoutState.Settings.HeaderHeight = value;
         }
 
         [Parameter]
@@ -36,7 +36,7 @@ namespace Zero.Abp.AntdesignUI.Layout
         {
             get
             {
-                return Settings.Layout switch
+                return LayoutState.Settings.Layout switch
                 {
                     "mix" => Layout.Mix,
                     "side" => Layout.Side,
@@ -44,84 +44,84 @@ namespace Zero.Abp.AntdesignUI.Layout
                     _ => Layout.Mix
                 };
             }
-            set => Settings.Layout = value.Name;
+            set => LayoutState.Settings.Layout = value.Name;
         }
 
         [Parameter]
         public string ContentWidth
         {
-            get => Settings.ContentWidth;
-            set => Settings.ContentWidth = value;
+            get => LayoutState.Settings.ContentWidth;
+            set => LayoutState.Settings.ContentWidth = value;
         }
 
         [Parameter]
         public bool FixedHeader
         {
-            get => Settings.FixedHeader;
-            set => Settings.FixedHeader = value;
+            get => LayoutState.Settings.FixedHeader;
+            set => LayoutState.Settings.FixedHeader = value;
         }
 
         [Parameter]
         public bool FixSiderbar
         {
-            get => Settings.FixSiderbar;
-            set => Settings.FixSiderbar = value;
+            get => LayoutState.Settings.FixSiderbar;
+            set => LayoutState.Settings.FixSiderbar = value;
         }
 
         [Parameter]
         public string IconfontUrl
         {
-            get => Settings.IconfontUrl;
-            set => Settings.IconfontUrl = value;
+            get => LayoutState.Settings.IconfontUrl;
+            set => LayoutState.Settings.IconfontUrl = value;
         }
 
         [Parameter]
         public string PrimaryColor
         {
-            get => Settings.PrimaryColor;
-            set => Settings.PrimaryColor = value;
+            get => LayoutState.Settings.PrimaryColor;
+            set => LayoutState.Settings.PrimaryColor = value;
         }
 
         [Parameter]
         public bool ColorWeak
         {
-            get => Settings.ColorWeak;
-            set => Settings.ColorWeak = value;
+            get => LayoutState.Settings.ColorWeak;
+            set => LayoutState.Settings.ColorWeak = value;
         }
 
         [Parameter]
         public bool SplitMenus
         {
-            get => Settings.SplitMenus;
-            set => Settings.SplitMenus = value;
+            get => LayoutState.Settings.SplitMenus;
+            set => LayoutState.Settings.SplitMenus = value;
         }
 
         [Parameter]
         public bool HeaderRender
         {
-            get => Settings.HeaderRender;
-            set => Settings.HeaderRender = value;
+            get => LayoutState.Settings.HeaderRender;
+            set => LayoutState.Settings.HeaderRender = value;
         }
 
         [Parameter]
         public bool FooterRender
         {
-            get => Settings.FooterRender;
-            set => Settings.FooterRender = value;
+            get => LayoutState.Settings.FooterRender;
+            set => LayoutState.Settings.FooterRender = value;
         }
 
         [Parameter]
         public bool MenuRender
         {
-            get => Settings.MenuRender;
-            set => Settings.MenuRender = value;
+            get => LayoutState.Settings.MenuRender;
+            set => LayoutState.Settings.MenuRender = value;
         }
 
         [Parameter]
         public bool MenuHeaderRender
         {
-            get => Settings.MenuHeaderRender;
-            set => Settings.MenuHeaderRender = value;
+            get => LayoutState.Settings.MenuHeaderRender;
+            set => LayoutState.Settings.MenuHeaderRender = value;
         }
 
         [Parameter]
@@ -161,19 +161,18 @@ namespace Zero.Abp.AntdesignUI.Layout
         //[Inject]
         //protected IOptions<ProSettings> SettingState { get; set; }
 
-        protected LayoutSettings Settings { get; set; }=new LayoutSettings();
-
+        [Inject] protected LayoutState LayoutState { get; set; }
         [Inject] protected ILayoutConfigProvider LayoutConfigProvider { get; set; }
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
-            Settings = await LayoutConfigProvider.GetSettingsAsync();
-            //Settings.OnStateChange += OnStateChanged;
+            LayoutState.Settings = await LayoutConfigProvider.GetSettingsAsync();
+            LayoutState.OnChange += OnStateChanged;
         }
 
         protected override void Dispose(bool disposing)
         {
-            //Settings.OnStateChange -= OnStateChanged;
+            LayoutState.OnChange -= OnStateChanged;
             base.Dispose(disposing);
         }
 

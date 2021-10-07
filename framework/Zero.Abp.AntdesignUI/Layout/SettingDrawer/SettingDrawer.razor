@@ -18,13 +18,13 @@
                                PrefixCls="@BaseClassName">
                 <BlockCheckbox PrefixCls="@BaseClassName"
                                List="ThemeList"
-                               @bind-Value="@Settings.NavTheme"
+                               @bind-Value="@LayoutState.Settings.NavTheme"
                                OnChange="@(async x => await UpdateTheme())" />
             </SettingDrawerBody>
 
             <ThemeColor Title="Theme Color"
                         Colors="LightColorList"
-                        @bind-Value="@Settings.PrimaryColor"
+                        @bind-Value="@LayoutState.Settings.PrimaryColor"
                         OnChange="@(async _=>await UpdateTheme())" />
             <Divider />
 
@@ -32,7 +32,7 @@
                                PrefixCls="@BaseClassName">
                 <BlockCheckbox PrefixCls="@BaseClassName"
                                List="LayoutList"
-                               @bind-Value="@Settings.Layout"
+                               @bind-Value="@LayoutState.Settings.Layout"
                                OnChange="@(x => SetThemeList())" />
             </SettingDrawerBody>
 

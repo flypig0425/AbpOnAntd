@@ -63,12 +63,11 @@ namespace Zero.Abp.AntdesignUI.Layout
 
         //[Inject] public IOptions<ProSettings> SettingState { get; set; }
 
-        protected LayoutSettings Settings { get; set; }
-        [Inject] protected ILayoutConfigProvider LayoutConfigProvider { get; set; }
+        [Inject] protected LayoutState LayoutState { get; set; }
+
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
-            Settings = await LayoutConfigProvider.GetSettingsAsync();
             SetThemeList();
         }
 
@@ -124,9 +123,9 @@ namespace Zero.Abp.AntdesignUI.Layout
                 Duration = 0
             });
             task.Start();
-            var key = Settings.PrimaryColor?? "default";
+            var key = LayoutState.Settings.PrimaryColor?? "default";
             string fileName;
-            if (Settings.NavTheme == "realDark")
+            if (LayoutState.Settings.NavTheme == "realDark")
             {
                 fileName = key == "default" ? "dark" : $"dark-{key}";
             }
@@ -145,9 +144,9 @@ namespace Zero.Abp.AntdesignUI.Layout
 
         private async Task CopySetting(MouseEventArgs args)
         {
-            var json = JsonSerializer.Serialize(Settings);
+            var json = JsonSerializer.Serialize(LayoutState.Settings);
             await JsInvokeAsync<object>(JSInteropConstants.Copy, json);
-            await Message.Success("copy success, please replace defaultSettings in wwwroot/appsettings.json");
+            await Message.Success("copy success, please replace defaultSettings in wwwroot/appLayoutState.Settings.json");
         }
     }
 }

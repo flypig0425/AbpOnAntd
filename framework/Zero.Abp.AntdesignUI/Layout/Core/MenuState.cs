@@ -1,22 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Volo.Abp.DependencyInjection;
 
 namespace Zero.Abp.AntdesignUI.Layout
 {
-    public class MenuState : IScopedDependency
+    public class LayoutState : IScopedDependency
     {
-        public LayoutSettings Settings { get; set; }
+        private LayoutSettings _settings;
 
-        // Lets components receive change notifications
+        public LayoutSettings Settings
+        {
+            get => _settings??new LayoutSettings();
+            set => UpdateSettings(value);
+        }
+
         public event Action OnChange;
 
-        public void UpdateMatchMenuKeys(string[] keys)
+        public void UpdateSettings(LayoutSettings settings)
         {
-            MatchMenuKeys = keys;
+            _settings = settings;
             NotifyStateChanged();
         }
 
