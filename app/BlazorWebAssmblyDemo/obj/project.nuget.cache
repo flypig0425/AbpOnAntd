@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "WHisU70w8uTXd2JtZAS2aYY/3ydhuRtYYBNtKJdi7VxGul+qmteY5/LqdYwAklFkwgbBsrT9lhpHaasRy1hLKw==",
+  "dgSpecHash": "Qa5lngm4u9aQpX3u/jnq7h6cBFJiJP0VEhvlhnjJwSPnPeTYao3IdPsBqhBSsuN/yrx/qBJt4q+10r26TMSS9w==",
   "success": true,
   "projectFilePath": "D:\\DevCodes\\AbpZero\\app\\BlazorWebAssmblyDemo\\BlazorWebAssmblyDemo.csproj",
   "expectedPackageFiles": [
@@ -202,7 +202,7 @@
     "C:\\Users\\weidyg\\.nuget\\packages\\volo.abp.validation\\4.4.2\\volo.abp.validation.4.4.2.nupkg.sha512",
     "C:\\Users\\weidyg\\.nuget\\packages\\volo.abp.validation.abstractions\\4.4.2\\volo.abp.validation.abstractions.4.4.2.nupkg.sha512",
     "C:\\Users\\weidyg\\.nuget\\packages\\volo.abp.virtualfilesystem\\4.4.2\\volo.abp.virtualfilesystem.4.4.2.nupkg.sha512",
-    "C:\\Users\\weidyg\\.nuget\\packages\\microsoft.netcore.app.runtime.browser-wasm\\5.0.8\\microsoft.netcore.app.runtime.browser-wasm.5.0.8.nupkg.sha512"
+    "C:\\Users\\weidyg\\.nuget\\packages\\microsoft.netcore.app.runtime.browser-wasm\\5.0.9\\microsoft.netcore.app.runtime.browser-wasm.5.0.9.nupkg.sha512"
   ],
   "logs": []
 }

@@ -23,6 +23,8 @@ namespace Zero.Abp.AntdesignUI
 
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
+            Localization.AbpStringLocalizerFactory.Replace(context.Services);
+
             ConfigureAntDesign(context);
             context.Services.AddSingleton(typeof(AbpBlazorMessageLocalizerHelper<>));
 
@@ -37,7 +39,7 @@ namespace Zero.Abp.AntdesignUI
             {
                 options.Resources
                 .Add<AbpAntdesignUIResource>("en")
-                .AddVirtualJson("/Localization/Resources/AbpAntdesignUI");
+                .AddVirtualJson("/Localization/Resources/AbpAntdesignUI"); 
             });
         }
 
