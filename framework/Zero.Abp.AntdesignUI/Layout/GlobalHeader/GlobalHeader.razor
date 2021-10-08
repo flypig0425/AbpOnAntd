@@ -1,31 +1,32 @@
 ﻿@namespace Zero.Abp.AntdesignUI.Layout
-@inherits AntProComponentBase
+@inherits AntLayoutComponentBase
 
-    <div class="@className" style="@Style">
-        @if (IsMobile)
+<div class="@className" style="@Style">
+    @if (IsMobile)
+    {
+        <Branding HideTitle />
+        @if (CollapsedButtonRender != null)
         {
-            <Branding HideTitle />
-            @if (CollapsedButtonRender != null)
-            {
-                <span class="@BaseClassName-collapsed-button" @onclick="@(async () => { await OnCollapse.InvokeAsync(!Collapsed); })">
-                    @*<Icon Type="@(Collapsed ? "menu-unfold" : "menu-fold")" Theme="outline" />*@
-                    @CollapsedButtonRender(Collapsed)
-                </span>
-            }
+            <span class="@BaseClassName-collapsed-button"
+                  @onclick="@(async () => { await OnCollapse.InvokeAsync(!Collapsed); })">
+                @*<Icon Type="@(Collapsed ? "menu-unfold" : "menu-fold")" Theme="outline" />*@
+                @CollapsedButtonRender(Collapsed)
+            </span>
         }
-        else if (Layout == Layout.Mix)
-        {
-            <div class="@BaseClassName-logo">
-                <Branding />
-            </div>
-        }
-        <div style="flex: 1">@ChildContent</div>
-        <HeaderRight/>
-      @*  @if (RightContentRender != null)
+    }
+    else if (Settings.Layout == Layout.Mix.Name)
+    {
+        <div class="@BaseClassName-logo">
+            <Branding />
+        </div>
+    }
+    <div style="flex: 1">@ChildContent</div>
+    <HeaderRight />
+    @*  @if (RightContentRender != null)
         {
             @RightContentRender
         }*@
-    </div>
+</div>
 
 @code{
 
@@ -38,7 +39,7 @@
     [Parameter]
     public RenderFragment<bool> CollapsedButtonRender { get; set; } = defaultCollapsedButtonRender;
 
-   
+
 
     protected override void OnInitialized()
     {
@@ -48,9 +49,9 @@
     static readonly RenderFragment<bool> defaultCollapsedButtonRender = collapsed =>
     @<Icon Type="@(collapsed ? "menu-unfold" : "menu-fold")" Theme="outline" />;
 
-        private string BaseClassName => $"{PrefixCls}-global-header";
-    private string className => ClassNames(BaseClassName, Class
-        , ($"{BaseClassName}-layout-{Layout.Name}", Layout != null&&NavTheme==MenuTheme.Dark)//&& headerTheme === 'dark'
-        );
+private string BaseClassName => $"{PrefixCls}-global-header";
+private string className => ClassNames(BaseClassName, Class
+, ($"{BaseClassName}-layout-{Settings.Layout}", Settings.Layout != null && Settings.NavTheme == MenuTheme.Dark.Name)//&& headerTheme === 'dark'
+);
 
 }

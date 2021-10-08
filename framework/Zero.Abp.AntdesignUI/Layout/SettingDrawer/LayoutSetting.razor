@@ -1,7 +1,5 @@
 @namespace Zero.Abp.AntdesignUI.Layout
-@using Microsoft.Extensions.Options
-@inherits AntDomComponentBase
-@*@inject IOptions<ProSettings> SettingState*@
+@inherits SettingDrawerBase
 
 <AntList Split="false"
          DataSource="SettingItems"
@@ -14,9 +12,6 @@
 
 @code
 {
-
-    [Inject] protected LayoutState LayoutState { get; set; }
-
     public SettingItem[] SettingItems { get; set; }
 
     protected override void OnInitialized()
@@ -29,7 +24,7 @@
                 Title="Content Width",
                 Action = @<Select TItem="string"
                                   TItemValue="string"
-                                  Size="small"
+                                  Size="@("small")"
                                   Style="width: 80px;"
                                   DefaultValue="LayoutState.Settings.ContentWidth"
                                   @bind-Value="LayoutState.Settings.ContentWidth">

@@ -1,5 +1,5 @@
 @namespace Zero.Abp.AntdesignUI.Layout
-@inherits AntProComponentBase
+@inherits AntLayoutComponentBase
 @*@if (FixedHeader)
     {
     <div style="width: @siderWidth;
@@ -47,7 +47,7 @@
     </div>
 
     <div class="@BaseClassName-links">
-        <Menu Theme="NavTheme"
+        <Menu Theme="MenuTheme"
               InlineIndent="16"
               Class="@($"{BaseClassName}-link-menu")"
               SelectedKeys="Array.Empty<string>()"
@@ -89,12 +89,20 @@
     [Parameter] public bool Collapsed { get; set; }
     [Parameter] public string LogoStyle { get; set; }
     [Parameter] public BreakpointType Breakpoint { get; set; } = BreakpointType.Lg;
-    [Parameter]
-    public SiderTheme SiderTheme
+
+
+    //[Parameter]
+    private SiderTheme SiderTheme
     {
-        get { return NavTheme.Name switch { "light" => SiderTheme.Light, "dark" => SiderTheme.Dark, _ => SiderTheme.Light }; }
-        set => NavTheme = value == SiderTheme.Light ? MenuTheme.Light : MenuTheme.Dark;
+        get { return Settings.NavTheme switch { "light" => SiderTheme.Light, "dark" => SiderTheme.Dark, _ => SiderTheme.Light }; }
+        //set => Settings.NavTheme = value == SiderTheme.Light ? MenuTheme.Light.Name : MenuTheme.Dark.Name;
     }
+    private MenuTheme MenuTheme
+    {
+        get { return Settings.NavTheme switch { "light" => MenuTheme.Light, "dark" => MenuTheme.Dark, _ => MenuTheme.Light }; }
+        //set => Settings.NavTheme = value == MenuTheme.Light ? MenuTheme.Light.Name : MenuTheme.Dark.Name;
+    }
+
 
     [CascadingParameter(Name = nameof(MenuExtraRender))]
     public RenderFragment MenuExtraRender { get; set; }
@@ -116,19 +124,19 @@
 
     #region private
     private int collapsedWidth = 48;
-    private bool HasHeaderDom => MenuHeaderRender && Layout != Layout.Mix;
+    private bool HasHeaderDom => Settings.MenuHeaderRender && Settings.Layout != Layout.Mix.Name;
     #endregion
 
     #region StyleOrClass
     //private string siderWidth => $"{(Collapsed ? collapsedWidth : SiderWidth)}px";
     private string BaseClassName => $"{PrefixCls}-sider";
     private string SiderClassName => ClassNames(BaseClassName
-    , ($"{BaseClassName}-fixed", FixSiderbar)
-    , ($"{BaseClassName}-layout-{Layout.Name}", Layout != null && !IsMobile)
+    , ($"{BaseClassName}-fixed", Settings.FixSiderbar)
+    , ($"{BaseClassName}-layout-{Settings.Layout}", Settings.Layout != null && !IsMobile)
     , ($"{BaseClassName}-light", SiderTheme == SiderTheme.Light)
     );
     private string SiderStyle => StyleValues("overflow: hidden"
-        , $"padding-top: {(Layout == Layout.Mix && !IsMobile ? HeaderHeight : 0)}px;"
+        , $"padding-top: {(Settings.Layout == Layout.Mix.Name && !IsMobile ? Settings.HeaderHeight : 0)}px;"
         );
     #endregion
 

@@ -21,7 +21,7 @@ namespace Zero.Abp.AntdesignUI.Layout
         protected bool IsMobile => (ColSize == "sm" || ColSize == "xs") && !DisableMobile;
 
 
-        private bool IsSplitMenus => SplitMenus && (/*OpenKeys != false ||*/ Layout == Layout.Mix) && !IsMobile;
+        private bool IsSplitMenus => Settings.SplitMenus && (/*OpenKeys != false ||*/ Settings.Layout == Layout.Mix.Name) && !IsMobile;
         public string[] TopSelectedKeys { get; set; }
         public string[] SiderSelectedKeys { get; set; }
         protected ApplicationMenuItemList MenuData { get; set; }
@@ -51,27 +51,27 @@ namespace Zero.Abp.AntdesignUI.Layout
         private readonly string layoutCls = "ant-layout";
 
 
-        bool HasSiderMenu => Layout != Layout.Mix || !SplitMenus || SiderMenuDom != null;
-        bool HasLeftPadding => HasSiderMenu && FixSiderbar && Layout != Layout.Top && !IsMobile;
+        bool HasSiderMenu => Settings.Layout != Layout.Mix.Name || !Settings.SplitMenus || SiderMenuDom != null;
+        bool HasLeftPadding => HasSiderMenu && Settings.FixSiderbar && Settings.Layout != Layout.Top.Name && !IsMobile;
         int PaddingLeft => HasLeftPadding ? (Collapsed ? 48 : SiderWidth) : 0;
 
-        private string WeakModeStyle => StyleValues(("filter: invert(80%)", ColorWeak));
+        private string WeakModeStyle => StyleValues(("filter: invert(80%)", Settings.ColorWeak));
         private string GenLayoutStyle => StyleValues("position: relative"
             , ("min-height:0px", isChildrenLayout || (ContentStyle?.Contains("min-height") ?? false))
-            , ($"padding-left: {PaddingLeft}px", MenuRender)
+            , ($"padding-left: {PaddingLeft}px", Settings.MenuRender)
             );
 
         private string BaseClassName => $"{PrefixCls}-basicLayout";
 
         private string LayoutClass => ClassNames("ant-design-pro", BaseClassName, $"screen-{ColSize}"
-            , ($"{BaseClassName}-top-menu", Layout == Layout.Top)
+            , ($"{BaseClassName}-top-menu", Settings.Layout == Layout.Top.Name)
             , ($"{BaseClassName}-is-children", isChildrenLayout)
-            , ($"{BaseClassName}-fix-siderbar", FixSiderbar)
+            , ($"{BaseClassName}-fix-siderbar", Settings.FixSiderbar)
             , ($"{BaseClassName}-mobile", IsMobile)
             );
 
         private string ContentClass => ClassNames($"{BaseClassName}-content"
-            , ($"{BaseClassName}-has-header", HeaderRender)
+            , ($"{BaseClassName}-has-header", Settings.HeaderRender)
             , ($"{BaseClassName}-content-disable-margin", DisableContentMargin)
             );
         #endregion

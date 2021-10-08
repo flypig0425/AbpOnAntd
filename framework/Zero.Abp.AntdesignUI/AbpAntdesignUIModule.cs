@@ -1,8 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.Application;
 using Volo.Abp.Authorization;
+using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
+using Volo.Abp.VirtualFileSystem;
 using Zero.Abp.AntdesignUI.Layout;
+using Zero.Abp.AntdesignUI.Localization;
 using Zero.Abp.AspNetCore.Components.Web;
 using Zero.Abp.AspNetCore.Components.Web.Theming;
 
@@ -16,11 +19,26 @@ namespace Zero.Abp.AntdesignUI
         )]
     public class AbpAntdesignUIModule : AbpModule
     {
+        private readonly string AssemblyName = typeof(AbpAntdesignUIModule).Assembly.GetName().Name;
+
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
             ConfigureAntDesign(context);
             context.Services.AddSingleton(typeof(AbpBlazorMessageLocalizerHelper<>));
 
+
+
+            Configure<AbpVirtualFileSystemOptions>(options =>
+            {
+                options.FileSets.AddEmbedded<AbpAntdesignUIModule>(AssemblyName);
+            });
+
+            Configure<AbpLocalizationOptions>(options =>
+            {
+                options.Resources
+                .Add<AbpAntdesignUIResource>("en")
+                .AddVirtualJson("/Localization/Resources/AbpAntdesignUI");
+            });
         }
 
         private void ConfigureAntDesign(ServiceConfigurationContext context)

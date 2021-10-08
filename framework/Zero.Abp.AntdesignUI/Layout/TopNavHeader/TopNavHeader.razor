@@ -1,7 +1,8 @@
 ﻿@namespace Zero.Abp.AntdesignUI.Layout
+@inherits AntLayoutComponentBase
 
 <div class="@TopNavHeaderClass" style="@Style">
-    <div class="@ClassNames($"{BaseClassName}-main",("wide", ContentWidth == "Fixed"))">
+    <div class="@ClassNames($"{BaseClassName}-main",("wide", Settings.ContentWidth == "Fixed"))">
         <div class="@($"{BaseClassName}-main-left")" @onclick="OnMenuHeaderClick">
             <div class="@($"{BaseClassName}-logo")" id="logo">
                 <Branding />
@@ -9,7 +10,7 @@
         </div>
         <div style="flex: 1;" class="@BaseClassName-menu">
             <BaseMenu Mode="Mode" MenuData="MenuData"
-             SelectedKeys="SelectedKeys" SelectedKeysChanged="SelectedKeysChanged" />
+                      SelectedKeys="SelectedKeys" SelectedKeysChanged="SelectedKeysChanged" />
         </div>
         @* @if (RightContentRender != null)
             {*@
@@ -24,8 +25,6 @@
         @*}*@
     </div>
 </div>
-
-@inherits AntProComponentBase
 @code {
     [Parameter] public ApplicationMenuItemList MenuData { get; set; }
     [Parameter] public string[] SelectedKeys { get; set; }
@@ -49,10 +48,10 @@
 
     private string TopNavHeaderClass => ClassNames(
         BaseClassName, Class
-        , ("light", NavTheme == MenuTheme.Light)
+        , ("light", Settings.NavTheme == MenuTheme.Light.Name)
         );
     private string MainClass => ClassNames(
         $"{BaseClassName}-main"
-        , ("wide", ContentWidth == "Fixed")
+        , ("wide", Settings.ContentWidth == "Fixed")
         );
 }

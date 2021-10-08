@@ -1,5 +1,5 @@
 @namespace Zero.Abp.AntdesignUI.Layout
-@inherits AntDomComponentBase
+@inherits SettingDrawerBase
 
 <Drawer OnClose="()=>_show=false"
         Visible="_show"
@@ -60,16 +60,16 @@
             @if (!HideHintAlert)
             {
                 <Alert Type="warning"
-                   Message="Setting panel shows in development environment only, please manually modify"
-                   Icon="_notification"
-                   ShowIcon="true"
-                   Style="margin-bottom: 16px;" />
+                       Message="Setting panel shows in development environment only, please manually modify"
+                       Icon="_notification"
+                       ShowIcon="true"
+                       Style="margin-bottom: 16px;" />
             }
 
             @if (!HideCopyButton)
             {
                 <Button Block OnClick="CopySetting">
-                    <Icon Type="copy" Theme="outline" /> Copy Setting
+                    <Icon Type="copy" Theme="outline" /> @L["CopySetting"]
                 </Button>
             }
         </div>
@@ -78,6 +78,5 @@
 <link type="text/css" rel="stylesheet" id="theme-style" href="@_url" @ref="_linkRef">
 @code
 {
-    private RenderFragment _notification =@<Icon Type="notification" />
-    ;
+    private RenderFragment _notification =@<Icon Type="notification" />;
 }

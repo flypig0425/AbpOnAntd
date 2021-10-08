@@ -5,22 +5,19 @@ namespace Zero.Abp.AntdesignUI.Layout
 {
     public class LayoutState : IScopedDependency
     {
-        private LayoutSettings _settings;
+        public LayoutSettings Settings { get; internal set; }
 
-        public LayoutSettings Settings
-        {
-            get => _settings??new LayoutSettings();
-            set => UpdateSettings(value);
+        public LayoutState() {
+            Settings = new LayoutSettings();
         }
-
-        public event Action OnChange;
 
         public void UpdateSettings(LayoutSettings settings)
         {
-            _settings = settings;
+            Settings = settings;
             NotifyStateChanged();
         }
 
+        public event Action OnChange;
         private void NotifyStateChanged() => OnChange?.Invoke();
     }
 }

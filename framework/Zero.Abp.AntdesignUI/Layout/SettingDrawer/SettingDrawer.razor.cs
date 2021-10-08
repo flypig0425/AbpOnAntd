@@ -1,16 +1,14 @@
-using System;
+using AntDesign;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
-using AntDesign;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
-using Microsoft.Extensions.Options;
 
 namespace Zero.Abp.AntdesignUI.Layout
 {
-    public partial class SettingDrawer : AntDomComponentBase
+    public partial class SettingDrawer 
     {
         private bool _show;
         private ElementReference _linkRef;
@@ -59,18 +57,11 @@ namespace Zero.Abp.AntdesignUI.Layout
         [Parameter] public bool HideHintAlert { get; set; }
         [Parameter] public bool HideCopyButton { get; set; }
         [Inject] public MessageService Message { get; set; }
-
-
-        //[Inject] public IOptions<ProSettings> SettingState { get; set; }
-
-        [Inject] protected LayoutState LayoutState { get; set; }
-
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
             SetThemeList();
         }
-
 
         private void SetThemeList()
         {
@@ -123,7 +114,7 @@ namespace Zero.Abp.AntdesignUI.Layout
                 Duration = 0
             });
             task.Start();
-            var key = LayoutState.Settings.PrimaryColor?? "default";
+            var key = LayoutState.Settings.PrimaryColor ?? "default";
             string fileName;
             if (LayoutState.Settings.NavTheme == "realDark")
             {

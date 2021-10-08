@@ -1,6 +1,5 @@
 ﻿@namespace Zero.Abp.AntdesignUI.Layout
-@inherits AntProComponentBase
-@using System.Text;
+@inherits AntLayoutComponentBase
 
 @if (needFixedHeader)
 {
@@ -30,26 +29,26 @@
     [Parameter] public bool HasSiderMenu { get; set; }
     [Parameter] public RenderFragment HeaderContentRender { get; set; }
 
-    private bool isSplitMenus => Layout == Layout.Mix && SplitMenus;
-    private bool isTop => Layout == Layout.Top;
-    private bool needFixedHeader => FixedHeader || Layout == Layout.Mix;
-    private int headerHeight => HeaderHeight;
+    private bool isSplitMenus => Settings.Layout == Layout.Mix.Name && Settings.SplitMenus;
+    private bool isTop => Settings.Layout == Layout.Top.Name;
+    private bool needFixedHeader => Settings.FixedHeader || Settings.Layout == Layout.Mix.Name;
+    private int headerHeight => Settings.HeaderHeight;
 
     private bool needSettingWidth => needFixedHeader && HasSiderMenu && !isTop && !IsMobile;
-    private string headerWidth => Layout != Layout.Mix && needSettingWidth
+    private string headerWidth => Settings.Layout != Layout.Mix.Name && needSettingWidth
       ? $"calc(100% - {(Collapsed ? 48 : SiderWidth)}px)" : "100%";
     private int? headerRight => needFixedHeader ? 0 : null;
 
     private string HeaderClass => ClassNames(
          ($"{PrefixCls}-fixed-header", needFixedHeader)
        , ($"{PrefixCls}-fixed-header-action", !Collapsed)
-       , ($"{PrefixCls}-top-menu", Layout == Layout.Top)
-       , ($"{PrefixCls}-header-{NavTheme.Name}", Layout != Layout.Mix)
+       , ($"{PrefixCls}-top-menu", Settings.Layout == Layout.Top.Name)
+       , ($"{PrefixCls}-header-{Settings.NavTheme}", Settings.Layout != Layout.Mix.Name)
         );
 
     private string FixedHeaderStyle =>
     $"height:{headerHeight}px;line-height:{headerHeight}px;background:transparent";
 
     private string HeaderStyle =>
-    $"padding:0px;height:{headerHeight}px;line-height:{headerHeight}px;width:{headerWidth};z-index:{(Layout == Layout.Mix ? 100 : 9)};{(headerRight.HasValue ? $"right:{headerRight}px;" : "")}{Style}";
+    $"padding:0px;height:{headerHeight}px;line-height:{headerHeight}px;width:{headerWidth};z-index:{(Settings.Layout == Layout.Mix.Name ? 100 : 9)};{(headerRight.HasValue ? $"right:{headerRight}px;" : "")}{Style}";
 }

@@ -6,6 +6,9 @@
         /// 
         /// </summary>
         public string NavTheme { get; set; }
+
+        public string HeaderTheme { get; set; }
+
         /// <summary>
         /// 
         /// </summary>

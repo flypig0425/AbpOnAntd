@@ -1,7 +1,5 @@
 @namespace Zero.Abp.AntdesignUI.Layout
-@using Microsoft.Extensions.Options
-@inherits AntDomComponentBase
-@*@inject IOptions<ProSettings> SettingState*@
+@inherits SettingDrawerBase
 
 <AntList Split="false"
          DataSource="OtherSettings"
@@ -14,10 +12,6 @@
 
 @code
 {
-
-
-    [Inject] protected LayoutState LayoutState { get; set; }
-
 
     public SettingItem[] OtherSettings { get; set; }
 
