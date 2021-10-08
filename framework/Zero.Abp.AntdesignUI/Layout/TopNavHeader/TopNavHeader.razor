@@ -50,8 +50,4 @@
         BaseClassName, Class
         , ("light", Settings.NavTheme == MenuTheme.Light.Name)
         );
-    private string MainClass => ClassNames(
-        $"{BaseClassName}-main"
-        , ("wide", Settings.ContentWidth == "Fixed")
-        );
 }

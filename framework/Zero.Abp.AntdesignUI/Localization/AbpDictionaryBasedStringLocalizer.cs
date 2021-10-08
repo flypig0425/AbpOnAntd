@@ -8,7 +8,7 @@ using Microsoft.Extensions.Localization;
 
 namespace Volo.Abp.Localization
 {
-    public class AbpDictionaryBasedStringLocalizer : IStringLocalizer, IStringLocalizerSupportsInheritance
+    public class ZeroAbpDictionaryBasedStringLocalizer : IStringLocalizer, IStringLocalizerSupportsInheritance
     {
         public LocalizationResource Resource { get; }
 
@@ -18,24 +18,24 @@ namespace Volo.Abp.Localization
 
         public virtual LocalizedString this[string name, params object[] arguments] => GetLocalizedStringFormatted(name, arguments);
 
-        public AbpDictionaryBasedStringLocalizer(LocalizationResource resource, List<IStringLocalizer> baseLocalizers)
+        public ZeroAbpDictionaryBasedStringLocalizer(LocalizationResource resource, List<IStringLocalizer> baseLocalizers)
         {
             Resource = resource;
             BaseLocalizers = baseLocalizers;
         }
 
-        public IEnumerable<LocalizedString> GetAllStrings(bool includeParentCultures)
+        public virtual IEnumerable<LocalizedString> GetAllStrings(bool includeParentCultures)
         {
             return GetAllStrings(
-                CultureInfo.CurrentUICulture.Name,
+                CultureInfo.CurrentCulture.Name,
                 includeParentCultures
             );
         }
 
-        public IEnumerable<LocalizedString> GetAllStrings(bool includeParentCultures, bool includeBaseLocalizers)
+        public virtual IEnumerable<LocalizedString> GetAllStrings(bool includeParentCultures, bool includeBaseLocalizers)
         {
             return GetAllStrings(
-                CultureInfo.CurrentUICulture.Name,
+                CultureInfo.CurrentCulture.Name,
                 includeParentCultures,
                 includeBaseLocalizers
             );
@@ -43,7 +43,7 @@ namespace Volo.Abp.Localization
 
         protected virtual LocalizedString GetLocalizedStringFormatted(string name, params object[] arguments)
         {
-            return GetLocalizedStringFormatted(name, CultureInfo.CurrentUICulture.Name, arguments);
+            return GetLocalizedStringFormatted(name, CultureInfo.CurrentCulture.Name, arguments);
         }
 
         protected virtual LocalizedString GetLocalizedStringFormatted(string name, string cultureName, params object[] arguments)
@@ -54,9 +54,7 @@ namespace Volo.Abp.Localization
 
         protected virtual LocalizedString GetLocalizedString(string name)
         {
-            //var localizedString = GetLocalizedString(name, CultureInfo.CurrentCulture.Name);
-            //return localizedString ?? GetLocalizedString(name, CultureInfo.CurrentUICulture.Name);
-            return GetLocalizedString(name, CultureInfo.CurrentUICulture.Name);
+            return GetLocalizedString(name, CultureInfo.CurrentCulture.Name);
         }
 
         protected virtual LocalizedString GetLocalizedString(string name, string cultureName)
@@ -177,13 +175,13 @@ namespace Volo.Abp.Localization
         public class CultureWrapperStringLocalizer : IStringLocalizer, IStringLocalizerSupportsInheritance
         {
             private readonly string _cultureName;
-            private readonly AbpDictionaryBasedStringLocalizer _innerLocalizer;
+            private readonly ZeroAbpDictionaryBasedStringLocalizer _innerLocalizer;
 
             LocalizedString IStringLocalizer.this[string name] => _innerLocalizer.GetLocalizedString(name, _cultureName);
 
             LocalizedString IStringLocalizer.this[string name, params object[] arguments] => _innerLocalizer.GetLocalizedStringFormatted(name, _cultureName, arguments);
 
-            public CultureWrapperStringLocalizer(string cultureName, AbpDictionaryBasedStringLocalizer innerLocalizer)
+            public CultureWrapperStringLocalizer(string cultureName, ZeroAbpDictionaryBasedStringLocalizer innerLocalizer)
             {
                 _cultureName = cultureName;
                 _innerLocalizer = innerLocalizer;

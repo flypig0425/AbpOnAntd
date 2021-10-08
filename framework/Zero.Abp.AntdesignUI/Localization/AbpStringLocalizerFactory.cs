@@ -67,7 +67,7 @@ namespace Zero.Abp.AntdesignUI.Localization
             }
 
             return new StringLocalizerCacheItem(
-                new AbpDictionaryBasedStringLocalizer(
+                new ZeroAbpDictionaryBasedStringLocalizer(
                     resource,
                     resource.BaseResourceTypes.Select(Create).ToList()
                 )
@@ -89,9 +89,9 @@ namespace Zero.Abp.AntdesignUI.Localization
 
         protected class StringLocalizerCacheItem
         {
-            public AbpDictionaryBasedStringLocalizer Localizer { get; }
+            public ZeroAbpDictionaryBasedStringLocalizer Localizer { get; }
 
-            public StringLocalizerCacheItem(AbpDictionaryBasedStringLocalizer localizer)
+            public StringLocalizerCacheItem(ZeroAbpDictionaryBasedStringLocalizer localizer)
             {
                 Localizer = localizer;
             }
