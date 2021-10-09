@@ -1,14 +1,13 @@
 using AntDesign;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Zero.Abp.AntdesignUI.Layout
 {
-    public partial class SettingDrawer 
+    public partial class SettingDrawer
     {
         private bool _show;
         private ElementReference _linkRef;
@@ -102,7 +101,7 @@ namespace Zero.Abp.AntdesignUI.Layout
         //        Title = "Dark style"
         //    });
 
-          
+
 
         //    ThemeList = list.ToArray();
         //}

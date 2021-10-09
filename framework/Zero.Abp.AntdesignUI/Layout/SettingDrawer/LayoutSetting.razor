@@ -25,12 +25,12 @@
                 Action = @<SimpleSelect Size="@("small")"
                                         Style="width: 80px;"
                                         DefaultValue="@Settings.HeaderTheme"
-                                        @bind-Value="Settings.HeaderTheme">
-    <SelectOptions>
-        <SimpleSelectOption Value="@("light")" Label="@L["Light"]" />
-        <SimpleSelectOption Value="@("dark")" Label="@L["Dark"]" />
-    </SelectOptions>
-</SimpleSelect>
+                                            @bind-Value="Settings.HeaderTheme">
+        <SelectOptions>
+            <SimpleSelectOption Value="@("light")" Label="@L["Light"]" />
+            <SimpleSelectOption Value="@("dark")" Label="@L["Dark"]" />
+        </SelectOptions>
+    </SimpleSelect>
             },
                 new SettingItem
             {
@@ -38,12 +38,12 @@
                 Action = @<SimpleSelect Size="@("small")"
                                         Style="width: 80px;"
                                         DefaultValue="@Settings.NavTheme"
-                                        @bind-Value="Settings.NavTheme">
-    <SelectOptions>
-        <SimpleSelectOption Value="@("light")" Label="@L["Light"]" />
-        <SimpleSelectOption Value="@("dark")" Label="@L["Dark"]" />
-    </SelectOptions>
-</SimpleSelect>
+                                            @bind-Value="Settings.NavTheme">
+        <SelectOptions>
+            <SimpleSelectOption Value="@("light")" Label="@L["Light"]" />
+            <SimpleSelectOption Value="@("dark")" Label="@L["Dark"]" />
+        </SelectOptions>
+    </SimpleSelect>
             },
             new SettingItem
             {
@@ -51,28 +51,28 @@
                 Action = @<SimpleSelect Size="@("small")"
                                         Style="width: 80px;"
                                         DefaultValue="@Settings.ContentWidth"
-                                        @bind-Value="Settings.ContentWidth">
-    <SelectOptions>
-        <SimpleSelectOption Value="@("Fixed")" Label="@L["Fixed"]" />
-        <SimpleSelectOption Value="@("Fluid")" Label="@L["Fluid"]" />
-    </SelectOptions>
-</SimpleSelect>
+                                            @bind-Value="Settings.ContentWidth">
+        <SelectOptions>
+            <SimpleSelectOption Value="@("Fixed")" Label="@L["Fixed"]" />
+            <SimpleSelectOption Value="@("Fluid")" Label="@L["Fluid"]" />
+        </SelectOptions>
+    </SimpleSelect>
             },
             new SettingItem
             {
                 Title=L["FixedHeader"],
                 Action = @<Switch Size="small" @bind-Checked="Settings.FixedHeader" />
+    },
+    new SettingItem
+    {
+    Title=L["FixedSidebar"],
+    Action = @<Switch Size="small" @bind-Checked="Settings.FixSiderbar" />
+    },
+    new SettingItem
+    {
+    Title=L["SplitMenus"],
+    Action = @<Switch Size="small" @bind-Checked="Settings.SplitMenus" />
             },
-            new SettingItem
-            {
-                Title=L["FixedSidebar"],
-                Action = @<Switch Size="small" @bind-Checked="Settings.FixSiderbar" />
-            },
-            new SettingItem
-            {
-                Title=L["SplitMenus"],
-                Action = @<Switch Size="small" @bind-Checked="Settings.SplitMenus" />
-            },
-        };
-        }
+    };
+    }
 }

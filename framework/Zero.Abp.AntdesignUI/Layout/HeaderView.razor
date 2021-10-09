@@ -19,6 +19,7 @@
 </Header>
 
 @code {
+
     [Parameter] public ApplicationMenuItemList MenuData { get; set; }
     [Parameter] public string[] SelectedKeys { get; set; } = null;
     [Parameter] public EventCallback<string[]> SelectedKeysChanged { get; set; }
@@ -43,7 +44,7 @@
          ($"{PrefixCls}-fixed-header", needFixedHeader)
        , ($"{PrefixCls}-fixed-header-action", !Collapsed)
        , ($"{PrefixCls}-top-menu", Settings.Layout == Layout.Top.Name)
-       , ($"{PrefixCls}-header-{Settings.NavTheme}", Settings.Layout != Layout.Mix.Name)
+       , ($"{PrefixCls}-header-{Settings.HeaderTheme}")
         );
 
     private string FixedHeaderStyle =>
