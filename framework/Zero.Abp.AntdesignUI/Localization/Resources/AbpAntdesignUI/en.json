@@ -4,6 +4,12 @@
     "PageStyleSetting": "Page style setting",
     "ThemeColor": "Theme Color",
     "NavigationMode": "Navigation Mode",
+
+    "HeaderTheme": "Header Theme",
+    "SidebarTheme": "Sidebar Theme",
+    "Light": "Light",
+    "Dark": "Dark",
+
     "ContentWidth": "Content Width",
     "Fixed": "Fixed",
     "Fluid": "Fluid",

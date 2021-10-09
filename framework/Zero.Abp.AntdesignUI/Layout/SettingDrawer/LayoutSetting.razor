@@ -19,20 +19,44 @@
         base.OnInitialized();
 
         SettingItems = new[] {
+                new SettingItem
+            {
+                Title=L["HeaderTheme"],
+                Action = @<SimpleSelect Size="@("small")"
+                                        Style="width: 80px;"
+                                        DefaultValue="@Settings.HeaderTheme"
+                                        @bind-Value="Settings.HeaderTheme">
+    <SelectOptions>
+        <SimpleSelectOption Value="@("light")" Label="@L["Light"]" />
+        <SimpleSelectOption Value="@("dark")" Label="@L["Dark"]" />
+    </SelectOptions>
+</SimpleSelect>
+            },
+                new SettingItem
+            {
+                Title=L["SidebarTheme"],
+                Action = @<SimpleSelect Size="@("small")"
+                                        Style="width: 80px;"
+                                        DefaultValue="@Settings.NavTheme"
+                                        @bind-Value="Settings.NavTheme">
+    <SelectOptions>
+        <SimpleSelectOption Value="@("light")" Label="@L["Light"]" />
+        <SimpleSelectOption Value="@("dark")" Label="@L["Dark"]" />
+    </SelectOptions>
+</SimpleSelect>
+            },
             new SettingItem
             {
                 Title=L["ContentWidth"],
-                Action = @<Select TItem="string"
-                                  TItemValue="string"
-                                  Size="@("small")"
-                                  Style="width: 80px;"
-                                  DefaultValue="Settings.ContentWidth"
-                                  @bind-Value="Settings.ContentWidth">
+                Action = @<SimpleSelect Size="@("small")"
+                                        Style="width: 80px;"
+                                        DefaultValue="@Settings.ContentWidth"
+                                        @bind-Value="Settings.ContentWidth">
     <SelectOptions>
-        <SelectOption TItem="string" TItemValue="string" Value="@("Fixed")" Label="@L["Fixed"]" />
-        <SelectOption TItem="string" TItemValue="string" Value="@("Fluid")" Label="@L["Fluid"]" />
+        <SimpleSelectOption Value="@("Fixed")" Label="@L["Fixed"]" />
+        <SimpleSelectOption Value="@("Fluid")" Label="@L["Fluid"]" />
     </SelectOptions>
-</Select>
+</SimpleSelect>
             },
             new SettingItem
             {

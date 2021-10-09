@@ -4,6 +4,12 @@
     "PageStyleSetting": "整体风格设置",
     "ThemeColor": "主题色",
     "NavigationMode": "导航模式",
+
+    "HeaderTheme": "顶栏主题",
+    "SidebarTheme": "侧边主题",
+    "Light": "亮色",
+    "Dark": "暗黑",
+
     "ContentWidth": "内容区域宽度",
     "Fixed": "定宽",
     "Fluid": "流式",
