@@ -105,7 +105,6 @@ namespace Zero.Abp.AntdesignUI.Layout
 
         //    ThemeList = list.ToArray();
         //}
-
         private async Task UpdateTheme()
         {
             var task = Message.Loading(new MessageConfig
@@ -116,7 +115,7 @@ namespace Zero.Abp.AntdesignUI.Layout
             task.Start();
             var key = Settings.PrimaryColor ?? "default";
             string fileName;
-            if (Settings.NavTheme == "realDark")
+            if (Settings.SiderbarTheme == "realDark")
             {
                 fileName = key == "default" ? "dark" : $"dark-{key}";
             }
@@ -124,6 +123,19 @@ namespace Zero.Abp.AntdesignUI.Layout
             {
                 fileName = key == "default" ? "" : key;
             }
+            _url = $"/_content/{typeof(SettingDrawer).Assembly.GetName().Name}/theme/{fileName}.css";
+            await JsInvokeAsync(JSInteropConstants.AddElementToBody, _linkRef);
+        }
+        private async Task UpdateThemeColor()
+        {
+            var task = Message.Loading(new MessageConfig
+            {
+                Content = "Loading theme",
+                Duration = 0
+            });
+            task.Start();
+
+            var fileName = Settings.PrimaryColor ?? "default";
             _url = $"/_content/{typeof(SettingDrawer).Assembly.GetName().Name}/theme/{fileName}.css";
             await JsInvokeAsync(JSInteropConstants.AddElementToBody, _linkRef);
         }

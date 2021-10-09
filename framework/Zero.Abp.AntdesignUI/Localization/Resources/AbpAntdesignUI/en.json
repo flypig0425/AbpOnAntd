@@ -6,7 +6,7 @@
     "NavigationMode": "Navigation Mode",
 
     "HeaderTheme": "Header Theme",
-    "SidebarTheme": "Sidebar Theme",
+    "SiderbarTheme": "Sidebar Theme",
     "Light": "Light",
     "Dark": "Dark",
 
@@ -14,7 +14,7 @@
     "Fixed": "Fixed",
     "Fluid": "Fluid",
     "FixedHeader": "Fixed Header",
-    "FixedSidebar": "Fixed Sidebar",
+    "FixedSiderbar": "Fixed Sidebar",
     "SplitMenus": "Split Menus",
     "RegionalSettings": "Regional Settings",
     "Header": "Header",

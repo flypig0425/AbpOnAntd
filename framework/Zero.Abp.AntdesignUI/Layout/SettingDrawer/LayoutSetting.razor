@@ -12,67 +12,72 @@
 
 @code
 {
-    public SettingItem[] SettingItems { get; set; }
+    RenderFragment SimpleSelectRender(
+                                                Expression<Func<LayoutSettings, string>> propertySelector,
+                                                Func<string> valueFactory,
+                                                (string label, string value)[] options)
+    {
+        return @<Template>
+        <RadioGroup Size="@("small")" TValue="string" Value="@valueFactory.Invoke()"
+                OnChange=" (v)=> UpdateSettingAsync<string>(propertySelector,()=>v)"
+                ButtonStyle="@RadioButtonStyle.Solid">
+            @foreach (var item in options)
+                {
+                    <Radio RadioButton Value="@item.value">@item.label</Radio>
+                }
+            </RadioGroup>
 
+        </Template>
+    ;
+    }
+    RenderFragment SwitchRender(
+         Expression<Func<LayoutSettings, bool>> propertySelector,
+         Func<bool> valueFactory)
+    {
+        return @<Template>
+        <Switch Size="small" Checked="@valueFactory.Invoke()"
+            OnChange="(v)=>UpdateSettingAsync(propertySelector,()=>v)" />
+    </Template>
+    ;
+    }
+
+
+    public SettingItem[] SettingItems { get; set; }
     protected override void OnInitialized()
     {
         base.OnInitialized();
-
         SettingItems = new[] {
-                new SettingItem
+            new SettingItem
             {
                 Title=L["HeaderTheme"],
-                Action = @<SimpleSelect Size="@("small")"
-                                        Style="width: 80px;"
-                                        DefaultValue="@Settings.HeaderTheme"
-                                            @bind-Value="Settings.HeaderTheme">
-        <SelectOptions>
-            <SimpleSelectOption Value="@("light")" Label="@L["Light"]" />
-            <SimpleSelectOption Value="@("dark")" Label="@L["Dark"]" />
-        </SelectOptions>
-    </SimpleSelect>
+                Action = SimpleSelectRender(x => x.HeaderTheme,()=>Settings.HeaderTheme,new []{ (L["Light"].Value,"light"), (L["Dark"],"dark")})
             },
                 new SettingItem
             {
-                Title=L["SidebarTheme"],
-                Action = @<SimpleSelect Size="@("small")"
-                                        Style="width: 80px;"
-                                        DefaultValue="@Settings.NavTheme"
-                                            @bind-Value="Settings.NavTheme">
-        <SelectOptions>
-            <SimpleSelectOption Value="@("light")" Label="@L["Light"]" />
-            <SimpleSelectOption Value="@("dark")" Label="@L["Dark"]" />
-        </SelectOptions>
-    </SimpleSelect>
+                Title=L["SiderbarTheme"],
+                Action =SimpleSelectRender(x => x.SiderbarTheme,()=>Settings.SiderbarTheme,new []{ (L["Light"].Value,"light"), (L["Dark"],"dark")})
             },
             new SettingItem
             {
                 Title=L["ContentWidth"],
-                Action = @<SimpleSelect Size="@("small")"
-                                        Style="width: 80px;"
-                                        DefaultValue="@Settings.ContentWidth"
-                                            @bind-Value="Settings.ContentWidth">
-        <SelectOptions>
-            <SimpleSelectOption Value="@("Fixed")" Label="@L["Fixed"]" />
-            <SimpleSelectOption Value="@("Fluid")" Label="@L["Fluid"]" />
-        </SelectOptions>
-    </SimpleSelect>
+                Action =SimpleSelectRender(x => x.ContentWidth,()=>Settings.ContentWidth,new []{ (L["Fixed"].Value,"Fixed"), (L["Fluid"],"Fluid")}),
             },
             new SettingItem
             {
                 Title=L["FixedHeader"],
-                Action = @<Switch Size="small" @bind-Checked="Settings.FixedHeader" />
-    },
-    new SettingItem
-    {
-    Title=L["FixedSidebar"],
-    Action = @<Switch Size="small" @bind-Checked="Settings.FixSiderbar" />
-    },
-    new SettingItem
-    {
-    Title=L["SplitMenus"],
-    Action = @<Switch Size="small" @bind-Checked="Settings.SplitMenus" />
+                Action =SwitchRender( x => x.FixedHeader, () => Settings.FixedHeader)
             },
-    };
+            new SettingItem
+            {
+                Title=L["FixedSiderbar"],
+                Action =SwitchRender(x => x.FixedSiderbar, () => Settings.FixedSiderbar)
+            },
+            new SettingItem
+            {
+                Title=L["SplitMenus"],
+                Action =SwitchRender(x => x.SplitMenus, () => Settings.SplitMenus)
+            },
+
+         };
     }
 }

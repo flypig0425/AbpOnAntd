@@ -6,7 +6,7 @@ namespace Zero.Abp.AntdesignUI.Layout
     public class LayoutSettings : ILayoutSettings
     {
         private string _primaryColor;
-        private string _navTheme = "light";     // light | dark
+        private string _siderbarTheme = "light";     // light | dark
         private string _headerTheme = "light";  // light | dark
         private string _layout = "mix";         // side | top | mix
         private string _contentWidth = "Fluid"; // Fluid | Fixed
@@ -20,16 +20,23 @@ namespace Zero.Abp.AntdesignUI.Layout
         private bool _menuHeaderRender = true;
         private int _headerHeight = 48;
 
+
+        private bool _fullDark;
+        private bool _compact;
+
         private string _iconfontUrl;
 
-        public string NavTheme { get => _navTheme; set => Update(ref _navTheme, value); }
-
+        public string SiderbarTheme { get => _siderbarTheme; set => Update(ref _siderbarTheme, value); }
         public string HeaderTheme { get => _headerTheme; set => Update(ref _headerTheme, value); }
+
+        public bool FullDark { get => _fullDark; set => Update(ref _fullDark, value); }
+        public bool Compact { get => _compact; set => Update(ref _compact, value); }
+
 
         public string Layout { get => _layout; set => Update(ref _layout, value); }
         public string PrimaryColor { get => _primaryColor; set => Update(ref _primaryColor, value); }
         public bool FixedHeader { get => _fixedHeader; set => Update(ref _fixedHeader, value); }
-        public bool FixSiderbar { get => _fixSiderbar; set => Update(ref _fixSiderbar, value); }
+        public bool FixedSiderbar { get => _fixSiderbar; set => Update(ref _fixSiderbar, value); }
         public bool SplitMenus { get => _splitMenus; set => Update(ref _splitMenus, value); }
         public bool ColorWeak { get => _colorWeak; set => Update(ref _colorWeak, value); }
         public int HeaderHeight { get => _headerHeight; set => Update(ref _headerHeight, value); }

@@ -24,4 +24,8 @@
   <ItemGroup>
     <Compile Remove="Layout\Core\DefaultSettings.cs" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
 </Project>

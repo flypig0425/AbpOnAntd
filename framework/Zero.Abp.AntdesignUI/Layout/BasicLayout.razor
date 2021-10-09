@@ -14,8 +14,8 @@ else
             <div style="@GenLayoutStyle" class="@layoutCls">
                 @HeaderDom
                 <WrapContent PrefixCls="@PrefixCls"
-                             Class="@ContentClass"
-                             Style="@ContentStyle">
+                         Class="@ContentClass"
+                         Style="@ContentStyle">
                     @(Loading ? @<PageLoading /> : ChildContent)
                 </WrapContent>
                 @FooterDom
@@ -58,9 +58,9 @@ else
     @<Template>
 
         <HeaderView HasSiderMenu="HasSiderMenu"
-                    SiderWidth="SiderWidth"
-                    Collapsed="Collapsed"
-                    MenuData="menuData"
+                SiderWidth="SiderWidth"
+                Collapsed="Collapsed"
+                MenuData="menuData"
                     @bind-SelectedKeys="TopSelectedKeys" />
     </Template>
     ;
@@ -95,10 +95,10 @@ else
     private RenderFragment siderMenuWrapper(ApplicationMenuItemList clearMenuData = null, bool hide = false) =>
     @<Template>
         <SiderMenuWrapper Hide="hide"
-                          SiderWidth="SiderWidth"
-                          Collapsed="Collapsed"
-                          OnCollapse="HandleCollapse"
-                          MenuData="clearMenuData"
+                      SiderWidth="SiderWidth"
+                      Collapsed="Collapsed"
+                      OnCollapse="HandleCollapse"
+                      MenuData="clearMenuData"
                           @bind-SelectedKeys="SiderSelectedKeys" />
     </Template>
     ;

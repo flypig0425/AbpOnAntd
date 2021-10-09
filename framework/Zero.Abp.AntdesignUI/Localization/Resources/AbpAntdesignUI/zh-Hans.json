@@ -6,7 +6,7 @@
     "NavigationMode": "导航模式",
 
     "HeaderTheme": "顶栏主题",
-    "SidebarTheme": "侧边主题",
+    "SiderbarTheme": "侧边主题",
     "Light": "亮色",
     "Dark": "暗黑",
 
@@ -14,7 +14,7 @@
     "Fixed": "定宽",
     "Fluid": "流式",
     "FixedHeader": "固定顶栏",
-    "FixedSidebar": "固定侧边菜单",
+    "FixedSiderbar": "固定侧边菜单",
     "SplitMenus": "自动分割菜单",
     "RegionalSettings": "内容区域",
     "Header": "顶栏",

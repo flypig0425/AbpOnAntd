@@ -13,6 +13,18 @@
 @code
 {
 
+    RenderFragment SwitchRender(
+         Expression<Func<LayoutSettings, bool>> propertySelector,
+         Func<bool> valueFactory)
+    {
+        return @<Template>
+        <Switch Size="small" Checked="@valueFactory.Invoke()"
+            OnChange="(v)=>UpdateSettingAsync(propertySelector,()=>v)" />
+    </Template>
+    ;
+    }
+
+
     public SettingItem[] OtherSettings { get; set; }
 
     protected override void OnInitialized()
@@ -20,13 +32,12 @@
         base.OnInitialized();
 
         OtherSettings = new[]
-        {
+                    {
             new SettingItem
             {
                 Title =L["Weakmode"],
-                Action = @<Switch Size="small" @bind-Value="Settings.ColorWeak" />
-            },
-            new SettingItem()
+                Action =SwitchRender( x => x.ColorWeak, () => Settings.ColorWeak)
+            }
         };
-        }
+    }
 }

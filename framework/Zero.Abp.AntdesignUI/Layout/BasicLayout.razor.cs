@@ -66,7 +66,7 @@ namespace Zero.Abp.AntdesignUI.Layout
 
 
         bool HasSiderMenu => Settings.Layout != Layout.Mix.Name || !Settings.SplitMenus || SiderMenuDom != null;
-        bool HasLeftPadding => HasSiderMenu && Settings.FixSiderbar && Settings.Layout != Layout.Top.Name && !IsMobile;
+        bool HasLeftPadding => HasSiderMenu && Settings.FixedSiderbar && Settings.Layout != Layout.Top.Name && !IsMobile;
         int PaddingLeft => HasLeftPadding ? (Collapsed ? 48 : SiderWidth) : 0;
 
         private string WeakModeStyle => StyleValues(("filter: invert(80%)", Settings.ColorWeak));
@@ -80,7 +80,7 @@ namespace Zero.Abp.AntdesignUI.Layout
         private string LayoutClass => ClassNames("ant-design-pro", BaseClassName, $"screen-{ColSize}"
             , ($"{BaseClassName}-top-menu", Settings.Layout == Layout.Top.Name)
             , ($"{BaseClassName}-is-children", isChildrenLayout)
-            , ($"{BaseClassName}-fix-siderbar", Settings.FixSiderbar)
+            , ($"{BaseClassName}-fix-siderbar", Settings.FixedSiderbar)
             , ($"{BaseClassName}-mobile", IsMobile)
             );
 

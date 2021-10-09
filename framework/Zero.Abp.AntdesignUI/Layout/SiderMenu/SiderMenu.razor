@@ -81,8 +81,8 @@
 
 
 @code {
-    private SiderTheme SiderTheme => Settings.NavTheme.ToSiderTheme();
-    private MenuTheme MenuTheme => Settings.NavTheme.ToMenuTheme();
+    private SiderTheme SiderTheme => Settings.SiderbarTheme.ToSiderTheme();
+    private MenuTheme MenuTheme => Settings.SiderbarTheme.ToMenuTheme();
 
     [Parameter] public ApplicationMenuItemList MenuData { get; set; }
     [Parameter] public string[] SelectedKeys { get; set; }
@@ -121,7 +121,7 @@
     //private string siderWidth => $"{(Collapsed ? collapsedWidth : SiderWidth)}px";
     private string BaseClassName => $"{PrefixCls}-sider";
     private string SiderClassName => ClassNames(BaseClassName
-    , ($"{BaseClassName}-fixed", Settings.FixSiderbar)
+    , ($"{BaseClassName}-fixed", Settings.FixedSiderbar)
     , ($"{BaseClassName}-layout-{Settings.Layout}", Settings.Layout != null && !IsMobile)
     , ($"{BaseClassName}-light", SiderTheme == SiderTheme.Light)
     );

@@ -13,6 +13,12 @@
 @code
 {
 
+    RenderFragment SwitchRender(Func<bool> value, Action<bool> callback) =>@<Template>
+        <Switch Size="small" Checked="@value.Invoke()" OnChange="v=>callback?.Invoke(v)" />
+    </Template>
+    ;
+
+
     public SettingItem[] SettingItems { get; set; }
 
     protected override void OnInitialized()
@@ -23,23 +29,23 @@
             new SettingItem
             {
                 Title = L["Header"],
-                Action = @<Switch Size="small" @bind-Value="Settings.HeaderRender" />
+                Action =SwitchRender(()=>Settings.HeaderRender,(value)=>Settings.HeaderRender=value)
             },
             new SettingItem
             {
                 Title =  L["Footer"],
-                Action = @<Switch Size="small" @bind-Value="Settings.FooterRender" />
+                Action =SwitchRender(()=>Settings.FooterRender,(value)=>Settings.FooterRender=value)
             },
             new SettingItem
             {
                 Title =  L["Menu"],
-                Action = @<Switch Size="small" @bind-Value="Settings.MenuRender" />
+                Action =SwitchRender(()=>Settings.MenuRender,(value)=>Settings.MenuRender=value)
             },
             new SettingItem
             {
                 Title =  L["MenuHeader"],
-                Action = @<Switch Size="small" @bind-Value="Settings.MenuHeaderRender" />
+                Action =SwitchRender(()=>Settings.MenuHeaderRender,(value)=>Settings.MenuHeaderRender=value)
             },
         };
-        }
+    }
 }
