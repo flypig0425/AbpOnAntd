@@ -24,7 +24,7 @@
     @if (HasHeaderDom)
     {
         <div id="logo" style="@LogoStyle" @onclick="@OnMenuHeaderClick"
-         class="@ClassNames($"{BaseClassName}-logo", ($"{BaseClassName}-collapsed",Collapsed))">
+             class="@ClassNames($"{BaseClassName}-logo", ($"{BaseClassName}-collapsed",Collapsed))">
             <Branding HideTitle="@Collapsed" />
         </div>
     }
@@ -40,6 +40,7 @@
         <BaseMenu Style="width: 100%"
                   Class="@($"{BaseClassName}-menu")"
                   Mode="Mode"
+                  Theme="MenuTheme"
                   Collapsed="Collapsed"
                   MenuData="MenuData"
                   SelectedKeys="SelectedKeys"
@@ -63,8 +64,8 @@
             @if (CollapsedButtonRender != null && !IsMobile)
             {
                 <MenuItem Class="@($"{BaseClassName}-collapsed-button")"
-                      Key="Collapsed" Title="@null"
-                      OnClick="@(async arg => await HandleOnCollapse(Collapsed = !Collapsed))">
+                          Key="Collapsed" Title="@null"
+                          OnClick="@(async arg => await HandleOnCollapse(Collapsed = !Collapsed))">
                     @CollapsedButtonRender(Collapsed)
                 </MenuItem>
             }
@@ -80,6 +81,9 @@
 
 
 @code {
+    private SiderTheme SiderTheme => Settings.NavTheme.ToSiderTheme();
+    private MenuTheme MenuTheme => Settings.NavTheme.ToMenuTheme();
+
     [Parameter] public ApplicationMenuItemList MenuData { get; set; }
     [Parameter] public string[] SelectedKeys { get; set; }
     [Parameter] public EventCallback<string[]> SelectedKeysChanged { get; set; }
@@ -89,20 +93,6 @@
     [Parameter] public bool Collapsed { get; set; }
     [Parameter] public string LogoStyle { get; set; }
     [Parameter] public BreakpointType Breakpoint { get; set; } = BreakpointType.Lg;
-
-
-    //[Parameter]
-    private SiderTheme SiderTheme
-    {
-        get { return Settings.NavTheme switch { "light" => SiderTheme.Light, "dark" => SiderTheme.Dark, _ => SiderTheme.Light }; }
-        //set => Settings.NavTheme = value == SiderTheme.Light ? MenuTheme.Light.Name : MenuTheme.Dark.Name;
-    }
-    private MenuTheme MenuTheme
-    {
-        get { return Settings.NavTheme switch { "light" => MenuTheme.Light, "dark" => MenuTheme.Dark, _ => MenuTheme.Light }; }
-        //set => Settings.NavTheme = value == MenuTheme.Light ? MenuTheme.Light.Name : MenuTheme.Dark.Name;
-    }
-
 
     [CascadingParameter(Name = nameof(MenuExtraRender))]
     public RenderFragment MenuExtraRender { get; set; }
@@ -139,23 +129,6 @@
         , $"padding-top: {(Settings.Layout == Layout.Mix.Name && !IsMobile ? Settings.HeaderHeight : 0)}px;"
         );
     #endregion
-
-    //private async Task HandleOnOpenChange(string[] openKeys)
-    //{
-    //    OpenKeys = openKeys;
-    //    if (OnOpenChange.HasDelegate)
-    //    {
-    //        await OnOpenChange.InvokeAsync(openKeys);
-    //    }
-    //}
-    //private async void HandleOnSelectedKeys(string[] keys)
-    //{
-    //    SelectedKeys = keys;
-    //    if (OnSelected.HasDelegate)
-    //    {
-    //        await OnSelected.InvokeAsync(keys);
-    //    }
-    //}
 
     private async Task HandleOnCollapse(bool collapsed)
     {

@@ -1,6 +1,23 @@
 {
   "culture": "en",
   "texts": {
+    "PageStyleSetting": "Page style setting",
+    "ThemeColor": "Theme Color",
+    "NavigationMode": "Navigation Mode",
+    "ContentWidth": "Content Width",
+    "Fixed": "Fixed",
+    "Fluid": "Fluid",
+    "FixedHeader": "Fixed Header",
+    "FixedSidebar": "Fixed Sidebar",
+    "SplitMenus": "Split Menus",
+    "RegionalSettings": "Regional Settings",
+    "Header": "Header",
+    "Footer": "Footer",
+    "Menu": "Menu",
+    "MenuHeader": "Menu Header",
+    "OtherSettings": "Other Settings",
+    "Weakmode": "Weakmode",
+    "SettingDrawer:HintAlertMessage": "Setting panel shows in development environment only, please manually modify",
     "CopySetting": "Copy Setting"
   }
 }

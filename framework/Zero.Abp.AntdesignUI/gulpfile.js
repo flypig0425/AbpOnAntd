@@ -4,6 +4,7 @@
     rename = require('gulp-rename'),
     concatCss = require("gulp-concat-css"),
     npmImport = require("less-plugin-npm-import");
+var replace = require('gulp-replace');
 
 gulp.task('less', function () {
     return gulp
@@ -32,6 +33,9 @@ gulp.task('themes', function () {
         }))
         .pipe(cleanCss({ compatibility: '*' }))
         .pipe(rename({ dirname: 'wwwroot/theme' }))
+        //.pipe(replace(/#1890ff/g, function (match, p1) {
+        //    return 'var(--primary-color)';
+        //}))
         .pipe(gulp.dest('./'));
 });
 

@@ -4,6 +4,7 @@ using OneOf;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Volo.Abp.Threading;
 
 namespace Zero.Abp.AntdesignUI.Layout
 {
@@ -42,29 +43,10 @@ namespace Zero.Abp.AntdesignUI.Layout
             => string.Join(";", Utils.StyleOrClassNames(styleValues)?.Select(s => s.TrimEnd(';')));
 
         #endregion
-        protected LayoutSettings Settings => LayoutState.Settings;
+        
+        protected LayoutSettings Settings =>  AsyncHelper.RunSync(async ()=> await LayoutConfigProvider.GetSettingsAsync());
 
-
-        [Inject] protected LayoutState LayoutState { get; set; }
         [Inject] protected ILayoutConfigProvider LayoutConfigProvider { get; set; }
-        protected override async Task OnInitializedAsync()
-        {
-            await base.OnInitializedAsync();
-            var settings = await LayoutConfigProvider.GetSettingsAsync();
-            LayoutState.UpdateSettings(settings);
-            LayoutState.OnChange += OnStateChanged;
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            LayoutState.OnChange -= OnStateChanged;
-            base.Dispose(disposing);
-        }
-
-        protected virtual void OnStateChanged()
-        {
-            StateHasChanged();
-        }
     }
 
 

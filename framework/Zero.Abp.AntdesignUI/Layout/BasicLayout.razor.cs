@@ -29,14 +29,28 @@ namespace Zero.Abp.AntdesignUI.Layout
         [Inject] protected IMenuManager MenuManager { get; set; }
         [Inject] protected NavigationManager NavigationManager { get; set; }
 
+
         protected override async Task OnInitializedAsync()
         {
+            await base.OnInitializedAsync();
             MenuData = await MenuManager.GetMenuDataAsync();
             if (IsSplitMenus)
             {
                 var matchMenuKeys = NavigationManager.GetMatchMenuKeys(MenuData, true);
                 TopSelectedKeys = matchMenuKeys;
             }
+            Settings.OnStateChange += OnStateChanged;
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            //Settings.OnStateChange -= OnStateChanged;
+            base.Dispose(disposing);
+        }
+
+        protected virtual void OnStateChanged()
+        {
+            StateHasChanged();
         }
 
         private async Task HandleCollapse(bool collapsed)

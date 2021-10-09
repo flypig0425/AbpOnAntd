@@ -74,6 +74,12 @@ namespace Zero.Abp.AntdesignUI.Layout
                     Title = "Light style"
                 }
             };
+            list.Add(new CheckboxItem
+            {
+                Key = "dark",
+                Url = "https://gw.alipayobjects.com/zos/antfincdn/hmKaLQvmY2/LCkqqYNmvBEbokSDscrm.svg",
+                Title = "Dark style"
+            });
 
             //if (SettingState.Value.Layout != "mix")
             //{
@@ -96,12 +102,7 @@ namespace Zero.Abp.AntdesignUI.Layout
                 Title = "Dark style"
             });
 
-            list.Add(new CheckboxItem
-            {
-                Key = "realDark",
-                Url = "https://gw.alipayobjects.com/zos/antfincdn/hmKaLQvmY2/LCkqqYNmvBEbokSDscrm.svg",
-                Title = "Dark style"
-            });
+          
 
             ThemeList = list.ToArray();
         }
@@ -114,9 +115,9 @@ namespace Zero.Abp.AntdesignUI.Layout
                 Duration = 0
             });
             task.Start();
-            var key = LayoutState.Settings.PrimaryColor ?? "default";
+            var key = Settings.PrimaryColor ?? "default";
             string fileName;
-            if (LayoutState.Settings.NavTheme == "realDark")
+            if (Settings.NavTheme == "realDark")
             {
                 fileName = key == "default" ? "dark" : $"dark-{key}";
             }
@@ -135,9 +136,9 @@ namespace Zero.Abp.AntdesignUI.Layout
 
         private async Task CopySetting(MouseEventArgs args)
         {
-            var json = JsonSerializer.Serialize(LayoutState.Settings);
+            var json = JsonSerializer.Serialize(Settings);
             await JsInvokeAsync<object>(JSInteropConstants.Copy, json);
-            await Message.Success("copy success, please replace defaultSettings in wwwroot/appLayoutState.Settings.json");
+            await Message.Success("copy success, please replace defaultSettings in wwwroot/appSettings.json");
         }
     }
 }

@@ -40,5 +40,11 @@ namespace Zero.Abp.AntdesignUI.Layout
             return tempClassNames ?? Array.Empty<string>();
         }
 
+
+        public static MenuTheme ToMenuTheme(this string theme)
+            => theme switch { "light" => MenuTheme.Light, "dark" => MenuTheme.Dark, _ => MenuTheme.Light };
+
+        public static SiderTheme ToSiderTheme(this string theme)
+            => theme switch { "light" => SiderTheme.Light, "dark" => SiderTheme.Dark, _ => SiderTheme.Light };
     }
 }

@@ -14,25 +14,25 @@
     <ChildContent>
         <div class="@BaseClassName-drawer-content">
 
-            <SettingDrawerBody Title="Page style setting"
+            <SettingDrawerBody Title="@L["PageStyleSetting"]"
                                PrefixCls="@BaseClassName">
                 <BlockCheckbox PrefixCls="@BaseClassName"
                                List="ThemeList"
-                               @bind-Value="@LayoutState.Settings.NavTheme"
+                               @bind-Value="@Settings.NavTheme"
                                OnChange="@(async x => await UpdateTheme())" />
             </SettingDrawerBody>
 
-            <ThemeColor Title="Theme Color"
+            <ThemeColor Title="@L["ThemeColor"]"
                         Colors="LightColorList"
-                        @bind-Value="@LayoutState.Settings.PrimaryColor"
+                        @bind-Value="@Settings.PrimaryColor"
                         OnChange="@(async _=>await UpdateTheme())" />
             <Divider />
 
-            <SettingDrawerBody Title="Navigation Mode"
+            <SettingDrawerBody Title="@L["NavigationMode"]"
                                PrefixCls="@BaseClassName">
                 <BlockCheckbox PrefixCls="@BaseClassName"
                                List="LayoutList"
-                               @bind-Value="@LayoutState.Settings.Layout"
+                               @bind-Value="@Settings.Layout"
                                OnChange="@(x => SetThemeList())" />
             </SettingDrawerBody>
 
@@ -40,14 +40,14 @@
 
             <Divider />
 
-            <SettingDrawerBody Title="Regional Settings"
+            <SettingDrawerBody Title="@L["RegionalSettings"]"
                                PrefixCls="@BaseClassName">
                 <RegionalSetting />
             </SettingDrawerBody>
 
             <Divider />
 
-            <SettingDrawerBody Title="Other Settings"
+            <SettingDrawerBody Title="@L["OtherSettings"]"
                                PrefixCls="@BaseClassName">
                 <OtherSetting />
             </SettingDrawerBody>
@@ -60,7 +60,7 @@
             @if (!HideHintAlert)
             {
                 <Alert Type="warning"
-                       Message="Setting panel shows in development environment only, please manually modify"
+                       Message="@L["SettingDrawer:HintAlertMessage"]"
                        Icon="_notification"
                        ShowIcon="true"
                        Style="margin-bottom: 16px;" />

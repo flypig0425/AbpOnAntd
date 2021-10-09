@@ -21,33 +21,33 @@
         SettingItems = new[] {
             new SettingItem
             {
-                Title="Content Width",
+                Title=L["ContentWidth"],
                 Action = @<Select TItem="string"
                                   TItemValue="string"
                                   Size="@("small")"
                                   Style="width: 80px;"
-                                  DefaultValue="LayoutState.Settings.ContentWidth"
-                                  @bind-Value="LayoutState.Settings.ContentWidth">
+                                  DefaultValue="Settings.ContentWidth"
+                                  @bind-Value="Settings.ContentWidth">
     <SelectOptions>
-        <SelectOption TItem="string" TItemValue="string" Value="@("Fixed")" Label="Fixed" />
-        <SelectOption TItem="string" TItemValue="string" Value="@("Fluid")" Label="Fluid" />
+        <SelectOption TItem="string" TItemValue="string" Value="@("Fixed")" Label="@L["Fixed"]" />
+        <SelectOption TItem="string" TItemValue="string" Value="@("Fluid")" Label="@L["Fluid"]" />
     </SelectOptions>
 </Select>
             },
             new SettingItem
             {
-                Title="Fixed Header",
-                Action = @<Switch Size="small" @bind-Checked="LayoutState.Settings.FixedHeader" />
+                Title=L["FixedHeader"],
+                Action = @<Switch Size="small" @bind-Checked="Settings.FixedHeader" />
             },
             new SettingItem
             {
-                Title="Fixed Sidebar",
-                Action = @<Switch Size="small" @bind-Checked="LayoutState.Settings.FixSiderbar" />
+                Title=L["FixedSidebar"],
+                Action = @<Switch Size="small" @bind-Checked="Settings.FixSiderbar" />
             },
             new SettingItem
             {
-                Title="Split Menus",
-                Action = @<Switch Size="small" @bind-Checked="LayoutState.Settings.SplitMenus" />
+                Title=L["SplitMenus"],
+                Action = @<Switch Size="small" @bind-Checked="Settings.SplitMenus" />
             },
         };
         }

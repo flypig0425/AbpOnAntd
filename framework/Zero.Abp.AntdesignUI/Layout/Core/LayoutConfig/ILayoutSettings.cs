@@ -1,4 +1,6 @@
-﻿namespace Zero.Abp.AntdesignUI.Layout
+﻿using System;
+
+namespace Zero.Abp.AntdesignUI.Layout
 {
     public interface ILayoutSettings
     {

@@ -9,8 +9,11 @@
             </div>
         </div>
         <div style="flex: 1;" class="@BaseClassName-menu">
-            <BaseMenu Mode="Mode" MenuData="MenuData"
-                      SelectedKeys="SelectedKeys" SelectedKeysChanged="SelectedKeysChanged" />
+            <BaseMenu Mode="Mode"
+                      Theme="MenuTheme"
+                      MenuData="MenuData"
+                      SelectedKeys="SelectedKeys"
+                      SelectedKeysChanged="SelectedKeysChanged" />
         </div>
         @* @if (RightContentRender != null)
             {*@
@@ -26,6 +29,8 @@
     </div>
 </div>
 @code {
+    private MenuTheme MenuTheme => Settings.HeaderTheme.ToMenuTheme();
+
     [Parameter] public ApplicationMenuItemList MenuData { get; set; }
     [Parameter] public string[] SelectedKeys { get; set; }
     [Parameter] public EventCallback<string[]> SelectedKeysChanged { get; set; }
@@ -48,6 +53,6 @@
 
     private string TopNavHeaderClass => ClassNames(
         BaseClassName, Class
-        , ("light", Settings.NavTheme == MenuTheme.Light.Name)
+        , ("light", MenuTheme == MenuTheme.Light)
         );
 }

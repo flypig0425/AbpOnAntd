@@ -22,23 +22,23 @@
         SettingItems = new[] {
             new SettingItem
             {
-                Title = "header",
-                Action = @<Switch Size="small" @bind-Value="LayoutState.Settings.HeaderRender" />
+                Title = L["Header"],
+                Action = @<Switch Size="small" @bind-Value="Settings.HeaderRender" />
             },
             new SettingItem
             {
-                Title = "footer",
-                Action = @<Switch Size="small" @bind-Value="LayoutState.Settings.FooterRender" />
+                Title =  L["Footer"],
+                Action = @<Switch Size="small" @bind-Value="Settings.FooterRender" />
             },
             new SettingItem
             {
-                Title = "menu",
-                Action = @<Switch Size="small" @bind-Value="LayoutState.Settings.MenuRender" />
+                Title =  L["Menu"],
+                Action = @<Switch Size="small" @bind-Value="Settings.MenuRender" />
             },
             new SettingItem
             {
-                Title = "menuHeader",
-                Action = @<Switch Size="small" @bind-Value="LayoutState.Settings.MenuHeaderRender" />
+                Title =  L["MenuHeader"],
+                Action = @<Switch Size="small" @bind-Value="Settings.MenuHeaderRender" />
             },
         };
         }
