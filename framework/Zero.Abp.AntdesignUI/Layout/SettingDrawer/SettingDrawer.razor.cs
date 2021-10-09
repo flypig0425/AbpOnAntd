@@ -16,7 +16,7 @@ namespace Zero.Abp.AntdesignUI.Layout
         private string PrefixCls { get; } = "ant-pro";
         private string BaseClassName => $"{PrefixCls}-setting";
 
-        private CheckboxItem[] ThemeList { get; set; }
+        //private CheckboxItem[] ThemeList { get; set; }
 
         private CheckboxItem[] LayoutList { get; set; } =
         {
@@ -60,52 +60,52 @@ namespace Zero.Abp.AntdesignUI.Layout
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
-            SetThemeList();
+            //SetThemeList();
         }
 
-        private void SetThemeList()
-        {
-            var list = new List<CheckboxItem>
-            {
-                new CheckboxItem
-                {
-                    Key = "light",
-                    Url = "https://gw.alipayobjects.com/zos/antfincdn/NQ%24zoisaD2/jpRkZQMyYRryryPNtyIC.svg",
-                    Title = "Light style"
-                }
-            };
-            list.Add(new CheckboxItem
-            {
-                Key = "dark",
-                Url = "https://gw.alipayobjects.com/zos/antfincdn/hmKaLQvmY2/LCkqqYNmvBEbokSDscrm.svg",
-                Title = "Dark style"
-            });
+        //private void SetThemeList()
+        //{
+        //    var list = new List<CheckboxItem>
+        //    {
+        //        new CheckboxItem
+        //        {
+        //            Key = "light",
+        //            Url = "https://gw.alipayobjects.com/zos/antfincdn/NQ%24zoisaD2/jpRkZQMyYRryryPNtyIC.svg",
+        //            Title = "Light style"
+        //        }
+        //    };
+        //    list.Add(new CheckboxItem
+        //    {
+        //        Key = "dark",
+        //        Url = "https://gw.alipayobjects.com/zos/antfincdn/hmKaLQvmY2/LCkqqYNmvBEbokSDscrm.svg",
+        //        Title = "Dark style"
+        //    });
 
-            //if (SettingState.Value.Layout != "mix")
-            //{
-            //    list.Add(new CheckboxItem
-            //    {
-            //        Key = "dark",
-            //        Url = "https://gw.alipayobjects.com/zos/antfincdn/XwFOFbLkSM/LCkqqYNmvBEbokSDscrm.svg",
-            //        Title = "Dark style"
-            //    });
-            //}
-            //else if (SettingState.Value.NavTheme == "dark")
-            //{
-            //    SettingState.Value.NavTheme = "light";
-            //}
+        //    //if (SettingState.Value.Layout != "mix")
+        //    //{
+        //    //    list.Add(new CheckboxItem
+        //    //    {
+        //    //        Key = "dark",
+        //    //        Url = "https://gw.alipayobjects.com/zos/antfincdn/XwFOFbLkSM/LCkqqYNmvBEbokSDscrm.svg",
+        //    //        Title = "Dark style"
+        //    //    });
+        //    //}
+        //    //else if (SettingState.Value.NavTheme == "dark")
+        //    //{
+        //    //    SettingState.Value.NavTheme = "light";
+        //    //}
 
-            list.Add(new CheckboxItem
-            {
-                Key = "dark",
-                Url = "https://gw.alipayobjects.com/zos/antfincdn/XwFOFbLkSM/LCkqqYNmvBEbokSDscrm.svg",
-                Title = "Dark style"
-            });
+        //    list.Add(new CheckboxItem
+        //    {
+        //        Key = "dark",
+        //        Url = "https://gw.alipayobjects.com/zos/antfincdn/XwFOFbLkSM/LCkqqYNmvBEbokSDscrm.svg",
+        //        Title = "Dark style"
+        //    });
 
           
 
-            ThemeList = list.ToArray();
-        }
+        //    ThemeList = list.ToArray();
+        //}
 
         private async Task UpdateTheme()
         {
