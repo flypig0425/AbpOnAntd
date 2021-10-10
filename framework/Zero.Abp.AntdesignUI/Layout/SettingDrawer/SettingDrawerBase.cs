@@ -13,7 +13,6 @@ namespace Zero.Abp.AntdesignUI.Layout
 {
     public class SettingDrawerBase : AntLayoutComponentBase
     {
-        [Inject] protected IStringLocalizer<AbpAntdesignUIResource> L { get; set; }
 
         [Inject] public MessageService Message { get; set; }
 
@@ -43,7 +42,7 @@ namespace Zero.Abp.AntdesignUI.Layout
                 _themeUrl = $"/_content/{typeof(SettingDrawer).Assembly.GetName().Name}/theme/{fileName}.css";
                 await JsInvokeAsync(JSInteropConstants.AddElementToBody, _themeRef);
             }
-            await InvokeStateHasChangedAsync();
+            Settings.HasChanged();
         }
     }
 
@@ -51,18 +50,6 @@ namespace Zero.Abp.AntdesignUI.Layout
     {
         public bool Disabled { get; set; }
         public string Title { get; set; }
-        public string Type { get; set; }
-        public Expression<Func<LayoutSettings, string>> PropertySelector { get; set; }
-        public Func<string> ValueFactory { get; set; }
-
-
-        public List<(string label, string value)> Options { get; set; }
-
-
         public RenderFragment Action { get; set; }
-        public Func<object> Value { get; set; }
-        public Action<object> OnChange { get; set; }
-        //public Action<object> OnChanged { get; set; }
-        //public RenderFragment Action { get; set; }
     }
 }

@@ -39,18 +39,13 @@ namespace Zero.Abp.AntdesignUI.Layout
                 var matchMenuKeys = NavigationManager.GetMatchMenuKeys(MenuData, true);
                 TopSelectedKeys = matchMenuKeys;
             }
-            //Settings.OnStateChange += OnStateChanged;
+            Settings.Changed += OnSettingsChanged;
         }
 
         protected override void Dispose(bool disposing)
         {
-            //Settings.OnStateChange -= OnStateChanged;
+            Settings.Changed -= OnSettingsChanged;
             base.Dispose(disposing);
-        }
-
-        protected virtual void OnStateChanged()
-        {
-            StateHasChanged();
         }
 
         private async Task HandleCollapse(bool collapsed)

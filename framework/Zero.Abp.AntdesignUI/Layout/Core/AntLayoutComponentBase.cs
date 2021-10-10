@@ -1,9 +1,12 @@
 ﻿using AntDesign;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Localization;
 using OneOf;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Volo.Abp.Threading;
+using Zero.Abp.AntdesignUI.Localization;
 
 namespace Zero.Abp.AntdesignUI.Layout
 {
@@ -43,9 +46,30 @@ namespace Zero.Abp.AntdesignUI.Layout
 
         #endregion
 
-        protected LayoutSettings Settings => AsyncHelper.RunSync(async () => await LayoutConfigProvider.GetSettingsAsync());
+        [Inject] protected IStringLocalizer<AbpAntdesignUIResource> L { get; set; }
+
+        protected LayoutSettings Settings => AsyncHelper.RunSync(() => LayoutConfigProvider.GetSettingsAsync());
 
         [Inject] protected ILayoutConfigProvider LayoutConfigProvider { get; set; }
+        //protected override async Task OnInitializedAsync()
+        //{
+        //    await base.OnInitializedAsync();
+        //    Settings = await LayoutConfigProvider.GetSettingsAsync();
+        //    Settings.Changed += OnSettingsChanged;
+        //}
+
+        //protected override void Dispose(bool disposing)
+        //{
+        //    Settings.Changed -= OnSettingsChanged;
+        //    base.Dispose(disposing);
+        //}
+
+        protected virtual void OnSettingsChanged(object sender, EventArgs eventArgs)
+        {
+            InvokeStateHasChangedAsync();
+            //InvokeAsync(StateHasChanged);
+        }
+
     }
 
 
