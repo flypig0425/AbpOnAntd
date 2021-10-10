@@ -1,7 +1,6 @@
 using AntDesign;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -10,11 +9,7 @@ namespace Zero.Abp.AntdesignUI.Layout
     public partial class SettingDrawer
     {
         private bool _show;
-        //private string PrefixCls { get; } = "ant-pro";
         private string BaseClassName => $"{PrefixCls}-setting";
-
-        //private CheckboxItem[] ThemeList { get; set; }
-
         private CheckboxItem[] LayoutList { get; set; } =
         {
             new CheckboxItem
@@ -37,93 +32,12 @@ namespace Zero.Abp.AntdesignUI.Layout
             }
         };
 
-        private ColorItem[] DarkColorList { get; set; } = Utils.ThemeColors.Select(x => new ColorItem
-        {
-            Key = x.Value,
-            Color = x.Key,
-            Theme = "dark"
-        }).ToArray();
-
-        private ColorItem[] LightColorList { get; set; } = Utils.ThemeColors.Select(x => new ColorItem
-        {
-            Key = x.Value,
-            Color = x.Key,
-            Theme = "light"
-        }).ToArray();
-
         [Parameter] public bool HideHintAlert { get; set; }
         [Parameter] public bool HideCopyButton { get; set; }
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
-            //SetThemeList();
         }
-
-        //private void SetThemeList()
-        //{
-        //    var list = new List<CheckboxItem>
-        //    {
-        //        new CheckboxItem
-        //        {
-        //            Key = "light",
-        //            Url = "https://gw.alipayobjects.com/zos/antfincdn/NQ%24zoisaD2/jpRkZQMyYRryryPNtyIC.svg",
-        //            Title = "Light style"
-        //        }
-        //    };
-        //    list.Add(new CheckboxItem
-        //    {
-        //        Key = "dark",
-        //        Url = "https://gw.alipayobjects.com/zos/antfincdn/hmKaLQvmY2/LCkqqYNmvBEbokSDscrm.svg",
-        //        Title = "Dark style"
-        //    });
-
-        //    //if (SettingState.Value.Layout != "mix")
-        //    //{
-        //    //    list.Add(new CheckboxItem
-        //    //    {
-        //    //        Key = "dark",
-        //    //        Url = "https://gw.alipayobjects.com/zos/antfincdn/XwFOFbLkSM/LCkqqYNmvBEbokSDscrm.svg",
-        //    //        Title = "Dark style"
-        //    //    });
-        //    //}
-        //    //else if (SettingState.Value.NavTheme == "dark")
-        //    //{
-        //    //    SettingState.Value.NavTheme = "light";
-        //    //}
-
-        //    list.Add(new CheckboxItem
-        //    {
-        //        Key = "dark",
-        //        Url = "https://gw.alipayobjects.com/zos/antfincdn/XwFOFbLkSM/LCkqqYNmvBEbokSDscrm.svg",
-        //        Title = "Dark style"
-        //    });
-
-
-
-        //    ThemeList = list.ToArray();
-        //}
-        //private async Task UpdateTheme()
-        //{
-        //    var task = Message.Loading(new MessageConfig
-        //    {
-        //        Content = "Loading theme",
-        //        Duration = 0
-        //    });
-        //    task.Start();
-        //    var key = Settings.PrimaryColor ?? "default";
-        //    string fileName;
-        //    if (Settings.SiderbarTheme == "realDark")
-        //    {
-        //        fileName = key == "default" ? "dark" : $"dark-{key}";
-        //    }
-        //    else
-        //    {
-        //        fileName = key == "default" ? "" : key;
-        //    }
-        //    _url = $"/_content/{typeof(SettingDrawer).Assembly.GetName().Name}/theme/{fileName}.css";
-        //    await JsInvokeAsync(JSInteropConstants.AddElementToBody, _linkRef);
-        //}
-     
 
         private void SetShow(MouseEventArgs args)
         {
@@ -134,7 +48,7 @@ namespace Zero.Abp.AntdesignUI.Layout
         {
             var json = JsonSerializer.Serialize(Settings);
             await JsInvokeAsync<object>(JSInteropConstants.Copy, json);
-            await Message.Success("copy success, please replace defaultSettings in wwwroot/appSettings.json");
+            await Message.Success("copy success, please replace defaultSettings in appsettings.json");
         }
     }
 }
