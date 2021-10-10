@@ -1,6 +1,11 @@
 @namespace Zero.Abp.AntdesignUI.Layout
 @inherits SettingDrawerBase
 
+<ThemeColor Title="@L["ThemeColor"]"
+            Colors="LightColorList"
+            Value="@Settings.PrimaryColor"
+            OnChange="value=>UpdateSettingAsync<string>(x=>x.PrimaryColor,()=>Settings.PrimaryColor,value)" />
+
 <AntList Split="false"
          DataSource="OtherSettings"
          ItemLayout="ListItemLayout.Horizontal">
@@ -9,6 +14,7 @@
         @context.Action
     </ListItem>
 </AntList>
+<link type="text/css" rel="stylesheet" id="theme-style" href="@_themeUrl" @ref="_themeRef">
 @code
 {
     RenderFragment SwitchRender(Expression<Func<LayoutSettings, bool>> propertySelector, Func<bool> valueFactory)
@@ -19,6 +25,12 @@
     </Template> ;
     }
 
+       private ColorItem[] LightColorList { get; set; } = Utils.ThemeColors.Select(x => new ColorItem
+        {
+            Key = x.Value,
+            Color = x.Key,
+            Theme = "light"
+        }).ToArray();
 
     public SettingItem[] OtherSettings { get; set; }
 
@@ -27,11 +39,16 @@
         base.OnInitialized();
 
         OtherSettings = new[]
-        {
+            {
             new SettingItem
             {
-                Title =L["Weakmode"],
-                Action =SwitchRender( x => x.ColorWeak, () => Settings.ColorWeak)
+                Title =L["CompactTheme"],
+                Action =SwitchRender( x => x.CompactTheme, () => Settings.CompactTheme)
+            },
+            new SettingItem
+            {
+                Title =L["DarkTheme"],
+                Action =SwitchRender( x => x.DarkTheme, () => Settings.DarkTheme)
             }
         };
     }

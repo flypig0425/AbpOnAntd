@@ -39,7 +39,7 @@ namespace Zero.Abp.AntdesignUI.Layout
                 var matchMenuKeys = NavigationManager.GetMatchMenuKeys(MenuData, true);
                 TopSelectedKeys = matchMenuKeys;
             }
-            Settings.OnStateChange += OnStateChanged;
+            //Settings.OnStateChange += OnStateChanged;
         }
 
         protected override void Dispose(bool disposing)

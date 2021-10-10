@@ -10,6 +10,11 @@
     "Light": "亮色",
     "Dark": "暗黑",
 
+
+    "DarkTheme": "暗黑主題",
+    "CompactTheme": "緊湊主題",
+
+
     "ContentWidth": "內容區域寬度",
     "Fixed": "定寬",
     "Fluid": "流式",

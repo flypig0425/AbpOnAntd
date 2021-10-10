@@ -22,11 +22,12 @@
                 @bind-Value="@Settings.NavTheme"
                 OnChange="@(async x => await UpdateTheme())" />
                 </SettingDrawerBody>*@
-
-            <ThemeColor Title="@L["ThemeColor"]"
-                        Colors="LightColorList"
-                        @bind-Value="@Settings.PrimaryColor"
-                        OnChange="@(async _=>await UpdateThemeColor())" />
+            @*
+                <ThemeColor Title="@L["ThemeColor"]"
+                Colors="LightColorList"
+                Value="@Settings.PrimaryColor"
+                OnChange="value=>UpdateSettingAsync<string>(x=>x.PrimaryColor,()=>Settings.PrimaryColor,value)" />*@
+            <ThemeSetting />
             <Divider />
 
             @*OnChange="@(x => SetThemeList())"*@
@@ -34,7 +35,8 @@
                                PrefixCls="@BaseClassName">
                 <BlockCheckbox PrefixCls="@BaseClassName"
                                List="LayoutList"
-                               @bind-Value="@Settings.Layout" />
+                               Value="@Settings.Layout"
+                               OnChange="value=>UpdateSettingAsync<string>(x=>x.Layout,()=>Settings.Layout,value)" />
             </SettingDrawerBody>
 
 
@@ -77,9 +79,8 @@
         </div>
     </ChildContent>
 </Drawer>
-<link type="text/css" rel="stylesheet" id="theme-color" href="@_url" @ref="_linkRef">
+<link type="text/css" rel="stylesheet" id="theme-style" href="@_themeUrl" @ref="_themeRef">
 @code
 {
-    private RenderFragment _notification =@<Icon Type="notification" />
-;
+    private RenderFragment _notification =@<Template><Icon Type="notification" /></Template>;
 }

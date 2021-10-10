@@ -10,6 +10,9 @@
     "Light": "Light",
     "Dark": "Dark",
 
+    "DarkTheme": "Dark Theme",
+    "CompactTheme": "Compact Theme",
+
     "ContentWidth": "Content Width",
     "Fixed": "Fixed",
     "Fluid": "Fluid",

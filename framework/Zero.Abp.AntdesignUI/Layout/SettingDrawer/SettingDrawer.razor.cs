@@ -10,9 +10,7 @@ namespace Zero.Abp.AntdesignUI.Layout
     public partial class SettingDrawer
     {
         private bool _show;
-        private ElementReference _linkRef;
-        private string _url;
-        private string PrefixCls { get; } = "ant-pro";
+        //private string PrefixCls { get; } = "ant-pro";
         private string BaseClassName => $"{PrefixCls}-setting";
 
         //private CheckboxItem[] ThemeList { get; set; }
@@ -55,7 +53,6 @@ namespace Zero.Abp.AntdesignUI.Layout
 
         [Parameter] public bool HideHintAlert { get; set; }
         [Parameter] public bool HideCopyButton { get; set; }
-        [Inject] public MessageService Message { get; set; }
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
@@ -105,40 +102,28 @@ namespace Zero.Abp.AntdesignUI.Layout
 
         //    ThemeList = list.ToArray();
         //}
-        private async Task UpdateTheme()
-        {
-            var task = Message.Loading(new MessageConfig
-            {
-                Content = "Loading theme",
-                Duration = 0
-            });
-            task.Start();
-            var key = Settings.PrimaryColor ?? "default";
-            string fileName;
-            if (Settings.SiderbarTheme == "realDark")
-            {
-                fileName = key == "default" ? "dark" : $"dark-{key}";
-            }
-            else
-            {
-                fileName = key == "default" ? "" : key;
-            }
-            _url = $"/_content/{typeof(SettingDrawer).Assembly.GetName().Name}/theme/{fileName}.css";
-            await JsInvokeAsync(JSInteropConstants.AddElementToBody, _linkRef);
-        }
-        private async Task UpdateThemeColor()
-        {
-            var task = Message.Loading(new MessageConfig
-            {
-                Content = "Loading theme",
-                Duration = 0
-            });
-            task.Start();
-
-            var fileName = Settings.PrimaryColor ?? "default";
-            _url = $"/_content/{typeof(SettingDrawer).Assembly.GetName().Name}/theme/{fileName}.css";
-            await JsInvokeAsync(JSInteropConstants.AddElementToBody, _linkRef);
-        }
+        //private async Task UpdateTheme()
+        //{
+        //    var task = Message.Loading(new MessageConfig
+        //    {
+        //        Content = "Loading theme",
+        //        Duration = 0
+        //    });
+        //    task.Start();
+        //    var key = Settings.PrimaryColor ?? "default";
+        //    string fileName;
+        //    if (Settings.SiderbarTheme == "realDark")
+        //    {
+        //        fileName = key == "default" ? "dark" : $"dark-{key}";
+        //    }
+        //    else
+        //    {
+        //        fileName = key == "default" ? "" : key;
+        //    }
+        //    _url = $"/_content/{typeof(SettingDrawer).Assembly.GetName().Name}/theme/{fileName}.css";
+        //    await JsInvokeAsync(JSInteropConstants.AddElementToBody, _linkRef);
+        //}
+     
 
         private void SetShow(MouseEventArgs args)
         {

@@ -12,13 +12,14 @@
 
 @code
 {
-
-    RenderFragment SwitchRender(Func<bool> value, Action<bool> callback) =>@<Template>
-        <Switch Size="small" Checked="@value.Invoke()" OnChange="v=>callback?.Invoke(v)" />
-    </Template>
-    ;
-
-
+    RenderFragment SwitchRender(Expression<Func<LayoutSettings, bool>> propertySelector, Func<bool> valueFactory)
+    {
+        return @<Template>
+        <Switch Size="small" Checked="@valueFactory.Invoke()"
+            OnChange="value=>UpdateSettingAsync(propertySelector,valueFactory,value)" />
+    </Template> ;
+    }
+    
     public SettingItem[] SettingItems { get; set; }
 
     protected override void OnInitialized()
@@ -29,22 +30,22 @@
             new SettingItem
             {
                 Title = L["Header"],
-                Action =SwitchRender(()=>Settings.HeaderRender,(value)=>Settings.HeaderRender=value)
+                Action =SwitchRender(x=>x.HeaderRender,()=>Settings.HeaderRender)
             },
             new SettingItem
             {
                 Title =  L["Footer"],
-                Action =SwitchRender(()=>Settings.FooterRender,(value)=>Settings.FooterRender=value)
+                Action =SwitchRender(x=>x.FooterRender,()=>Settings.FooterRender)
             },
             new SettingItem
             {
                 Title =  L["Menu"],
-                Action =SwitchRender(()=>Settings.MenuRender,(value)=>Settings.MenuRender=value)
+                Action =SwitchRender(x=>x.MenuRender,()=>Settings.MenuRender)
             },
             new SettingItem
             {
                 Title =  L["MenuHeader"],
-                Action =SwitchRender(()=>Settings.MenuHeaderRender,(value)=>Settings.MenuHeaderRender=value)
+                Action =SwitchRender(x=>x.MenuHeaderRender,()=>Settings.MenuHeaderRender)
             },
         };
     }

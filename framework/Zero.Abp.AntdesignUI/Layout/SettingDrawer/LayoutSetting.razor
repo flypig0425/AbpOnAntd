@@ -12,14 +12,11 @@
 
 @code
 {
-    RenderFragment SimpleSelectRender(
-                                                Expression<Func<LayoutSettings, string>> propertySelector,
-                                                Func<string> valueFactory,
-                                                (string label, string value)[] options)
+    RenderFragment SimpleSelectRender(Expression<Func<LayoutSettings, string>> propertySelector, Func<string> valueFactory, (string label, string value)[] options)
     {
         return @<Template>
         <RadioGroup Size="@("small")" TValue="string" Value="@valueFactory.Invoke()"
-                OnChange=" (v)=> UpdateSettingAsync<string>(propertySelector,()=>v)"
+                OnChange="value=>UpdateSettingAsync<string>(propertySelector,valueFactory,value)"
                 ButtonStyle="@RadioButtonStyle.Solid">
             @foreach (var item in options)
                 {
@@ -30,13 +27,12 @@
         </Template>
     ;
     }
-    RenderFragment SwitchRender(
-         Expression<Func<LayoutSettings, bool>> propertySelector,
-         Func<bool> valueFactory)
+
+    RenderFragment SwitchRender(Expression<Func<LayoutSettings, bool>> propertySelector, Func<bool> valueFactory)
     {
         return @<Template>
         <Switch Size="small" Checked="@valueFactory.Invoke()"
-            OnChange="(v)=>UpdateSettingAsync(propertySelector,()=>v)" />
+            OnChange="value=>UpdateSettingAsync(propertySelector,valueFactory,value)" />
     </Template>
     ;
     }
@@ -75,6 +71,7 @@
             new SettingItem
             {
                 Title=L["SplitMenus"],
+                Disabled=Settings.Layout!=Layout.Mix.Name,
                 Action =SwitchRender(x => x.SplitMenus, () => Settings.SplitMenus)
             },
 

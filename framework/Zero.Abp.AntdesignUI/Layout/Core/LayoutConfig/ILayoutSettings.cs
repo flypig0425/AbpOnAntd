@@ -11,6 +11,9 @@ namespace Zero.Abp.AntdesignUI.Layout
 
         public string HeaderTheme { get; set; }
 
+        public bool DarkTheme { get; set; }
+        public bool CompactTheme { get; set; }
+
         /// <summary>
         /// 
         /// </summary>
