@@ -27,18 +27,17 @@ namespace Zero.Abp.AntdesignUI.Layout
         public string ContentWidth { get; set; } = "fluid";
         public string IconfontUrl { get; set; }
 
-        /// <summary>
-        /// Event raised after the theme options has changed.
-        /// </summary>
-        public event EventHandler<EventArgs> Changed;
+        ///// <summary>
+        ///// Event raised after the theme options has changed.
+        ///// </summary>
+        //public event EventHandler<EventArgs> Changed;
 
-        /// <summary>
-        /// Must be called to rebuild the theme.
-        /// </summary>
-        public void HasChanged()
-        {
-            Changed?.Invoke(this, EventArgs.Empty);
-        }
-
+        ///// <summary>
+        ///// Must be called to rebuild the theme.
+        ///// </summary>
+        //public void HasChanged()
+        //{
+        //    Changed?.Invoke(this, EventArgs.Empty);
+        //}
     }
 }

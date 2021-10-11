@@ -10,13 +10,13 @@ namespace Zero.Abp.AntdesignUI.Layout
     {
         private bool _show;
         private string BaseClassName => $"{PrefixCls}-setting";
-        private CheckboxItem[] LayoutList =>new CheckboxItem[]
+        private CheckboxItem[] LayoutList => new CheckboxItem[]
         {
             new CheckboxItem
             {
                 Key = "side",
                 Url = "https://gw.alipayobjects.com/zos/antfincdn/XwFOFbLkSM/LCkqqYNmvBEbokSDscrm.svg",
-                Title =L["SideMenuLayout"] 
+                Title =L["SideMenuLayout"]
             },
             new CheckboxItem
             {
@@ -37,18 +37,22 @@ namespace Zero.Abp.AntdesignUI.Layout
 
         protected override async Task OnInitializedAsync()
         {
+            LayoutState.OnChange += OnSettingsChanged;
             await base.OnInitializedAsync();
         }
 
-        private void SetShow(MouseEventArgs args)
+        protected override void Dispose(bool disposing)
         {
-            _show = !_show;
+            LayoutState.OnChange -= OnSettingsChanged;
+            base.Dispose(disposing);
         }
+
+        private void SetShow(MouseEventArgs args) => _show = !_show;
 
         private async Task CopySetting(MouseEventArgs args)
         {
             var json = JsonSerializer.Serialize(Settings);
-            await JsInvokeAsync<object>(JSInteropConstants.Copy, json);
+            await JsInvokeAsync<object>(JSInteropConstants.Copy, $"\"AbpLayoutConfig\":{{\"Settings\":{json}}}");
             await Message.Success("copy success, please replace defaultSettings in appsettings.json");
         }
     }

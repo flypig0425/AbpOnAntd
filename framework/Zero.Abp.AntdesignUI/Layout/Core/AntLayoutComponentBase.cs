@@ -4,7 +4,6 @@ using Microsoft.Extensions.Localization;
 using OneOf;
 using System;
 using System.Linq;
-using Volo.Abp.Threading;
 using Zero.Abp.AntdesignUI.Localization;
 
 namespace Zero.Abp.AntdesignUI.Layout
@@ -12,7 +11,6 @@ namespace Zero.Abp.AntdesignUI.Layout
     public abstract class AntLayoutComponentBase : AntComponentBase
     {
         #region 
-
         [Parameter] public string PrefixCls { get; set; } = "ant-pro";
         [Parameter] public string Class { get; set; }
         [Parameter] public string Style { get; set; }
@@ -27,7 +25,7 @@ namespace Zero.Abp.AntdesignUI.Layout
         /// Example: ClassNames(className ,(className,true|flase) ,(()=>className,true|flase))
         /// </summary>
         protected static string ClassNames(params OneOf<string, (string s, bool b), (Func<string> func, bool b)
-                    , (string s, Func<bool> b) , (Func<string> func, Func<bool> b)>[] classNames)
+                    , (string s, Func<bool> b), (Func<string> func, Func<bool> b)>[] classNames)
             => string.Join(" ", Utils.StyleOrClassNames(classNames));
 
         /// <summary>
@@ -39,11 +37,12 @@ namespace Zero.Abp.AntdesignUI.Layout
 
         #endregion
 
-        protected LayoutSettings Settings => AsyncHelper.RunSync(() => LayoutConfigProvider.GetSettingsAsync());
-        [Inject] protected ILayoutConfigProvider LayoutConfigProvider { get; set; }
+        [Inject] public MessageService Message { get; set; }
+        [Inject] protected LayoutState LayoutState { get; set; }
         [Inject] protected IStringLocalizer<AbpAntdesignUIResource> L { get; set; }
+        protected LayoutSettings Settings => LayoutState.Settings;
 
-        protected virtual void OnSettingsChanged(object sender, EventArgs eventArgs)
+        protected virtual void OnSettingsChanged()
         {
             InvokeStateHasChangedAsync();
         }

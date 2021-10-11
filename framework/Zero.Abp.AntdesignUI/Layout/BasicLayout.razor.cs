@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
-using System;
+﻿using AntDesign;
+using Microsoft.AspNetCore.Components;
 using System.Threading.Tasks;
 using Volo.Abp.UI.Navigation;
 
@@ -29,7 +29,6 @@ namespace Zero.Abp.AntdesignUI.Layout
         [Inject] protected IMenuManager MenuManager { get; set; }
         [Inject] protected NavigationManager NavigationManager { get; set; }
 
-
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
@@ -39,13 +38,25 @@ namespace Zero.Abp.AntdesignUI.Layout
                 var matchMenuKeys = NavigationManager.GetMatchMenuKeys(MenuData, true);
                 TopSelectedKeys = matchMenuKeys;
             }
-            Settings.Changed += OnSettingsChanged;
+            LayoutState.OnThemeChangedAsync += OnChangeThemeAsync;
+            LayoutState.OnChange += OnSettingsChanged;
+            await LayoutState.UpdateThemeAsync();
         }
+
 
         protected override void Dispose(bool disposing)
         {
-            Settings.Changed -= OnSettingsChanged;
+            LayoutState.OnThemeChangedAsync -= OnChangeThemeAsync;
+            LayoutState.OnChange -= OnSettingsChanged;
             base.Dispose(disposing);
+        }
+
+        protected string _themeUrl;
+        protected ElementReference _themeRef;
+        protected virtual async Task OnChangeThemeAsync(string styleUrl)
+        {
+            _themeUrl = styleUrl;
+            await JsInvokeAsync(JSInteropConstants.AddElementTo, _themeRef, "head");
         }
 
         private async Task HandleCollapse(bool collapsed)
@@ -60,8 +71,8 @@ namespace Zero.Abp.AntdesignUI.Layout
         private readonly string layoutCls = "ant-layout";
 
 
-        bool HasSiderMenu => Settings.Layout != Layout.Mix.Name || !Settings.SplitMenus || SiderMenuDom != null;
-        bool HasLeftPadding => HasSiderMenu && Settings.FixedSidebar && Settings.Layout != Layout.Top.Name && !IsMobile;
+        bool HasSiderMenu => (Settings.Layout != Layout.Top.Name || Settings.Layout == Layout.Mix.Name && Settings.SplitMenus) && (SiderMenuDom != null);
+        bool HasLeftPadding => HasSiderMenu && Settings.FixedSidebar && !IsMobile;
         int PaddingLeft => HasLeftPadding ? (Collapsed ? 48 : SiderWidth) : 0;
 
         private string WeakModeStyle => StyleValues(("filter: invert(80%)", Settings.ColorWeak));

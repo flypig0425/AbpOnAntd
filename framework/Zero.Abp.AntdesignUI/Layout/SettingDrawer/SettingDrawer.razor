@@ -1,5 +1,5 @@
 @namespace Zero.Abp.AntdesignUI.Layout
-@inherits SettingDrawerBase
+@inherits AntLayoutComponentBase
 
 <Drawer Title="@($"{L["PageStyleSetting"]}")"
         OnClose="()=>_show=false"
@@ -16,7 +16,7 @@
         <div class="@BaseClassName-drawer-content">
             <ThemeColor Title="@L["ThemeColor"]"
                         Value="@Settings.PrimaryColor"
-                        OnChange="value=>UpdateSettingAsync<string>(x=>x.PrimaryColor,()=>Settings.PrimaryColor,value)" />
+                        OnChange="value=>LayoutState.UpdateSettingAsync<string>(x=>x.PrimaryColor,value,()=>Settings.PrimaryColor)" />
             <SettingDrawerList ListType="ThemeSetting" />
 
             <Divider />
@@ -26,7 +26,7 @@
                 <BlockCheckbox PrefixCls="@BaseClassName"
                                List="LayoutList"
                                Value="@Settings.Layout"
-                               OnChange="value=>UpdateSettingAsync<string>(x=>x.Layout,()=>Settings.Layout,value)" />
+                               OnChange="value=>LayoutState.UpdateSettingAsync<string>(x=>x.Layout,value,()=>Settings.Layout)" />
             </SettingDrawerBody>
 
             <SettingDrawerList ListType="LayoutSetting" />
@@ -64,10 +64,7 @@
         </div>
     </ChildContent>
 </Drawer>
-<link type="text/css" rel="stylesheet" id="theme-style" href="@_themeUrl" @ref="_themeRef">
 @code
 {
-    private RenderFragment _notification =@<Template>
-        <Icon Type="notification" />
-    </Template>;
+    private RenderFragment _notification =@<Template><Icon Type="notification" /></Template>;
 }
