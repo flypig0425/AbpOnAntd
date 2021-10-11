@@ -93,9 +93,9 @@ namespace BlazorServerDemo
         {
             Configure<AbpLocalizationOptions>(options =>
             {
-                options.Languages.Add(new LanguageInfo("zh-Hans", "zh-CN", "简体中文", "🇨🇳"));
-                options.Languages.Add(new LanguageInfo("zh-Hant", "zh-TW", "繁體中文", "🇭🇰"));
                 options.Languages.Add(new LanguageInfo("en", "en-US", "English", "🇺🇸"));
+                options.Languages.Add(new LanguageInfo("zh-Hans", "zh-CN", "简体中文", "🇨🇳"));
+                //options.Languages.Add(new LanguageInfo("zh-Hant", "zh-TW", "繁體中文", "🇭🇰"));
             });
         }
 

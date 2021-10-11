@@ -2,7 +2,6 @@
 @inherits SettingDrawerBase
 
 <ThemeColor Title="@L["ThemeColor"]"
-            Colors="LightColorList"
             Value="@Settings.PrimaryColor"
             OnChange="value=>UpdateSettingAsync<string>(x=>x.PrimaryColor,()=>Settings.PrimaryColor,value)" />
 
@@ -10,30 +9,28 @@
          DataSource="OtherSettings"
          ItemLayout="ListItemLayout.Horizontal">
     <ListItem>
-        <span style="opacity: @(context.Disabled ? "0.5" : "1")">@context.Title</span>
         @context.Action
     </ListItem>
 </AntList>
 <link type="text/css" rel="stylesheet" id="theme-style" href="@_themeUrl" @ref="_themeRef">
 @code
 {
-    RenderFragment SwitchRender(Expression<Func<LayoutSettings, bool>> propertySelector, Func<bool> valueFactory)
+
+    public RenderFragment SwitchRender(
+    Expression<Func<LayoutSettings, bool>> propertySelector
+    , Func<bool> valueFactory
+    , Func<bool> disabledFactory = null)
     {
-        return @<Template>
-        <Switch Size="small" Checked="@valueFactory.Invoke()"
-            OnChange="value=>UpdateSettingAsync(propertySelector,valueFactory,value)" />
-    </Template> ;
+        var fieldName = (propertySelector.Body as MemberExpression)?.Member?.Name;
+        return@<Template>
+        <span style="@StyleValues(("opacity:0.5",disabledFactory))">@L[fieldName]</span>
+        <Switch Size="small" Checked="@(valueFactory?.Invoke()?? false)" Disabled="@(disabledFactory?.Invoke()?? false)"
+                OnChange="value=>UpdateSettingAsync(propertySelector,valueFactory,value)" />
+    </Template>
+    ;
     }
 
-       private ColorItem[] LightColorList { get; set; } = Utils.ThemeColors.Select(x => new ColorItem
-        {
-            Key = x.Value,
-            Color = x.Key,
-            Theme = "light"
-        }).ToArray();
-
     public SettingItem[] OtherSettings { get; set; }
-
     protected override void OnInitialized()
     {
         base.OnInitialized();
@@ -42,12 +39,10 @@
             {
             new SettingItem
             {
-                Title =L["CompactTheme"],
                 Action =SwitchRender( x => x.CompactTheme, () => Settings.CompactTheme)
             },
             new SettingItem
             {
-                Title =L["DarkTheme"],
                 Action =SwitchRender( x => x.DarkTheme, () => Settings.DarkTheme)
             }
         };

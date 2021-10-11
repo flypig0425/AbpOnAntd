@@ -11,6 +11,7 @@ namespace Zero.Abp.AntdesignUI.Layout
         public DefaultLayoutConfigProvider(IOptions<AbpLayoutConfigOptions> options)
         {
             Options = options.Value;
+
         }
 
         public Task<LayoutSettings> GetSettingsAsync()

@@ -26,6 +26,14 @@
   </ItemGroup>
   
   <ItemGroup>
+    <Content Remove="Layout\SettingDrawer\LayoutSetting.razor" />
+    <Content Remove="Layout\SettingDrawer\OtherSetting.razor" />
+    <Content Remove="Layout\SettingDrawer\RegionalSetting.razor" />
+    <Content Remove="Layout\SettingDrawer\SettingDrawerBase.razor" />
+    <Content Remove="Layout\SettingDrawer\ThemeSetting.razor" />
+  </ItemGroup>
+  
+  <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
 </Project>

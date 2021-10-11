@@ -10,30 +10,31 @@ namespace Zero.Abp.AntdesignUI.Layout
     {
         private bool _show;
         private string BaseClassName => $"{PrefixCls}-setting";
-        private CheckboxItem[] LayoutList { get; set; } =
+        private CheckboxItem[] LayoutList =>new CheckboxItem[]
         {
             new CheckboxItem
             {
                 Key = "side",
                 Url = "https://gw.alipayobjects.com/zos/antfincdn/XwFOFbLkSM/LCkqqYNmvBEbokSDscrm.svg",
-                Title = "Side Menu Layout"
+                Title =L["SideMenuLayout"] 
             },
             new CheckboxItem
             {
                 Key = "top",
                 Url = "https://gw.alipayobjects.com/zos/antfincdn/URETY8%24STp/KDNDBbriJhLwuqMoxcAr.svg",
-                Title = "Top Menu Layout"
+                Title = L["TopMenuLayout"]
             },
             new CheckboxItem
             {
                 Key = "mix",
                 Url = "https://gw.alipayobjects.com/zos/antfincdn/x8Ob%26B8cy8/LCkqqYNmvBEbokSDscrm.svg",
-                Title = "Mix Menu Layout"
+                Title = L["MixMenuLayout"]
             }
         };
 
         [Parameter] public bool HideHintAlert { get; set; }
         [Parameter] public bool HideCopyButton { get; set; }
+
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();

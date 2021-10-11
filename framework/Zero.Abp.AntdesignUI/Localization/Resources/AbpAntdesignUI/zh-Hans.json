@@ -5,8 +5,12 @@
     "ThemeColor": "主题色",
     "NavigationMode": "导航模式",
 
+    "SideMenuLayout": "侧边菜单布局",
+    "TopMenuLayout": "顶部菜单布局",
+    "MixMenuLayout": "混合菜单布局",
+
     "HeaderTheme": "顶栏主题",
-    "SiderbarTheme": "侧边主题",
+    "SidebarTheme": "侧边主题",
     "Light": "亮色",
     "Dark": "暗黑",
 
@@ -17,15 +21,19 @@
     "Fixed": "定宽",
     "Fluid": "流式",
     "FixedHeader": "固定顶栏",
-    "FixedSiderbar": "固定侧边菜单",
+    "FixedSidebar": "固定侧边菜单",
     "SplitMenus": "自动分割菜单",
     "RegionalSettings": "内容区域",
-    "Header": "顶栏",
-    "Footer": "页脚",
-    "Menu": "菜单",
-    "MenuHeader": "菜单头部",
+
+    "HeaderRender": "顶栏",
+    "FooterRender": "页脚",
+    "MenuRender": "菜单",
+    "MenuHeaderRender": "菜单头部",
+
     "OtherSettings": "其他设置",
-    "Weakmode": "色弱模式",
+
+    "ColorWeak": "色弱模式",
+
     "SettingDrawer:HintAlertMessage": "配置栏只在开发环境用于预览，生产环境不会展现，请拷贝后手动修改配置文件",
     "CopySetting": "拷贝设置"
   }

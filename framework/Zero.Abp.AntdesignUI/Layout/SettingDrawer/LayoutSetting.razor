@@ -1,80 +1,15 @@
-@namespace Zero.Abp.AntdesignUI.Layout
+@*@namespace Zero.Abp.AntdesignUI.Layout
 @inherits SettingDrawerBase
 
 <AntList Split="false"
          DataSource="SettingItems"
          ItemLayout="ListItemLayout.Horizontal">
     <ListItem>
-        <span style="opacity: @(context.Disabled ? "0.5" : "1")">@context.Title</span>
         @context.Action
     </ListItem>
 </AntList>
 
 @code
 {
-    RenderFragment SimpleSelectRender(Expression<Func<LayoutSettings, string>> propertySelector, Func<string> valueFactory, (string label, string value)[] options)
-    {
-        return @<Template>
-        <RadioGroup Size="@("small")" TValue="string" Value="@valueFactory.Invoke()"
-                OnChange="value=>UpdateSettingAsync<string>(propertySelector,valueFactory,value)"
-                ButtonStyle="@RadioButtonStyle.Solid">
-            @foreach (var item in options)
-                {
-                    <Radio RadioButton Value="@item.value">@item.label</Radio>
-                }
-            </RadioGroup>
-
-        </Template>
-    ;
-    }
-
-    RenderFragment SwitchRender(Expression<Func<LayoutSettings, bool>> propertySelector, Func<bool> valueFactory)
-    {
-        return @<Template>
-        <Switch Size="small" Checked="@valueFactory.Invoke()"
-            OnChange="value=>UpdateSettingAsync(propertySelector,valueFactory,value)" />
-    </Template>
-    ;
-    }
-
-
-    public SettingItem[] SettingItems { get; set; }
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-        SettingItems = new[] {
-            new SettingItem
-            {
-                Title=L["HeaderTheme"],
-                Action = SimpleSelectRender(x => x.HeaderTheme,()=>Settings.HeaderTheme,new []{ (L["Light"].Value,"light"), (L["Dark"],"dark")})
-            },
-                new SettingItem
-            {
-                Title=L["SiderbarTheme"],
-                Action =SimpleSelectRender(x => x.SiderbarTheme,()=>Settings.SiderbarTheme,new []{ (L["Light"].Value,"light"), (L["Dark"],"dark")})
-            },
-            new SettingItem
-            {
-                Title=L["ContentWidth"],
-                Action =SimpleSelectRender(x => x.ContentWidth,()=>Settings.ContentWidth,new []{ (L["Fixed"].Value,"Fixed"), (L["Fluid"],"Fluid")}),
-            },
-            new SettingItem
-            {
-                Title=L["FixedHeader"],
-                Action =SwitchRender( x => x.FixedHeader, () => Settings.FixedHeader)
-            },
-            new SettingItem
-            {
-                Title=L["FixedSiderbar"],
-                Action =SwitchRender(x => x.FixedSiderbar, () => Settings.FixedSiderbar)
-            },
-            new SettingItem
-            {
-                Title=L["SplitMenus"],
-                Disabled=Settings.Layout!=Layout.Mix.Name,
-                Action =SwitchRender(x => x.SplitMenus, () => Settings.SplitMenus)
-            },
-
-         };
-    }
-}
+ 
+}*@

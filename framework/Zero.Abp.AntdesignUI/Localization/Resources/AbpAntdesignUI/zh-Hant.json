@@ -6,7 +6,7 @@
     "NavigationMode": "導航模式",
 
     "HeaderTheme": "頂欄主題",
-    "SiderbarTheme": "側邊主題",
+    "SidebarTheme": "側邊主題",
     "Light": "亮色",
     "Dark": "暗黑",
 
@@ -19,7 +19,7 @@
     "Fixed": "定寬",
     "Fluid": "流式",
     "FixedHeader": "固定頂欄",
-    "FixedSiderbar": "固定側邊選單",
+    "FixedSidebar": "固定側邊選單",
     "SplitMenus": "自動分割選單",
     "RegionalSettings": "內容區域",
     "Header": "頂欄",
@@ -27,7 +27,7 @@
     "Menu": "選單",
     "MenuHeader": "選單頭部",
     "OtherSettings": "其他設置",
-    "Weakmode": "色弱模式",
+    "ColorWeak": "色弱模式",
     "SettingDrawer:HintAlertMessage": "配寘欄只在開發環境用於預覽，生產環境不會展現，請拷貝後手動修改設定檔",
     "CopySetting": "拷貝設置"
   }

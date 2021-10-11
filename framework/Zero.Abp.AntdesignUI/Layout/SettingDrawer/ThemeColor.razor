@@ -4,13 +4,13 @@
 <div class="theme-color">
     <h3 class="theme-color-title">@Title</h3>
     <div class="theme-color-content">
-        @foreach (var item in Colors)
+        @foreach (var item in ThemeColors)
         {
             <!--todo: tooltip break the style-->
             @*             <Tooltip Title="@item.Key"> *@
             @*             </Tooltip> *@
 
-            <div class="theme-color-block" style="background-color: @item.Color"
+            <div class="theme-color-block" style="background-color: @item.Value"
                  @onclick="@(async x=> await HandleClickAsync(item.Key))">
                 @if (Value == item.Key)
                 {

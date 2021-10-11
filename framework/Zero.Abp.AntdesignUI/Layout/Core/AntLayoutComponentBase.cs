@@ -26,13 +26,15 @@ namespace Zero.Abp.AntdesignUI.Layout
         /// <summary>
         /// Example: ClassNames(className ,(className,true|flase) ,(()=>className,true|flase))
         /// </summary>
-        protected static string ClassNames(params OneOf<string, (string s, bool b), (Func<string> func, bool b)>[] classNames)
+        protected static string ClassNames(params OneOf<string, (string s, bool b), (Func<string> func, bool b)
+                    , (string s, Func<bool> b) , (Func<string> func, Func<bool> b)>[] classNames)
             => string.Join(" ", Utils.StyleOrClassNames(classNames));
 
         /// <summary>
         /// Example: StyleValues(style ,(style,true|flase) ,(()=>style,true|flase))
         /// </summary>
-        protected static string StyleValues(params OneOf<string, (string s, bool b), (Func<string> func, bool b)>[] styleValues)
+        protected static string StyleValues(params OneOf<string, (string s, bool b), (Func<string> func, bool b)
+                    , (string s, Func<bool> b), (Func<string> func, Func<bool> b)>[] styleValues)
             => string.Join(";", Utils.StyleOrClassNames(styleValues)?.Select(s => s.TrimEnd(';')));
 
         #endregion

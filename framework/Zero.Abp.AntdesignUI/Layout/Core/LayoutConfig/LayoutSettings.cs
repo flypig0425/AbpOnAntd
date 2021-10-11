@@ -5,22 +5,26 @@ namespace Zero.Abp.AntdesignUI.Layout
     [Serializable]
     public class LayoutSettings : ILayoutSettings
     {
-        public string SiderbarTheme { get; set; }
-        public string HeaderTheme { get; set; }
+        public string PrimaryColor { get; set; } = "default";
+        public string Layout { get; set; } = "mix";
+        public string HeaderTheme { get; set; } = "dark";
+        public string SidebarTheme { get; set; } = "light";
+
         public bool DarkTheme { get; set; }
         public bool CompactTheme { get; set; }
-        public string Layout { get; set; }
-        public string PrimaryColor { get; set; }
+
         public bool FixedHeader { get; set; }
-        public bool FixedSiderbar { get; set; }
+        public bool FixedSidebar { get; set; }
         public bool SplitMenus { get; set; }
         public bool ColorWeak { get; set; }
-        public bool HeaderRender { get; set; }
-        public bool FooterRender { get; set; }
-        public bool MenuRender { get; set; }
-        public bool MenuHeaderRender { get; set; }
-        public int HeaderHeight { get; set; }
-        public string ContentWidth { get; set; }
+
+        public bool HeaderRender { get; set; } = true;
+        public bool FooterRender { get; set; } = true;
+        public bool MenuRender { get; set; } = true;
+        public bool MenuHeaderRender { get; set; } = true;
+
+        public int HeaderHeight { get; set; } = 48;
+        public string ContentWidth { get; set; } = "fluid";
         public string IconfontUrl { get; set; }
 
         /// <summary>

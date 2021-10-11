@@ -14,8 +14,13 @@
     </Handler>
     <ChildContent>
         <div class="@BaseClassName-drawer-content">
-            <ThemeSetting />
+            <ThemeColor Title="@L["ThemeColor"]"
+                        Value="@Settings.PrimaryColor"
+                        OnChange="value=>UpdateSettingAsync<string>(x=>x.PrimaryColor,()=>Settings.PrimaryColor,value)" />
+            <SettingDrawerList ListType="ThemeSetting" />
+
             <Divider />
+
             <SettingDrawerBody Title="@L["NavigationMode"]"
                                PrefixCls="@BaseClassName">
                 <BlockCheckbox PrefixCls="@BaseClassName"
@@ -23,41 +28,46 @@
                                Value="@Settings.Layout"
                                OnChange="value=>UpdateSettingAsync<string>(x=>x.Layout,()=>Settings.Layout,value)" />
             </SettingDrawerBody>
-            <LayoutSetting />
-            <Divider />
-            <SettingDrawerBody Title="@L["RegionalSettings"]"
-                               PrefixCls="@BaseClassName">
-                <RegionalSetting />
-            </SettingDrawerBody>
-            <Divider />
-            <SettingDrawerBody Title="@L["OtherSettings"]"
-                               PrefixCls="@BaseClassName">
-                <OtherSetting />
-            </SettingDrawerBody>
-            @if (!HideHintAlert && !HideCopyButton)
-            {
-                <Divider />
-            }
-            @if (!HideHintAlert)
-            {
-                <Alert Type="warning"
-                   Message="@L["SettingDrawer:HintAlertMessage"]"
-                   Icon="_notification"
-                   ShowIcon="true"
-                   Style="margin-bottom: 16px;" />
-            }
 
-            @if (!HideCopyButton)
-            {
+            <SettingDrawerList ListType="LayoutSetting" />
+
+            <Divider />
+
+            <SettingDrawerBody Title="@L["RegionalSettings"]" PrefixCls="@BaseClassName">
+                <SettingDrawerList ListType="RegionalSetting" />
+            </SettingDrawerBody>
+
+            <Divider />
+
+            <SettingDrawerBody Title="@L["OtherSettings"]" PrefixCls="@BaseClassName">
+                <SettingDrawerList ListType="OtherSetting" />
+            </SettingDrawerBody>
+
+            <Template If="()=>!HideHintAlert && !HideCopyButton">
+                <Divider />
+            </Template>
+
+            <Template If="()=>!HideHintAlert">
+                <Alert Type="warning"
+                       Message="@L["SettingDrawer:HintAlertMessage"]"
+                       Icon="_notification"
+                       ShowIcon="true"
+                       Style="margin-bottom: 16px;" />
+            </Template>
+
+            <Template If="()=>!HideCopyButton">
                 <Button Block OnClick="CopySetting">
                     <Icon Type="copy" Theme="outline" /> @L["CopySetting"]
                 </Button>
-            }
+            </Template>
+
         </div>
     </ChildContent>
 </Drawer>
 <link type="text/css" rel="stylesheet" id="theme-style" href="@_themeUrl" @ref="_themeRef">
 @code
 {
-    private RenderFragment _notification =@<Template><Icon Type="notification" /></Template>;
+    private RenderFragment _notification =@<Template>
+        <Icon Type="notification" />
+    </Template>;
 }

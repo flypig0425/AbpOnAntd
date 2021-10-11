@@ -48,12 +48,12 @@
     </div>
 
     <div class="@BaseClassName-links">
-        <Menu Theme="MenuTheme"
+        <Menu Mode="Mode"
+              Theme="MenuTheme"
               InlineIndent="16"
               Class="@($"{BaseClassName}-link-menu")"
               SelectedKeys="Array.Empty<string>()"
               OpenKeys="Array.Empty<string>()"
-              Mode="Mode"
               Selectable="false">
             @for (var index = 0; index < Links.Count; index++)
             {
@@ -81,8 +81,8 @@
 
 
 @code {
-    private SiderTheme SiderTheme => Settings.SiderbarTheme.ToSiderTheme();
-    private MenuTheme MenuTheme => Settings.SiderbarTheme.ToMenuTheme();
+    private SiderTheme SiderTheme => Settings.SidebarTheme.ToSiderTheme();
+    private MenuTheme MenuTheme => Settings.SidebarTheme.ToMenuTheme();
 
     [Parameter] public ApplicationMenuItemList MenuData { get; set; }
     [Parameter] public string[] SelectedKeys { get; set; }
@@ -121,7 +121,7 @@
     //private string siderWidth => $"{(Collapsed ? collapsedWidth : SiderWidth)}px";
     private string BaseClassName => $"{PrefixCls}-sider";
     private string SiderClassName => ClassNames(BaseClassName
-    , ($"{BaseClassName}-fixed", Settings.FixedSiderbar)
+    , ($"{BaseClassName}-fixed", Settings.FixedSidebar)
     , ($"{BaseClassName}-layout-{Settings.Layout}", Settings.Layout != null && !IsMobile)
     , ($"{BaseClassName}-light", SiderTheme == SiderTheme.Light)
     );

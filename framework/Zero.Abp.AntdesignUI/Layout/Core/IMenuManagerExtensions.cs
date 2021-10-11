@@ -34,18 +34,18 @@ namespace Zero.Abp.AntdesignUI.Layout
             if (menuData.IsNullOrEmpty()) { return menus; }
             parentsName ??= new List<string> { };
             menuData = new ApplicationMenuItemList(menuData.OrderBy(o => o.Order));
-            menuData.ForEach(async item =>
-            {
-                if (item?.Name == null) { return; }
-                var tempPathsName = parentsName.Select(s => s).ToList();
-                tempPathsName.AddLast(item.Name);
-                var menuItem = new ApplicationMenuItem(item.Name, item.DisplayName, item.Url, item.Icon, item.Order, item.CustomData, item.Target, item.ElementId, item.CssClass);
-                menus.Add((item.Name, menuItem, tempPathsName.ToArray(), item?.Url?.TrimStart('~'), item.IsLeaf));
-                if (!item.IsLeaf)
-                {
-                    menus.AddRange(GetFlatMenu(item?.Items ?? new ApplicationMenuItemList(), tempPathsName));
-                }
-            });
+            menuData.ForEach(item =>
+           {
+               if (item?.Name == null) { return; }
+               var tempPathsName = parentsName.Select(s => s).ToList();
+               tempPathsName.AddLast(item.Name);
+               var menuItem = new ApplicationMenuItem(item.Name, item.DisplayName, item.Url, item.Icon, item.Order, item.CustomData, item.Target, item.ElementId, item.CssClass);
+               menus.Add((item.Name, menuItem, tempPathsName.ToArray(), item?.Url?.TrimStart('~'), item.IsLeaf));
+               if (!item.IsLeaf)
+               {
+                   menus.AddRange(GetFlatMenu(item?.Items ?? new ApplicationMenuItemList(), tempPathsName));
+               }
+           });
             return menus;
         }
 

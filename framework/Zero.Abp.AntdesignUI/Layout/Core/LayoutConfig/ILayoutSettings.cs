@@ -7,7 +7,7 @@ namespace Zero.Abp.AntdesignUI.Layout
         /// <summary>
         /// 
         /// </summary>
-        public string SiderbarTheme { get; set; }
+        public string SidebarTheme { get; set; }
 
         public string HeaderTheme { get; set; }
 
@@ -21,7 +21,7 @@ namespace Zero.Abp.AntdesignUI.Layout
         public string PrimaryColor { get; set; }
         public bool FixedHeader { get; set; }
 
-        public bool FixedSiderbar { get; set; }
+        public bool FixedSidebar { get; set; }
         public bool SplitMenus { get; set; }
         public bool ColorWeak { get; set; }
 

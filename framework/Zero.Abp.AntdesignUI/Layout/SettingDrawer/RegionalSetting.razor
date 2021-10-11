@@ -5,48 +5,54 @@
          DataSource="SettingItems"
          ItemLayout="ListItemLayout.Horizontal">
     <ListItem>
-        <span style="opacity: @(context.Disabled ? "0.5" : "1")">@context.Title</span>
         @context.Action
     </ListItem>
 </AntList>
 
 @code
-{
-    RenderFragment SwitchRender(Expression<Func<LayoutSettings, bool>> propertySelector, Func<bool> valueFactory)
+{       public RenderFragment SwitchRender(
+Expression<Func<LayoutSettings, bool>> propertySelector
+, Func<bool> valueFactory
+, Func<bool> disabledFactory = null)
     {
-        return @<Template>
-        <Switch Size="small" Checked="@valueFactory.Invoke()"
-            OnChange="value=>UpdateSettingAsync(propertySelector,valueFactory,value)" />
-    </Template> ;
+        var fieldName = (propertySelector.Body as MemberExpression)?.Member?.Name;
+        return@<Template>
+        <span style="@StyleValues(("opacity:0.5",disabledFactory))">@L[fieldName]</span>
+        <Switch Size="small" Checked="@(valueFactory?.Invoke()?? false)" Disabled="@(disabledFactory?.Invoke()?? false)"
+                OnChange="value=>UpdateSettingAsync(propertySelector,valueFactory,value)" />
+    </Template>
+    ;
     }
-    
+
     public SettingItem[] SettingItems { get; set; }
-
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        base.OnInitialized();
-
+        await base.OnInitializedAsync();
+        Settings.Changed += OnSettingsChanged;
         SettingItems = new[] {
             new SettingItem
             {
-                Title = L["Header"],
                 Action =SwitchRender(x=>x.HeaderRender,()=>Settings.HeaderRender)
             },
             new SettingItem
             {
-                Title =  L["Footer"],
                 Action =SwitchRender(x=>x.FooterRender,()=>Settings.FooterRender)
             },
             new SettingItem
             {
-                Title =  L["Menu"],
-                Action =SwitchRender(x=>x.MenuRender,()=>Settings.MenuRender)
+                Action =SwitchRender(x=>x.MenuRender,()=>Settings.MenuRender
+                ,()=>Settings.Layout==Layout.Top.Name)
             },
             new SettingItem
             {
-                Title =  L["MenuHeader"],
-                Action =SwitchRender(x=>x.MenuHeaderRender,()=>Settings.MenuHeaderRender)
+                Action =SwitchRender(x=>x.MenuHeaderRender,()=>Settings.MenuHeaderRender
+                ,()=>Settings.Layout==Layout.Top.Name)
             },
         };
+    }
+    protected override void Dispose(bool disposing)
+    {
+        Settings.Changed -= OnSettingsChanged;
+        base.Dispose(disposing);
     }
 }

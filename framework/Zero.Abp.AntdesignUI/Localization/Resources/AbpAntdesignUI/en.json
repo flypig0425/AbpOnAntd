@@ -5,8 +5,12 @@
     "ThemeColor": "Theme Color",
     "NavigationMode": "Navigation Mode",
 
+    "SideMenuLayout": "Side Menu Layout",
+    "TopMenuLayout": "Top Menu Layout",
+    "MixMenuLayout": "Mix Menu Layout",
+
     "HeaderTheme": "Header Theme",
-    "SiderbarTheme": "Sidebar Theme",
+    "SidebarTheme": "Sidebar Theme",
     "Light": "Light",
     "Dark": "Dark",
 
@@ -17,15 +21,17 @@
     "Fixed": "Fixed",
     "Fluid": "Fluid",
     "FixedHeader": "Fixed Header",
-    "FixedSiderbar": "Fixed Sidebar",
+    "FixedSidebar": "Fixed Sidebar",
     "SplitMenus": "Split Menus",
     "RegionalSettings": "Regional Settings",
-    "Header": "Header",
-    "Footer": "Footer",
-    "Menu": "Menu",
-    "MenuHeader": "Menu Header",
+
+    "HeaderRender": "Header",
+    "FooterRender": "Footer",
+    "MenuRender": "Menu",
+    "MenuHeaderRender": "Menu Header",
+
     "OtherSettings": "Other Settings",
-    "Weakmode": "Weakmode",
+    "ColorWeak": "Weakmode",
     "SettingDrawer:HintAlertMessage": "Setting panel shows in development environment only, please manually modify",
     "CopySetting": "Copy Setting"
   }

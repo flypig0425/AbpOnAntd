@@ -17,7 +17,7 @@ namespace Antd.AbpDemo.Blazor.Menus
 
             var l = context.GetLocalizer<AbpUiResource>();
 
-            for (int t = 0; t < 10; t++)
+            for (int t = 0; t < 2; t++)
             {
                 var tenantManagementMenuItem = new ApplicationMenuItem(
                     $"{  TenantManagementMenuNames.GroupName}{t}",
@@ -32,7 +32,7 @@ namespace Antd.AbpDemo.Blazor.Menus
                 icon: "team");
 
                 tenantManagementMenuItem.AddItem(tenantManagementMenuItem1);
-                for (int i = 0; i < 10; i++)
+                for (int i = 0; i < 2; i++)
                 {
                     tenantManagementMenuItem1.AddItem(new ApplicationMenuItem(
                    $"{ TenantManagementMenuNames.Tenants}{t}{i}",

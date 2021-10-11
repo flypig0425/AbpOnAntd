@@ -30,13 +30,15 @@
     [Parameter] public bool HasSiderMenu { get; set; }
     [Parameter] public RenderFragment HeaderContentRender { get; set; }
 
-    private bool isSplitMenus => Settings.Layout == Layout.Mix.Name && Settings.SplitMenus;
     private bool isTop => Settings.Layout == Layout.Top.Name;
-    private bool needFixedHeader => Settings.FixedHeader || Settings.Layout == Layout.Mix.Name;
+    private bool isMix => Settings.Layout == Layout.Mix.Name;
+    private bool isSplitMenus => isMix && Settings.SplitMenus;
+
+    private bool needFixedHeader => Settings.FixedHeader || isMix;
     private int headerHeight => Settings.HeaderHeight;
 
-    private bool needSettingWidth => needFixedHeader && HasSiderMenu && !isTop && !IsMobile;
-    private string headerWidth => Settings.Layout != Layout.Mix.Name && needSettingWidth
+    private bool needSideWidth => needFixedHeader && HasSiderMenu && !isTop && !IsMobile;
+    private string headerWidth => !isMix && needSideWidth
       ? $"calc(100% - {(Collapsed ? 48 : SiderWidth)}px)" : "100%";
     private int? headerRight => needFixedHeader ? 0 : null;
 
@@ -51,5 +53,5 @@
     $"height:{headerHeight}px;line-height:{headerHeight}px;background:transparent";
 
     private string HeaderStyle =>
-    $"padding:0px;height:{headerHeight}px;line-height:{headerHeight}px;width:{headerWidth};z-index:{(Settings.Layout == Layout.Mix.Name ? 100 : 9)};{(headerRight.HasValue ? $"right:{headerRight}px;" : "")}{Style}";
+    $"padding:0px;height:{headerHeight}px;line-height:{headerHeight}px;width:{headerWidth};z-index:{(isMix ? 100 : 9)};{(headerRight.HasValue ? $"right:{headerRight}px;" : "")}{Style}";
 }

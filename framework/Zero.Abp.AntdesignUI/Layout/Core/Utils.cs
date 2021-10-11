@@ -16,25 +16,20 @@ namespace Zero.Abp.AntdesignUI.Layout
 
     public static class Utils
     {
-
-        public static readonly Dictionary<string, string> ThemeColors = new()
-        {
-            { "#1890ff", "default" },
-            { "#F5222D", "dust" },
-            { "#FA541C", "volcano" },
-            { "#FAAD14", "sunset" },
-            { "#13C2C2", "cyan" },
-            { "#52C41A", "green" },
-            { "#2F54EB", "geekblue" },
-            { "#722ED1", "purple" }
-        };
-
-        public static IEnumerable<string> StyleOrClassNames(params OneOf<string, (string s, bool b), (Func<string> func, bool b)>[] values)
+        public static IEnumerable<string> StyleOrClassNames(params OneOf<
+            string
+            , (string s, bool b)
+            , (Func<string> func, bool b)
+            , (string s, Func<bool> b)
+            , (Func<string> func, Func<bool> b)
+            >[] values)
         {
             var tempClassNames = values?.Select(s => s.Match(
                 m0 => m0,
                 m1 => m1.b ? m1.s : null,
-                m2 => m2.b ? m2.func?.Invoke() : null
+                m2 => m2.b ? m2.func?.Invoke() : null,
+                m3 => (m3.b?.Invoke() ?? false) ? m3.s : null,
+                m4 => (m4.b?.Invoke() ?? false) ? m4.func?.Invoke() : null
                 ));
             tempClassNames = tempClassNames?.Where(w => !w.IsNullOrWhiteSpace())?.Distinct()?.ToArray();
             return tempClassNames ?? Array.Empty<string>();
