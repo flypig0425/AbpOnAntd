@@ -58,12 +58,13 @@ else
         return
     @<Template>
 
-        <HeaderView @bind-SelectedKeys="TopSelectedKeys"
-                    HasSiderMenu="HasSiderMenu"
+        <HeaderView HasSiderMenu="HasSiderMenu"
                     SiderWidth="SiderWidth"
-                    Collapsed="Collapsed"
                     MenuData="menuData"
-                    IsMobile="IsMobile" />
+                    IsMobile="IsMobile"
+                    Collapsed="@Collapsed"
+                    OnCollapse="HandleCollapse"
+                    @bind-SelectedKeys="TopSelectedKeys" />
     </Template>
     ;
     }
@@ -96,11 +97,11 @@ else
 
     private RenderFragment siderMenuWrapper(ApplicationMenuItemList clearMenuData = null, bool hide = false) =>
     @<Template>
-        <SiderMenuWrapper Hide="hide"  IsMobile="IsMobile"
+        <SiderMenuWrapper Hide="hide" IsMobile="IsMobile"
                           SiderWidth="SiderWidth"
-                          Collapsed="Collapsed"
-                          OnCollapse="HandleCollapse"
                           MenuData="clearMenuData"
+                          Collapsed="@Collapsed"
+                          OnCollapse="HandleCollapse"
                           @bind-SelectedKeys="SiderSelectedKeys" />
     </Template>
     ;

@@ -9,12 +9,16 @@
         Class="@HeaderClass">
     @if ((isTop || isSplitMenus) && !IsMobile)
     {
-        <TopNavHeader Mode="MenuMode.Horizontal" MenuData="MenuData" 
-                  SelectedKeys="SelectedKeys" SelectedKeysChanged="SelectedKeysChanged" />
+        <TopNavHeader Mode="MenuMode.Horizontal" MenuData="MenuData"
+                      @bind-SelectedKeys="SelectedKeys" />
     }
     else
     {
-        <GlobalHeader IsMobile="IsMobile"> @HeaderContentRender  </GlobalHeader>
+        <GlobalHeader IsMobile="IsMobile"
+                      Collapsed="@Collapsed"
+                      OnCollapse="HandleCollapse">
+            @HeaderContentRender
+        </GlobalHeader>
     }
 </Header>
 
@@ -24,8 +28,18 @@
     [Parameter] public string[] SelectedKeys { get; set; } = null;
     [Parameter] public EventCallback<string[]> SelectedKeysChanged { get; set; }
 
-    [Parameter] public int SiderWidth { get; set; } = 208;
     [Parameter] public bool Collapsed { get; set; }
+    [Parameter] public EventCallback<bool> CollapsedChanged { get; set; }
+    [Parameter] public EventCallback<bool> OnCollapse { get; set; }
+    private async Task HandleCollapse(bool collapsed)
+    {
+        Collapsed = collapsed;
+        if (OnCollapse.HasDelegate) { await OnCollapse.InvokeAsync(collapsed); }
+        if (CollapsedChanged.HasDelegate) { await CollapsedChanged.InvokeAsync(collapsed); }
+    }
+
+
+    [Parameter] public int SiderWidth { get; set; } = 208;
     [Parameter] public bool IsMobile { get; set; }
     [Parameter] public bool HasSiderMenu { get; set; }
     [Parameter] public RenderFragment HeaderContentRender { get; set; }

@@ -45,18 +45,11 @@ namespace Zero.Abp.AntdesignUI.Layout
                 if (Settings.Layout == Layout.Top.Name)
                 {
                     Settings.SplitMenus = false;
-
                     //Settings.SidebarTheme = "light";//
                     //Settings.FixedSidebar = false;//
-                    Settings.MenuRender = false;
-                    Settings.MenuHeaderRender = false;
+                    //Settings.MenuRender = false;
+                    //Settings.MenuHeaderRender = false;
                 }
-                else
-                {
-                    Settings.MenuRender = true;
-                    Settings.MenuHeaderRender = true;
-                }
-
                 if (Settings.Layout == Layout.Mix.Name)
                 {
                     Settings.FixedHeader = true;

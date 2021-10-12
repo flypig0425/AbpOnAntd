@@ -4,12 +4,13 @@
 <div class="@className" style="@Style">
     @if (IsMobile)
     {
-        <Branding HideTitle />
+        <div class="@BaseClassName-logo">
+            <Branding HideTitle />
+        </div>
         @if (CollapsedButtonRender != null)
         {
-            <span class="@BaseClassName-collapsed-button"
-                  @onclick="@(async () => { await OnCollapse.InvokeAsync(!Collapsed); })">
-                @*<Icon Type="@(Collapsed ? "menu-unfold" : "menu-fold")" Theme="outline" />*@
+            <span class="@BaseClassName-collapsed-button" style="cursor:pointer"
+                  @onclick="@(async () => { await HandleCollapse(!Collapsed); })">
                 @CollapsedButtonRender(Collapsed)
             </span>
         }
@@ -30,16 +31,22 @@
 
 @code{
 
-    [Parameter] public bool Collapsed { get; set; }
 
     [Parameter] public bool IsMobile { get; set; }
 
+    [Parameter] public bool Collapsed { get; set; }
+    [Parameter] public EventCallback<bool> CollapsedChanged { get; set; }
     [Parameter] public EventCallback<bool> OnCollapse { get; set; }
+    private async Task HandleCollapse(bool collapsed)
+    {
+        Collapsed = collapsed;
+        if (OnCollapse.HasDelegate) { await OnCollapse.InvokeAsync(collapsed); }
+        if (CollapsedChanged.HasDelegate) { await CollapsedChanged.InvokeAsync(collapsed); }
+    }
+
 
     [Parameter]
     public RenderFragment<bool> CollapsedButtonRender { get; set; } = defaultCollapsedButtonRender;
-
-
 
     protected override void OnInitialized()
     {
@@ -49,9 +56,9 @@
     static readonly RenderFragment<bool> defaultCollapsedButtonRender = collapsed =>
     @<Icon Type="@(collapsed ? "menu-unfold" : "menu-fold")" Theme="outline" />;
 
-    private string BaseClassName => $"{PrefixCls}-global-header";
-    private string className => ClassNames(BaseClassName, Class
-    , ($"{BaseClassName}-layout-{Settings.Layout}", Settings.Layout != null && Settings.HeaderTheme == MenuTheme.Dark.Name)
-    );
+private string BaseClassName => $"{PrefixCls}-global-header";
+private string className => ClassNames(BaseClassName, Class
+, ($"{BaseClassName}-layout-{Settings.Layout}", Settings.Layout != null && Settings.HeaderTheme == MenuTheme.Dark.Name)
+);
 
 }

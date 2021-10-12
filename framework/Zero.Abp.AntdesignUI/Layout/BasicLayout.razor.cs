@@ -14,9 +14,16 @@ namespace Zero.Abp.AntdesignUI.Layout
         [Parameter] public bool DisableContentMargin { get; set; }
         [Parameter] public int SiderWidth { get; set; } = 208;
         [Parameter] public string ContentStyle { get; set; }
-        [Parameter] public bool Collapsed { get; set; }
-        [Parameter] public EventCallback<bool> OnCollapse { get; set; }
 
+        [Parameter] public bool Collapsed { get; set; }
+        [Parameter] public EventCallback<bool> CollapsedChanged { get; set; }
+        [Parameter] public EventCallback<bool> OnCollapse { get; set; }
+        private async Task HandleCollapse(bool collapsed)
+        {
+            Collapsed = collapsed;
+            if (OnCollapse.HasDelegate) { await OnCollapse.InvokeAsync(collapsed); }
+            if (CollapsedChanged.HasDelegate) { await CollapsedChanged.InvokeAsync(collapsed); }
+        }
 
         protected BreakpointType ScreenSize { get; set; } = BreakpointType.Lg;//useAntdMediaQuery();
         protected bool IsMobile => (ScreenSize == BreakpointType.Sm || ScreenSize == BreakpointType.Xs) && !DisableMobile;
@@ -45,6 +52,7 @@ namespace Zero.Abp.AntdesignUI.Layout
             await LayoutState.UpdateThemeAsync();
         }
 
+
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             if (firstRender)
@@ -56,13 +64,13 @@ namespace Zero.Abp.AntdesignUI.Layout
             await base.OnAfterRenderAsync(firstRender);
         }
 
-
         protected override void Dispose(bool disposing)
         {
-            Settings.Changed -= OnSettingsChanged;
+            DomEventListener.Dispose();
+            LayoutState.OnThemeChangedAsync -= OnChangeThemeAsync;
+            LayoutState.OnChange -= OnSettingsChanged;
             base.Dispose(disposing);
         }
-
 
         private void OnResize(Window window)
         {
@@ -88,10 +96,12 @@ namespace Zero.Abp.AntdesignUI.Layout
             StateHasChanged();
         }
 
-        private async Task HandleCollapse(bool collapsed)
+        protected string _themeUrl;
+        protected ElementReference _themeRef;
+        protected virtual async Task OnChangeThemeAsync(string styleUrl)
         {
-            Collapsed = collapsed;
-            await OnCollapse.InvokeAsync(collapsed);
+            _themeUrl = styleUrl;
+            await JsInvokeAsync(JSInteropConstants.AddElementTo, _themeRef, "head");
         }
 
         #region StyleOrClass
