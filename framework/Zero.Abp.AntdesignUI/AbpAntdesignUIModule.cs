@@ -29,7 +29,6 @@ namespace Zero.Abp.AntdesignUI
             context.Services.AddSingleton(typeof(AbpBlazorMessageLocalizerHelper<>));
 
 
-
             Configure<AbpVirtualFileSystemOptions>(options =>
             {
                 options.FileSets.AddEmbedded<AbpAntdesignUIModule>(AssemblyName);

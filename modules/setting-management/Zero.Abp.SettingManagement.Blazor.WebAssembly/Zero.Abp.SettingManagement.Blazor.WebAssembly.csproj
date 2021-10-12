@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+  
+  <Import Project="..\..\..\configureawait.props" />
+  <Import Project="..\..\..\common.props" />
+  
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\framework\Zero.Abp.AspNetCore.Components.WebAssembly.Theming\Zero.Abp.AspNetCore.Components.WebAssembly.Theming.csproj" />
+    <ProjectReference Include="..\Zero.Abp.SettingManagement.Blazor\Zero.Abp.SettingManagement.Blazor.csproj" />
+  </ItemGroup>
+
+
+  <!--<ItemGroup>
+     <ProjectReference Include="..\Zero.Abp.SettingManagement.HttpApi.Client\Zero.Abp.SettingManagement.HttpApi.Client.csproj" />
+  </ItemGroup>-->
+  
+</Project>

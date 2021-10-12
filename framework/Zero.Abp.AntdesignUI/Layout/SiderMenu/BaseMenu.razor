@@ -13,39 +13,39 @@
     {
         @for (var i = 0; i < maxTopMenuCount; i++)
         {
-            @getSubMenuOrItem((MenuData[i], this))
+            @getSubMenuOrItem((MenuData[i], this, true))
         }
         <SubMenu>
-            <TitleTemplate><Icon Type="dash" Theme="outline" /></TitleTemplate>
+            <TitleTemplate><Icon Type="more" Theme="outline" /></TitleTemplate>
             <ChildContent>
                 @for (var i = maxTopMenuCount; i < MenuData.Count; i++)
                 {
-                    @getSubMenuOrItem((MenuData[i], this))
+                    @getSubMenuOrItem((MenuData[i], this, true))
                 }
             </ChildContent>
         </SubMenu>
     }
     else
     {
-        @getNavMenuItems((MenuData, this))
+        @getNavMenuItems((MenuData, this, true))
     }
 </Menu>
 
 @code {
-    static readonly RenderFragment<(ApplicationMenuItemList items, BaseMenu that)> getNavMenuItems = context =>
+    static readonly RenderFragment<(ApplicationMenuItemList items, BaseMenu that, bool first)> getNavMenuItems = context =>
     @<Template>
         @foreach (var item in context.items ?? new ApplicationMenuItemList())
         {
-            @getSubMenuOrItem((item, context.that))
+            @getSubMenuOrItem((item, context.that, context.first))
         }
     </Template>
     ;
 
-    static readonly RenderFragment<(ApplicationMenuItem menuItem, BaseMenu that)> defaultTitle = context =>
+    static readonly RenderFragment<(ApplicationMenuItem menuItem, BaseMenu that, bool first)> defaultTitle = context =>
     @<Template>
         @if (context.menuItem != null)
         {
-            var that = @context.that;
+            var that = context.that;
             var menuItem = context.menuItem;
             var isHttpUrl = menuItem?.Url?.Contains("http") ?? false;
             var cssClass = string.IsNullOrEmpty(menuItem.CssClass) ? string.Empty : menuItem.CssClass;
@@ -54,22 +54,33 @@
                 @if (menuIcon.IsNullOrWhiteSpace() || menuItem.IsLeaf)
                 {
                     @menuItem.DisplayName
+                    @*if (that.Collapsed && context.first)
+                        {
+                            <Icon Type="folder" Theme="outline" />
+                            <span class="@($"{that.PrefixCls}-menu-item-title")">
+                                @menuItem.DisplayName
+                            </span>
+                        }
+                        else
+                        {
+                            @menuItem.DisplayName
+                        }*@
                 }
                 else
                 {
                     if (menuIcon.StartsWith("fa"))
                     {
-                        <span class="anticon anticon-team">
+                        <span class="anticon">
                             <i class="@ClassNames(menuIcon,$"{that.PrefixCls}-sider-icon")"></i>
                         </span>
-                    }
-                    else if (menuIcon.StartsWith(that.IconPrefixes))
-                    {
-                        <IconFont Type="@menuIcon" />
                     }
                     else if (menuIcon.StartsWith("http") || Regex.IsMatch(menuIcon, @"\w.(png|jpg|jpeg|svg|webp|gif|bmp)$"))
                     {
                         <img src="@menuIcon" alt="icon" class="@($"{that.PrefixCls}-sider-icon")" />
+                    }
+                    else if (menuIcon.StartsWith(that.IconPrefixes))
+                    {
+                        <IconFont Type="@menuIcon" />
                     }
                     else
                     {
@@ -84,7 +95,7 @@
     </Template>
     ;
 
-    static readonly RenderFragment<(ApplicationMenuItem menuItem, BaseMenu that)> getSubMenuOrItem = context =>
+    static readonly RenderFragment<(ApplicationMenuItem menuItem, BaseMenu that, bool first)> getSubMenuOrItem = context =>
     @<Template>
         @if (context.menuItem != null)
         {
@@ -96,12 +107,12 @@
             @if (!menuItem.IsLeaf)
             {
                 var title = that.SubMenuItemRender != null
-                    ? that.SubMenuItemRender(menuItem) : defaultTitle((menuItem, that));
+                    ? that.SubMenuItemRender(menuItem) : defaultTitle((menuItem, that, context.first));
                 var MenuComponents = that.Menu?.Type == "group" ? typeof(MenuItemGroup) : typeof(SubMenu);
                 var parameters = new Dictionary<string, object>();
                 parameters.Add("Key", menuItem.Name);
                 parameters.Add("TitleTemplate", title);
-                parameters.Add("ChildContent", getNavMenuItems((menuItem?.Items, that)));
+                parameters.Add("ChildContent", getNavMenuItems((menuItem?.Items, that, false)));
                 <Component Type="@MenuComponents" Parameters="@parameters" />
             }
             else
@@ -116,12 +127,12 @@
                         @if (!url.IsNullOrWhiteSpace())
                         {
                             <MenuLink Href="@url" target="@menuItem.Target">
-                                @defaultTitle((menuItem, that))
+                                @defaultTitle((menuItem, that, context.first))
                             </MenuLink>
                         }
                         else
                         {
-                            @defaultTitle((menuItem, that))
+                            @defaultTitle((menuItem, that, context.first))
                         }
                     }
                 </MenuItem>
