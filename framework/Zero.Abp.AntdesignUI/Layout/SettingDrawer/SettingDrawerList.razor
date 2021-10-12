@@ -1,5 +1,5 @@
 ﻿@namespace Zero.Abp.AntdesignUI.Layout
-@inherits SettingDrawerBase
+@inherits AntLayoutComponentBase
 
 <AntList Split="false"
          DataSource="SettingItems"
@@ -12,23 +12,23 @@
 @code
 {
     public RenderFragment SimpleSelectRender(
-        Expression<Func<LayoutSettings, string>> propertySelector
-        , Func<string> valueFactory, (string label, string value)[] options
-        , Func<bool> disabledFactory = null)
+            Expression<Func<LayoutSettings, string>> propertySelector
+            , Func<string> valueFactory, (string label, string value)[] options
+            , Func<bool> disabledFactory = null)
     {
         var fieldName = (propertySelector.Body as MemberExpression)?.Member?.Name;
         return@<Template>
         <span style="@StyleValues(("opacity:0.5",disabledFactory))">@L[fieldName]</span>
         <RadioGroup Size="@("small")" TValue="string" Value="@(valueFactory?.Invoke()?? "")" Disabled="@(disabledFactory?.Invoke()?? false)"
-                    OnChange="value=>UpdateSettingAsync<string>(propertySelector,valueFactory,value)"
-                    ButtonStyle="@RadioButtonStyle.Solid">
+                OnChange="value=>LayoutState.UpdateSettingAsync<string>(propertySelector,value,valueFactory)"
+                ButtonStyle="@RadioButtonStyle.Solid">
             @foreach (var item in options)
-            {
-                <Radio RadioButton Disabled="@(disabledFactory?.Invoke()?? false)" Value="@item.value">@item.label</Radio>
-            }
-        </RadioGroup>
+                {
+                    <Radio RadioButton Disabled="@(disabledFactory?.Invoke()?? false)" Value="@item.value">@item.label</Radio>
+                }
+            </RadioGroup>
 
-    </Template>
+        </Template>
     ;
     }
 
@@ -41,7 +41,7 @@
         return @<Template>
         <span style="@StyleValues(("opacity:0.5",disabledFactory))">@L[fieldName]</span>
         <Switch Size="small" Checked="@(valueFactory?.Invoke()?? false)" Disabled="@(disabledFactory?.Invoke()?? false)"
-                OnChange="value=>UpdateSettingAsync(propertySelector,valueFactory,value)" />
+            OnChange="value=>LayoutState.UpdateSettingAsync(propertySelector,value,valueFactory)" />
     </Template>
     ;
     }
@@ -59,7 +59,7 @@
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
-        Settings.Changed += OnSettingsChanged;
+        LayoutState.OnChange += OnSettingsChanged;
         if (ListType == "LayoutSetting")
         {
             SettingItems = new[] {
@@ -96,7 +96,7 @@
     }
     protected override void Dispose(bool disposing)
     {
-        Settings.Changed -= OnSettingsChanged;
+        LayoutState.OnChange -= OnSettingsChanged;
         base.Dispose(disposing);
     }
 }

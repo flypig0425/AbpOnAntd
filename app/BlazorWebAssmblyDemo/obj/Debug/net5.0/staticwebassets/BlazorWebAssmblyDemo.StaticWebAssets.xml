@@ -1,6 +1,0 @@
-﻿<StaticWebAssets Version="1.0">
-  <ContentRoot BasePath="/" Path="D:\DevCodes\AbpZero\app\BlazorWebAssmblyDemo\bin\Debug\net5.0\wwwroot\" />
-  <ContentRoot BasePath="_content/AntDesign" Path="C:\Users\weidyg\.nuget\packages\antdesign\0.10.0\build\..\staticwebassets\" />
-  <ContentRoot BasePath="_content/Zero.Abp.AntdesignUI" Path="D:\DevCodes\AbpZero\framework\Zero.Abp.AntdesignUI\wwwroot\" />
-  <ContentRoot BasePath="_content/Zero.Abp.AspNetCore.Components.Web" Path="D:\DevCodes\AbpZero\framework\Zero.Abp.AspNetCore.Components.Web\wwwroot\" />
-</StaticWebAssets>
