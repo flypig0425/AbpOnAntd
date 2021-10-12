@@ -44,9 +44,7 @@
         if (CollapsedChanged.HasDelegate) { await CollapsedChanged.InvokeAsync(collapsed); }
     }
 
-
-    [Parameter]
-    public RenderFragment<bool> CollapsedButtonRender { get; set; } = defaultCollapsedButtonRender;
+    [Parameter] public RenderFragment<bool> CollapsedButtonRender { get; set; } = defaultCollapsedButtonRender;
 
     protected override void OnInitialized()
     {

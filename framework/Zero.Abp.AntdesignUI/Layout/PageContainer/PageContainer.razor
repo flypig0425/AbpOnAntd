@@ -1,0 +1,133 @@
+﻿@namespace Zero.Abp.AntdesignUI.Layout
+@inherits AntDomComponentBase
+
+<div style="@Style" class="@ContainerClassName">
+    @if (FixedHeader && PageHeaderDom != null)
+    {
+        <Affix OffsetTop="@OffsetTop">
+            @PageHeaderDom
+        </Affix>
+    }
+    else
+    {
+        @PageHeaderDom
+    }
+    @if (RenderContentDom != null)
+    {
+        <GridContent>@RenderContentDom</GridContent>
+    }
+    @if (HasFooter)
+    {
+        <FooterToolbar>@Footer</FooterToolbar>
+    }
+    @*{fixedHeader && pageHeaderDom ? (
+        // 在 hasHeader 且 fixedHeader 的情况下，才需要设置高度
+        <Affix offsetTop={value.hasHeader && value.fixedHeader ? value.headerHeight : 0}
+               {...affixProps}>
+            {pageHeaderDom}
+        </Affix>
+        ) : (
+        pageHeaderDom
+        )}
+        {renderContentDom && <GridContent>{renderContentDom}</GridContent>}
+        {footer && <FooterToolbar prefixCls={prefixCls}>{footer}</FooterToolbar>}*@
+</div>
+@code {
+    //    const containerClassName = classNames(prefixedClassName, className, {
+    //  [`${prefixCls}-page-container-ghost`]: ghost,
+    //  [`${prefixCls}-page-container-with-footer`]: footer,
+    //});
+
+    private int OffsetTop => (Value.HasHeader && Value.FixedHeader) ? Value.HeaderHeight : 0;
+    private bool HasFooter => Footer != null;
+
+
+
+    [Parameter] public RouteContext Value { get; set; } = new RouteContext();
+
+
+
+    [Parameter] public bool Ghost { get; set; }
+    [Parameter] public RenderFragment Footer { get; set; }
+    [Parameter] public bool FixedHeader { get; set; }
+
+
+    RenderFragment PageHeaderDom => pageHeaderRender();
+    RenderFragment RenderContentDom;
+
+
+    private string PrefixedClassName => $"{PrefixCls}-page-container";
+    private string ContainerClassName => ClassNames(PrefixedClassName, Class
+        , ($"{PrefixCls}-page-container-ghost", Ghost)
+        , ($"{PrefixCls}-page-container-with-footer", HasFooter)
+    );
+
+
+    [Parameter] public bool HideTitle { get; set; }
+    [Parameter] public string Title { get; set; }
+
+    [Parameter] public bool HidePageHeader { get; set; }
+    [Parameter] public RenderFragment PageHeaderRender { get; set; }
+
+
+
+    private RenderFragment pageHeaderRender()
+    {
+        if (HidePageHeader) { return null; }
+        if (PageHeaderRender != null) { return PageHeaderRender; }//({ ...props, ...value })
+        var pageHeaderTitle = Title;
+        if (Title == null && !HideTitle)
+        {
+            pageHeaderTitle = Value.Title;
+        }
+
+        @*
+            
+            const pageHeaderProps: PageHeaderProps = {
+              ...value,
+              title: pageHeaderTitle,
+              ...restProps,
+              footer: renderFooter({
+                ...restProps,
+                breadcrumbRender,
+                prefixedClassName,
+              }),
+              ...header,
+            };
+
+            const { breadcrumb } = pageHeaderProps as {
+              breadcrumb: BreadcrumbProps;
+            };
+            const noHasBreadCrumb =
+              !breadcrumb ||
+              breadcrumbRender === false ||
+              (!breadcrumb?.itemRender && !breadcrumb?.routes?.length);
+
+            if (
+              ['title', 'subTitle', 'extra', 'tags', 'footer', 'avatar', 'backIcon'].every(
+                (item) => !pageHeaderProps[item],
+              ) &&
+              noHasBreadCrumb &&
+              !content &&
+              !extraContent
+            ) {
+              return null;
+            }*@
+
+
+        return @<Template>
+        @*<div class="@($"{PrefixedClassName}-warp")">
+            <PageHeader {...pageHeaderProps}
+                        breadcrumb={
+                        breadcrumbRender= = =false
+                        ? undefined
+                        : { ...pageHeaderProps.breadcrumb, ...value.breadcrumbProps }
+                        }
+                        prefixCls={prefixCls}>
+                {header?.children || renderPageHeader(content, extraContent, prefixedClassName)}
+            </PageHeader>
+        </div>*@
+    </Template>
+    ;
+}
+}

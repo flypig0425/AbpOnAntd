@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace Zero.Abp.AntdesignUI.Layout
 {
-    public partial class ThemeColor : AntDomComponentBase
+    public partial class ThemeColor : AntDesign.AntDomComponentBase
     {
         private string _value;
         [Parameter] public string Title { get; set; }
