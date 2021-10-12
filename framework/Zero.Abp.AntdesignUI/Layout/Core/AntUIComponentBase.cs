@@ -11,6 +11,7 @@ namespace Zero.Abp.AntdesignUI.Layout
         [Parameter] public string PrefixCls { get; set; } = "ant-pro";
         [Parameter] public string Class { get; set; }
         [Parameter] public string Style { get; set; }
+        [Parameter] public RenderFragment ChildContent { get; set; }
 
         /// <summary>
         /// Example: ClassNames(className ,(className,true|flase) ,(()=>className,true|flase))

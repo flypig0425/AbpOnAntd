@@ -20,17 +20,6 @@
     {
         <FooterToolbar>@Footer</FooterToolbar>
     }
-    @*{fixedHeader && pageHeaderDom ? (
-        // 在 hasHeader 且 fixedHeader 的情况下，才需要设置高度
-        <Affix offsetTop={value.hasHeader && value.fixedHeader ? value.headerHeight : 0}
-               {...affixProps}>
-            {pageHeaderDom}
-        </Affix>
-        ) : (
-        pageHeaderDom
-        )}
-        {renderContentDom && <GridContent>{renderContentDom}</GridContent>}
-        {footer && <FooterToolbar prefixCls={prefixCls}>{footer}</FooterToolbar>}*@
 </div>
 @code {
     //    const containerClassName = classNames(prefixedClassName, className, {
@@ -82,52 +71,52 @@
         }
 
         @*
-            
+
             const pageHeaderProps: PageHeaderProps = {
-              ...value,
-              title: pageHeaderTitle,
-              ...restProps,
-              footer: renderFooter({
-                ...restProps,
-                breadcrumbRender,
-                prefixedClassName,
-              }),
-              ...header,
+            ...value,
+            title: pageHeaderTitle,
+            ...restProps,
+            footer: renderFooter({
+            ...restProps,
+            breadcrumbRender,
+            prefixedClassName,
+            }),
+            ...header,
             };
 
             const { breadcrumb } = pageHeaderProps as {
-              breadcrumb: BreadcrumbProps;
+            breadcrumb: BreadcrumbProps;
             };
             const noHasBreadCrumb =
-              !breadcrumb ||
-              breadcrumbRender === false ||
-              (!breadcrumb?.itemRender && !breadcrumb?.routes?.length);
+            !breadcrumb ||
+            breadcrumbRender === false ||
+            (!breadcrumb?.itemRender && !breadcrumb?.routes?.length);
 
             if (
-              ['title', 'subTitle', 'extra', 'tags', 'footer', 'avatar', 'backIcon'].every(
-                (item) => !pageHeaderProps[item],
-              ) &&
-              noHasBreadCrumb &&
-              !content &&
-              !extraContent
+            ['title', 'subTitle', 'extra', 'tags', 'footer', 'avatar', 'backIcon'].every(
+            (item) => !pageHeaderProps[item],
+            ) &&
+            noHasBreadCrumb &&
+            !content &&
+            !extraContent
             ) {
-              return null;
+            return null;
             }*@
 
 
         return @<Template>
         @*<div class="@($"{PrefixedClassName}-warp")">
             <PageHeader {...pageHeaderProps}
-                        breadcrumb={
-                        breadcrumbRender= = =false
-                        ? undefined
-                        : { ...pageHeaderProps.breadcrumb, ...value.breadcrumbProps }
-                        }
-                        prefixCls={prefixCls}>
-                {header?.children || renderPageHeader(content, extraContent, prefixedClassName)}
+            breadcrumb={
+            breadcrumbRender= = =false
+            ? undefined
+            : { ...pageHeaderProps.breadcrumb, ...value.breadcrumbProps }
+            }
+            prefixCls={prefixCls}>
+            {header?.children || renderPageHeader(content, extraContent, prefixedClassName)}
             </PageHeader>
-        </div>*@
+            </div>*@
     </Template>
     ;
-}
+    }
 }
