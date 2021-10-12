@@ -7,7 +7,7 @@ namespace Zero.Abp.AntdesignUI.Layout
 {
     public partial class BaseMenu
     {
-        readonly int maxTopMenuCount = 5;
+        readonly int maxTopMenuCount = 5;//TODO:顶部菜单最大数
 
 
         [Parameter] public string IconPrefixes { get; set; } = "icon-";
