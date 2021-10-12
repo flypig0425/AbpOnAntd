@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using AntDesign;
+using AntDesign.JsInterop;
+using Microsoft.AspNetCore.Components;
 using System;
 using System.Threading.Tasks;
 using Volo.Abp.UI.Navigation;
@@ -17,8 +19,8 @@ namespace Zero.Abp.AntdesignUI.Layout
         [Parameter] public EventCallback<bool> OnCollapse { get; set; }
 
 
-        protected string ColSize { get; set; } = "lg";//useAntdMediaQuery();
-        protected bool IsMobile => (ColSize == "sm" || ColSize == "xs") && !DisableMobile;
+        protected BreakpointType ScreenSize { get; set; } = BreakpointType.Lg;//useAntdMediaQuery();
+        protected bool IsMobile => (ScreenSize == BreakpointType.Sm || ScreenSize == BreakpointType.Xs) && !DisableMobile;
 
 
         private bool IsSplitMenus => Settings.SplitMenus && (/*OpenKeys != false ||*/ Settings.Layout == Layout.Mix.Name) && !IsMobile;
@@ -29,6 +31,7 @@ namespace Zero.Abp.AntdesignUI.Layout
         [Inject] protected IMenuManager MenuManager { get; set; }
         [Inject] protected NavigationManager NavigationManager { get; set; }
 
+        [Inject] private IDomEventListener DomEventListener { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
@@ -42,11 +45,50 @@ namespace Zero.Abp.AntdesignUI.Layout
             Settings.Changed += OnSettingsChanged;
         }
 
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (firstRender)
+            {
+                var dimensions = await JsInvokeAsync<Window>(JSInteropConstants.GetWindow);
+                DomEventListener.AddShared<Window>("window", "resize", OnResize);
+                OptimizeSize(dimensions.InnerWidth);
+            }
+            await base.OnAfterRenderAsync(firstRender);
+        }
+
         protected override void Dispose(bool disposing)
         {
             Settings.Changed -= OnSettingsChanged;
+            DomEventListener.Dispose();
             base.Dispose(disposing);
         }
+
+
+        private void OnResize(Window window)
+        {
+            OptimizeSize(window.InnerWidth);
+        }
+
+        private static readonly BreakpointType[] _breakpoints = new[] { 
+            BreakpointType.Xs, BreakpointType.Sm, 
+            BreakpointType.Md, BreakpointType.Lg, 
+            BreakpointType.Xl, BreakpointType.Xxl 
+        };
+        private void OptimizeSize(decimal windowWidth)
+        {
+            BreakpointType actualBreakpoint = _breakpoints[^1];
+            for (int i = 0; i < _breakpoints.Length; i++)
+            {
+                if (windowWidth <= (int)_breakpoints[i] && (windowWidth >= (i > 0 ? (int)_breakpoints[i - 1] : 0)))
+                {
+                    actualBreakpoint = _breakpoints[i];
+                }
+            }
+            ScreenSize = actualBreakpoint;
+            StateHasChanged();
+        }
+
+
 
         private async Task HandleCollapse(bool collapsed)
         {
@@ -72,7 +114,7 @@ namespace Zero.Abp.AntdesignUI.Layout
 
         private string BaseClassName => $"{PrefixCls}-basicLayout";
 
-        private string LayoutClass => ClassNames("ant-design-pro", BaseClassName, $"screen-{ColSize}"
+        private string LayoutClass => ClassNames("ant-design-pro", BaseClassName, $"screen-{ScreenSize}"
             , ($"{BaseClassName}-top-menu", Settings.Layout == Layout.Top.Name)
             , ($"{BaseClassName}-is-children", isChildrenLayout)
             , ($"{BaseClassName}-fix-siderbar", Settings.FixedSidebar)

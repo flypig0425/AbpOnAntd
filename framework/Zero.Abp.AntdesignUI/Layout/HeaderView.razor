@@ -9,12 +9,12 @@
         Class="@HeaderClass">
     @if ((isTop || isSplitMenus) && !IsMobile)
     {
-        <TopNavHeader Mode="MenuMode.Horizontal" MenuData="MenuData"
+        <TopNavHeader Mode="MenuMode.Horizontal" MenuData="MenuData" 
                   SelectedKeys="SelectedKeys" SelectedKeysChanged="SelectedKeysChanged" />
     }
     else
     {
-        <GlobalHeader> @HeaderContentRender  </GlobalHeader>
+        <GlobalHeader IsMobile="IsMobile"> @HeaderContentRender  </GlobalHeader>
     }
 </Header>
 

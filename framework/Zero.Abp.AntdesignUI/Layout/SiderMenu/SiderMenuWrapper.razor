@@ -5,7 +5,8 @@
 {
     @if (IsMobile)
     {
-        <Drawer Visible="@(!Collapsed)"
+        <Drawer 
+                Visible="@(!Collapsed)"
                 Placement="left"
                 Class="@($"{PrefixCls}-drawer-sider")"
                 Width="@SiderWidth"
@@ -22,7 +23,8 @@
                        Breakpoint="Breakpoint"
                        MenuData="MenuData"
                        SelectedKeys="SelectedKeys"
-                       SelectedKeysChanged="SelectedKeysChanged" />
+                       SelectedKeysChanged="SelectedKeysChanged"
+                       IsMobile="IsMobile"/>
         </Drawer>
     }
     else
@@ -37,7 +39,8 @@
                    Breakpoint="Breakpoint"
                    MenuData="MenuData"
                    SelectedKeys="SelectedKeys"
-                   SelectedKeysChanged="SelectedKeysChanged" />
+                   SelectedKeysChanged="SelectedKeysChanged" 
+                   IsMobile="IsMobile"/>
         // SiderTheme="SiderTheme"
         //MenuFooterRender = "MenuFooterRender"
         //           CollapsedButtonRender = "CollapsedButtonRender"

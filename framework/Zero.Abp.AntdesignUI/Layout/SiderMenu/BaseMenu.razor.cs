@@ -13,7 +13,7 @@ namespace Zero.Abp.AntdesignUI.Layout
         [Parameter] public string IconPrefixes { get; set; } = "icon-";
 
         [Parameter] public bool Collapsed { get; set; }
-        [Parameter] public bool IsMobile { get; set; }
+        //[Parameter] public bool IsMobile { get; set; }
 
         [Parameter] public MenuTheme Theme { get; set; }
         [Parameter] public MenuMode Mode { get; set; }//  //ToDo: 'vertical' | 'vertical-left' | 'vertical-right' | 'horizontal' | 'inline';
