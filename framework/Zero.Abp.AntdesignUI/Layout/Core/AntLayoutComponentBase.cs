@@ -8,7 +8,7 @@ using Zero.Abp.AntdesignUI.Localization;
 
 namespace Zero.Abp.AntdesignUI.Layout
 {
-    public abstract class AntLayoutComponentBase : AntDomComponentBase
+    public abstract class AntLayoutComponentBase : AntUIComponentBase
     {
         #region 
         [Parameter] public RenderFragment ChildContent { get; set; }

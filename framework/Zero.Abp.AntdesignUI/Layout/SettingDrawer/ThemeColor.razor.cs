@@ -1,11 +1,10 @@
+using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using AntDesign;
-using Microsoft.AspNetCore.Components;
 
 namespace Zero.Abp.AntdesignUI.Layout
 {
-    public partial class ThemeColor : AntDesign.AntDomComponentBase
+    public partial class ThemeColor : AntUIComponentBase
     {
         private string _value;
         [Parameter] public string Title { get; set; }

@@ -14,7 +14,6 @@ namespace Zero.Abp.AntdesignUI.Layout
     {
         private string _value;
         private string BaseClassName => $"{PrefixCls}-drawer-block-checkbox";
-        [Parameter] public string PrefixCls { get; set; } = "ant-pro";
         [Parameter] public CheckboxItem[] List { get; set; }
         [Parameter] public EventCallback<string> ValueChanged { get; set; }
         [Parameter] public EventCallback<string> OnChange { get; set; }

@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Zero.Abp.AntdesignUI.Layout
 {
-    public abstract class AntDomComponentBase : AntComponentBase
+    public abstract class AntUIComponentBase : AntComponentBase
     {
         [Parameter] public string PrefixCls { get; set; } = "ant-pro";
         [Parameter] public string Class { get; set; }
