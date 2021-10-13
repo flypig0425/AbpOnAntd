@@ -130,7 +130,7 @@ namespace BlazorServerDemo
             Configure<AbpNavigationOptions>(options =>
             {
                 options.MenuContributors.Add(new BlazorServerDemoMenuContributor());
-                options.MenuContributors.Add(new TenantManagementWebMainMenuContributor());
+                //options.MenuContributors.Add(new TenantManagementWebMainMenuContributor());
             });
         }
 

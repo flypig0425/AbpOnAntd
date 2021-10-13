@@ -11,28 +11,29 @@
         if (Settings.FixedHeader)
         {
             <Affix OffsetTop="OffsetTop">
-                @PageHeaderDom
+                @PageHeaderDom()
             </Affix>
         }
         else
         {
-            @PageHeaderDom
+            @PageHeaderDom()
         }
     }
     <!-- #endregion -->
     <!-- #region Content -->
     @if (Loading.IsT1)
     {
-        @Loading.AsT1;
+        @Loading.AsT1
     }
     else
     {
         @if (Loading.IsT0 && Loading.AsT0 == false)
         {
             <div class="@($"{PrefixedClassName}-children-content")">
+                <PageAlert />
                 @ChildContent
             </div>
-            @if (Value?.HasFooterToolbar??false)
+            @if (Value?.HasFooterToolbar ?? false)
             {
                 <div style="height:48px;margin-top:24px" />
             }
@@ -54,35 +55,63 @@
     private bool HasFooter => Footer != null;
     private bool HasBreadCrumb => false;
     private bool HasPageHeader => HasBreadCrumb || AnyNoNull(
-        Title, TitleTemplate
+         Header, Title, TitleContent
         , Content
         , ExtraContent
         );
 
-    private int OffsetTop => ((Value?.HasHeader??false) && FixedHeader) ? Settings.HeaderHeight : 0;
+    private int OffsetTop => ((Value?.HasHeader ?? false) && FixedHeader) ? Settings.HeaderHeight : 0;
 
-    RenderFragment PageHeaderDom =>@<div class=@($"{PrefixedClassName}-warp")>
+    RenderFragment PageHeaderContent => Content == null && ExtraContent == null ? null :
+    @<div class="@($"{PrefixedClassName}-detail")">
+        <div class="@($"{PrefixedClassName}-main")">
+            <div class="@($"{PrefixedClassName}-row")">
+                @if (Content != null)
+                    {
+                        <div class="@($"{PrefixedClassName}-content")">@Content</div>
+                    }
+                    @if (ExtraContent != null)
+                    {
+                        <div class="@($"{PrefixedClassName}-extraContent")">@ExtraContent</div>
+                    }
+                </div>
+            </div>
+        </div>;
+
+    RenderFragment PageHeaderFooter => TabList.IsNullOrEmpty() ? null :
+    @<Tabs Class="@($"{PrefixedClassName}-tabs")" 
+    OnTabClick="HandleTabClick" 
+    ActiveKey="@TabActiveKey"
+    Type="@TabProps.Type"
+    HideAdd="@TabProps.HideAdd"
+    OnEdit="@TabProps.OnEdit"
+    TabBarExtraContent="@TabBarExtraContent">
+        @foreach (var item in TabList)
+            {
+                <TabPane Key="@item.Key" Tab="@item.Tab" Closable="@item.Closable" />
+            }
+        </Tabs>;
+
+
+    RenderFragment PageHeaderDom()
+    {
+        if (Header != null)
+        {
+            Title = Header.Title.IsT0 ? Header.Title.AsT0 : Title;
+            TitleContent = Header.Title.IsT1 ? Header.Title.AsT1 : TitleContent;
+            Ghost = Header.Ghost || Ghost;
+            Extra = Header.Extra ?? Extra;
+            BreadcrumbContent = Header.Breadcrumb ?? BreadcrumbContent;
+        }
+        return @<div class=@($"{PrefixedClassName}-warp")>
         <PageHeader Title="@Title"
-                    TitleTemplate="TitleTemplate">
-            <PageHeaderContent>
-                @if (Content != null || ExtraContent != null)
-                {
-                    <div class="@($"{PrefixedClassName}-detail")">
-                        <div class="@($"{PrefixedClassName}-main")">
-                            <div class="@($"{PrefixedClassName}-row")">
-                                @if (Content != null)
-                                {
-                                    <div class="@($"{PrefixedClassName}-content")">@Content</div>
-                                }
-                                @if (ExtraContent != null)
-                                {
-                                    <div class="@($"{PrefixedClassName}-extraContent")">@ExtraContent</div>
-                                }
-                            </div>
-                        </div>
-                    </div>
-                }
-            </PageHeaderContent>
+                Ghost="@Ghost"
+                TitleTemplate="@TitleContent"
+                PageHeaderExtra="@Extra"
+                PageHeaderBreadcrumb="@BreadcrumbContent"
+                PageHeaderContent="@PageHeaderContent"
+                PageHeaderFooter="@PageHeaderFooter">
         </PageHeader>
     </div>;
+    }
 }

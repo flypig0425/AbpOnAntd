@@ -73,9 +73,12 @@ namespace Zero.Abp.AntdesignUI.Layout
 
         protected override void Dispose(bool disposing)
         {
-            DomEventListener.Dispose();
-            LayoutState.OnThemeChangedAsync -= OnChangeThemeAsync;
-            LayoutState.OnChange -= OnSettingsChanged;
+            DomEventListener?.Dispose();
+            if (LayoutState != null)
+            {
+                LayoutState.OnThemeChangedAsync -= OnChangeThemeAsync;
+                LayoutState.OnChange -= OnSettingsChanged;
+            }
             base.Dispose(disposing);
         }
 

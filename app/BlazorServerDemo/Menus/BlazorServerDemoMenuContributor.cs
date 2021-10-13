@@ -29,16 +29,17 @@ namespace Antd.AbpDemo.Blazor.Menus
                     order: 0
                 )
             );
+            administration.AddItem(new ApplicationMenuItem(BlazorServerDemoMenus.Home, 
+                "主页", "/", icon: "fas fa-home", order: 0));
+
             administration.AddItem(new ApplicationMenuItem(
-                    BlazorServerDemoMenus.Home,
-                    "主页",
-                    "/",
-                    icon: "fas fa-home",
-                    order: 0
-                ));
+                "PageContainer_Basic",
+              "页面1", "/PageContainer/Basic", icon: "fas fa-home", order: 0));
+
+
             //if (MultiTenancyConsts.IsEnabled)
             //{
-            administration.SetSubItemOrder(TenantManagementMenuNames.GroupName, 1);
+            //administration.SetSubItemOrder(TenantManagementMenuNames.GroupName, 1);
             //}
             //else
             //{

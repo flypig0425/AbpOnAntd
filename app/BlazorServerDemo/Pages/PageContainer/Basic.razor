@@ -1,0 +1,68 @@
+﻿@page "/PageContainer/Basic"
+
+<PageContainer Header="header"
+               TabList="tabList"
+               TabProps="tabProps">
+    <ChildContent>
+        <Result></Result>
+    </ChildContent>
+    <Footer>
+        <Button>重置</Button>
+        <Button Type="primary"> 提交 </Button>
+    </Footer>
+</PageContainer>
+
+@code {
+
+    private TabPaneItem[] tabList = new TabPaneItem[] {
+        new TabPaneItem { Tab = "基本信息", Key = "base", Closable = false, } ,
+        new TabPaneItem { Tab = "详细信息", Key = "info",  }
+    };
+    private TabProps tabProps = new TabProps
+        {
+            Type = TabType.EditableCard,
+            HideAdd = true,
+            //OnEdit = (key, action) => { return Task.FromResult(true); },
+        };
+    private PageHeaderProps header = new PageHeaderProps
+        {
+            Title = "页面标题",
+            Ghost = true,
+            //Breadcrumb = new BreadcrumbProps
+            //{
+            //    Routes = new Route[]
+            //            {
+            //        new Route{Path="",BreadcrumbName="一级页面" },
+            //        new Route{Path="",BreadcrumbName="二级页面" },
+            //        new Route{Path="",BreadcrumbName="当前页面" }
+            //        }
+            //},
+            Breadcrumb =
+    @<Template>
+        <Breadcrumb>
+            <BreadcrumbItem Href="">一级页面</BreadcrumbItem>
+            <BreadcrumbItem Href="">二级页面</BreadcrumbItem>
+            <BreadcrumbItem>当前页面</BreadcrumbItem>
+        </Breadcrumb>
+    </Template>,
+        Extra = @<Template>
+        <Button>次要按钮</Button>
+        <Button> 次要按钮 </Button>
+        <Button Type="primary"> 主要按钮</Button>
+        <Dropdown>
+            <Overlay>
+                <Menu>
+                    <MenuItem Key="1">下拉菜单</MenuItem>
+                    <MenuItem Key="2">下拉菜单2</MenuItem>
+                    <MenuItem Key="3">下拉菜单3</MenuItem>
+                </Menu>
+            </Overlay>
+            <ChildContent>
+                <Button Style="padding:0 8px">
+                    <Icon Type="more"></Icon>
+                </Button>
+            </ChildContent>
+        </Dropdown>
+    </Template>
+        };
+}
