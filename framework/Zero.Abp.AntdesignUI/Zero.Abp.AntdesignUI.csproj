@@ -17,8 +17,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Layout\FooterToolbar\**" />
+    <Compile Remove="Layout\GridContent\**" />
+    <Content Remove="Layout\FooterToolbar\**" />
+    <Content Remove="Layout\GridContent\**" />
     <Content Remove="Localization\Resources\AbpAntdesignUI\*.json" />
     <EmbeddedResource Include="Localization\Resources\AbpAntdesignUI\*.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Layout\FooterToolbar\**" />
+    <EmbeddedResource Remove="Layout\GridContent\**" />
+    <None Remove="Layout\FooterToolbar\**" />
+    <None Remove="Layout\GridContent\**" />
   </ItemGroup>
   
   <ItemGroup>

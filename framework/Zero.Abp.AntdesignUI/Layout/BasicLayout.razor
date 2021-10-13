@@ -7,22 +7,24 @@
 }
 else
 {
-    <div class="@LayoutClass" style="@WeakModeStyle">
-        <Layout Style="min-height: 100%;">
-            @*<CascadingValue Value="@MatchMenuKeys" Name="MatchMenuKeys">*@
-            @SiderMenuDom
-            <div style="@GenLayoutStyle" class="@layoutCls">
-                @HeaderDom
-                <WrapContent PrefixCls="@PrefixCls"
-                             Class="@ContentClass"
-                             Style="@ContentStyle">
-                    @(Loading ? @<PageLoading /> : ChildContent)
-                </WrapContent>
-                @FooterDom
-            </div>
-            @*</CascadingValue>*@
-        </Layout>
-    </div>
+    <CascadingValue Value="@this" Name="LayoutContext">
+        <div class="@LayoutClass" style="@WeakModeStyle">
+            <Layout Style="min-height: 100%;">
+                @*<CascadingValue Value="@MatchMenuKeys" Name="MatchMenuKeys">*@
+                @SiderMenuDom
+                <div style="@GenLayoutStyle" class="@layoutCls">
+                    @HeaderDom
+                    <WrapContent PrefixCls="@PrefixCls"
+                                 Class="@ContentClass"
+                                 Style="@ContentStyle">
+                        @(Loading ? @<PageLoading /> : ChildContent)
+                    </WrapContent>
+                    @FooterDom
+                </div>
+                @*</CascadingValue>*@
+            </Layout>
+        </div>
+    </CascadingValue>
 }
 <AntContainer />
 <link rel="stylesheet" href="@_themeUrl" @ref="_themeRef">

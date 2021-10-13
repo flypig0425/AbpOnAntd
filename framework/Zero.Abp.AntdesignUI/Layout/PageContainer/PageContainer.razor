@@ -1,122 +1,88 @@
 ﻿@namespace Zero.Abp.AntdesignUI.Layout
-@inherits AntUIComponentBase
+@inherits AntLayoutComponentBase
 
 <div style="@Style" class="@ContainerClassName">
-    @if (FixedHeader && PageHeaderDom != null)
+    <!-- #region Header -->
+    @*if (pageHeaderRender === false) { return null;  }
+        if (pageHeaderRender) {  return <> {pageHeaderRender({ ...props, ...value })}</>;   }*@
+
+    @if (HasPageHeader)
     {
-        <Affix OffsetTop="@OffsetTop">
+        if (Settings.FixedHeader)
+        {
+            <Affix OffsetTop="OffsetTop">
+                @PageHeaderDom
+            </Affix>
+        }
+        else
+        {
             @PageHeaderDom
-        </Affix>
+        }
+    }
+    <!-- #endregion -->
+    <!-- #region Content -->
+    @if (Loading.IsT1)
+    {
+        @Loading.AsT1;
     }
     else
     {
-        @PageHeaderDom
+        @if (Loading.IsT0 && Loading.AsT0 == false)
+        {
+            <div class="@($"{PrefixedClassName}-children-content")">
+                @ChildContent
+            </div>
+            @if (Value?.HasFooterToolbar??false)
+            {
+                <div style="height:48px;margin-top:24px" />
+            }
+        }
+        else
+        {
+            <PageLoading />
+        }
     }
-    @if (RenderContentDom != null)
-    {
-        <GridContent>@RenderContentDom</GridContent>
-    }
+    <!-- #endregion -->
+    <!-- #region Footer -->
     @if (HasFooter)
     {
-        <FooterToolbar>@Footer</FooterToolbar>
+        <FooterToolbar> @Footer </FooterToolbar>
     }
+    <!-- #endregion -->
 </div>
 @code {
-    //    const containerClassName = classNames(prefixedClassName, className, {
-    //  [`${prefixCls}-page-container-ghost`]: ghost,
-    //  [`${prefixCls}-page-container-with-footer`]: footer,
-    //});
-
-    private int OffsetTop => (Value.HasHeader && Value.FixedHeader) ? Value.HeaderHeight : 0;
     private bool HasFooter => Footer != null;
+    private bool HasBreadCrumb => false;
+    private bool HasPageHeader => HasBreadCrumb || AnyNoNull(
+        Title, TitleTemplate
+        , Content
+        , ExtraContent
+        );
 
+    private int OffsetTop => ((Value?.HasHeader??false) && FixedHeader) ? Settings.HeaderHeight : 0;
 
-
-    [Parameter] public RouteContext Value { get; set; } = new RouteContext();
-
-
-
-    [Parameter] public bool Ghost { get; set; }
-    [Parameter] public RenderFragment Footer { get; set; }
-    [Parameter] public bool FixedHeader { get; set; }
-
-
-    RenderFragment PageHeaderDom => pageHeaderRender();
-    RenderFragment RenderContentDom;
-
-
-    private string PrefixedClassName => $"{PrefixCls}-page-container";
-    private string ContainerClassName => ClassNames(PrefixedClassName, Class
-        , ($"{PrefixCls}-page-container-ghost", Ghost)
-        , ($"{PrefixCls}-page-container-with-footer", HasFooter)
-    );
-
-
-    [Parameter] public bool HideTitle { get; set; }
-    [Parameter] public string Title { get; set; }
-
-    [Parameter] public bool HidePageHeader { get; set; }
-    [Parameter] public RenderFragment PageHeaderRender { get; set; }
-
-
-
-    private RenderFragment pageHeaderRender()
-    {
-        if (HidePageHeader) { return null; }
-        if (PageHeaderRender != null) { return PageHeaderRender; }//({ ...props, ...value })
-        var pageHeaderTitle = Title;
-        if (Title == null && !HideTitle)
-        {
-            pageHeaderTitle = Value.Title;
-        }
-
-        @*
-
-            const pageHeaderProps: PageHeaderProps = {
-            ...value,
-            title: pageHeaderTitle,
-            ...restProps,
-            footer: renderFooter({
-            ...restProps,
-            breadcrumbRender,
-            prefixedClassName,
-            }),
-            ...header,
-            };
-
-            const { breadcrumb } = pageHeaderProps as {
-            breadcrumb: BreadcrumbProps;
-            };
-            const noHasBreadCrumb =
-            !breadcrumb ||
-            breadcrumbRender === false ||
-            (!breadcrumb?.itemRender && !breadcrumb?.routes?.length);
-
-            if (
-            ['title', 'subTitle', 'extra', 'tags', 'footer', 'avatar', 'backIcon'].every(
-            (item) => !pageHeaderProps[item],
-            ) &&
-            noHasBreadCrumb &&
-            !content &&
-            !extraContent
-            ) {
-            return null;
-            }*@
-
-
-        return @<Template>
-        @*<div class="@($"{PrefixedClassName}-warp")">
-            <PageHeader {...pageHeaderProps}
-            breadcrumb={
-            breadcrumbRender= = =false
-            ? undefined
-            : { ...pageHeaderProps.breadcrumb, ...value.breadcrumbProps }
-            }
-            prefixCls={prefixCls}>
-            {header?.children || renderPageHeader(content, extraContent, prefixedClassName)}
-            </PageHeader>
-            </div>*@
-    </Template>
-    ;
-    }
+    RenderFragment PageHeaderDom =>@<div class=@($"{PrefixedClassName}-warp")>
+        <PageHeader Title="@Title"
+                    TitleTemplate="TitleTemplate">
+            <PageHeaderContent>
+                @if (Content != null || ExtraContent != null)
+                {
+                    <div class="@($"{PrefixedClassName}-detail")">
+                        <div class="@($"{PrefixedClassName}-main")">
+                            <div class="@($"{PrefixedClassName}-row")">
+                                @if (Content != null)
+                                {
+                                    <div class="@($"{PrefixedClassName}-content")">@Content</div>
+                                }
+                                @if (ExtraContent != null)
+                                {
+                                    <div class="@($"{PrefixedClassName}-extraContent")">@ExtraContent</div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </PageHeaderContent>
+        </PageHeader>
+    </div>;
 }

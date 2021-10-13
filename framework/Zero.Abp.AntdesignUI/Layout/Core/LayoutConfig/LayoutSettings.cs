@@ -24,6 +24,9 @@ namespace Zero.Abp.AntdesignUI.Layout
         public bool MenuHeaderRender { get; set; } = true;
 
         public int HeaderHeight { get; set; } = 48;
+        /// <summary>
+        /// fluid || fixed
+        /// </summary>
         public string ContentWidth { get; set; } = "fluid";
         public string IconfontUrl { get; set; }
 

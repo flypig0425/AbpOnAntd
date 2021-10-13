@@ -8,6 +8,13 @@ namespace Zero.Abp.AntdesignUI.Layout
 {
     public partial class BasicLayout
     {
+        #region MyRegion
+        public bool HasHeader => HeaderDom != null;
+        public bool HasFooterToolbar { get; set; }
+        #endregion
+
+
+
         [Parameter] public bool Pure { get; set; }
         [Parameter] public bool Loading { get; set; }
         [Parameter] public bool DisableMobile { get; set; }
@@ -26,7 +33,7 @@ namespace Zero.Abp.AntdesignUI.Layout
         }
 
         protected BreakpointType ScreenSize { get; set; } = BreakpointType.Lg;//useAntdMediaQuery();
-        protected bool IsMobile => (ScreenSize == BreakpointType.Sm || ScreenSize == BreakpointType.Xs) && !DisableMobile;
+        public bool IsMobile => (ScreenSize == BreakpointType.Sm || ScreenSize == BreakpointType.Xs) && !DisableMobile;
 
 
         private bool IsSplitMenus => Settings.SplitMenus && (/*OpenKeys != false ||*/ Settings.Layout == Layout.Mix.Name) && !IsMobile;
@@ -77,10 +84,10 @@ namespace Zero.Abp.AntdesignUI.Layout
             OptimizeSize(window.InnerWidth);
         }
 
-        private static readonly BreakpointType[] _breakpoints = new[] { 
-            BreakpointType.Xs, BreakpointType.Sm, 
-            BreakpointType.Md, BreakpointType.Lg, 
-            BreakpointType.Xl, BreakpointType.Xxl 
+        private static readonly BreakpointType[] _breakpoints = new[] {
+            BreakpointType.Xs, BreakpointType.Sm,
+            BreakpointType.Md, BreakpointType.Lg,
+            BreakpointType.Xl, BreakpointType.Xxl
         };
         private void OptimizeSize(decimal windowWidth)
         {
@@ -110,7 +117,7 @@ namespace Zero.Abp.AntdesignUI.Layout
         private readonly string layoutCls = "ant-layout";
 
 
-        bool HasSiderMenu => (Settings.Layout != Layout.Top.Name || Settings.Layout == Layout.Mix.Name && Settings.SplitMenus) && (SiderMenuDom != null);
+        public bool HasSiderMenu => (Settings.Layout != Layout.Top.Name || Settings.Layout == Layout.Mix.Name && Settings.SplitMenus) && (SiderMenuDom != null);
         bool HasLeftPadding => HasSiderMenu && Settings.FixedSidebar && !IsMobile;
         int PaddingLeft => HasLeftPadding ? (Collapsed ? 48 : SiderWidth) : 0;
 

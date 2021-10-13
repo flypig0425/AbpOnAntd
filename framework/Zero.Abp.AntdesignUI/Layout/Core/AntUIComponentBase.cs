@@ -26,5 +26,16 @@ namespace Zero.Abp.AntdesignUI.Layout
         protected static string StyleValues(params OneOf<string, (string s, bool b), (Func<string> func, bool b)
                     , (string s, Func<bool> b), (Func<string> func, Func<bool> b)>[] styleValues)
             => string.Join(";", Utils.StyleOrClassNames(styleValues)?.Select(s => s.TrimEnd(';')));
+
+
+        protected static bool AllNoNull(params object[] values)
+        {
+            return values.All(a => a != null);
+        }
+
+        protected static bool AnyNoNull(params object[] values)
+        {
+            return values.Any(a => a != null);
+        }
     }
 }

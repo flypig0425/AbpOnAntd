@@ -42,16 +42,4 @@ namespace Zero.Abp.AntdesignUI.Layout
         public static SiderTheme ToSiderTheme(this string theme)
             => theme switch { "light" => SiderTheme.Light, "dark" => SiderTheme.Dark, _ => SiderTheme.Light };
     }
-
-
-    public class RouteContext
-    {
-        public bool HasHeader { get; set; }
-        public bool FixedHeader { get; set; }
-        public int HeaderHeight { get; set; }
-
-
-
-       public string Title { get; set; }
-    }
 }

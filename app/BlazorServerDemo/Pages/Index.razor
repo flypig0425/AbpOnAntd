@@ -8,14 +8,53 @@
 
 @*<Captcha ImagesPath="@ImagesPath" ImagesName="@ImagesName" @ref="Captcha" OnValid="@OnValid" />*@
 
-<Button Type="@ButtonType.Primary" OnClick="@DeleteAsync">
-    Open the notification box
-</Button>
+<PageContainer Title="页面标题">
+    @*<TitleTemplate><h3>Tenants @keyword</h3></TitleTemplate>*@
 
-<DatePicker TValue="DateTime?" Picker="@DatePickerType.Date" />
+    <ExtraContent>
+        <Button>次要按钮</Button>
+        <Button>次要按钮</Button>
+        <Button Type="primary">
+            主要按钮
+        </Button>
+        <Dropdown>
+            <Overlay>
+                <Menu>
+                    <MenuItem Key="1">下拉菜单</MenuItem>
+                    <MenuItem Key="2">下拉菜单2</MenuItem>
+                    <MenuItem Key="3">下拉菜单3</MenuItem>
+                </Menu>
+            </Overlay>
+            <ChildContent>
+                <Button Style="padding:0 8px">
+                    <Icon Type="more"></Icon>
+                </Button>
+            </ChildContent>
+        </Dropdown>
+    </ExtraContent>
+
+    <Footer>
+        <Button>重置</Button>
+        <Button Type="primary">
+            提交
+        </Button>
+    </Footer>
 
 
-<Result Status="500"></Result>
+    <ChildContent>
+        <Button Type="@ButtonType.Primary" OnClick="@DeleteAsync">
+            Open the notification box
+        </Button>
+
+        <DatePicker TValue="DateTime?" Picker="@DatePickerType.Date" />
+
+        <Result Status="500"></Result>
+    </ChildContent>
+</PageContainer>
+
+
+
+
 @code {
     public string ImagesPath { get; set; } = "images";
     public string ImagesName { get; set; } = "Pic.jpg";
