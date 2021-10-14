@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Volo.Abp.UI.Navigation;
 
-namespace Antd.AbpDemo.Blazor.Menus
+namespace BlazorServerDemo.Menus
 {
     public class BlazorServerDemoMenuContributor : IMenuContributor
     {
@@ -29,12 +29,12 @@ namespace Antd.AbpDemo.Blazor.Menus
                     order: 0
                 )
             );
-            administration.AddItem(new ApplicationMenuItem(BlazorServerDemoMenus.Home, 
+            administration.AddItem(new ApplicationMenuItem(BlazorServerDemoMenus.Home,
                 "主页", "/", icon: "fas fa-home", order: 0));
 
             administration.AddItem(new ApplicationMenuItem(
                 "PageContainer_Basic",
-              "页面1", "/PageContainer/Basic", icon: "fas fa-home", order: 0));
+              "页面1", "/PageDemo", icon: "fas fa-home", order: 0));
 
 
             //if (MultiTenancyConsts.IsEnabled)

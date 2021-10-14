@@ -11,10 +11,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.EventBus" Version="$(AbpPackageVersion)" />
-    <PackageReference Include="Volo.Abp.Http.Client" Version="$(AbpPackageVersion)" />
-    <PackageReference Include="Volo.Abp.AspNetCore.SignalR" Version="$(AbpPackageVersion)" />
-    <PackageReference Include="Volo.Abp.AspNetCore.Mvc.Contracts" Version="$(AbpPackageVersion)" />
+    <PackageReference Include="Volo.Abp.EventBus" Version="4.4.3" />
+    <PackageReference Include="Volo.Abp.Http.Client" Version="4.4.3" />
+    <PackageReference Include="Volo.Abp.AspNetCore.SignalR" Version="4.4.3" />
+    <PackageReference Include="Volo.Abp.AspNetCore.Mvc.Contracts" Version="4.4.3" />
   </ItemGroup>
 
 

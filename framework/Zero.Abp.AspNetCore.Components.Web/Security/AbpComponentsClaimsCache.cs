@@ -16,29 +16,29 @@ namespace Zero.Abp.AspNetCore.Components.Web.Security
     {
         public ClaimsPrincipal Principal { get; private set; }
 
-        //[CanBeNull]
-        //private readonly AuthenticationStateProvider _authenticationStateProvider;
+        [CanBeNull]
+        private readonly AuthenticationStateProvider _authenticationStateProvider;
 
         public AbpComponentsClaimsCache(
             IClientScopeServiceProviderAccessor serviceProviderAccessor)
         {
-            //_authenticationStateProvider = serviceProviderAccessor.ServiceProvider.GetService<AuthenticationStateProvider>();
-            //if (_authenticationStateProvider != null)
-            //{
-            //    _authenticationStateProvider.AuthenticationStateChanged += async (task) =>
-            //    {
-            //        Principal = (await task).User;
-            //    };
-            //}
+            _authenticationStateProvider = serviceProviderAccessor.ServiceProvider.GetService<AuthenticationStateProvider>();
+            if (_authenticationStateProvider != null)
+            {
+                _authenticationStateProvider.AuthenticationStateChanged += async (task) =>
+                {
+                    Principal = (await task).User;
+                };
+            }
         }
 
         public virtual async Task InitializeAsync()
         {
-            //if (_authenticationStateProvider != null)
-            //{
-            //    var authenticationState = await _authenticationStateProvider.GetAuthenticationStateAsync();
-            //    Principal = authenticationState.User;
-            //}
+            if (_authenticationStateProvider != null)
+            {
+                var authenticationState = await _authenticationStateProvider.GetAuthenticationStateAsync();
+                Principal = authenticationState.User;
+            }
         }
     }
 }

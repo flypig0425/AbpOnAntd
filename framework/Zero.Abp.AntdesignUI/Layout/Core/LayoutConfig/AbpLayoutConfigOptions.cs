@@ -4,7 +4,8 @@
     {
         public LayoutSettings Settings { get; set; }
 
-        public AbpLayoutConfigOptions() {
+        public AbpLayoutConfigOptions()
+        {
             Settings = new LayoutSettings();
         }
     }

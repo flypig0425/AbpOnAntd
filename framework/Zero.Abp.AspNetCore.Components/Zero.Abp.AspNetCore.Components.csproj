@@ -14,9 +14,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.ObjectMapping" Version="$(AbpPackageVersion)" />
-    <PackageReference Include="Volo.Abp.Localization" Version="$(AbpPackageVersion)" />
-    <PackageReference Include="Volo.Abp.Security" Version="$(AbpPackageVersion)" />
+    <PackageReference Include="Volo.Abp.ObjectMapping" Version="4.4.3" />
+    <PackageReference Include="Volo.Abp.Localization" Version="4.4.3" />
+    <PackageReference Include="Volo.Abp.Security" Version="4.4.3" />
   </ItemGroup>
   
   <ItemGroup>

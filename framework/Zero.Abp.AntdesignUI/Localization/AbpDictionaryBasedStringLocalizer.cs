@@ -5,8 +5,9 @@ using System.Globalization;
 using System.Linq;
 using System.Resources;
 using Microsoft.Extensions.Localization;
+using Volo.Abp.Localization;
 
-namespace Volo.Abp.Localization
+namespace Zero.Abp.AntdesignUI.Localization
 {
     public class ZeroAbpDictionaryBasedStringLocalizer : IStringLocalizer, IStringLocalizerSupportsInheritance
     {

@@ -1,8 +1,22 @@
-﻿@page "/PageContainer/Basic"
+﻿@page "/PageDemo"
 
-<PageContainer Header="header"
-               TabList="tabList"
-               TabProps="tabProps">
+<PageContainer Header="@header"
+               TabList="@tabList"
+               TabProps="@tabProps"
+               Loading="true">
+    <Content>
+        <Descriptions Column="2" Style="margin-bottom:-16px">
+            <DescriptionsItem Title="创建人">曲丽丽</DescriptionsItem>
+            <DescriptionsItem Title="关联表单"> <a>421421</a></DescriptionsItem>
+            <DescriptionsItem Title="创建时间">2017-01-10</DescriptionsItem>
+            <DescriptionsItem Title="单据备注">浙江省杭州市西湖区工专路</DescriptionsItem>
+        </Descriptions>
+    </Content>
+
+    <ExtraContent>
+        <img style="width:155px" alt="这是一个标题" src="https://gw.alipayobjects.com/zos/rmsportal/RzwpdLnhmvDJToTdfDPe.png">
+    </ExtraContent>
+
     <ChildContent>
         <Result></Result>
     </ChildContent>
@@ -22,12 +36,11 @@
         {
             Type = TabType.EditableCard,
             HideAdd = true,
-            //OnEdit = (key, action) => { return Task.FromResult(true); },
+            OnEdit = (key, action) => { return Task.FromResult(true); },
         };
     private PageHeaderProps header = new PageHeaderProps
         {
             Title = "页面标题",
-            Ghost = true,
             //Breadcrumb = new BreadcrumbProps
             //{
             //    Routes = new Route[]
@@ -37,8 +50,7 @@
             //        new Route{Path="",BreadcrumbName="当前页面" }
             //        }
             //},
-            Breadcrumb =
-    @<Template>
+            Breadcrumb =@<Template>
         <Breadcrumb>
             <BreadcrumbItem Href="">一级页面</BreadcrumbItem>
             <BreadcrumbItem Href="">二级页面</BreadcrumbItem>

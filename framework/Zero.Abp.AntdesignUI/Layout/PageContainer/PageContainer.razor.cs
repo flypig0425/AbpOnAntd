@@ -69,6 +69,7 @@ namespace Zero.Abp.AntdesignUI.Layout
         public string Key { get; set; }
         public string Tab { get; set; }
         public bool Closable { get; set; } = true;
+        public bool Disabled { get; set; } 
     }
 
     public class SpinProps

@@ -17,7 +17,7 @@
 
   
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.UI.Navigation" Version="$(AbpPackageVersion)" />
+    <PackageReference Include="Volo.Abp.UI.Navigation" Version="4.4.3" />
   </ItemGroup>
 
   <ItemGroup>

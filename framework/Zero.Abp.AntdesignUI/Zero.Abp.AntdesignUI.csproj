@@ -7,8 +7,8 @@
   <ItemGroup>
     <PackageReference Include="AntDesign" Version="0.10.0" />
     <!--<PackageReference Include="AntDesign.ProLayout" Version="0.1.7" />-->
-    <PackageReference Include="Volo.Abp.Authorization" Version="4.4.2" />
-    <PackageReference Include="Volo.Abp.Ddd.Application.Contracts" Version="4.4.2" />
+    <PackageReference Include="Volo.Abp.Authorization" Version="4.4.3" />
+    <PackageReference Include="Volo.Abp.Ddd.Application.Contracts" Version="4.4.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,31 +17,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Layout\FooterToolbar\**" />
-    <Compile Remove="Layout\GridContent\**" />
-    <Content Remove="Layout\FooterToolbar\**" />
-    <Content Remove="Layout\GridContent\**" />
     <Content Remove="Localization\Resources\AbpAntdesignUI\*.json" />
     <EmbeddedResource Include="Localization\Resources\AbpAntdesignUI\*.json" />
   </ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Remove="Layout\FooterToolbar\**" />
-    <EmbeddedResource Remove="Layout\GridContent\**" />
-    <None Remove="Layout\FooterToolbar\**" />
-    <None Remove="Layout\GridContent\**" />
-  </ItemGroup>
   
   <ItemGroup>
     <Compile Remove="Layout\Core\DefaultSettings.cs" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Content Remove="Layout\SettingDrawer\LayoutSetting.razor" />
-    <Content Remove="Layout\SettingDrawer\OtherSetting.razor" />
-    <Content Remove="Layout\SettingDrawer\RegionalSetting.razor" />
-    <Content Remove="Layout\SettingDrawer\SettingDrawerBase.razor" />
-    <Content Remove="Layout\SettingDrawer\ThemeSetting.razor" />
   </ItemGroup>
   
   <ItemGroup>

@@ -18,7 +18,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="$(MicrosoftPackageVersion)" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.Http.Client.IdentityModel" Version="$(AbpPackageVersion)" />
+    <PackageReference Include="Volo.Abp.Http.Client.IdentityModel" Version="4.4.3" />
   </ItemGroup>
   
   <ItemGroup>

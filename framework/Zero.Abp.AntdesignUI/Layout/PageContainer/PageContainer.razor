@@ -40,7 +40,8 @@
         }
         else
         {
-            <PageLoading />
+            SpinProps spin = Loading.IsT2 ? Loading.AsT2 : new SpinProps();
+            <PageLoading Size="@spin.Size" Tip="@spin.Tip" Spinning="@spin.Spinning" Delay="@spin.Delay" />
         }
     }
     <!-- #endregion -->
@@ -53,9 +54,9 @@
 </div>
 @code {
     private bool HasFooter => Footer != null;
-    private bool HasBreadCrumb => false;
-    private bool HasPageHeader => HasBreadCrumb || AnyNoNull(
-         Header, Title, TitleContent
+    //private bool HasBreadCrumb => false;
+    private bool HasPageHeader => AnyNoNull(
+         Header, Title, TitleContent, BreadcrumbContent, Extra
         , Content
         , ExtraContent
         );
@@ -79,16 +80,16 @@
         </div>;
 
     RenderFragment PageHeaderFooter => TabList.IsNullOrEmpty() ? null :
-    @<Tabs Class="@($"{PrefixedClassName}-tabs")" 
-    OnTabClick="HandleTabClick" 
-    ActiveKey="@TabActiveKey"
-    Type="@TabProps.Type"
-    HideAdd="@TabProps.HideAdd"
-    OnEdit="@TabProps.OnEdit"
-    TabBarExtraContent="@TabBarExtraContent">
+    @<Tabs Class="@($"{PrefixedClassName}-tabs")"
+           OnTabClick="HandleTabClick"
+           ActiveKey="@TabActiveKey"
+           Type="@TabProps.Type"
+           HideAdd="@TabProps.HideAdd"
+           OnEdit="@TabProps.OnEdit"
+           TabBarExtraContent="@TabBarExtraContent">
         @foreach (var item in TabList)
             {
-                <TabPane Key="@item.Key" Tab="@item.Tab" Closable="@item.Closable" />
+                <TabPane Key="@item.Key" Tab="@item.Tab" Closable="@item.Closable" Disabled="@item.Disabled" />
             }
         </Tabs>;
 

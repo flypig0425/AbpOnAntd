@@ -1,4 +1,4 @@
-﻿namespace Antd.AbpDemo.Blazor.Menus
+﻿namespace BlazorServerDemo.Menus
 {
     public class BlazorServerDemoMenus
     {

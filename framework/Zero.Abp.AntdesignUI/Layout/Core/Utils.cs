@@ -28,8 +28,8 @@ namespace Zero.Abp.AntdesignUI.Layout
                 m0 => m0,
                 m1 => m1.b ? m1.s : null,
                 m2 => m2.b ? m2.func?.Invoke() : null,
-                m3 => (m3.b?.Invoke() ?? false) ? m3.s : null,
-                m4 => (m4.b?.Invoke() ?? false) ? m4.func?.Invoke() : null
+                m3 => m3.b?.Invoke() ?? false ? m3.s : null,
+                m4 => m4.b?.Invoke() ?? false ? m4.func?.Invoke() : null
                 ));
             tempClassNames = tempClassNames?.Where(w => !w.IsNullOrWhiteSpace())?.Distinct()?.ToArray();
             return tempClassNames ?? Array.Empty<string>();

@@ -1,4 +1,4 @@
-﻿using Antd.AbpDemo.Blazor.Menus;
+﻿using BlazorServerDemo.Menus;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.Extensions.Configuration;

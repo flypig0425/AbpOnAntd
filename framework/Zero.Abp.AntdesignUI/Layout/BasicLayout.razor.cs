@@ -14,7 +14,6 @@ namespace Zero.Abp.AntdesignUI.Layout
         #endregion
 
 
-
         [Parameter] public bool Pure { get; set; }
         [Parameter] public bool Loading { get; set; }
         [Parameter] public bool DisableMobile { get; set; }

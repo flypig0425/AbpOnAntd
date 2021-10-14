@@ -38,7 +38,7 @@ namespace Zero.Abp.AntdesignUI
             {
                 options.Resources
                 .Add<AbpAntdesignUIResource>("en")
-                .AddVirtualJson("/Localization/Resources/AbpAntdesignUI"); 
+                .AddVirtualJson("/Localization/Resources/AbpAntdesignUI");
             });
         }
 
