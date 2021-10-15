@@ -10,19 +10,17 @@ else
     <CascadingValue Value="@this" Name="LayoutContext">
         <div class="@LayoutClass" style="@WeakModeStyle">
             <Layout Style="min-height: 100%;">
-                @*<CascadingValue Value="@MatchMenuKeys" Name="MatchMenuKeys">*@
                 @SiderMenuDom
                 <div style="@GenLayoutStyle" class="@layoutCls">
                     @HeaderDom
                     <WrapContent PrefixCls="@PrefixCls"
                              Class="@ContentClass"
                              Style="@ContentStyle">
-                        @*<div>@string.Join("|",TopSelectedKeys??new string[]{"1"})</div>*@
+                        @*<div>@string.Join("|",SiderSelectedKeys??new string[]{"1"})</div>*@
                         @(Loading ? @<PageLoading /> : ChildContent)
                     </WrapContent>
                     @FooterDom
                 </div>
-                @*</CascadingValue>*@
             </Layout>
         </div>
     </CascadingValue>

@@ -1,5 +1,16 @@
 ﻿@inherits LayoutComponentBase
+@inject IMenuManager MenuManager
 
-<BasicLayout>
+<BasicLayout MenuData="@MenuData">
     @Body
 </BasicLayout>
+
+@code {
+    protected ApplicationMenuItemList MenuData { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        MenuData = await MenuManager.GetMainMenuItemsAsync();
+    }
+
+}

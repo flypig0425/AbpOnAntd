@@ -1,6 +1,7 @@
 ﻿using AntDesign;
 using AntDesign.JsInterop;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Routing;
 using System.Threading.Tasks;
 using Volo.Abp.UI.Navigation;
 
@@ -13,13 +14,14 @@ namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
         public bool HasFooterToolbar { get; set; }
         #endregion
 
-
         [Parameter] public bool Pure { get; set; }
         [Parameter] public bool Loading { get; set; }
         [Parameter] public bool DisableMobile { get; set; }
         [Parameter] public bool DisableContentMargin { get; set; }
         [Parameter] public int SiderWidth { get; set; } = 208;
         [Parameter] public string ContentStyle { get; set; }
+
+        [Parameter] public ApplicationMenuItemList MenuData { get; set; }
 
         [Parameter] public bool Collapsed { get; set; }
         [Parameter] public EventCallback<bool> CollapsedChanged { get; set; }
@@ -40,22 +42,14 @@ namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
         protected string[] TopSelectedKeys { get; set; }
         protected string[] SiderSelectedKeys { get; set; }
 
-
-        protected ApplicationMenuItemList MenuData { get; set; }
-
-        [Inject] protected IMenuManager MenuManager { get; set; }
         [Inject] protected NavigationManager NavigationManager { get; set; }
         [Inject] protected IDomEventListener DomEventListener { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
-            MenuData = await MenuManager.GetMenuDataAsync();
-            if (IsSplitMenus)
-            {
-                var matchMenuKeys = NavigationManager.GetMatchMenuKeys(MenuData, true);
-                TopSelectedKeys = matchMenuKeys;
-            }
+            MatchMenuKeys();
+            NavigationManager.LocationChanged += OnLocationChanged;
             LayoutState.OnThemeChangedAsync += OnChangeThemeAsync;
             LayoutState.OnChange += OnSettingsChanged;
             await LayoutState.UpdateThemeAsync();
@@ -81,7 +75,23 @@ namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
                 LayoutState.OnThemeChangedAsync -= OnChangeThemeAsync;
                 LayoutState.OnChange -= OnSettingsChanged;
             }
+            NavigationManager.LocationChanged -= OnLocationChanged;
             base.Dispose(disposing);
+        }
+
+        private void OnLocationChanged(object sender, LocationChangedEventArgs e)
+        {
+            MatchMenuKeys();
+            InvokeAsync(StateHasChanged);
+        }
+        private void MatchMenuKeys()
+        {
+            if (IsSplitMenus)
+            {
+                var matchMenuKeys = NavigationManager.GetMatchMenuKeys(MenuData, true);
+                TopSelectedKeys = matchMenuKeys;
+                SiderSelectedKeys = matchMenuKeys;
+            }
         }
 
         private void OnResize(Window window)
@@ -105,7 +115,7 @@ namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
                 }
             }
             ScreenSize = actualBreakpoint;
-            StateHasChanged();
+            InvokeAsync(StateHasChanged);
         }
 
         protected string _themeUrl;
@@ -122,7 +132,7 @@ namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
         private readonly string layoutCls = "ant-layout";
 
 
-        public bool HasSiderMenu => (!IsTopLayout ||IsMixLayout && Settings.SplitMenus) && (SiderMenuDom != null);
+        public bool HasSiderMenu => (!IsTopLayout || IsMixLayout && Settings.SplitMenus) && (SiderMenuDom != null);
         bool HasLeftPadding => HasSiderMenu && Settings.FixedSidebar && !IsMobile;
         int PaddingLeft => HasLeftPadding ? (Collapsed ? 48 : SiderWidth) : 0;
 

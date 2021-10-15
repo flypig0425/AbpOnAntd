@@ -9,7 +9,7 @@ namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
 {
     public static class IMenuManagerExtensions
     {
-        public static async Task<ApplicationMenuItemList> GetMenuDataAsync(this IMenuManager menuManager)
+        public static async Task<ApplicationMenuItemList> GetMainMenuItemsAsync(this IMenuManager menuManager)
         {
             return (await menuManager.GetMainMenuAsync())?.Items ?? new ApplicationMenuItemList();
         }
