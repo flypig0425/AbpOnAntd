@@ -10,9 +10,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.*" />
   </ItemGroup>
   
-  
   <ItemGroup>
-    <ProjectReference Include="..\..\basic-theme\Zero.Abp.AspNetCore.Components.WebAssembly.BasicTheme\Zero.Abp.AspNetCore.Components.WebAssembly.BasicTheme.csproj" />
+    <ProjectReference Include="..\..\antd-theme\Zero.Abp.AspNetCore.Components.WebAssembly.AntdTheme\Zero.Abp.AspNetCore.Components.WebAssembly.AntdTheme.csproj" />
   </ItemGroup>
   
 </Project>

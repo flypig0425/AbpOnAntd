@@ -1,0 +1,14 @@
+﻿@namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
+@inherits AntLayoutComponentBase
+
+<div class="@ClassNames(ClassName,Class,("wide",contentWidth=="fixed"))"
+     style="@Style">
+    <div class="@($"{PrefixCls}-grid-content-children")">
+        @ChildContent
+    </div>
+</div>
+
+@code {
+    private string ClassName => $"{PrefixCls}-grid-content";
+    private string contentWidth => Settings.ContentWidth;// propsContentWidth || value.contentWidth
+}

@@ -1,0 +1,39 @@
+﻿@namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
+@inherits AntUIComponentBase
+
+<div class="@ClassNames(Class,BaseClassName)"
+     style="@StyleValues(Width,Style)">
+    @*@if (RenderContent != null) { @RenderContent((null, width)); }*@
+    <div class=@($"{BaseClassName}-left")>@Extra</div>
+    <div class=@($"{BaseClassName}-right")>@ChildContent</div>
+</div>
+
+@code {
+
+    [CascadingParameter(Name = "LayoutContext")]
+    public BasicLayout Value { get; set; } = new BasicLayout();
+
+    [Parameter] public RenderFragment Extra { get; set; }
+    //[Parameter] public RenderFragment<(object,string leftWidth)> RenderContent { get; set; }
+
+    #region
+    private bool isMobile => Value?.IsMobile ?? false;
+    private bool hasSiderMenu => Value?.HasSiderMenu ?? false;
+    private int siderWidth => Value?.SiderWidth ?? 0;
+    #endregion
+
+    private string BaseClassName => $"{PrefixCls}-footer-bar";
+    private string Width => hasSiderMenu ? (siderWidth > 0 ? (isMobile ? "width:100%" : $"width:calc(100% - ${siderWidth}px)") : "width:100%") : "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        if (Value != null) { Value.HasFooterToolbar = true; }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (Value != null) { Value.HasFooterToolbar = false; }
+    }
+
+}

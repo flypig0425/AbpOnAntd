@@ -1,0 +1,70 @@
+@namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
+@inherits AntLayoutComponentBase
+
+<Drawer Title="@($"{L["PageStyleSetting"]}")"
+        OnClose="()=>_show=false"
+        Visible="_show"
+        Width="300"
+        Placement="right"
+        Style="z-index: 999;">
+    <Handler>
+        <div class="@BaseClassName-drawer-handle" @onclick="SetShow">
+            <Icon Type=@(_show?"close":"setting") Theme="outline" Style="color: #fff; font-size: 20px;" />
+        </div>
+    </Handler>
+    <ChildContent>
+        <div class="@BaseClassName-drawer-content">
+            <ThemeColor Title="@L["ThemeColor"]"
+                        Value="@Settings.PrimaryColor"
+                        OnChange="value=>LayoutState.UpdateSettingAsync<string>(x=>x.PrimaryColor,value,()=>Settings.PrimaryColor)" />
+            <SettingDrawerList ListType="ThemeSetting" />
+
+            <Divider />
+
+            <SettingDrawerBody Title="@L["NavigationMode"]"
+                               PrefixCls="@BaseClassName">
+                <BlockCheckbox PrefixCls="@BaseClassName"
+                               List="LayoutList"
+                               Value="@Settings.Layout"
+                               OnChange="value=>LayoutState.UpdateSettingAsync<string>(x=>x.Layout,value,()=>Settings.Layout)" />
+            </SettingDrawerBody>
+
+            <SettingDrawerList ListType="LayoutSetting" />
+
+            <Divider />
+
+            <SettingDrawerBody Title="@L["RegionalSettings"]" PrefixCls="@BaseClassName">
+                <SettingDrawerList ListType="RegionalSetting" />
+            </SettingDrawerBody>
+
+            <Divider />
+
+            <SettingDrawerBody Title="@L["OtherSettings"]" PrefixCls="@BaseClassName">
+                <SettingDrawerList ListType="OtherSetting" />
+            </SettingDrawerBody>
+
+            <Template If="()=>!HideHintAlert && !HideCopyButton">
+                <Divider />
+            </Template>
+
+            <Template If="()=>!HideHintAlert">
+                <Alert Type="warning"
+                       Message="@L["SettingDrawer:HintAlertMessage"]"
+                       Icon="_notification"
+                       ShowIcon="true"
+                       Style="margin-bottom: 16px;" />
+            </Template>
+
+            <Template If="()=>!HideCopyButton">
+                <Button Block OnClick="CopySetting">
+                    <Icon Type="copy" Theme="outline" /> @L["CopySetting"]
+                </Button>
+            </Template>
+
+        </div>
+    </ChildContent>
+</Drawer>
+@code
+{
+    private RenderFragment _notification =@<Template><Icon Type="notification" /></Template>;
+}

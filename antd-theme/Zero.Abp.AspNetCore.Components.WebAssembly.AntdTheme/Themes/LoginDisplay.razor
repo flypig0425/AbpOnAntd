@@ -1,0 +1,47 @@
+﻿@using Volo.Abp.Users
+@using Volo.Abp.MultiTenancy
+@using Microsoft.Extensions.Localization
+@using global::Localization.Resources.AbpUi
+
+@inject ICurrentUser CurrentUser
+@inject ICurrentTenant CurrentTenant
+@inject IJSRuntime JsRuntime
+@inject NavigationManager Navigation
+@inject IStringLocalizer<AbpUiResource> L
+
+@inherits AbpComponentBase
+
+<AuthorizeView>
+    <Authorized>
+        <Dropdown>
+            <ChildContent>
+                @if (CurrentTenant.Name != null)
+                {
+                    <span><i>@CurrentTenant.Name</i>\@CurrentUser.UserName</span>
+                }
+                else
+                {
+                    <span>@CurrentUser.UserName</span>
+                }
+            </ChildContent>
+            <Overlay>
+                @if (Menu != null)
+                {
+                    <Menu>
+                        @foreach (var menuItem in Menu.Items)
+                        {
+                            <MenuItem OnClick="@(() => NavigateToAsync(menuItem.Url, menuItem.Target))">
+                                @menuItem.DisplayName
+                            </MenuItem>
+                        }
+                        <Divider />
+                        <MenuItem OnClick="BeginSignOut">@L["Logout"]</MenuItem>
+                    </Menu>
+                }
+            </Overlay>
+        </Dropdown>
+    </Authorized>
+    <NotAuthorized>
+        <a class="nav-link" href="authentication/login">@L["Login"]</a>
+    </NotAuthorized>
+</AuthorizeView>

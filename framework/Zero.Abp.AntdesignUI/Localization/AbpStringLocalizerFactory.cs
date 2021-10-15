@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
+using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Linq;
 using Volo.Abp.Localization;
 
 namespace Zero.Abp.AntdesignUI.Localization
@@ -56,7 +56,7 @@ namespace Zero.Abp.AntdesignUI.Localization
         {
             foreach (var globalContributor in AbpLocalizationOptions.GlobalContributors)
             {
-                resource.Contributors.Add((ILocalizationResourceContributor) Activator.CreateInstance(globalContributor));
+                resource.Contributors.Add((ILocalizationResourceContributor)Activator.CreateInstance(globalContributor));
             }
 
             var context = new LocalizationResourceInitializationContext(resource, ServiceProvider);

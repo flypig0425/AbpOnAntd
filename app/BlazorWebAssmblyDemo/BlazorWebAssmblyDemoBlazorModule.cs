@@ -3,14 +3,14 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Net.Http;
 using Volo.Abp.Modularity;
-using Zero.Abp.AspNetCore.Components.Web.BasicTheme.Themes.Basic;
+using Zero.Abp.AspNetCore.Components.Web.AntdTheme.Basic;
 using Zero.Abp.AspNetCore.Components.Web.Theming.Routing;
-using Zero.Abp.AspNetCore.Components.WebAssembly.BasicTheme;
+using Zero.Abp.AspNetCore.Components.WebAssembly.AntdTheme;
 
 namespace BlazorWebAssmblyDemo
 {
     [DependsOn(
-        typeof(AbpAspNetCoreComponentsWebAssemblyBasicThemeModule)
+        typeof(AbpAspNetCoreComponentsWebAssemblyAntdThemeModule)
     )]
     public class BlazorWebAssmblyDemoBlazorModule : AbpModule
     {

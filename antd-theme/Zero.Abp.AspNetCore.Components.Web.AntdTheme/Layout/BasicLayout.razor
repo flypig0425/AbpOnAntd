@@ -1,0 +1,112 @@
+﻿@namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
+@inherits AntLayoutComponentBase
+
+@if (Pure)
+{
+    @ChildContent
+}
+else
+{
+    <CascadingValue Value="@this" Name="LayoutContext">
+        <div class="@LayoutClass" style="@WeakModeStyle">
+            <Layout Style="min-height: 100%;">
+                @*<CascadingValue Value="@MatchMenuKeys" Name="MatchMenuKeys">*@
+                @SiderMenuDom
+                <div style="@GenLayoutStyle" class="@layoutCls">
+                    @HeaderDom
+                    <WrapContent PrefixCls="@PrefixCls"
+                                 Class="@ContentClass"
+                                 Style="@ContentStyle">
+                        @(Loading ? @<PageLoading /> : ChildContent)
+                    </WrapContent>
+                    @FooterDom
+                </div>
+                @*</CascadingValue>*@
+            </Layout>
+        </div>
+    </CascadingValue>
+}
+<AntContainer />
+<SettingDrawer />
+<link rel="stylesheet" href="@_themeUrl" @ref="_themeRef">
+
+@code {
+
+    RenderFragment SiderMenuDom => renderSiderMenu();
+    RenderFragment HeaderDom => headerRender();
+    RenderFragment FooterDom => footerRender();
+
+    private RenderFragment footerRender()
+    {
+        @if ((Settings.FooterRender == false) || Pure) { return null; }
+        //@if (FooterContent != null) { return FooterContent; }
+        return
+    @<Template>
+        <FooterView />
+    </Template>
+    ;
+    }
+
+    private RenderFragment headerRender()
+    {
+        @if ((Settings.HeaderRender == false) || Pure) { return null; }
+        //@if (HeaderContent != null) { return HeaderContent; }
+        var menuData = new ApplicationMenuItemList(MenuData);
+        if (IsSplitMenus)
+        {
+            var noChildrenMenuData = MenuData.Select(s => new ApplicationMenuItem(
+                s.Name, s.DisplayName, s.Url, s.Icon, s.Order, s.CustomData, s.Target, s.ElementId, s.CssClass));
+            menuData = new ApplicationMenuItemList(noChildrenMenuData);
+        }
+        return
+    @<Template>
+
+        <HeaderView HasSiderMenu="HasSiderMenu"
+                    SiderWidth="SiderWidth"
+                    MenuData="menuData"
+                    IsMobile="IsMobile"
+                    Collapsed="@Collapsed"
+                    OnCollapse="HandleCollapse"
+                    @bind-SelectedKeys="TopSelectedKeys" />
+    </Template>
+    ;
+    }
+
+
+    private RenderFragment renderSiderMenu()
+    {
+        @if (Settings.MenuRender == false || Pure) { return null; }
+        var menuData = new ApplicationMenuItemList(MenuData);
+        if (IsSplitMenus)
+        {
+            var key = TopSelectedKeys.FirstOrDefault();
+            if (!key.IsNullOrWhiteSpace())
+            {
+                menuData = menuData?.Find(f => f.Name == key)?.Items;
+            }
+            else
+            {
+                menuData = new ApplicationMenuItemList();
+            }
+        }
+        var clearMenuData = menuData;  /*clearMenuItem(menuData || []);*/
+        if (!(clearMenuData?.Any() ?? false) && Settings.SplitMenus) { return null; }
+        if (Settings.Layout == Layout.Top.Name && !IsMobile) { return siderMenuWrapper(null, true); }
+        //if (MenuContent != null) { return MenuContent; }
+        // if (MenuContent != null) { var defaultDom = @<SiderMenu MatchMenuKeys="@MatchMenuKeys" MenuDatas="@clearMenuData" />;//{...props}
+        //return MenuRender(props, defaultDom);}
+        return siderMenuWrapper(clearMenuData);
+    }
+
+    private RenderFragment siderMenuWrapper(ApplicationMenuItemList clearMenuData = null, bool hide = false) =>
+    @<Template>
+        <SiderMenuWrapper Hide="hide" IsMobile="IsMobile"
+                          SiderWidth="SiderWidth"
+                          MenuData="clearMenuData"
+                          Collapsed="@Collapsed"
+                          OnCollapse="HandleCollapse"
+                          @bind-SelectedKeys="SiderSelectedKeys" />
+    </Template>
+    ;
+
+}

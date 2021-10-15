@@ -1,0 +1,19 @@
+@namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
+@using Volo.Abp.Ui.Branding
+@inject IBrandingProvider BrandingProvider
+
+<a>
+    @if (!BrandingProvider.LogoUrl.IsNullOrWhiteSpace())
+    {
+        <img src="@BrandingProvider.LogoUrl" alt="@BrandingProvider.AppName" />
+    }
+    @if (!HideTitle)
+    {
+        <h1 title="@BrandingProvider.AppName">@BrandingProvider.AppName</h1>
+    }
+</a>
+
+@code
+{
+    [Parameter] public bool HideTitle { get; set; }
+}

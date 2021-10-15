@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.2.0" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\framework\Zero.Abp.AspNetCore.Components.Server.Theming\Zero.Abp.AspNetCore.Components.Server.Theming.csproj" />
+    <ProjectReference Include="..\Zero.Abp.AspNetCore.Components.Web.AntdTheme\Zero.Abp.AspNetCore.Components.Web.AntdTheme.csproj" />
+  </ItemGroup>
+
+</Project>

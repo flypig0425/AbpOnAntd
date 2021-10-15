@@ -6,27 +6,15 @@
 
   <ItemGroup>
     <PackageReference Include="AntDesign" Version="0.10.0" />
-    <!--<PackageReference Include="AntDesign.ProLayout" Version="0.1.7" />-->
-    <PackageReference Include="Volo.Abp.Authorization" Version="4.4.3" />
-    <PackageReference Include="Volo.Abp.Ddd.Application.Contracts" Version="4.4.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Zero.Abp.AspNetCore.Components.Web.Theming\Zero.Abp.AspNetCore.Components.Web.Theming.csproj" />
     <ProjectReference Include="..\Zero.Abp.AspNetCore.Components.Web\Zero.Abp.AspNetCore.Components.Web.csproj" />
   </ItemGroup>
+
 
   <ItemGroup>
     <Content Remove="Localization\Resources\AbpAntdesignUI\*.json" />
     <EmbeddedResource Include="Localization\Resources\AbpAntdesignUI\*.json" />
-  </ItemGroup>
-
-  
-  <ItemGroup>
-    <Compile Remove="Layout\Core\DefaultSettings.cs" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Folder Include="wwwroot\" />
   </ItemGroup>
 </Project>

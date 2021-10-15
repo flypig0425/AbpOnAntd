@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
+using Zero.Abp.AntdesignUI;
 
 namespace Zero.Abp.AspNetCore.Components.Server.Theming.Bundling
 {
@@ -7,8 +8,7 @@ namespace Zero.Abp.AspNetCore.Components.Server.Theming.Bundling
     {
         public override void ConfigureBundle(BundleConfigurationContext context)
         {
-            context.Files.AddIfNotContains("/_content/AntDesign/css/ant-design-blazor.css");
-            context.Files.AddIfNotContains("/_content/Zero.Abp.AntdesignUI/css/abp-antdesign-blazor.css");
+            context.Files.AddIfNotContains(AbpAntdesign.StylePath);
         }
     }
 }

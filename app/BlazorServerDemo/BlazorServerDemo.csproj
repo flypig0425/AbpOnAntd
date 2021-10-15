@@ -23,14 +23,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\basic-theme\Zero.Abp.AspNetCore.Components.Server.BasicTheme\Zero.Abp.AspNetCore.Components.Server.BasicTheme.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Remove="Logs\**" />
     <Content Remove="Logs\**" />
     <EmbeddedResource Remove="Logs\**" />
     <None Remove="Logs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\antd-theme\Zero.Abp.AspNetCore.Components.Server.AntdTheme\Zero.Abp.AspNetCore.Components.Server.AntdTheme.csproj" />
   </ItemGroup>
 
   <ItemGroup>

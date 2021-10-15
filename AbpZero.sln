@@ -5,8 +5,6 @@ VisualStudioVersion = 17.0.31717.71
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "framework", "framework", "{9B20C328-C33E-4ACC-90AE-EEE112C36EEC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "basic-theme", "basic-theme", "{8F84A30B-33A4-442D-8903-162DFDCC674F}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.AntdesignUI", "framework\Zero.Abp.AntdesignUI\Zero.Abp.AntdesignUI.csproj", "{98D3D0C8-13E6-4F91-BB0D-405E0B81F17B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.AspNetCore.Components", "framework\Zero.Abp.AspNetCore.Components\Zero.Abp.AspNetCore.Components.csproj", "{68290D41-423C-4A63-997B-5BD8D3A9B1A4}"
@@ -21,17 +19,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.AspNetCore.Compone
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.AspNetCore.Mvc.UI.Bundling", "framework\Zero.Abp.AspNetCore.Mvc.UI.Bundling\Zero.Abp.AspNetCore.Mvc.UI.Bundling.csproj", "{A8527D7C-F84C-46A5-8BEB-13025F53ED09}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.AspNetCore.Components.Web.BasicTheme", "basic-theme\Zero.Abp.AspNetCore.Components.Web.BasicTheme\Zero.Abp.AspNetCore.Components.Web.BasicTheme.csproj", "{47C0E217-F8EF-4243-83F4-8D26D451C40F}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.AspNetCore.Components.Server.BasicTheme", "basic-theme\Zero.Abp.AspNetCore.Components.Server.BasicTheme\Zero.Abp.AspNetCore.Components.Server.BasicTheme.csproj", "{0602E04B-0D7C-490E-9CBA-7C18F3A7A845}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "app", "app", "{B37C3EE3-BB53-41C5-8957-4F911D20FFCD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorServerDemo", "app\BlazorServerDemo\BlazorServerDemo.csproj", "{9D777F20-BBE4-4403-BF63-ACD75C7D6921}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWebAssmblyDemo", "app\BlazorWebAssmblyDemo\BlazorWebAssmblyDemo.csproj", "{B0FE6C41-8632-4260-97F7-4E2930935311}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.AspNetCore.Components.WebAssembly.BasicTheme", "basic-theme\Zero.Abp.AspNetCore.Components.WebAssembly.BasicTheme\Zero.Abp.AspNetCore.Components.WebAssembly.BasicTheme.csproj", "{46ECD549-E328-47B8-8B63-8D21334F4077}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.AspNetCore.Components.WebAssembly", "framework\Zero.Abp.AspNetCore.Components.WebAssembly\Zero.Abp.AspNetCore.Components.WebAssembly.csproj", "{91CFC0C5-5CBF-4FCE-AE17-513BC7AF928E}"
 EndProject
@@ -52,6 +44,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zero.Abp.SettingManagement.Blazor.Server", "modules\setting-management\Zero.Abp.SettingManagement.Blazor.Server\Zero.Abp.SettingManagement.Blazor.Server.csproj", "{CAF8ADB7-C0D9-41A1-93D5-98D1E06B038B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zero.Abp.SettingManagement.Blazor.WebAssembly", "modules\setting-management\Zero.Abp.SettingManagement.Blazor.WebAssembly\Zero.Abp.SettingManagement.Blazor.WebAssembly.csproj", "{2F9BE7C2-B253-4481-8BFE-FE58501A4337}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "antd-theme", "antd-theme", "{74951E45-3925-4637-A97D-7AF77C279549}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.AspNetCore.Components.Web.AntdTheme", "antd-theme\Zero.Abp.AspNetCore.Components.Web.AntdTheme\Zero.Abp.AspNetCore.Components.Web.AntdTheme.csproj", "{0CC6BBCC-92E0-4A87-BBA8-F3CBF94ED10A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.AspNetCore.Components.Server.AntdTheme", "antd-theme\Zero.Abp.AspNetCore.Components.Server.AntdTheme\Zero.Abp.AspNetCore.Components.Server.AntdTheme.csproj", "{FD4A5ACD-9FB6-4FB9-AF35-ABC2475DEA50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zero.Abp.AspNetCore.Components.WebAssembly.AntdTheme", "antd-theme\Zero.Abp.AspNetCore.Components.WebAssembly.AntdTheme\Zero.Abp.AspNetCore.Components.WebAssembly.AntdTheme.csproj", "{7B0A6D4C-42EB-4B88-BF55-86CD88698BAC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,14 +87,6 @@ Global
 		{A8527D7C-F84C-46A5-8BEB-13025F53ED09}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8527D7C-F84C-46A5-8BEB-13025F53ED09}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8527D7C-F84C-46A5-8BEB-13025F53ED09}.Release|Any CPU.Build.0 = Release|Any CPU
-		{47C0E217-F8EF-4243-83F4-8D26D451C40F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{47C0E217-F8EF-4243-83F4-8D26D451C40F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{47C0E217-F8EF-4243-83F4-8D26D451C40F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{47C0E217-F8EF-4243-83F4-8D26D451C40F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0602E04B-0D7C-490E-9CBA-7C18F3A7A845}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0602E04B-0D7C-490E-9CBA-7C18F3A7A845}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0602E04B-0D7C-490E-9CBA-7C18F3A7A845}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0602E04B-0D7C-490E-9CBA-7C18F3A7A845}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9D777F20-BBE4-4403-BF63-ACD75C7D6921}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9D777F20-BBE4-4403-BF63-ACD75C7D6921}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D777F20-BBE4-4403-BF63-ACD75C7D6921}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -103,10 +95,6 @@ Global
 		{B0FE6C41-8632-4260-97F7-4E2930935311}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0FE6C41-8632-4260-97F7-4E2930935311}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0FE6C41-8632-4260-97F7-4E2930935311}.Release|Any CPU.Build.0 = Release|Any CPU
-		{46ECD549-E328-47B8-8B63-8D21334F4077}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{46ECD549-E328-47B8-8B63-8D21334F4077}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{46ECD549-E328-47B8-8B63-8D21334F4077}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{46ECD549-E328-47B8-8B63-8D21334F4077}.Release|Any CPU.Build.0 = Release|Any CPU
 		{91CFC0C5-5CBF-4FCE-AE17-513BC7AF928E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{91CFC0C5-5CBF-4FCE-AE17-513BC7AF928E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91CFC0C5-5CBF-4FCE-AE17-513BC7AF928E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -131,6 +119,18 @@ Global
 		{2F9BE7C2-B253-4481-8BFE-FE58501A4337}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F9BE7C2-B253-4481-8BFE-FE58501A4337}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F9BE7C2-B253-4481-8BFE-FE58501A4337}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CC6BBCC-92E0-4A87-BBA8-F3CBF94ED10A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CC6BBCC-92E0-4A87-BBA8-F3CBF94ED10A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CC6BBCC-92E0-4A87-BBA8-F3CBF94ED10A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CC6BBCC-92E0-4A87-BBA8-F3CBF94ED10A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD4A5ACD-9FB6-4FB9-AF35-ABC2475DEA50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD4A5ACD-9FB6-4FB9-AF35-ABC2475DEA50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD4A5ACD-9FB6-4FB9-AF35-ABC2475DEA50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD4A5ACD-9FB6-4FB9-AF35-ABC2475DEA50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B0A6D4C-42EB-4B88-BF55-86CD88698BAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B0A6D4C-42EB-4B88-BF55-86CD88698BAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B0A6D4C-42EB-4B88-BF55-86CD88698BAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B0A6D4C-42EB-4B88-BF55-86CD88698BAC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -143,11 +143,8 @@ Global
 		{9BF28911-E81B-400A-81A2-D6DEA0BC3D5F} = {9B20C328-C33E-4ACC-90AE-EEE112C36EEC}
 		{B6F27515-8DB7-41FC-8662-FF3E642F8CD3} = {9B20C328-C33E-4ACC-90AE-EEE112C36EEC}
 		{A8527D7C-F84C-46A5-8BEB-13025F53ED09} = {9B20C328-C33E-4ACC-90AE-EEE112C36EEC}
-		{47C0E217-F8EF-4243-83F4-8D26D451C40F} = {8F84A30B-33A4-442D-8903-162DFDCC674F}
-		{0602E04B-0D7C-490E-9CBA-7C18F3A7A845} = {8F84A30B-33A4-442D-8903-162DFDCC674F}
 		{9D777F20-BBE4-4403-BF63-ACD75C7D6921} = {B37C3EE3-BB53-41C5-8957-4F911D20FFCD}
 		{B0FE6C41-8632-4260-97F7-4E2930935311} = {B37C3EE3-BB53-41C5-8957-4F911D20FFCD}
-		{46ECD549-E328-47B8-8B63-8D21334F4077} = {8F84A30B-33A4-442D-8903-162DFDCC674F}
 		{91CFC0C5-5CBF-4FCE-AE17-513BC7AF928E} = {95C2E203-00A7-440E-A098-C3ADA4B97EC3}
 		{96F07818-FD62-447E-8D04-98D13CD8F36F} = {95C2E203-00A7-440E-A098-C3ADA4B97EC3}
 		{4CBA1651-AEEF-4C2C-9AD2-BCD52FB7ED02} = {95C2E203-00A7-440E-A098-C3ADA4B97EC3}
@@ -157,6 +154,9 @@ Global
 		{2D8A309D-2357-4D01-8182-055E09524A4E} = {23D57A80-0DC6-45A3-A083-D077E5AC0FF5}
 		{CAF8ADB7-C0D9-41A1-93D5-98D1E06B038B} = {23D57A80-0DC6-45A3-A083-D077E5AC0FF5}
 		{2F9BE7C2-B253-4481-8BFE-FE58501A4337} = {23D57A80-0DC6-45A3-A083-D077E5AC0FF5}
+		{0CC6BBCC-92E0-4A87-BBA8-F3CBF94ED10A} = {74951E45-3925-4637-A97D-7AF77C279549}
+		{FD4A5ACD-9FB6-4FB9-AF35-ABC2475DEA50} = {74951E45-3925-4637-A97D-7AF77C279549}
+		{7B0A6D4C-42EB-4B88-BF55-86CD88698BAC} = {74951E45-3925-4637-A97D-7AF77C279549}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CCCD4626-D10B-4FA0-A554-235AECB0AB80}

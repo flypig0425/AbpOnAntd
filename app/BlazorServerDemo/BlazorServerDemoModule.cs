@@ -18,8 +18,8 @@ using Volo.Abp.Modularity;
 using Volo.Abp.Swashbuckle;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.UI.Navigation.Urls;
-using Zero.Abp.AspNetCore.Components.Server.BasicTheme;
-using Zero.Abp.AspNetCore.Components.Server.BasicTheme.Bundling;
+using Zero.Abp.AspNetCore.Components.Server.AntdTheme;
+using Zero.Abp.AspNetCore.Components.Server.AntdTheme.Bundling;
 using Zero.Abp.AspNetCore.Components.Web.Theming.Routing;
 
 namespace BlazorServerDemo
@@ -30,7 +30,7 @@ namespace BlazorServerDemo
        typeof(AbpAspNetCoreAuthenticationJwtBearerModule),
        typeof(AbpAspNetCoreSerilogModule),
 
-       typeof(AbpAspNetCoreComponentsServerBasicThemeModule)
+       typeof(AbpAspNetCoreComponentsServerAntdThemeModule)
       )]
     public class BlazorServerDemoModule : AbpModule
     {
@@ -77,7 +77,7 @@ namespace BlazorServerDemo
 
                 //BLAZOR UI
                 options.StyleBundles.Configure(
-                    BlazorBasicThemeBundles.Styles.Global,
+                    BlazorAntdThemeBundles.Styles.Global,
                     bundle =>
                     {
                         bundle.AddFiles("/blazor-global-styles.css");

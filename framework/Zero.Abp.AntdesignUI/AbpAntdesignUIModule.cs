@@ -1,20 +1,15 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Volo.Abp.Application;
 using Volo.Abp.Authorization;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.VirtualFileSystem;
-using Zero.Abp.AntdesignUI.Layout;
 using Zero.Abp.AntdesignUI.Localization;
 using Zero.Abp.AspNetCore.Components.Web;
-using Zero.Abp.AspNetCore.Components.Web.Theming;
 
 namespace Zero.Abp.AntdesignUI
 {
     [DependsOn(
         typeof(AbpAspNetCoreComponentsWebModule),
-        typeof(AbpAspNetCoreComponentsWebThemingModule),
-        typeof(AbpDddApplicationContractsModule),
         typeof(AbpAuthorizationModule)
         )]
     public class AbpAntdesignUIModule : AbpModule
@@ -25,9 +20,8 @@ namespace Zero.Abp.AntdesignUI
         {
             Localization.AbpStringLocalizerFactory.Replace(context.Services);
 
-            ConfigureAntDesign(context);
             context.Services.AddSingleton(typeof(AbpBlazorMessageLocalizerHelper<>));
-
+            context.Services.AddAntDesign();
 
             Configure<AbpVirtualFileSystemOptions>(options =>
             {
@@ -42,12 +36,5 @@ namespace Zero.Abp.AntdesignUI
             });
         }
 
-        private void ConfigureAntDesign(ServiceConfigurationContext context)
-        {
-            var configuration = context.Services.GetConfiguration();
-            var config = configuration.GetSection("AbpLayoutConfig");
-            context.Services.Configure<AbpLayoutConfigOptions>(config);
-            context.Services.AddAntDesign();
-        }
     }
 }

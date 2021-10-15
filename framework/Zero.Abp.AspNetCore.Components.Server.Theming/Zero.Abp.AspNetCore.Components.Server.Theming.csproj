@@ -11,6 +11,7 @@
     </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Zero.Abp.AntdesignUI\Zero.Abp.AntdesignUI.csproj" />
     <ProjectReference Include="..\Zero.Abp.AspNetCore.Components.Server\Zero.Abp.AspNetCore.Components.Server.csproj" />
     <ProjectReference Include="..\Zero.Abp.AspNetCore.Components.Web.Theming\Zero.Abp.AspNetCore.Components.Web.Theming.csproj" />
     <ProjectReference Include="..\Zero.Abp.AspNetCore.Mvc.UI.Bundling\Zero.Abp.AspNetCore.Mvc.UI.Bundling.csproj" />

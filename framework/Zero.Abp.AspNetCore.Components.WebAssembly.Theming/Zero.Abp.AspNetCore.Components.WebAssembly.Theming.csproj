@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\Zero.Abp.AntdesignUI\Zero.Abp.AntdesignUI.csproj" />
         <ProjectReference Include="..\Zero.Abp.AspNetCore.Components.Web.Theming\Zero.Abp.AspNetCore.Components.Web.Theming.csproj" />
         <ProjectReference Include="..\Zero.Abp.AspNetCore.Components.WebAssembly\Zero.Abp.AspNetCore.Components.WebAssembly.csproj" />
     </ItemGroup>

@@ -1,0 +1,40 @@
+{
+  "culture": "zh-Hans",
+  "texts": {
+    "PageStyleSetting": "整体风格设置",
+    "ThemeColor": "主题色",
+    "NavigationMode": "导航模式",
+
+    "SideMenuLayout": "侧边菜单布局",
+    "TopMenuLayout": "顶部菜单布局",
+    "MixMenuLayout": "混合菜单布局",
+
+    "HeaderTheme": "顶栏主题",
+    "SidebarTheme": "侧边主题",
+    "Light": "浅色",
+    "Dark": "深色",
+
+    "DarkTheme": "暗黑主题",
+    "CompactTheme": "紧凑主题",
+
+    "ContentWidth": "内容区域宽度",
+    "Fixed": "定宽",
+    "Fluid": "流式",
+    "FixedHeader": "固定顶栏",
+    "FixedSidebar": "固定侧边菜单",
+    "SplitMenus": "自动分割菜单",
+    "RegionalSettings": "内容区域",
+
+    "HeaderRender": "顶栏",
+    "FooterRender": "页脚",
+    "MenuRender": "菜单",
+    "MenuHeaderRender": "菜单头部",
+
+    "OtherSettings": "其他设置",
+
+    "ColorWeak": "色弱模式",
+
+    "SettingDrawer:HintAlertMessage": "配置栏只在开发环境用于预览，生产环境不会展现，请拷贝后手动修改配置文件",
+    "CopySetting": "拷贝设置"
+  }
+}
