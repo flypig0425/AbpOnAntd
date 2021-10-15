@@ -125,9 +125,9 @@
                     {
                         @if (!url.IsNullOrWhiteSpace())
                         {
-                            <MenuLink Href="@url" target="@menuItem.Target">
+                            <a href="@url" target="@menuItem.Target">
                                 @defaultTitle((menuItem, that, context.first))
-                            </MenuLink>
+                            </a>
                         }
                         else
                         {

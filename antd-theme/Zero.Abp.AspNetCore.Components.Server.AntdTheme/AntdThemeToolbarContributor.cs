@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Zero.Abp.AntdesignUI.Components;
 using Zero.Abp.AspNetCore.Components.Server.AntdTheme.Themes;
 using Zero.Abp.AspNetCore.Components.Web.Theming.Toolbars;
 
@@ -10,6 +11,7 @@ namespace Zero.Abp.AspNetCore.Components.Server.AntdTheme
         {
             if (context.Toolbar.Name == StandardToolbars.Main)
             {
+                context.Toolbar.Items.Add(new ToolbarItem(typeof(FullScreen)));
                 context.Toolbar.Items.Add(new ToolbarItem(typeof(LoginDisplay)));
                 context.Toolbar.Items.Add(new ToolbarItem(typeof(LanguageSwitch)));
             }

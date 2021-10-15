@@ -21,26 +21,25 @@
     }
     <!-- #endregion -->
     <!-- #region Content -->
-    @if (Loading.IsT1)
+    @if (Loading.IsT0 && Loading.AsT0 == false)
     {
-        @Loading.AsT1
+        <div class="@($"{PrefixedClassName}-children-content")">
+            <PageAlert />
+            @ChildContent
+        </div>
+        @if (Value?.HasFooterToolbar ?? false)
+        {
+            <div style="height:48px;margin-top:24px" />
+        }
     }
     else
-    {
-        @if (Loading.IsT0 && Loading.AsT0 == false)
+    {  @if (Loading.IsT1)
         {
-            <div class="@($"{PrefixedClassName}-children-content")">
-                <PageAlert />
-                @ChildContent
-            </div>
-            @if (Value?.HasFooterToolbar ?? false)
-            {
-                <div style="height:48px;margin-top:24px" />
-            }
+            @Loading.AsT1
         }
         else
         {
-            SpinProps spin = Loading.IsT2 ? Loading.AsT2 : new SpinProps();
+            SpinProps spin = Loading.IsT2 ? Loading.AsT2 : new SpinProps { Spinning = true };
             <PageLoading Size="@spin.Size" Tip="@spin.Tip" Spinning="@spin.Spinning" Delay="@spin.Delay" />
         }
     }

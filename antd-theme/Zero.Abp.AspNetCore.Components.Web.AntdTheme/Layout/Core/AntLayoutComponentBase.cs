@@ -20,6 +20,10 @@ namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
         [Inject] protected IStringLocalizer<AbpAntdThemeResource> L { get; set; }
         protected LayoutSettings Settings => LayoutState.Settings;
 
+        protected bool IsSideLayout => Settings.Layout == Layout.Side.Name;
+        protected bool IsTopLayout => Settings.Layout == Layout.Top.Name;
+        protected bool IsMixLayout => Settings.Layout == Layout.Mix.Name;
+
         protected virtual void OnSettingsChanged()
         {
             InvokeStateHasChangedAsync();

@@ -7,16 +7,18 @@
 }
 <Header Style="@HeaderStyle"
         Class="@HeaderClass">
-    @if ((isTop || isSplitMenus) && !IsMobile)
+    @if ((IsTopLayout || isSplitMenus) && !IsMobile)
     {
-        <TopNavHeader Mode="MenuMode.Horizontal" MenuData="MenuData"
-                      @bind-SelectedKeys="SelectedKeys" />
+        <TopNavHeader Mode="MenuMode.Horizontal"
+                  MenuData="MenuData"
+                  SelectedKeys="SelectedKeys"
+                  SelectedKeysChanged="SelectedKeysChanged" />
     }
     else
     {
         <GlobalHeader IsMobile="IsMobile"
-                      Collapsed="@Collapsed"
-                      OnCollapse="HandleCollapse">
+                  Collapsed="@Collapsed"
+                  OnCollapse="HandleCollapse">
             @HeaderContentRender
         </GlobalHeader>
     }
@@ -44,28 +46,35 @@
     [Parameter] public bool HasSiderMenu { get; set; }
     [Parameter] public RenderFragment HeaderContentRender { get; set; }
 
-    private bool isTop => Settings.Layout == Layout.Top.Name;
-    private bool isMix => Settings.Layout == Layout.Mix.Name;
-    private bool isSplitMenus => isMix && Settings.SplitMenus;
+    private bool isSplitMenus => IsMixLayout && Settings.SplitMenus;
 
-    private bool needFixedHeader => Settings.FixedHeader || isMix;
+    private bool needFixedHeader => Settings.FixedHeader || IsMixLayout;
     private int headerHeight => Settings.HeaderHeight;
 
-    private bool needSideWidth => needFixedHeader && HasSiderMenu && !isTop && !IsMobile;
-    private string headerWidth => !isMix && needSideWidth
+    private bool needSideWidth => needFixedHeader && HasSiderMenu && !IsTopLayout && !IsMobile;
+    private string headerWidth => !IsMixLayout && needSideWidth
       ? $"calc(100% - {(Collapsed ? 48 : SiderWidth)}px)" : "100%";
     private int? headerRight => needFixedHeader ? 0 : null;
 
     private string HeaderClass => ClassNames(
          ($"{PrefixCls}-fixed-header", needFixedHeader)
        , ($"{PrefixCls}-fixed-header-action", !Collapsed)
-       , ($"{PrefixCls}-top-menu", Settings.Layout == Layout.Top.Name)
+       , ($"{PrefixCls}-top-menu", IsTopLayout)
        , ($"{PrefixCls}-header-{Settings.HeaderTheme}")
         );
 
-    private string FixedHeaderStyle =>
-    $"height:{headerHeight}px;line-height:{headerHeight}px;background:transparent";
-
-    private string HeaderStyle =>
-    $"padding:0px;height:{headerHeight}px;line-height:{headerHeight}px;width:{headerWidth};z-index:{(isMix ? 100 : 9)};{(headerRight.HasValue ? $"right:{headerRight}px;" : "")}{Style}";
+    private string FixedHeaderStyle => StyleValues(
+       "background:transparent"
+       , $"height:{headerHeight}px"
+       , $"line-height:{headerHeight}px"
+        );
+    private string HeaderStyle => StyleValues(
+        "padding:0px"
+        , $"height:{headerHeight}px"
+        , $"line-height:{headerHeight}px"
+        , $"width:{headerWidth}"
+        , $"z-index:{(IsMixLayout ? 100 : 9)}"
+        , $"{(headerRight.HasValue ? $"right:{headerRight}px;" : "")}"
+        , Style
+        );
 }

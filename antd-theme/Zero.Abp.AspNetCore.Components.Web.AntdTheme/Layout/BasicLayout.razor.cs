@@ -35,9 +35,12 @@ namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
         public bool IsMobile => (ScreenSize == BreakpointType.Sm || ScreenSize == BreakpointType.Xs) && !DisableMobile;
 
 
-        private bool IsSplitMenus => Settings.SplitMenus && (/*OpenKeys != false ||*/ Settings.Layout == Layout.Mix.Name) && !IsMobile;
-        public string[] TopSelectedKeys { get; set; }
-        public string[] SiderSelectedKeys { get; set; }
+        private bool IsSplitMenus => Settings.SplitMenus && (/*OpenKeys != false ||*/ IsMixLayout) && !IsMobile;
+
+        protected string[] TopSelectedKeys { get; set; }
+        protected string[] SiderSelectedKeys { get; set; }
+
+
         protected ApplicationMenuItemList MenuData { get; set; }
 
         [Inject] protected IMenuManager MenuManager { get; set; }
@@ -119,7 +122,7 @@ namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
         private readonly string layoutCls = "ant-layout";
 
 
-        public bool HasSiderMenu => (Settings.Layout != Layout.Top.Name || Settings.Layout == Layout.Mix.Name && Settings.SplitMenus) && (SiderMenuDom != null);
+        public bool HasSiderMenu => (!IsTopLayout ||IsMixLayout && Settings.SplitMenus) && (SiderMenuDom != null);
         bool HasLeftPadding => HasSiderMenu && Settings.FixedSidebar && !IsMobile;
         int PaddingLeft => HasLeftPadding ? (Collapsed ? 48 : SiderWidth) : 0;
 
@@ -132,7 +135,7 @@ namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
         private string BaseClassName => $"{PrefixCls}-basicLayout";
 
         private string LayoutClass => ClassNames("ant-design-pro", BaseClassName, $"screen-{ScreenSize}"
-            , ($"{BaseClassName}-top-menu", Settings.Layout == Layout.Top.Name)
+            , ($"{BaseClassName}-top-menu", IsTopLayout)
             , ($"{BaseClassName}-is-children", isChildrenLayout)
             , ($"{BaseClassName}-fix-siderbar", Settings.FixedSidebar)
             , ($"{BaseClassName}-mobile", IsMobile)

@@ -29,9 +29,7 @@ namespace BlazorServerDemo.Menus
                     order: 0
                 )
             );
-            administration.AddItem(new ApplicationMenuItem(BlazorServerDemoMenus.Home,
-                "主页", "/", icon: "fas fa-home", order: 0));
-
+           
             administration.AddItem(new ApplicationMenuItem(
                 "PageContainer_Basic",
               "页面1", "/PageDemo", icon: "fas fa-home", order: 0));

@@ -11,7 +11,7 @@ namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
     {
         public static async Task<ApplicationMenuItemList> GetMenuDataAsync(this IMenuManager menuManager)
         {
-            return (await menuManager.GetMainMenuAsync())?.GetAdministration()?.Items ?? new ApplicationMenuItemList();
+            return (await menuManager.GetMainMenuAsync())?.Items ?? new ApplicationMenuItemList();
         }
 
         public static string[] GetMatchMenuKeys(this NavigationManager navigationManager, ApplicationMenuItemList applicationMenus, bool fullKeys)

@@ -1,9 +1,10 @@
 ﻿@page "/PageDemo"
+@inherits AbpComponentBase
 
 <PageContainer Header="@header"
                TabList="@tabList"
                TabProps="@tabProps"
-               Loading="true">
+               Loading="@_loading">
     <Content>
         <Descriptions Column="2" Style="margin-bottom:-16px">
             <DescriptionsItem Title="创建人">曲丽丽</DescriptionsItem>
@@ -18,7 +19,9 @@
     </ExtraContent>
 
     <ChildContent>
-        <Result></Result>
+
+        <Result Title="页面找不到" Status="404"></Result>
+
     </ChildContent>
     <Footer>
         <Button>重置</Button>
@@ -27,6 +30,18 @@
 </PageContainer>
 
 @code {
+    private bool _loading=true;
+    protected override void OnInitialized()
+    {
+        _loading = false;
+
+        Alerts.Warning(
+        "We will have a service interruption between 02:00 AM and 04:00 AM at October 23, 2023!",
+        "Service Interruption");
+
+
+        base.OnInitialized();
+    }
 
     private TabPaneItem[] tabList = new TabPaneItem[] {
         new TabPaneItem { Tab = "基本信息", Key = "base", Closable = false, } ,
@@ -50,7 +65,8 @@
             //        new Route{Path="",BreadcrumbName="当前页面" }
             //        }
             //},
-            Breadcrumb =@<Template>
+            Breadcrumb =
+    @<Template>
         <Breadcrumb>
             <BreadcrumbItem Href="">一级页面</BreadcrumbItem>
             <BreadcrumbItem Href="">二级页面</BreadcrumbItem>
