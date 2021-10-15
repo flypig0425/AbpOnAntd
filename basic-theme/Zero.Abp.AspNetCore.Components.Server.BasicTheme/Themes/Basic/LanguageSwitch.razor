@@ -5,7 +5,9 @@
 @inject NavigationManager NavigationManager
 @inject IAbpRequestLocalizationOptionsProvider RequestLocalizationOptionsProvider
 
-<SelectLang Languages="_languages" Value="_currentLanguage" OnChange="(language)=>ChangeLanguage(language)"/>
+<SelectLang Languages="_languages"
+            Value="_currentLanguage"
+            OnChange="(language)=>ChangeLanguage(language)" />
 
 @code {
     private IReadOnlyList<LanguageInfo> _languages;

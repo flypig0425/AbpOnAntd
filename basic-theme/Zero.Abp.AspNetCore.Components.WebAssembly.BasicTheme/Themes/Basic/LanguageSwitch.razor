@@ -3,25 +3,13 @@
 @using System.Collections.Immutable
 @inject ILanguageProvider LanguageProvider
 @inject IJSRuntime JsRuntime
-@if (_otherLanguages != null && _otherLanguages.Any())
-{
-    <Dropdown Trigger="@(new Trigger[] { Trigger.Click })"
-              Placement="@Placement.BottomLeft">
-        <ChildContent>
-            @_currentLanguage.DisplayName
-        </ChildContent>
-        <Overlay>
-            <Menu>
-                @foreach (var language in _otherLanguages)
-                {
-                    <MenuItem OnClick="() => ChangeLanguageAsync(language)">@language.DisplayName</MenuItem>
-                }
-            </Menu>
-        </Overlay>
-    </Dropdown>
-}
+
+<SelectLang Languages="_languages"
+            Value="_currentLanguage"
+            OnChange="(language)=>ChangeLanguageAsync(language)" />
+
 @code {
-    private IReadOnlyList<LanguageInfo> _otherLanguages;
+    private IReadOnlyList<LanguageInfo> _languages;
     private LanguageInfo _currentLanguage;
 
     protected override async Task OnInitializedAsync()
@@ -31,29 +19,13 @@
             "Abp.SelectedLanguage"
             );
 
-        _otherLanguages = await LanguageProvider.GetLanguagesAsync();
+        _languages = await LanguageProvider.GetLanguagesAsync();
+        if (!_languages.Any()) { return; }
 
-        if (!_otherLanguages.Any())
-        {
-            return;
-        }
-
-        if (!selectedLanguageName.IsNullOrWhiteSpace())
-        {
-            _currentLanguage = _otherLanguages.FirstOrDefault(l => l.UiCultureName == selectedLanguageName);
-        }
-
-        if (_currentLanguage == null)
-        {
-            _currentLanguage = _otherLanguages.FirstOrDefault(l => l.UiCultureName == CultureInfo.CurrentUICulture.Name);
-        }
-
-        if (_currentLanguage == null)
-        {
-            _currentLanguage = _otherLanguages.FirstOrDefault();
-        }
-
-        _otherLanguages = _otherLanguages.Where(l => l != _currentLanguage).ToImmutableList();
+        _currentLanguage = !selectedLanguageName.IsNullOrWhiteSpace()
+        ? _languages.FirstOrDefault(l => l.UiCultureName == selectedLanguageName)
+        : _languages.FirstOrDefault(l => l.UiCultureName == CultureInfo.CurrentUICulture.Name)
+        ?? _languages.FirstOrDefault();
     }
 
     private async Task ChangeLanguageAsync(LanguageInfo language)
