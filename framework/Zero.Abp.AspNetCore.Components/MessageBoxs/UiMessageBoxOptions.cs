@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Zero.Abp.AspNetCore.Components.Messages
+namespace Zero.Abp.AspNetCore.Components.MessageBoxs
 {
     /// <summary>
     /// Options to override message dialog appearance.
@@ -34,16 +34,6 @@ namespace Zero.Abp.AspNetCore.Components.Messages
         public object OkButtonIcon { get; set; }
 
         /// <summary>
-        /// Custom text for the Confirmation button.
-        /// </summary>
-        public string ConfirmButtonText { get; set; }
-
-        /// <summary>
-        /// Custom icon for the Confirmation button.
-        /// </summary>
-        public object ConfirmButtonIcon { get; set; }
-
-        /// <summary>
         /// Custom text for the Cancel button.
         /// </summary>
         public string CancelButtonText { get; set; }
@@ -54,9 +44,9 @@ namespace Zero.Abp.AspNetCore.Components.Messages
         public object CancelButtonIcon { get; set; }
 
 
-        public Func<ModalClosingEventArgs, Task> OnCancel { get; set; }
+        public Func<Task<bool>> OnOk { get; set; }
 
-        public Func<ModalClosingEventArgs, Task> OnOk { get; set; }
+        public Func<Task<bool>> OnCancel { get; set; }
 
     }
 }

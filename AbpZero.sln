@@ -51,7 +51,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.AspNetCore.Compone
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.AspNetCore.Components.Server.AntdTheme", "antd-theme\Zero.Abp.AspNetCore.Components.Server.AntdTheme\Zero.Abp.AspNetCore.Components.Server.AntdTheme.csproj", "{FD4A5ACD-9FB6-4FB9-AF35-ABC2475DEA50}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zero.Abp.AspNetCore.Components.WebAssembly.AntdTheme", "antd-theme\Zero.Abp.AspNetCore.Components.WebAssembly.AntdTheme\Zero.Abp.AspNetCore.Components.WebAssembly.AntdTheme.csproj", "{7B0A6D4C-42EB-4B88-BF55-86CD88698BAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.AspNetCore.Components.WebAssembly.AntdTheme", "antd-theme\Zero.Abp.AspNetCore.Components.WebAssembly.AntdTheme\Zero.Abp.AspNetCore.Components.WebAssembly.AntdTheme.csproj", "{7B0A6D4C-42EB-4B88-BF55-86CD88698BAC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{339A55EB-E5F6-413B-BD7E-CF2FDA94AE6F}"
+	ProjectSection(SolutionItems) = preProject
+		common.props = common.props
+		configureawait.props = configureawait.props
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

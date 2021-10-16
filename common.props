@@ -1,8 +1,8 @@
 <Project>
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
-    <Version>4.4.2</Version>
-    <AbpPackageVersion>4.4.2</AbpPackageVersion>
+    <Version>4.4.3</Version>
+    <AbpPackageVersion>4.4.*</AbpPackageVersion>
     <MicrosoftPackageVersion>5.*</MicrosoftPackageVersion>
     <NoWarn>$(NoWarn);CS1591;CS0436</NoWarn>
     <PackageLicenseExpression>LGPL-3.0-only</PackageLicenseExpression>

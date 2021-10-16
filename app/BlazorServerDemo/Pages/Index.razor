@@ -33,6 +33,15 @@
 
     protected override void OnInitialized()
     {
+        //MessageBox.Info("Info", "信息");
+        //MessageBox.Success("Success", "成功");
+        //MessageBox.Warn("Warn", "警告");
+        //MessageBox.Error("Error", "错误");
+        MessageBox.Confirm("Confirm", "确认", opt =>
+        {
+            opt.OnOk = async () => { await Task.Delay(1000); return false; };
+            opt.OnCancel = async () => { await Task.Delay(1000); return true; };
+        });
 
         Alerts.Warning(
         "We will have a service interruption between 02:00 AM and 04:00 AM at October 23, 2023!",

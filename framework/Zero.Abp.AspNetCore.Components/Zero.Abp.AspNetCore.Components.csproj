@@ -12,6 +12,13 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <Compile Remove="Messages\**" />
+    <Content Remove="Messages\**" />
+    <EmbeddedResource Remove="Messages\**" />
+    <None Remove="Messages\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Volo.Abp.ObjectMapping" Version="4.4.3" />

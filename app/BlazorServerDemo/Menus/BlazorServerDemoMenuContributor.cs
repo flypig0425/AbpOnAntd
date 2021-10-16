@@ -23,7 +23,7 @@ namespace BlazorServerDemo.Menus
                 0,
                 new ApplicationMenuItem(
                     BlazorServerDemoMenus.Home,
-                    "主页",
+                   l["Menu:Home"],
                     "/",
                     icon: "fas fa-home",
                     order: 0

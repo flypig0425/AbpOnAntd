@@ -7,7 +7,7 @@ using Volo.Abp.AspNetCore.ExceptionHandling;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Http;
 using Zero.Abp.AspNetCore.Components.ExceptionHandling;
-using Zero.Abp.AspNetCore.Components.Messages;
+using Zero.Abp.AspNetCore.Components.MessageBoxs;
 
 namespace Zero.Abp.AspNetCore.Components.Web.ExceptionHandling
 {
@@ -15,13 +15,13 @@ namespace Zero.Abp.AspNetCore.Components.Web.ExceptionHandling
     public class UserExceptionInformer : IUserExceptionInformer, IScopedDependency
     {
         public ILogger<UserExceptionInformer> Logger { get; set; }
-        protected IUiMessageService MessageService { get; }
+        protected IUiMessageBoxService MessageService { get; }
         protected IExceptionToErrorInfoConverter ExceptionToErrorInfoConverter { get; }
 
         protected AbpExceptionHandlingOptions Options { get; }
 
         public UserExceptionInformer(
-            IUiMessageService messageService,
+            IUiMessageBoxService messageService,
             IExceptionToErrorInfoConverter exceptionToErrorInfoConverter,
             IOptions<AbpExceptionHandlingOptions> options)
         {

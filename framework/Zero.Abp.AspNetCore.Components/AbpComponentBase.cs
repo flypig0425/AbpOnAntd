@@ -12,7 +12,7 @@ using Volo.Abp.ObjectMapping;
 using Volo.Abp.Users;
 using Zero.Abp.AspNetCore.Components.Alerts;
 using Zero.Abp.AspNetCore.Components.ExceptionHandling;
-using Zero.Abp.AspNetCore.Components.Messages;
+using Zero.Abp.AspNetCore.Components.MessageBoxs;
 
 namespace Zero.Abp.AspNetCore.Components
 {
@@ -55,8 +55,8 @@ namespace Zero.Abp.AspNetCore.Components
         private ICurrentUser _currentUser;
 
         #region 
-        protected IUiMessageService Message => LazyGetNonScopedRequiredService(ref _message);
-        private IUiMessageService _message;
+        protected IUiMessageBoxService MessageBox => LazyGetNonScopedRequiredService(ref _messageBox);
+        private IUiMessageBoxService _messageBox;
 
         //protected IUiNotificationService Notify => LazyGetNonScopedRequiredService(ref _notify);
         //private IUiNotificationService _notify;

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using AntDesign;
+using Microsoft.AspNetCore.Components;
 using OneOf;
 using System;
 using System.Collections.Generic;
@@ -59,7 +60,7 @@ namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
 
     public class TabProps
     {
-        public string Type { get; set; }
+        public TabType Type { get; set; }
         public bool HideAdd { get; set; }
         public Func<string, string, Task<bool>> OnEdit { get; set; } = (key, action) => Task.FromResult(true);
     }

@@ -1,4 +1,4 @@
-﻿namespace Zero.Abp.AspNetCore.Components.Messages
+﻿namespace Zero.Abp.AspNetCore.Components.MessageBoxs
 {
     /// <summary>
     /// Defines the possible ui message types with predefined actions.

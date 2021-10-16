@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AntDesign" Version="0.10.0" />
+    <PackageReference Include="AntDesign" Version="0.10.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,5 +16,11 @@
   <ItemGroup>
     <Content Remove="Localization\Resources\AbpAntdesignUI\*.json" />
     <EmbeddedResource Include="Localization\Resources\AbpAntdesignUI\*.json" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Compile Remove="AntdesignUiMessageService.cs" />
+    <Compile Remove="AntdesignUiNotificationService.cs" />
   </ItemGroup>
 </Project>
