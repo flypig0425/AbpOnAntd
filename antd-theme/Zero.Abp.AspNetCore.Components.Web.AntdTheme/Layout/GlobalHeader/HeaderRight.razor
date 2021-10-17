@@ -1,13 +1,14 @@
 ﻿@namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
 @inherits AntLayoutComponentBase
 
-<Space Class="@ClassNames(Class,"right")" Size="@("12")">
+<Space Class="@ClassNames(Class,"right")" Size="@("18")">
     @foreach (var render in ToolbarItemRenders)
     {
         <SpaceItem Style="cursor:pointer">
             @render
         </SpaceItem>
     }
+    <SpaceItem/>
 </Space>
 
 @code {

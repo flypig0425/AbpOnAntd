@@ -19,15 +19,13 @@ namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
         [Parameter] public MenuMode Mode { get; set; }//  //ToDo: 'vertical' | 'vertical-left' | 'vertical-right' | 'horizontal' | 'inline';
         [Parameter] public RenderFragment<ApplicationMenuItem> MenuItemRender { get; set; }
         [Parameter] public RenderFragment<ApplicationMenuItem> SubMenuItemRender { get; set; }
-        [Parameter] public MenuSettings Menu { get; set; } = new MenuSettings();
+        [Parameter] public MenuSettings MenuSettings { get; set; } = new MenuSettings();
 
 
         [Parameter] public ApplicationMenuItemList MenuData { get; set; }
 
         [Parameter] public string[] SelectedKeys { get; set; }
         [Parameter] public EventCallback<string[]> SelectedKeysChanged { get; set; }
-
-
 
 
         protected override async Task OnInitializedAsync()

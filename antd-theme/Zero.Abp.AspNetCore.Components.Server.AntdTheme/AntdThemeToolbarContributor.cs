@@ -12,8 +12,8 @@ namespace Zero.Abp.AspNetCore.Components.Server.AntdTheme
             if (context.Toolbar.Name == StandardToolbars.Main)
             {
                 context.Toolbar.Items.Add(new ToolbarItem(typeof(FullScreen)));
-                context.Toolbar.Items.Add(new ToolbarItem(typeof(LoginDisplay)));
                 context.Toolbar.Items.Add(new ToolbarItem(typeof(LanguageSwitch)));
+                context.Toolbar.Items.Add(new ToolbarItem(typeof(LoginDisplay)));
             }
 
             return Task.CompletedTask;

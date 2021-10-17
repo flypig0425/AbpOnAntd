@@ -107,7 +107,7 @@
             {
                 var title = that.SubMenuItemRender != null
                     ? that.SubMenuItemRender(menuItem) : defaultTitle((menuItem, that, context.first));
-                var MenuComponents = that.Menu?.Type == "group" ? typeof(MenuItemGroup) : typeof(SubMenu);
+                var MenuComponents = that.MenuSettings?.Type == "group" ? typeof(MenuItemGroup) : typeof(SubMenu);
                 var parameters = new Dictionary<string, object>();
                 parameters.Add("Key", menuItem.Name);
                 parameters.Add("TitleTemplate", title);
