@@ -11,6 +11,7 @@ namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
     {
         #region MyRegion
         public bool HasHeader => HeaderDom != null;
+        public bool HasPageContainer { get; set; }
         public bool HasFooterToolbar { get; set; }
         #endregion
 
@@ -82,7 +83,7 @@ namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
         private void OnLocationChanged(object sender, LocationChangedEventArgs e)
         {
             MatchMenuKeys();
-            InvokeAsync(StateHasChanged);
+            InvokeStateHasChanged();
         }
         private void MatchMenuKeys()
         {
@@ -115,7 +116,7 @@ namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
                 }
             }
             ScreenSize = actualBreakpoint;
-            InvokeAsync(StateHasChanged);
+            InvokeStateHasChanged();
         }
 
         protected string _themeUrl;

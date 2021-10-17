@@ -1,95 +1,91 @@
-﻿using System;
+﻿using AntDesign;
+using Microsoft.AspNetCore.Components;
+using System;
 using System.Threading.Tasks;
-using Localization.Resources.AbpUi;
-using Microsoft.Extensions.Localization;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Abstractions;
 using Volo.Abp.DependencyInjection;
+using Zero.Abp.AspNetCore.Components.Messages;
+using static Volo.Abp.BlazoriseUI.AntdesignUiMessageBoxService;
 
 namespace Volo.Abp.AntdesignUI
 {
     [Dependency(ReplaceServices = true)]
     public class AntdesignUiMessageService : IUiMessageService, IScopedDependency
     {
-        /// <summary>
-        /// An event raised after the message is received. Used to notify the message dialog.
-        /// </summary>
-        public event EventHandler<UiMessageEventArgs> MessageReceived;
-
-        private readonly IStringLocalizer<AbpUiResource> localizer;
-
-        public ILogger<AntdesignUiMessageService> Logger { get; set; }
-
-        public AntdesignUiMessageService(
-            IStringLocalizer<AbpUiResource> localizer)
+        private MessageService MessageService { get; set; }
+        public AntdesignUiMessageService(MessageService messageService)
         {
-            this.localizer = localizer;
-
-            Logger = NullLogger<AntdesignUiMessageService>.Instance;
+            MessageService = messageService;
+        }
+        public Task Info(string message, Action<UiMessageOptions> options = null)
+        {
+            var messageConfig = CreateMessageConfig(UiMessageType.Info, message, options);
+            return MessageService.Info(messageConfig);
         }
 
-        public Task Info(string message, string title = null, Action<UiMessageOptions> options = null)
+        public Task Success(string message, Action<UiMessageOptions> options = null)
         {
-            var uiMessageOptions = CreateDefaultOptions();
-            options?.Invoke(uiMessageOptions);
-
-            MessageReceived?.Invoke(this, new UiMessageEventArgs(UiMessageType.Info, message, title, uiMessageOptions));
-
-            return Task.CompletedTask;
+            var messageConfig = CreateMessageConfig(UiMessageType.Success, message, options);
+            return MessageService.Success(messageConfig);
         }
 
-        public Task Success(string message, string title = null, Action<UiMessageOptions> options = null)
+        public Task Warn(string message, Action<UiMessageOptions> options = null)
         {
-            var uiMessageOptions = CreateDefaultOptions();
-            options?.Invoke(uiMessageOptions);
-
-            MessageReceived?.Invoke(this, new UiMessageEventArgs(UiMessageType.Success, message, title, uiMessageOptions));
-
-            return Task.CompletedTask;
+            var messageConfig = CreateMessageConfig(UiMessageType.Warning, message, options);
+            return MessageService.Warn(messageConfig);
         }
 
-        public Task Warn(string message, string title = null, Action<UiMessageOptions> options = null)
+        public Task Error(string message, Action<UiMessageOptions> options = null)
         {
-            var uiMessageOptions = CreateDefaultOptions();
-            options?.Invoke(uiMessageOptions);
-
-            MessageReceived?.Invoke(this, new UiMessageEventArgs(UiMessageType.Warning, message, title, uiMessageOptions));
-
-            return Task.CompletedTask;
+            var messageConfig = CreateMessageConfig(UiMessageType.Error, message, options);
+            return MessageService.Error(messageConfig);
         }
 
-        public Task Error(string message, string title = null, Action<UiMessageOptions> options = null)
+        public Task Loading(string message, Action<UiMessageOptions> options = null)
         {
-            var uiMessageOptions = CreateDefaultOptions();
-            options?.Invoke(uiMessageOptions);
-
-            MessageReceived?.Invoke(this, new UiMessageEventArgs(UiMessageType.Error, message, title, uiMessageOptions));
-
-            return Task.CompletedTask;
-        }
-
-        public Task<bool> Confirm(string message, string title = null, Action<UiMessageOptions> options = null)
-        {
-            var uiMessageOptions = CreateDefaultOptions();
-            options?.Invoke(uiMessageOptions);
-
-            var callback = new TaskCompletionSource<bool>();
-
-            MessageReceived?.Invoke(this, new UiMessageEventArgs(UiMessageType.Confirmation, message, title, uiMessageOptions, callback));
-
-            return callback.Task;
+            var messageConfig = CreateMessageConfig(UiMessageType.Loading, message, options);
+            return MessageService.Loading(messageConfig);
         }
 
         protected virtual UiMessageOptions CreateDefaultOptions()
         {
-            return new UiMessageOptions
-            {
-                CenterMessage = true,
-                ShowMessageIcon = true,
-                OkButtonText = localizer["Ok"],
-                CancelButtonText = localizer["Cancel"],
-                ConfirmButtonText = localizer["Yes"],
-            };
+            return new UiMessageOptions { };
         }
+
+        protected MessageConfig CreateMessageConfig(UiMessageType type, string message, Action<UiMessageOptions> options = null)
+        {
+            var uiMessageOptions = CreateDefaultOptions();
+            options?.Invoke(uiMessageOptions);
+            var args = new UiMessageEventArgs(type, message, uiMessageOptions);
+
+            var messageType = args.MessageType switch
+            {
+                UiMessageType.Info => MessageType.Info,
+                UiMessageType.Warning => MessageType.Warning,
+                UiMessageType.Error => MessageType.Error,
+                UiMessageType.Success => MessageType.Success,
+                UiMessageType.Loading => MessageType.Loading,
+                _ => MessageType.Info,
+            };
+            var opt = new MessageConfig
+            {
+                Content = args.Message,
+                Key = args.Options.Key,
+                Duration = args.Options.Duration,
+                Type = messageType,
+            };
+            if (args.Options.Icon != null)
+            {
+                if (args.Options.Icon is RenderFragment fIcon)
+                {
+                    opt.Icon = fIcon;
+                }
+                if (args.Options.Icon is string sIcon)
+                {
+                    opt.Icon = IconRenderFragments.GetByConfirmIcon(sIcon);
+                }
+            }
+            return opt;
+        }
+
     }
 }

@@ -3,16 +3,16 @@ using System.Threading.Tasks;
 
 namespace Zero.Abp.AspNetCore.Components.Messages
 {
-    public interface IUiMessageBoxService
+    public interface IUiMessageService
     {
-        Task<bool> Info(string message, string title = null, Action<UiMessageBoxOptions> options = null);
+        Task Info(string message, Action<UiMessageOptions> options = null);
 
-        Task<bool> Success(string message, string title = null, Action<UiMessageBoxOptions> options = null);
+        Task Success(string message, Action<UiMessageOptions> options = null);
 
-        Task<bool> Warn(string message, string title = null, Action<UiMessageBoxOptions> options = null);
+        Task Warn(string message, Action<UiMessageOptions> options = null);
 
-        Task<bool> Error(string message, string title = null, Action<UiMessageBoxOptions> options = null);
+        Task Error(string message, Action<UiMessageOptions> options = null);
 
-        Task<bool> Confirm(string message, string title = null, Action<UiMessageBoxOptions> options = null);
+        Task Loading(string message, Action<UiMessageOptions> options = null);
     }
 }

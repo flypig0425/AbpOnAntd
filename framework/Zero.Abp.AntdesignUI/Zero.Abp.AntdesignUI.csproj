@@ -17,10 +17,4 @@
     <Content Remove="Localization\Resources\AbpAntdesignUI\*.json" />
     <EmbeddedResource Include="Localization\Resources\AbpAntdesignUI\*.json" />
   </ItemGroup>
-
-
-  <ItemGroup>
-    <Compile Remove="AntdesignUiMessageService.cs" />
-    <Compile Remove="AntdesignUiNotificationService.cs" />
-  </ItemGroup>
 </Project>

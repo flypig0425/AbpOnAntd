@@ -47,15 +47,22 @@ namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
         [Parameter] public RenderFragment Content { get; set; }
         [Parameter] public RenderFragment ExtraContent { get; set; }
         [Parameter] public RenderFragment Footer { get; set; }
+        protected override async Task OnInitializedAsync()
+        {
+            await base.OnInitializedAsync();
+            if (Value != null) { Value.HasPageContainer = true; }
+        }
 
+        protected override void Dispose(bool disposing)
+        {
+            if (Value != null) { Value.HasPageContainer = false; }
+        }
 
         private string PrefixedClassName => $"{PrefixCls}-page-container";
         private string ContainerClassName => ClassNames(PrefixedClassName, Class
             , ($"{PrefixCls}-page-container-ghost", Header?.Ghost ?? Ghost)
             , ($"{PrefixCls}-page-container-with-footer", HasFooter)
         );
-
-
     }
 
     public class TabProps

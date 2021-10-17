@@ -13,6 +13,8 @@ using Volo.Abp.Users;
 using Zero.Abp.AspNetCore.Components.Alerts;
 using Zero.Abp.AspNetCore.Components.ExceptionHandling;
 using Zero.Abp.AspNetCore.Components.MessageBoxs;
+using Zero.Abp.AspNetCore.Components.Messages;
+using Zero.Abp.AspNetCore.Components.Notifications;
 
 namespace Zero.Abp.AspNetCore.Components
 {
@@ -58,12 +60,14 @@ namespace Zero.Abp.AspNetCore.Components
         protected IUiMessageBoxService MessageBox => LazyGetNonScopedRequiredService(ref _messageBox);
         private IUiMessageBoxService _messageBox;
 
-        //protected IUiNotificationService Notify => LazyGetNonScopedRequiredService(ref _notify);
-        //private IUiNotificationService _notify;
+        protected IUiNotificationService Notify => LazyGetNonScopedRequiredService(ref _notify);
+        private IUiNotificationService _notify;
+        protected IUiMessageService Message => LazyGetNonScopedRequiredService(ref _message);
+        private IUiMessageService _message;
+
 
         protected IAlertManager AlertManager => LazyGetNonScopedRequiredService(ref _alertManager);
         private IAlertManager _alertManager;
-
         protected AlertList Alerts => AlertManager.Alerts;
         #endregion
 

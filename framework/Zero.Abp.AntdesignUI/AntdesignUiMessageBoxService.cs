@@ -14,46 +14,44 @@ namespace Volo.Abp.BlazoriseUI
     [Dependency(ReplaceServices = true)]
     public class AntdesignUiMessageBoxService : IUiMessageBoxService, IScopedDependency
     {
-        private readonly IStringLocalizer<AbpUiResource> localizer;
         public ILogger<AntdesignUiMessageBoxService> Logger { get; set; }
 
         private ModalService ModalService { get; set; }
+
         public AntdesignUiMessageBoxService(
-            ModalService modalService,
-            IStringLocalizer<AbpUiResource> localizer)
+            ModalService modalService)
         {
             ModalService = modalService;
-            this.localizer = localizer;
             Logger = NullLogger<AntdesignUiMessageBoxService>.Instance;
         }
-        public async Task Info(string message, string title = null, Action<UiMessageBoxOptions> options = null)
+        public Task Info(string message, string title = null, Action<UiMessageBoxOptions> options = null)
         {
             var confirmOptions = CreateConfirmOptions(UiMessageBoxType.Info, message, title, options);
-            await ModalService.InfoAsync(confirmOptions);
+            return ModalService.InfoAsync(confirmOptions);
         }
 
-        public async Task Success(string message, string title = null, Action<UiMessageBoxOptions> options = null)
+        public Task Success(string message, string title = null, Action<UiMessageBoxOptions> options = null)
         {
             var confirmOptions = CreateConfirmOptions(UiMessageBoxType.Success, message, title, options);
-            await ModalService.SuccessAsync(confirmOptions);
+            return ModalService.SuccessAsync(confirmOptions);
         }
 
-        public async Task Warn(string message, string title = null, Action<UiMessageBoxOptions> options = null)
+        public Task Warn(string message, string title = null, Action<UiMessageBoxOptions> options = null)
         {
             var confirmOptions = CreateConfirmOptions(UiMessageBoxType.Warning, message, title, options);
-            await ModalService.WarningAsync(confirmOptions);
+            return ModalService.WarningAsync(confirmOptions);
         }
 
-        public async Task Error(string message, string title = null, Action<UiMessageBoxOptions> options = null)
+        public Task Error(string message, string title = null, Action<UiMessageBoxOptions> options = null)
         {
             var confirmOptions = CreateConfirmOptions(UiMessageBoxType.Error, message, title, options);
-            await ModalService.ErrorAsync(confirmOptions);
+            return ModalService.ErrorAsync(confirmOptions);
         }
 
-        public async Task<bool> Confirm(string message, string title = null, Action<UiMessageBoxOptions> options = null)
+        public Task<bool> Confirm(string message, string title = null, Action<UiMessageBoxOptions> options = null)
         {
             var confirmOptions = CreateConfirmOptions(UiMessageBoxType.Confirmation, message, title, options);
-            return await ModalService.ConfirmAsync(confirmOptions);
+            return ModalService.ConfirmAsync(confirmOptions);
         }
 
         protected virtual UiMessageBoxOptions CreateDefaultOptions()
@@ -71,8 +69,9 @@ namespace Volo.Abp.BlazoriseUI
         {
             var uiMessageOptions = CreateDefaultOptions();
             options?.Invoke(uiMessageOptions);
-            var args = new UiMessageBoxEventArgs(UiMessageBoxType.Info, message, title, uiMessageOptions);
-            var isConfirmation = type == UiMessageBoxType.Confirmation;
+            var args = new UiMessageBoxEventArgs(type, message, title, uiMessageOptions);
+
+            var isConfirmation = args.MessageType == UiMessageBoxType.Confirmation;
             var opt = new ConfirmOptions
             {
                 Title = args.Title,
@@ -84,7 +83,7 @@ namespace Volo.Abp.BlazoriseUI
             {
                 if (args.Options.MessageIcon == null)
                 {
-                    opt.Icon = IconRenderFragments.GetByConfirmIcon(type);
+                    opt.Icon = IconRenderFragments.GetByConfirmIcon(args.MessageType);
                 }
                 else
                 {

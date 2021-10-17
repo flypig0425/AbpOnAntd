@@ -4,6 +4,7 @@
 <BasicLayout MenuData="@MenuData">
     @Body
 </BasicLayout>
+<SettingDrawer />
 
 @code {
     protected ApplicationMenuItemList MenuData { get; set; }
@@ -12,5 +13,4 @@
         await base.OnInitializedAsync();
         MenuData = await MenuManager.GetMainMenuItemsAsync();
     }
-
 }

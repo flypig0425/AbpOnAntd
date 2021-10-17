@@ -76,4 +76,10 @@ namespace Zero.Abp.AntdesignUI.Components
             AlertManager.Alerts.CollectionChanged -= Alerts_CollectionChanged;
         }
     }
+
+    internal class AlertWrapper
+    {
+        public AlertMessage AlertMessage { get; set; }
+        public bool IsVisible { get; set; }
+    }
 }

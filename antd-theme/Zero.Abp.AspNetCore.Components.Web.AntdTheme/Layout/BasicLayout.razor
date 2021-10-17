@@ -16,7 +16,9 @@ else
                     <WrapContent PrefixCls="@PrefixCls"
                              Class="@ContentClass"
                              Style="@ContentStyle">
-                        @*<div>@string.Join("|",SiderSelectedKeys??new string[]{"1"})</div>*@
+                        <Template If="()=>!Loading && !HasPageContainer">
+                            <PageAlert />
+                        </Template>
                         @(Loading ? @<PageLoading /> : ChildContent)
                     </WrapContent>
                     @FooterDom
@@ -25,8 +27,6 @@ else
         </div>
     </CascadingValue>
 }
-<AntContainer />
-<SettingDrawer />
 <link rel="stylesheet" href="@_themeUrl" @ref="_themeRef">
 
 @code {
@@ -78,14 +78,9 @@ else
         if (IsSplitMenus)
         {
             var key = TopSelectedKeys?.FirstOrDefault();
-            if (!key.IsNullOrWhiteSpace())
-            {
-                menuData = menuData?.Find(f => f.Name == key)?.Items;
-            }
-            else
-            {
-                menuData = new ApplicationMenuItemList();
-            }
+            menuData = key.IsNullOrWhiteSpace()
+            ? new ApplicationMenuItemList()
+            : menuData?.Find(f => f.Name == key)?.Items;
         }
         var clearMenuData = menuData;  /*clearMenuItem(menuData || []);*/
         if (!(clearMenuData?.Any() ?? false) && Settings.SplitMenus) { return null; }

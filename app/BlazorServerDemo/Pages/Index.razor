@@ -5,7 +5,9 @@
 @using Volo.Abp.UI.Navigation
 @inject IMenuManager MenuManager
 
-
+   <Button Type="default" OnClick="OnClick">
+        Display a loading indicator
+    </Button>
 @*<Captcha ImagesPath="@ImagesPath" ImagesName="@ImagesName" @ref="Captcha" OnValid="@OnValid" />*@
 
 @code {
@@ -30,23 +32,50 @@
     //        });
     //    }
     //}
-
-    protected override void OnInitialized()
+     private async Task OnClick()
     {
+        var cofig = new MessageConfig()
+        {
+            Content = "Action in progress..",
+            Duration = 0
+        };
+        var task =  Message.Loading("This is a Loading message", o => o.Duration =0);
+        await Task.Delay(5000);
+        task.Start();
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        //Message.Info("This is a Info message");
+        //Message.Success("This is a Success message");
+        //Message.Warn("This is a Warn message");
+        //Message.Error("This is a Error message");
+        //Message.Loading("This is a Loading message", o => o.Duration = 2.5).ContinueWith((result) =>
+        //    {
+        //        Message.Info("Loading finished", o => o.Duration = 2.5)
+        //        .ContinueWith((result) =>
+        //        {
+        //            Message.Info("Loading finished is finished", o => o.Duration = 2.5);
+        //        });
+        //    }); ;
+
+        //var task = Message.Loading("This is a Loading message", o => o.Duration =0);
+        //await Task.Delay(5000);
+        //task.Start();
+
         //MessageBox.Info("Info", "信息");
         //MessageBox.Success("Success", "成功");
         //MessageBox.Warn("Warn", "警告");
         //MessageBox.Error("Error", "错误");
-        MessageBox.Confirm("Confirm", "确认", opt =>
-        {
-            opt.OnOk = async () => { await Task.Delay(1000); return false; };
-            opt.OnCancel = async () => { await Task.Delay(1000); return true; };
-        });
+        //MessageBox.Confirm("Confirm", "确认", opt =>
+        //{
+        //    opt.OnOk = async () => { await Task.Delay(1000); return false; };
+        //    opt.OnCancel = async () => { await Task.Delay(1000); return true; };
+        //});
 
         Alerts.Warning(
-        "We will have a service interruption between 02:00 AM and 04:00 AM at October 23, 2023!",
-        "Service Interruption");
-        base.OnInitialized();
+        "我们将在2023年10月23日凌晨02:00至04:00之间发生服务中断！",
+        "服务中断");
+        await base.OnInitializedAsync();
     }
 
     int? percentage = 0;
