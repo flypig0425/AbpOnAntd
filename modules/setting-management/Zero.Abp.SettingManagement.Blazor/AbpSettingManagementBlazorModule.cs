@@ -1,17 +1,19 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.AutoMapper;
 using Volo.Abp.Modularity;
+using Volo.Abp.SettingManagement;
 using Volo.Abp.UI.Navigation;
 using Zero.Abp.AspNetCore.Components.Web.Theming;
 using Zero.Abp.AspNetCore.Components.Web.Theming.Routing;
 using Zero.Abp.SettingManagement.Blazor.Menus;
+using Zero.Abp.SettingManagement.Blazor.Settings;
 
 namespace Zero.Abp.SettingManagement.Blazor
 {
     [DependsOn(
         typeof(AbpAutoMapperModule),
         typeof(AbpAspNetCoreComponentsWebThemingModule)
-        //,typeof(AbpSettingManagementApplicationContractsModule)
+        ,typeof(AbpSettingManagementApplicationContractsModule)
     )]
     public class AbpSettingManagementBlazorModule : AbpModule
     {
@@ -34,10 +36,10 @@ namespace Zero.Abp.SettingManagement.Blazor
                 options.AdditionalAssemblies.Add(typeof(AbpSettingManagementBlazorModule).Assembly);
             });
 
-            //Configure<SettingManagementComponentOptions>(options =>
-            //{
-            //    options.Contributors.Add(new EmailingPageContributor());
-            //});
+            Configure<SettingManagementComponentOptions>(options =>
+            {
+                options.Contributors.Add(new EmailingPageContributor());
+            });
         }
     }
 }

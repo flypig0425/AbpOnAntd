@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\framework\Zero.Abp.AntdesignUI\Zero.Abp.AntdesignUI.csproj" />
     <ProjectReference Include="..\..\framework\Zero.Abp.AspNetCore.Components.Web.Theming\Zero.Abp.AspNetCore.Components.Web.Theming.csproj" />
   </ItemGroup>
   

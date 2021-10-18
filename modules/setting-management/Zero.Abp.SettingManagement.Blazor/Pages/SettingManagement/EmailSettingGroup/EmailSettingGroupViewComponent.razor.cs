@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Components;
+using System;
 using System.Threading.Tasks;
-using Blazorise;
-using Microsoft.AspNetCore.Components;
-using Volo.Abp.AspNetCore.Components.Messages;
-using Volo.Abp.AspNetCore.Components.Web.Configuration;
+using Volo.Abp.SettingManagement;
 using Volo.Abp.SettingManagement.Localization;
+using Zero.Abp.AspNetCore.Components.Messages;
+using Zero.Abp.AspNetCore.Components.Web.Configuration;
 
 namespace Zero.Abp.SettingManagement.Blazor.Pages.SettingManagement.EmailSettingGroup
 {
@@ -12,7 +12,7 @@ namespace Zero.Abp.SettingManagement.Blazor.Pages.SettingManagement.EmailSetting
     {
         [Inject]
         protected IEmailSettingsAppService EmailSettingsAppService { get; set; }
-        
+
         [Inject]
         private ICurrentApplicationConfigurationCacheResetService CurrentApplicationConfigurationCacheResetService { get; set; }
 
@@ -21,14 +21,14 @@ namespace Zero.Abp.SettingManagement.Blazor.Pages.SettingManagement.EmailSetting
 
         protected EmailSettingsDto EmailSettings;
 
-        protected Validations IdentitySettingValidation;
+        //protected Validations IdentitySettingValidation;
 
         public EmailSettingGroupViewComponent()
         {
             ObjectMapperContext = typeof(AbpSettingManagementBlazorModule);
             LocalizationResource = typeof(AbpSettingManagementResource);
         }
-        
+
         protected override async Task OnInitializedAsync()
         {
             try
@@ -46,7 +46,7 @@ namespace Zero.Abp.SettingManagement.Blazor.Pages.SettingManagement.EmailSetting
             try
             {
                 await EmailSettingsAppService.UpdateAsync(ObjectMapper.Map<EmailSettingsDto, UpdateEmailSettingsDto>(EmailSettings));
-                
+
                 await CurrentApplicationConfigurationCacheResetService.ResetAsync();
 
                 await UiMessageService.Success(L["SuccessfullySaved"]);

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Volo.Abp.SettingManagement;
 
 namespace Zero.Abp.SettingManagement.Blazor
 {

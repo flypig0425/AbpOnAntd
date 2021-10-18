@@ -23,4 +23,8 @@
   <ItemGroup>
     <Folder Include="Layout\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Zero.Abp.AntdesignUI\Zero.Abp.AntdesignUI.csproj" />
+  </ItemGroup>
 </Project>

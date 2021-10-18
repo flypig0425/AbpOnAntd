@@ -1,10 +1,10 @@
 ﻿@using Volo.Abp.SettingManagement.Localization
-@inherits Volo.Abp.AspNetCore.Components.AbpComponentBase
+@inherits Zero.Abp.AspNetCore.Components.AbpComponentBase
 @inject AbpBlazorMessageLocalizerHelper<AbpSettingManagementResource> LH
 
 @if (EmailSettings != null)
 {
-    <Form>
+ @*   <Form>
         <Validations @ref="@IdentitySettingValidation" Model="@EmailSettings" ValidateOnLoad="false">
             <Row>
                 <Column>
@@ -99,5 +99,5 @@
                 <SubmitButton Clicked="@UpdateSettingsAsync" />
             </Column>
         </Row>
-    </Form>
+    </Form>*@
 }

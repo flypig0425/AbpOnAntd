@@ -9,6 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="Pages\SettingManagement\EmailSettingGroup\EmailSettingGroupViewComponent.razor" />
+    <None Include="Pages\SettingManagement\SettingManagement.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Volo.Abp.AutoMapper" Version="$(AbpPackageVersion)" />
   </ItemGroup>
 

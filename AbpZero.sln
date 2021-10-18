@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31424.327
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31717.71
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "framework", "framework", "{9B20C328-C33E-4ACC-90AE-EEE112C36EEC}"
 EndProject
@@ -58,8 +58,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{339A55
 		common.props = common.props
 		configureawait.props = configureawait.props
 	EndProjectSection
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AntDesign", "..\ant-design-blazor\components\AntDesign.csproj", "{067D861B-BC39-48C2-B6DA-DF45E3042E3B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -139,10 +137,6 @@ Global
 		{7B0A6D4C-42EB-4B88-BF55-86CD88698BAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B0A6D4C-42EB-4B88-BF55-86CD88698BAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B0A6D4C-42EB-4B88-BF55-86CD88698BAC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{067D861B-BC39-48C2-B6DA-DF45E3042E3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{067D861B-BC39-48C2-B6DA-DF45E3042E3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{067D861B-BC39-48C2-B6DA-DF45E3042E3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{067D861B-BC39-48C2-B6DA-DF45E3042E3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

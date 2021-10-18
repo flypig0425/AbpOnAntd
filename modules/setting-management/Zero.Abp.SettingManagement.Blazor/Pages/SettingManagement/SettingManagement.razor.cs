@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AntDesign;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
-using Volo.Abp.BlazoriseUI;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Volo.Abp.SettingManagement.Localization;
 
 namespace Zero.Abp.SettingManagement.Blazor.Pages.SettingManagement
@@ -27,7 +27,7 @@ namespace Zero.Abp.SettingManagement.Blazor.Pages.SettingManagement
         protected List<RenderFragment> SettingItemRenders { get; set; } = new List<RenderFragment>();
 
         protected string SelectedGroup;
-        protected List<BreadcrumbItem> BreadcrumbItems = new List<BreadcrumbItem>();
+        protected List<BreadcrumbItem> BreadcrumbItems = new();
 
         protected async override Task OnInitializedAsync()
         {
