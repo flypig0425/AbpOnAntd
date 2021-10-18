@@ -41,5 +41,17 @@ namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
 
         public static SiderTheme ToSiderTheme(this string theme)
             => theme switch { "light" => SiderTheme.Light, "dark" => SiderTheme.Dark, _ => SiderTheme.Light };
+
+
+
+        public static Dictionary<string, object> AddIfNoNull(
+            this Dictionary<string, object> dic,
+            string key, Func<object> valueFun)
+        {
+            dic ??= new Dictionary<string, object>();
+            var value = valueFun?.Invoke();
+            if (value != null) { dic.Add(key, value); }
+            return dic;
+        }
     }
 }

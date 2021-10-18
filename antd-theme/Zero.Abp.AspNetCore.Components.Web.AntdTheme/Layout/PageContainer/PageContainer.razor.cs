@@ -23,7 +23,7 @@ namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
         [Parameter] public string TabActiveKey { get; set; }
         [Parameter] public EventCallback<string> OnTabChange { get; set; }
 
-        [Parameter] public RenderFragment TabBarExtraContent { get; set; }
+        //[Parameter] public RenderFragment TabBarExtraContent { get; set; }
 
         [Parameter] public TabProps TabProps { get; set; } = new TabProps();
 
@@ -94,7 +94,7 @@ namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
     public class PageHeaderProps
     {
         public OneOf<string, RenderFragment> Title { get; set; }
-        public bool Ghost { get; set; }
+        public bool? Ghost { get; set; }
 
         public RenderFragment Breadcrumb { get; set; }
 

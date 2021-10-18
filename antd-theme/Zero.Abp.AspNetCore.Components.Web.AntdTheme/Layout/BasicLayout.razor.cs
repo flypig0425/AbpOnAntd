@@ -76,7 +76,9 @@ namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
                 LayoutState.OnThemeChangedAsync -= OnChangeThemeAsync;
                 LayoutState.OnChange -= OnSettingsChanged;
             }
-            NavigationManager.LocationChanged -= OnLocationChanged;
+            if (NavigationManager != null) {
+                NavigationManager.LocationChanged -= OnLocationChanged;
+            }
             base.Dispose(disposing);
         }
 

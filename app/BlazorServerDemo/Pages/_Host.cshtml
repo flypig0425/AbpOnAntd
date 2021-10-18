@@ -26,12 +26,16 @@
 
     <div id="blazor-error-ui">
         <environment include="Staging,Production">
-            An error has occurred. This application may no longer respond until reloaded.
+            @*An error has occurred. This application may no longer respond until reloaded.*@
+            发生了错误。此应用程序在重新加载之前可能不再响应。
         </environment>
         <environment include="Development">
-            An unhandled exception has occurred. See browser dev tools for details.
+            @*An unhandled exception has occurred. See browser dev tools for details.*@
+            发生了未处理的例外。有关详细信息，请参阅浏览器开发工具。
         </environment>
-        <a href="" class="reload">Reload</a>
+        <a href="" class="reload">
+            @*Reload*@ 重新加载
+        </a>
         <a class="dismiss">🗙</a>
     </div>
     <abp-script-bundle name="@BlazorAntdThemeBundles.Scripts.Global" />

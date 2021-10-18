@@ -38,12 +38,15 @@ namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
             {
                 if (Settings.Layout == Layout.Side.Name)
                 {
-                    Settings.HeaderTheme = "light";
+                    Settings.HeaderTheme = "light"; 
+                    Settings.SidebarTheme = "dark";
                     Settings.SplitMenus = false;
                 }
                 if (Settings.Layout == Layout.Top.Name)
                 {
                     Settings.SplitMenus = false;
+                    Settings.HeaderTheme = "dark";
+
                     //Settings.SidebarTheme = "light";//
                     //Settings.FixedSidebar = false;//
                     //Settings.MenuRender = false;
@@ -52,6 +55,8 @@ namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
                 if (Settings.Layout == Layout.Mix.Name)
                 {
                     Settings.FixedHeader = true;
+                    Settings.HeaderTheme = "dark";
+                    Settings.SidebarTheme = "light";
                 }
             }
             var themeFieldNames = new List<string> { nameof(LayoutSettings.PrimaryColor), nameof(LayoutSettings.DarkTheme), nameof(LayoutSettings.CompactTheme) };

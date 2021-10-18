@@ -34,7 +34,8 @@
             }
         }
         else
-        {  @if (Loading.IsT1)
+        {
+            if (Loading.IsT1)
             {
                 @Loading.AsT1
             }
@@ -54,13 +55,16 @@
     <!-- #endregion -->
 </div>
 @code {
+
+    RenderFragment demo;
+
     private bool HasFooter => Footer != null;
     //private bool HasBreadCrumb => false;
     private bool HasPageHeader => AnyNoNull(
-         Header, Title, TitleContent, BreadcrumbContent, Extra
-        , Content
-        , ExtraContent
-        );
+    Header, Title, TitleContent, BreadcrumbContent, Extra
+    , Content
+    , ExtraContent
+    );
 
     private int OffsetTop => (Value.HasHeader && Settings.FixedHeader) ? Settings.HeaderHeight : 0;
 
@@ -69,51 +73,59 @@
         <div class="@($"{PrefixedClassName}-main")">
             <div class="@($"{PrefixedClassName}-row")">
                 @if (Content != null)
-                    {
-                        <div class="@($"{PrefixedClassName}-content")">@Content</div>
-                    }
-                    @if (ExtraContent != null)
-                    {
-                        <div class="@($"{PrefixedClassName}-extraContent")">@ExtraContent</div>
-                    }
-                </div>
+                {
+                    <div class="@($"{PrefixedClassName}-content")">@Content</div>
+                }
+                @if (ExtraContent != null)
+                {
+                    <div class="@($"{PrefixedClassName}-extraContent")">@ExtraContent</div>
+                }
             </div>
-        </div>;
-
-    RenderFragment PageHeaderFooter => TabList.IsNullOrEmpty() ? null :
-    @<Tabs Class="@($"{PrefixedClassName}-tabs")"
-           OnTabClick="HandleTabClick"
-           ActiveKey="@TabActiveKey"
-           Type="@TabProps.Type"
-           HideAdd="@TabProps.HideAdd"
-           OnEdit="@TabProps.OnEdit"
-           TabBarExtraContent="@TabBarExtraContent">
-        @foreach (var item in TabList)
-            {
-                <TabPane Key="@item.Key" Tab="@item.Tab" Closable="@item.Closable" Disabled="@item.Disabled" />
-            }
-        </Tabs>;
+        </div>
+    </div>;
 
 
-    RenderFragment PageHeaderDom()
+//OnTabClick="HandleTabClick"
+//   OnEdit="@TabProps.OnEdit"
+//   TabBarExtraContent="@TabBarExtraContent"
+
+RenderFragment PageHeaderFooter => TabList.IsNullOrEmpty() ? null :
+@<Tabs Class="@($"{PrefixedClassName}-tabs")"
+       ActiveKey="@TabActiveKey"
+       Type="@TabProps.Type"
+       HideAdd="@TabProps.HideAdd"
+       OnTabClick="HandleTabClick"
+       OnEdit="@TabProps.OnEdit">
+    @foreach (var item in TabList)
+    {
+        <TabPane Key="@item.Key" Tab="@item.Tab" Closable="@item.Closable" Disabled="@item.Disabled" />
+    }
+</Tabs>;
+
+RenderFragment PageHeaderDom()
     {
         if (Header != null)
         {
-            Title = Header.Title.IsT0 ? Header.Title.AsT0 : Title;
-            TitleContent = Header.Title.IsT1 ? Header.Title.AsT1 : TitleContent;
-            Ghost = Header.Ghost || Ghost;
+            Title = Header.Title.IsT0 ? Header.Title.AsT0 ?? Title : Title;
+            TitleContent = Header.Title.IsT1 ? Header.Title.AsT1 ?? TitleContent : TitleContent;
+            Ghost = Header?.Ghost ?? Ghost;
             Extra = Header.Extra ?? Extra;
             BreadcrumbContent = Header.Breadcrumb ?? BreadcrumbContent;
         }
+
+        var parameters = new Dictionary<string, object>();
+        parameters.AddIfNoNull(nameof(PageHeader.Title), () => Title);
+        parameters.AddIfNoNull(nameof(PageHeader.Ghost), () => Ghost);
+        parameters.AddIfNoNull(nameof(PageHeader.TitleTemplate), () => TitleContent);
+        parameters.AddIfNoNull(nameof(PageHeader.PageHeaderExtra), () => Extra);
+        parameters.AddIfNoNull(nameof(PageHeader.PageHeaderBreadcrumb), () => BreadcrumbContent);
+        parameters.AddIfNoNull(nameof(PageHeader.PageHeaderContent), () => PageHeaderContent);
+        parameters.AddIfNoNull(nameof(PageHeader.PageHeaderFooter), () => PageHeaderFooter);
+
         return @<div class=@($"{PrefixedClassName}-warp")>
-        <PageHeader Title="@Title"
-                Ghost="@Ghost"
-                TitleTemplate="@TitleContent"
-                PageHeaderExtra="@Extra"
-                PageHeaderBreadcrumb="@BreadcrumbContent"
-                PageHeaderContent="@PageHeaderContent"
-                PageHeaderFooter="@PageHeaderFooter">
-        </PageHeader>
-    </div>;
-    }
+    <Component Type="@typeof(PageHeader)" Parameters="@parameters" />
+</div>;
+
+}
+
 }
