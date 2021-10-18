@@ -23,7 +23,7 @@ namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
         [Parameter] public string TabActiveKey { get; set; }
         [Parameter] public EventCallback<string> OnTabChange { get; set; }
 
-        //[Parameter] public RenderFragment TabBarExtraContent { get; set; }
+        [Parameter] public RenderFragment TabBarExtraContent { get; set; }
 
         [Parameter] public TabProps TabProps { get; set; } = new TabProps();
 
@@ -38,7 +38,7 @@ namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
 
         #region PageHeaderProps
         [Parameter] public string Title { get; set; }
-        [Parameter] public RenderFragment TitleContent { get; set; }
+        [Parameter] public RenderFragment TitleTemplate { get; set; }
         [Parameter] public bool Ghost { get; set; }
         [Parameter] public RenderFragment Extra { get; set; }
         [Parameter] public RenderFragment BreadcrumbContent { get; set; }
@@ -68,6 +68,7 @@ namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
     public class TabProps
     {
         public TabType Type { get; set; }
+        public TabSize Size { get; set; }
         public bool HideAdd { get; set; }
         public Func<string, string, Task<bool>> OnEdit { get; set; } = (key, action) => Task.FromResult(true);
     }

@@ -6,7 +6,7 @@ namespace Zero.Abp.SettingManagement.Blazor.WebAssembly
     [DependsOn(
         typeof(AbpSettingManagementBlazorModule),
         typeof(AbpAspNetCoreComponentsWebAssemblyThemingModule)
-    //,typeof(AbpSettingManagementHttpApiClientModule)
+    , typeof(AbpSettingManagementHttpApiClientModule)
     )]
     public class AbpSettingManagementBlazorWebAssemblyModule : AbpModule
     {

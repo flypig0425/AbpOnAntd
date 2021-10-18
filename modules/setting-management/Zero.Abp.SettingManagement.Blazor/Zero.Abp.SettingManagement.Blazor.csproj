@@ -16,7 +16,7 @@
     <ProjectReference Include="..\..\..\framework\Zero.Abp.AspNetCore.Components.Web.Theming\Zero.Abp.AspNetCore.Components.Web.Theming.csproj" />
   </ItemGroup>
 
-  <!--<ItemGroup>
-    <ProjectReference Include="..\Volo.Abp.SettingManagement.Application.Contracts\Volo.Abp.SettingManagement.Application.Contracts.csproj" />
-  </ItemGroup>-->
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.SettingManagement.Application.Contracts" Version="4.4.3" />
+  </ItemGroup>
 </Project>

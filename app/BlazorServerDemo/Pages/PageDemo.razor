@@ -1,8 +1,7 @@
 ﻿@page "/PageDemo"
 @inherits AbpComponentBase
 
-<PageContainer 
-Header="@header"
+<PageContainer Header="@header"
                TabList="@tabList"
                TabProps="@tabProps"
                Loading="@_loading">
@@ -31,7 +30,7 @@ Header="@header"
 </PageContainer>
 
 @code {
-    private bool _loading=true;
+    private bool _loading = true;
     protected override void OnInitialized()
     {
         _loading = false;
@@ -50,8 +49,9 @@ Header="@header"
     };
     private TabProps tabProps = new TabProps
         {
-            Type = TabType.EditableCard,
             HideAdd = true,
+            Size = TabSize.Small,
+            Type = TabType.EditableCard,
             OnEdit = (key, action) => { return Task.FromResult(true); },
         };
     private PageHeaderProps header = new PageHeaderProps

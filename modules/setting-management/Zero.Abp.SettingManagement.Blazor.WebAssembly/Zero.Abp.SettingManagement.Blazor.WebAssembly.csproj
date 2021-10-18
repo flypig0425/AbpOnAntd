@@ -11,10 +11,8 @@
     <ProjectReference Include="..\..\..\framework\Zero.Abp.AspNetCore.Components.WebAssembly.Theming\Zero.Abp.AspNetCore.Components.WebAssembly.Theming.csproj" />
     <ProjectReference Include="..\Zero.Abp.SettingManagement.Blazor\Zero.Abp.SettingManagement.Blazor.csproj" />
   </ItemGroup>
-
-
-  <!--<ItemGroup>
-     <ProjectReference Include="..\Zero.Abp.SettingManagement.HttpApi.Client\Zero.Abp.SettingManagement.HttpApi.Client.csproj" />
-  </ItemGroup>-->
   
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.SettingManagement.HttpApi.Client" Version="4.4.3" />
+  </ItemGroup>
 </Project>
