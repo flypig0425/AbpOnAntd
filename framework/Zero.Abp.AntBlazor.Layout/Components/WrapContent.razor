@@ -1,0 +1,17 @@
+﻿@namespace Zero.Abp.AntBlazor.Layout
+@inherits AntLayoutComponentBase
+
+<Content Class="@Class" Style="@Style">
+    <!--todo:ConfigProvider-->
+    <div class="@LayoutPrefixCls-basicLayout-children-content-wrap">
+        @ChildContent
+    </div>
+</Content>
+
+@code {
+    //[Parameter]
+    //public bool IsChildrenLayout { get; set; }
+
+    //[Parameter]
+    //public int ContentHeight { get; set; }
+}

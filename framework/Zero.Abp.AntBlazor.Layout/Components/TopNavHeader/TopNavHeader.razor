@@ -1,0 +1,58 @@
+﻿@namespace Zero.Abp.AntBlazor.Layout
+@inherits AntLayoutComponentBase
+
+<div class="@TopNavHeaderClass" style="@Style">
+    <div class="@ClassNames($"{BaseClassName}-main",("wide", Settings.ContentWidth == "Fixed"))">
+        <div class="@($"{BaseClassName}-main-left")" @onclick="OnMenuHeaderClick">
+            <div class="@($"{BaseClassName}-logo")" id="logo">
+                <Branding />
+            </div>
+        </div>
+        <div style="flex: 1;" class="@BaseClassName-menu">
+            <BaseMenu Mode="Mode"
+                      Theme="MenuTheme"
+                      MenuData="MenuData"
+                      SelectedKeys="SelectedKeys"
+                      SelectedKeysChanged="SelectedKeysChanged" />
+        </div>
+        @* @if (RightContentRender != null)
+            {*@
+        <div style="min-width:@rightSize">
+            <div style="padding-right:8px">
+                <div>
+                    @*@RightContentRender*@
+                    <HeaderRight />
+                </div>
+            </div>
+        </div>
+        @*}*@
+    </div>
+</div>
+@code {
+    private MenuTheme MenuTheme => Settings.HeaderTheme.ToMenuTheme();
+
+    [Parameter] public ApplicationMenuItemList MenuData { get; set; }
+    [Parameter] public string[] SelectedKeys { get; set; }
+    [Parameter] public EventCallback<string[]> SelectedKeysChanged { get; set; }
+
+    [Parameter] public bool Collapsed { get; set; }
+    [Parameter] public MenuMode Mode { get; set; }
+    //[Parameter] public MenuTheme Theme { get; set; }
+    [Parameter] public EventCallback<MouseEventArgs> OnMenuHeaderClick { get; set; }
+
+    //[CascadingParameter(Name = nameof(RightContentRender))]
+    //public RenderFragment RightContentRender { get; set; }
+
+    string rightSize = "auto";
+    public void SetRightSize(string value)
+    {
+        rightSize = value;
+    }
+
+    private string BaseClassName => $"{LayoutPrefixCls}-top-nav-header";
+
+    private string TopNavHeaderClass => ClassNames(
+        BaseClassName, Class
+        , ("light", MenuTheme == MenuTheme.Light)
+        );
+}

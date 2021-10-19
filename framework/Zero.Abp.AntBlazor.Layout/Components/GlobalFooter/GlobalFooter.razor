@@ -1,0 +1,36 @@
+﻿@namespace Zero.Abp.AntBlazor.Layout
+@inherits AntUIComponentBase
+
+<div class="@($"{LayoutPrefixCls}-global-footer")" style="@Style">
+    @if (Links?.Any() ?? false)
+    {
+        <div class="@BaseClassName-links">
+            @foreach (var link in Links)
+            {
+                <a key="@link.Key" title="@link.Key" target="@link.Target" href=@link.Href>
+                    @if (link.Title.IsT0)
+                    {
+                        @link.Title.AsT0
+                    }
+                    else
+                    {
+                        @link.Title.AsT1
+                    }
+                </a>
+            }
+        </div>
+    }
+    @if (Copyright != null)
+    {
+        <div class="@BaseClassName-copyright">
+            @Copyright
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter] public LinkItem[] Links { get; set; }
+    [Parameter] public RenderFragment Copyright { get; set; }
+
+    private  string BaseClassName =>  $"{LayoutPrefixCls}-global-footer";
+}

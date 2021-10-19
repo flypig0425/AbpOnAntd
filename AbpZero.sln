@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.31717.71
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "framework", "framework", "{9B20C328-C33E-4ACC-90AE-EEE112C36EEC}"
 EndProject
@@ -58,6 +58,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{339A55
 		common.props = common.props
 		configureawait.props = configureawait.props
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zero.Abp.AntBlazorUI", "framework\Zero.Abp.AntBlazorUI\Zero.Abp.AntBlazorUI.csproj", "{ADCA69E5-0B12-43BA-A8A9-3993808530CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zero.Abp.AntBlazor.Layout", "framework\Zero.Abp.AntBlazor.Layout\Zero.Abp.AntBlazor.Layout.csproj", "{D8CDBCB4-0AC8-4DEC-BD0C-BEA0B11DC8EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -137,6 +141,14 @@ Global
 		{7B0A6D4C-42EB-4B88-BF55-86CD88698BAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B0A6D4C-42EB-4B88-BF55-86CD88698BAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B0A6D4C-42EB-4B88-BF55-86CD88698BAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADCA69E5-0B12-43BA-A8A9-3993808530CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADCA69E5-0B12-43BA-A8A9-3993808530CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADCA69E5-0B12-43BA-A8A9-3993808530CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADCA69E5-0B12-43BA-A8A9-3993808530CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8CDBCB4-0AC8-4DEC-BD0C-BEA0B11DC8EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8CDBCB4-0AC8-4DEC-BD0C-BEA0B11DC8EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8CDBCB4-0AC8-4DEC-BD0C-BEA0B11DC8EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8CDBCB4-0AC8-4DEC-BD0C-BEA0B11DC8EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -163,6 +175,8 @@ Global
 		{0CC6BBCC-92E0-4A87-BBA8-F3CBF94ED10A} = {74951E45-3925-4637-A97D-7AF77C279549}
 		{FD4A5ACD-9FB6-4FB9-AF35-ABC2475DEA50} = {74951E45-3925-4637-A97D-7AF77C279549}
 		{7B0A6D4C-42EB-4B88-BF55-86CD88698BAC} = {74951E45-3925-4637-A97D-7AF77C279549}
+		{ADCA69E5-0B12-43BA-A8A9-3993808530CE} = {9B20C328-C33E-4ACC-90AE-EEE112C36EEC}
+		{D8CDBCB4-0AC8-4DEC-BD0C-BEA0B11DC8EE} = {9B20C328-C33E-4ACC-90AE-EEE112C36EEC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CCCD4626-D10B-4FA0-A554-235AECB0AB80}

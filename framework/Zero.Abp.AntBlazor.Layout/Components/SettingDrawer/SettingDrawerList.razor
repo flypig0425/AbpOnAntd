@@ -1,0 +1,102 @@
+﻿@namespace Zero.Abp.AntBlazor.Layout
+@inherits AntLayoutComponentBase
+
+<AntList Split="false"
+         DataSource="SettingItems"
+         ItemLayout="ListItemLayout.Horizontal">
+    <ListItem>
+        @context
+    </ListItem>
+</AntList>
+
+@code
+{
+    public RenderFragment SimpleSelectRender(
+            Expression<Func<LayoutSettings, string>> propertySelector
+            , Func<string> valueFactory, (string label, string value)[] options
+            , Func<bool> disabledFactory = null)
+    {
+        var fieldName = (propertySelector.Body as MemberExpression)?.Member?.Name;
+        return@<Template>
+        <span style="@StyleValues(("opacity:0.5",disabledFactory))">@L[fieldName]</span>
+        <RadioGroup Size="@("small")" TValue="string" Value="@(valueFactory?.Invoke()?? "")" Disabled="@(disabledFactory?.Invoke()?? false)"
+                OnChange="value=>LayoutState.UpdateSettingAsync<string>(propertySelector,value,valueFactory)"
+                ButtonStyle="@RadioButtonStyle.Solid">
+            @foreach (var item in options)
+                {
+                    <Radio RadioButton Disabled="@(disabledFactory?.Invoke()?? false)" Value="@item.value">@item.label</Radio>
+                }
+            </RadioGroup>
+
+        </Template>
+    ;
+    }
+
+    public RenderFragment SwitchRender(
+        Expression<Func<LayoutSettings, bool>> propertySelector
+        , Func<bool> valueFactory
+        , Func<bool> disabledFactory = null)
+    {
+        var fieldName = (propertySelector.Body as MemberExpression)?.Member?.Name;
+        return @<Template>
+        <span style="@StyleValues(("opacity:0.5",disabledFactory))">@L[fieldName]</span>
+        <Switch Size="small" Checked="@(valueFactory?.Invoke()?? false)" Disabled="@(disabledFactory?.Invoke()?? false)"
+            OnChange="value=>LayoutState.UpdateSettingAsync(propertySelector,value,valueFactory)" />
+    </Template>
+    ;
+    }
+
+
+    /// <summary>
+    /// LayoutSetting,RegionalSetting,OtherSetting,ThemeSetting
+    /// </summary>
+    [Parameter] public string ListType { get; set; }
+
+
+    public RenderFragment[] SettingItems { get; set; }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        LayoutState.OnChange += OnSettingsChanged;
+        if (ListType == "LayoutSetting")
+        {
+            SettingItems = new[] {
+                SimpleSelectRender(x => x.ContentWidth,()=>Settings.ContentWidth,new []{ (L["Fixed"].Value,"fixed"), (L["Fluid"],"fluid")}   ),
+                SimpleSelectRender(x => x.HeaderTheme,()=>Settings.HeaderTheme,new []{ (L["Light"].Value,"light"), (L["Dark"],"dark")}  ,()=>Settings.Layout==Layout.Side.Name ),
+                SimpleSelectRender(x => x.SidebarTheme,()=>Settings.SidebarTheme,new []{ (L["Light"].Value,"light"), (L["Dark"],"dark")}     ,()=>Settings.Layout==Layout.Top.Name   ),
+                SwitchRender( x => x.FixedHeader,() => Settings.FixedHeader ,()=>Settings.Layout==Layout.Mix.Name ),
+                SwitchRender(x => x.FixedSidebar,() => Settings.FixedSidebar ,()=>Settings.Layout==Layout.Top.Name),
+                SwitchRender(x => x.SplitMenus,() => Settings.SplitMenus,()=>Settings.Layout!=Layout.Mix.Name )
+            };
+        }
+        if (ListType == "RegionalSetting")
+        {
+            SettingItems = new[] {
+                SwitchRender(x=>x.HeaderRender,()=>Settings.HeaderRender),
+                SwitchRender(x=>x.FooterRender,()=>Settings.FooterRender),
+                SwitchRender(x=>x.MenuRender,()=>Settings.MenuRender ,()=>Settings.Layout==Layout.Top.Name),
+                SwitchRender(x=>x.MenuHeaderRender,()=>Settings.MenuHeaderRender,()=>Settings.Layout==Layout.Top.Name)
+            };
+        }
+        if (ListType == "OtherSetting")
+        {
+            SettingItems = new[] {
+                SwitchRender( x => x.ColorWeak, () => Settings.ColorWeak)
+            };
+        }
+        if (ListType == "ThemeSetting")
+        {
+            SettingItems = new[]{
+                SwitchRender( x => x.CompactTheme, () => Settings.CompactTheme),
+                SwitchRender( x => x.DarkTheme, () => Settings.DarkTheme)
+            };
+        }
+    }
+    protected override void Dispose(bool disposing)
+    {
+        LayoutState.OnChange -= OnSettingsChanged;
+        base.Dispose(disposing);
+    }
+}

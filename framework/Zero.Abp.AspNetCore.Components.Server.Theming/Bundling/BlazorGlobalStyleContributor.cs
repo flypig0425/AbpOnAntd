@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
-using Zero.Abp.AntdesignUI;
+using Zero.Abp.AntBlazorUI;
 
 namespace Zero.Abp.AspNetCore.Components.Server.Theming.Bundling
 {

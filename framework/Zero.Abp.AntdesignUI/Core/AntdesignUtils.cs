@@ -4,17 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
+namespace Zero.Abp.AntBlazorUI
 {
-    public sealed class Layout : EnumValue<Layout>
-    {
-        public static readonly Layout Side = new(nameof(Side).ToLowerInvariant(), 1);
-        public static readonly Layout Top = new(nameof(Top).ToLowerInvariant(), 2);
-        public static readonly Layout Mix = new(nameof(Mix).ToLowerInvariant(), 3);
-        private Layout(string name, int value) : base(name, value) { }
-    }
-
-    public static class Utils
+    public static class AntdesignUtils
     {
         public static IEnumerable<string> StyleOrClassNames(params OneOf<
             string
@@ -41,8 +33,6 @@ namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
 
         public static SiderTheme ToSiderTheme(this string theme)
             => theme switch { "light" => SiderTheme.Light, "dark" => SiderTheme.Dark, _ => SiderTheme.Light };
-
-
 
         public static Dictionary<string, object> AddIfNoNull(
             this Dictionary<string, object> dic,

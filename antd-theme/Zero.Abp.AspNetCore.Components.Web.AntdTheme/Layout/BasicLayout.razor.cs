@@ -145,7 +145,7 @@ namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
             , ($"padding-left: {PaddingLeft}px", Settings.MenuRender)
             );
 
-        private string BaseClassName => $"{PrefixCls}-basicLayout";
+        private string BaseClassName => $"{LayoutPrefixCls}-basicLayout";
 
         private string LayoutClass => ClassNames("ant-design-pro", BaseClassName, $"screen-{ScreenSize}"
             , ($"{BaseClassName}-top-menu", IsTopLayout)

@@ -1,0 +1,54 @@
+﻿@namespace Zero.Abp.AntBlazorUI.Components
+
+@using Volo.Abp.Users
+@using Volo.Abp.MultiTenancy
+@using Microsoft.Extensions.Localization
+@using global::Localization.Resources.AbpUi
+@using Microsoft.JSInterop
+
+@inject IJSRuntime JsRuntime
+@inject ICurrentUser CurrentUser
+@inject ICurrentTenant CurrentTenant
+@inject NavigationManager Navigation
+@inject IStringLocalizer<AbpUiResource> L
+
+<Dropdown Style="display: inherit; width: inherit;"
+          OverlayClassName="container">
+    <Overlay>
+        @if (Menu != null)
+        {
+            <Menu Class="menu">
+                @foreach (var menuItem in Menu.Items)
+                {
+                    string menuIcon = menuItem?.Icon ?? "";
+                    <MenuItem Key="@menuItem.Name"
+                              OnClick="@(() => NavigateToAsync(menuItem.Url, menuItem.Target))">
+                        <IconView Icon="@menuItem.Icon" />
+                        @menuItem.DisplayName
+                    </MenuItem>
+                }
+                @*   <Divider />
+                    <MenuItem OnClick="BeginSignOut">@L["Logout"]</MenuItem>*@
+            </Menu>
+        }
+    </Overlay>
+    <Unbound>
+        <span @ref="@context.Current" class="action account">
+            <Avatar Size="small" Class="avatar" Src="@Avatar" Alt="avatar" />
+            <span class="name anticon">
+                @if (CurrentTenant.Name != null)
+                {
+                    <span><i>@CurrentTenant.Name</i>\@CurrentUser.UserName</span>
+                }
+                else
+                {
+                    <span>@CurrentUser.UserName</span>
+                }
+            </span>
+        </span>
+    </Unbound>
+</Dropdown>
+
+@code {
+    [Parameter] public string Avatar { get; set; }
+}

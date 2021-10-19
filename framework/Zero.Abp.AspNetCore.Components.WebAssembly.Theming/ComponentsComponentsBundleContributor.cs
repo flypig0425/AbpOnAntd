@@ -1,5 +1,5 @@
 ﻿using Volo.Abp.Bundling;
-using Zero.Abp.AntdesignUI;
+using Zero.Abp.AntBlazorUI;
 
 namespace Zero.Abp.AspNetCore.Components.WebAssembly.Theming
 {

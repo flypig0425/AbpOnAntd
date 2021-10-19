@@ -9,7 +9,7 @@ namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
     public partial class SettingDrawer
     {
         private bool _show;
-        private string BaseClassName => $"{PrefixCls}-setting";
+        private string BaseClassName => $"{LayoutPrefixCls}-setting";
         private CheckboxItem[] LayoutList => new CheckboxItem[]
         {
             new CheckboxItem
@@ -49,6 +49,8 @@ namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
 
         private void SetShow(MouseEventArgs args) => _show = !_show;
 
+
+        [Inject] public MessageService Message { get; set; }
         private async Task CopySetting(MouseEventArgs args)
         {
             var json = JsonSerializer.Serialize(Settings);

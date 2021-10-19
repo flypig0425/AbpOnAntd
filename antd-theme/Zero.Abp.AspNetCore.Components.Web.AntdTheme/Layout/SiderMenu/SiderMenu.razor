@@ -119,7 +119,7 @@
 
     #region StyleOrClass
     //private string siderWidth => $"{(Collapsed ? collapsedWidth : SiderWidth)}px";
-    private string BaseClassName => $"{PrefixCls}-sider";
+    private string BaseClassName => $"{LayoutPrefixCls}-sider";
     private string SiderClassName => ClassNames(BaseClassName
     , ($"{BaseClassName}-fixed", Settings.FixedSidebar)
     , ($"{BaseClassName}-layout-{Settings.Layout}", Settings.Layout != null && !IsMobile)

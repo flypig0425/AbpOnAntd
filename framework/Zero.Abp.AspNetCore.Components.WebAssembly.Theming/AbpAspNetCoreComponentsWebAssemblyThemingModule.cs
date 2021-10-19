@@ -1,5 +1,5 @@
 ﻿using Volo.Abp.Modularity;
-using Zero.Abp.AntdesignUI;
+using Zero.Abp.AntBlazorUI;
 using Zero.Abp.AspNetCore.Components.Web.Theming;
 
 namespace Zero.Abp.AspNetCore.Components.WebAssembly.Theming

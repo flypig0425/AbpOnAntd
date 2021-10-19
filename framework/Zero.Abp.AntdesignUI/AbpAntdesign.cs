@@ -1,4 +1,4 @@
-﻿namespace Zero.Abp.AntdesignUI
+﻿namespace Zero.Abp.AntBlazorUI
 {
     public static class AbpAntdesign
     {

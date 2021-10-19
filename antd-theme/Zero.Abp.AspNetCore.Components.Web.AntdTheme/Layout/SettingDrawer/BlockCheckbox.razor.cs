@@ -13,7 +13,7 @@ namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
     public partial class BlockCheckbox
     {
         private string _value;
-        private string BaseClassName => $"{PrefixCls}-drawer-block-checkbox";
+        private string BaseClassName => $"{LayoutPrefixCls}-drawer-block-checkbox";
         [Parameter] public CheckboxItem[] List { get; set; }
         [Parameter] public EventCallback<string> ValueChanged { get; set; }
         [Parameter] public EventCallback<string> OnChange { get; set; }

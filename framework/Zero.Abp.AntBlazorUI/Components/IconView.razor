@@ -1,0 +1,29 @@
+﻿@using System.Text.RegularExpressions
+
+@if (!Icon.IsNullOrWhiteSpace())
+{
+    @if (Icon.StartsWith("fa"))
+    {
+        <span class="anticon">
+            <i class="@Icon"></i>
+        </span>
+    }
+    else if (Icon.StartsWith("http") || Regex.IsMatch(Icon, @"\w.(png|jpg|jpeg|svg|webp|gif|bmp)$"))
+    {
+        <img src="@Icon" alt="icon" />
+    }
+    else if (Icon.StartsWith(IconPrefixes))
+    {
+        <IconFont Type="@Icon" />
+    }
+    else
+    {
+        <Icon Type="@Icon" Theme="outline" />
+    }
+}
+
+@code {
+    [Parameter] public string IconPrefixes { get; set; } = "icon-";
+
+    [Parameter] public string Icon { get; set; }
+}

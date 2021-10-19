@@ -3,10 +3,10 @@ using Volo.Abp.Authorization;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.VirtualFileSystem;
-using Zero.Abp.AntdesignUI.Localization;
+using Zero.Abp.AntBlazorUI.Localization;
 using Zero.Abp.AspNetCore.Components.Web;
 
-namespace Zero.Abp.AntdesignUI
+namespace Zero.Abp.AntBlazorUI
 {
     [DependsOn(
         typeof(AbpAspNetCoreComponentsWebModule),

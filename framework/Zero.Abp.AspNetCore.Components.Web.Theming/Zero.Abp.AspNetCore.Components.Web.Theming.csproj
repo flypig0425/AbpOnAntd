@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Razor">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <Import Project="..\..\configureawait.props" />
   <Import Project="..\..\common.props" />
@@ -18,10 +18,6 @@
   
   <ItemGroup>
     <PackageReference Include="Volo.Abp.UI.Navigation" Version="4.4.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Layout\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Zero.Abp.AntdesignUI.Components;
+using Zero.Abp.AntBlazorUI.Components;
 using Zero.Abp.AspNetCore.Components.Server.AntdTheme.Themes;
 using Zero.Abp.AspNetCore.Components.Web.Theming.Toolbars;
 

@@ -1,6 +1,6 @@
 ﻿using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
 using Volo.Abp.Modularity;
-using Zero.Abp.AntdesignUI;
+using Zero.Abp.AntBlazorUI;
 using Zero.Abp.AspNetCore.Components.Server.Theming.Bundling;
 using Zero.Abp.AspNetCore.Components.Web.Theming;
 using Zero.Abp.AspNetCore.Mvc.UI.Bundling;

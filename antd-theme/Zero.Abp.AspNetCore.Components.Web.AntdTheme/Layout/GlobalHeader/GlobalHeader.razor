@@ -22,11 +22,11 @@
         </div>
     }
     <div style="flex: 1">@ChildContent</div>
-    <HeaderRight />
-    @*  @if (RightContentRender != null)
-        {
-            @RightContentRender
-        }*@
+    <HeaderRight/>
+    @*@if (RightContentRender != null)
+    {
+        @RightContentRender
+    }*@
 </div>
 
 @code{
@@ -54,9 +54,9 @@
     static readonly RenderFragment<bool> defaultCollapsedButtonRender = collapsed =>
     @<Icon Type="@(collapsed ? "menu-unfold" : "menu-fold")" Theme="outline" />;
 
-private string BaseClassName => $"{PrefixCls}-global-header";
-private string className => ClassNames(BaseClassName, Class
-, ($"{BaseClassName}-layout-{Settings.Layout}", Settings.Layout != null && Settings.HeaderTheme == MenuTheme.Dark.Name)
-);
+    private string BaseClassName => $"{LayoutPrefixCls}-global-header";
+    private string className => ClassNames(BaseClassName, Class
+    , ($"{BaseClassName}-layout-{Settings.Layout}", Settings.Layout != null && Settings.HeaderTheme == MenuTheme.Dark.Name)
+    );
 
 }

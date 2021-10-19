@@ -1,0 +1,80 @@
+﻿@namespace Zero.Abp.AntBlazor.Layout
+@inherits AntLayoutComponentBase
+
+@if (needFixedHeader)
+{
+    <Header Style="@FixedHeaderStyle" />
+}
+<Header Style="@HeaderStyle"
+        Class="@HeaderClass">
+    @if ((IsTopLayout || isSplitMenus) && !IsMobile)
+    {
+        <TopNavHeader Mode="MenuMode.Horizontal"
+                  MenuData="MenuData"
+                  SelectedKeys="SelectedKeys"
+                  SelectedKeysChanged="SelectedKeysChanged" />
+    }
+    else
+    {
+        <GlobalHeader IsMobile="IsMobile"
+                  Collapsed="@Collapsed"
+                  OnCollapse="HandleCollapse">
+            @HeaderContentRender
+        </GlobalHeader>
+    }
+</Header>
+
+@code {
+
+    [Parameter] public ApplicationMenuItemList MenuData { get; set; }
+    [Parameter] public string[] SelectedKeys { get; set; } = null;
+    [Parameter] public EventCallback<string[]> SelectedKeysChanged { get; set; }
+
+    [Parameter] public bool Collapsed { get; set; }
+    [Parameter] public EventCallback<bool> CollapsedChanged { get; set; }
+    [Parameter] public EventCallback<bool> OnCollapse { get; set; }
+    private async Task HandleCollapse(bool collapsed)
+    {
+        Collapsed = collapsed;
+        if (OnCollapse.HasDelegate) { await OnCollapse.InvokeAsync(collapsed); }
+        if (CollapsedChanged.HasDelegate) { await CollapsedChanged.InvokeAsync(collapsed); }
+    }
+
+
+    [Parameter] public int SiderWidth { get; set; } = 208;
+    [Parameter] public bool IsMobile { get; set; }
+    [Parameter] public bool HasSiderMenu { get; set; }
+    [Parameter] public RenderFragment HeaderContentRender { get; set; }
+
+    private bool isSplitMenus => IsMixLayout && Settings.SplitMenus;
+
+    private bool needFixedHeader => Settings.FixedHeader || IsMixLayout;
+    private int headerHeight => Settings.HeaderHeight;
+
+    private bool needSideWidth => needFixedHeader && HasSiderMenu && !IsTopLayout && !IsMobile;
+    private string headerWidth => !IsMixLayout && needSideWidth
+      ? $"calc(100% - {(Collapsed ? 48 : SiderWidth)}px)" : "100%";
+    private int? headerRight => needFixedHeader ? 0 : null;
+
+    private string HeaderClass => ClassNames(
+         ($"{LayoutPrefixCls}-fixed-header", needFixedHeader)
+       , ($"{LayoutPrefixCls}-fixed-header-action", !Collapsed)
+       , ($"{LayoutPrefixCls}-top-menu", IsTopLayout)
+       , ($"{LayoutPrefixCls}-header-{Settings.HeaderTheme}")
+        );
+
+    private string FixedHeaderStyle => StyleValues(
+       "background:transparent"
+       , $"height:{headerHeight}px"
+       , $"line-height:{headerHeight}px"
+        );
+    private string HeaderStyle => StyleValues(
+        "padding:0px"
+        , $"height:{headerHeight}px"
+        , $"line-height:{headerHeight}px"
+        , $"width:{headerWidth}"
+        , $"z-index:{(IsMixLayout ? 100 : 9)}"
+        , $"{(headerRight.HasValue ? $"right:{headerRight}px;" : "")}"
+        , Style
+        );
+}

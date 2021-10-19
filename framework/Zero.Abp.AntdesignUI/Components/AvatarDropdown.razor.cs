@@ -5,7 +5,7 @@ using System;
 using System.Threading.Tasks;
 using Volo.Abp.UI.Navigation;
 
-namespace Zero.Abp.AntdesignUI.Components
+namespace Zero.Abp.AntBlazorUI.Components
 {
     public partial class AvatarDropdown : IDisposable
     {

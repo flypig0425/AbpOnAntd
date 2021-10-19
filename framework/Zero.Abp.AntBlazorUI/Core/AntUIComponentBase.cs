@@ -4,11 +4,12 @@ using OneOf;
 using System;
 using System.Linq;
 
-namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
+namespace Zero.Abp.AntBlazorUI
 {
     public abstract class AntUIComponentBase : AntComponentBase
     {
-        [Parameter] public string PrefixCls { get; set; } = "ant-pro";
+        [Parameter] public string PrefixCls { get; set; } = "ant";
+
         [Parameter] public string Class { get; set; }
         [Parameter] public string Style { get; set; }
         [Parameter] public RenderFragment ChildContent { get; set; }
@@ -18,14 +19,14 @@ namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
         /// </summary>
         protected static string ClassNames(params OneOf<string, (string s, bool b), (Func<string> func, bool b)
                     , (string s, Func<bool> b), (Func<string> func, Func<bool> b)>[] classNames)
-            => string.Join(" ", Utils.StyleOrClassNames(classNames));
+            => string.Join(" ", AntBlazorUtils.StyleOrClassNames(classNames));
 
         /// <summary>
         /// Example: StyleValues(style ,(style,true|flase) ,(()=>style,true|flase))
         /// </summary>
         protected static string StyleValues(params OneOf<string, (string s, bool b), (Func<string> func, bool b)
                     , (string s, Func<bool> b), (Func<string> func, Func<bool> b)>[] styleValues)
-            => string.Join(";", Utils.StyleOrClassNames(styleValues)?.Select(s => s.TrimEnd(';')));
+            => string.Join(";", AntBlazorUtils.StyleOrClassNames(styleValues)?.Select(s => s.TrimEnd(';')));
 
 
         protected static bool AllNoNull(params object[] values)

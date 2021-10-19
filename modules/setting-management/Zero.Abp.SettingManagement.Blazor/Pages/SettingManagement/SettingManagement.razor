@@ -1,11 +1,43 @@
 ﻿@page "/setting-management"
 @*@using Volo.Abp.Features
-@attribute [RequiresFeature(SettingManagementFeatures.Enable)]
+    @attribute [RequiresFeature(SettingManagementFeatures.Enable)]
 *@
 @* ************************* PAGE HEADER ************************* *@
-@*<PageHeader Title="@L["Settings"]" BreadcrumbItems="@BreadcrumbItems">
+
+<PageHeader Title="@L["Settings"]" BreadcrumbItems="@BreadcrumbItems">
 
 </PageHeader>
+
+<GridContent>
+    <div className={styles.main}
+         ref={(ref) =>
+        {
+        if (ref) {
+        dom.current = ref;
+        }
+        }}
+        >
+        <div className={styles.leftMenu}>
+            <Menu mode={initConfig.mode}
+                  selectedKeys={[initConfig.selectKey]}
+                  onClick={({ key })=>
+                {
+                setInitConfig({
+                ...initConfig,
+                selectKey: key as SettingsStateKeys,
+                });
+                }}
+                >
+                {getMenu()}
+            </Menu>
+        </div>
+        <div className={styles.right}>
+            <div className={styles.title}>{menuMap[initConfig.selectKey]}</div>
+            {renderChildren()}
+        </div>
+    </div>
+</GridContent>
+
 
 <Card>
     <CardBody>
@@ -40,4 +72,3 @@
         </Tabs>
     </CardBody>
 </Card>
-*@

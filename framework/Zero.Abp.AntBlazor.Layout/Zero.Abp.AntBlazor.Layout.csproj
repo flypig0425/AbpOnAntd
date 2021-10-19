@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <Content Remove="Localization\Resources\AntBlazorLayout\*.json" />
+    <EmbeddedResource Include="Localization\Resources\AntBlazorLayout\*.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Zero.Abp.AntBlazorUI\Zero.Abp.AntBlazorUI.csproj" />
+  </ItemGroup>
+
+</Project>

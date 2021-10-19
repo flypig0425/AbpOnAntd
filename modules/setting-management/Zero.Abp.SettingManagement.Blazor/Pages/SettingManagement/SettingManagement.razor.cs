@@ -12,15 +12,13 @@ namespace Zero.Abp.SettingManagement.Blazor.Pages.SettingManagement
 {
     public partial class SettingManagement
     {
-        [Inject]
-        protected IServiceProvider ServiceProvider { get; set; }
+        [Inject] protected IServiceProvider ServiceProvider { get; set; }
 
         protected SettingComponentCreationContext SettingComponentCreationContext { get; set; }
 
-        [Inject]
-        protected IOptions<SettingManagementComponentOptions> _options { get; set; }
-        [Inject]
-        protected IStringLocalizer<AbpSettingManagementResource> L { get; set; }
+        [Inject] protected IOptions<SettingManagementComponentOptions> _options { get; set; }
+
+        [Inject] protected IStringLocalizer<AbpSettingManagementResource> L { get; set; }
 
         protected SettingManagementComponentOptions Options => _options.Value;
 
