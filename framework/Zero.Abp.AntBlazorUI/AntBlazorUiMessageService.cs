@@ -4,9 +4,8 @@ using System;
 using System.Threading.Tasks;
 using Volo.Abp.DependencyInjection;
 using Zero.Abp.AspNetCore.Components.Messages;
-using static Volo.Abp.BlazoriseUI.AntdesignUiMessageBoxService;
 
-namespace Volo.Abp.AntBlazorUI
+namespace Zero.Abp.AntBlazorUI
 {
     [Dependency(ReplaceServices = true)]
     public class AntBlazorUiMessageService : IUiMessageService, IScopedDependency

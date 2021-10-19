@@ -10,15 +10,6 @@ namespace Zero.Abp.AntBlazor.Layout
 {
     public partial class BasicLayout
     {
-        [CascadingParameter]
-        private LayoutStateProvider LayoutStateProvider { get; set; }
-        private bool IsSideLayout => LayoutStateProvider.Settings.Layout == Layout.Side.Name;
-        private bool IsTopLayout => LayoutStateProvider.Settings.Layout == Layout.Top.Name;
-        private bool IsMixLayout => LayoutStateProvider.Settings.Layout == Layout.Mix.Name;
-
-
-
-
         #region MyRegion
         public bool HasHeader => HeaderDom != null;
         public bool HasPageContainer { get; set; }
@@ -61,9 +52,9 @@ namespace Zero.Abp.AntBlazor.Layout
             await base.OnInitializedAsync();
             MatchMenuKeys();
             NavigationManager.LocationChanged += OnLocationChanged;
-            LayoutState.OnThemeChangedAsync += OnChangeThemeAsync;
-            LayoutState.OnChange += OnSettingsChanged;
-            await LayoutState.UpdateThemeAsync();
+            //LayoutState.OnThemeChangedAsync += OnChangeThemeAsync;
+            //LayoutState.OnChange += OnSettingsChanged;
+            //await LayoutState.UpdateThemeAsync();
         }
 
 
@@ -81,12 +72,13 @@ namespace Zero.Abp.AntBlazor.Layout
         protected override void Dispose(bool disposing)
         {
             DomEventListener?.Dispose();
-            if (LayoutState != null)
+            //if (LayoutState != null)
+            //{
+            //    LayoutState.OnThemeChangedAsync -= OnChangeThemeAsync;
+            //    LayoutState.OnChange -= OnSettingsChanged;
+            //}
+            if (NavigationManager != null)
             {
-                LayoutState.OnThemeChangedAsync -= OnChangeThemeAsync;
-                LayoutState.OnChange -= OnSettingsChanged;
-            }
-            if (NavigationManager != null) {
                 NavigationManager.LocationChanged -= OnLocationChanged;
             }
             base.Dispose(disposing);

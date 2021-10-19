@@ -7,15 +7,15 @@
 }
 else
 {
-    <CascadingValue Value="@this" Name="LayoutContext">
+    <LayoutStateProvider>
         <div class="@LayoutClass" style="@WeakModeStyle">
             <Layout Style="min-height: 100%;">
                 @SiderMenuDom
                 <div style="@GenLayoutStyle" class="@layoutCls">
                     @HeaderDom
                     <WrapContent PrefixCls="@LayoutPrefixCls"
-                                 Class="@ContentClass"
-                                 Style="@ContentStyle">
+                             Class="@ContentClass"
+                             Style="@ContentStyle">
                         <Template If="()=>!Loading && !HasPageContainer">
                             <PageAlert />
                         </Template>
@@ -25,7 +25,7 @@ else
                 </div>
             </Layout>
         </div>
-    </CascadingValue>
+    </LayoutStateProvider>
 }
 <link rel="stylesheet" href="@_themeUrl" @ref="_themeRef">
 
@@ -40,56 +40,59 @@ else
         @if ((Settings.FooterRender == false) || Pure) { return null; }
         //@if (FooterContent != null) { return FooterContent; }
         return @<FooterView></FooterView>;
-}
+    }
 
-private RenderFragment headerRender()
-{
-@if ((Settings.HeaderRender == false) || Pure) { return null; }
-//@if (HeaderContent != null) { return HeaderContent; }
-var menuData = new ApplicationMenuItemList(MenuData);
-if (IsSplitMenus)
-{
-    var noChildrenMenuData = MenuData.Select(s => new ApplicationMenuItem(
-        s.Name, s.DisplayName, s.Url, s.Icon, s.Order, s.CustomData, s.Target, s.ElementId, s.CssClass));
-    menuData = new ApplicationMenuItemList(noChildrenMenuData);
-}
-return
-@<HeaderView HasSiderMenu="HasSiderMenu"
-             SiderWidth="SiderWidth"
-             MenuData="menuData"
-             IsMobile="IsMobile"
-             Collapsed="@Collapsed"
-             OnCollapse="HandleCollapse"
-             @bind-SelectedKeys="@TopSelectedKeys" />
+    private RenderFragment headerRender()
+    {
+        @if ((Settings.HeaderRender == false) || Pure) { return null; }
+        //@if (HeaderContent != null) { return HeaderContent; }
+        var menuData = new ApplicationMenuItemList(MenuData);
+        if (IsSplitMenus)
+        {
+            var noChildrenMenuData = MenuData.Select(s => new ApplicationMenuItem(
+                s.Name, s.DisplayName, s.Url, s.Icon, s.Order, s.CustomData, s.Target, s.ElementId, s.CssClass));
+            menuData = new ApplicationMenuItemList(noChildrenMenuData);
+        }
+        return
+@
+    <HeaderView HasSiderMenu="HasSiderMenu"
+            SiderWidth="SiderWidth"
+            MenuData="menuData"
+            IsMobile="IsMobile"
+            Collapsed="@Collapsed"
+            OnCollapse="HandleCollapse"
+                @bind-SelectedKeys="@TopSelectedKeys" />
+        ;
+    }
+
+
+    private RenderFragment renderSiderMenu()
+    {
+        @if (Settings.MenuRender == false || Pure) { return null; }
+        var menuData = new ApplicationMenuItemList(MenuData);
+        if (IsSplitMenus)
+        {
+            var key = TopSelectedKeys?.FirstOrDefault();
+            menuData = key.IsNullOrWhiteSpace()
+            ? new ApplicationMenuItemList()
+            : menuData?.Find(f => f.Name == key)?.Items;
+        }
+        var clearMenuData = menuData;  /*clearMenuItem(menuData || []);*/
+        if (!(clearMenuData?.Any() ?? false) && Settings.SplitMenus) { return null; }
+        if (IsTopLayout && !IsMobile) { return siderMenuWrapper(null, true); }
+        //if (MenuContent != null) { return MenuContent; }
+        // if (MenuContent != null) { var defaultDom = @<SiderMenu MatchMenuKeys="@MatchMenuKeys" MenuDatas="@clearMenuData" />;//{...props}
+        //return MenuRender(props, defaultDom);}
+        return siderMenuWrapper(clearMenuData);
+    }
+
+    private RenderFragment siderMenuWrapper(ApplicationMenuItemList clearMenuData = null, bool hide = false) =>
+@
+    <SiderMenuWrapper Hide="hide" IsMobile="IsMobile"
+                  SiderWidth="SiderWidth"
+                  MenuData="clearMenuData"
+                  Collapsed="@Collapsed"
+                  OnCollapse="HandleCollapse"
+                      @bind-SelectedKeys="SiderSelectedKeys" />
 ;
-}
-
-
-private RenderFragment renderSiderMenu()
-{
-@if (Settings.MenuRender == false || Pure) { return null; }
-var menuData = new ApplicationMenuItemList(MenuData);
-if (IsSplitMenus)
-{
-    var key = TopSelectedKeys?.FirstOrDefault();
-    menuData = key.IsNullOrWhiteSpace()
-    ? new ApplicationMenuItemList()
-    : menuData?.Find(f => f.Name == key)?.Items;
-}
-var clearMenuData = menuData;  /*clearMenuItem(menuData || []);*/
-if (!(clearMenuData?.Any() ?? false) && Settings.SplitMenus) { return null; }
-if (IsTopLayout && !IsMobile) { return siderMenuWrapper(null, true); }
-//if (MenuContent != null) { return MenuContent; }
-// if (MenuContent != null) { var defaultDom = @<SiderMenu MatchMenuKeys="@MatchMenuKeys" MenuDatas="@clearMenuData" />;//{...props}
-//return MenuRender(props, defaultDom);}
-return siderMenuWrapper(clearMenuData);
-}
-
-private RenderFragment siderMenuWrapper(ApplicationMenuItemList clearMenuData = null, bool hide = false) =>
-@<SiderMenuWrapper Hide="hide" IsMobile="IsMobile"
-                   SiderWidth="SiderWidth"
-                   MenuData="clearMenuData"
-                   Collapsed="@Collapsed"
-                   OnCollapse="HandleCollapse"
-                   @bind-SelectedKeys="SiderSelectedKeys" />;
 }

@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 using Volo.Abp;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Threading;
+using Zero.Abp.AntBlazor.Layout.Core.LayoutConfig;
 
-namespace Zero.Abp.AntBlazor.Layout
+namespace Zero.Abp.AntBlazor.Layout.Core
 {
     public class LayoutState : IScopedDependency
     {
@@ -38,7 +39,7 @@ namespace Zero.Abp.AntBlazor.Layout
             {
                 if (Settings.Layout == Layout.Side.Name)
                 {
-                    Settings.HeaderTheme = "light"; 
+                    Settings.HeaderTheme = "light";
                     Settings.SidebarTheme = "dark";
                     Settings.SplitMenus = false;
                 }

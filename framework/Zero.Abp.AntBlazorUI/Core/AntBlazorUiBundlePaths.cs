@@ -1,4 +1,4 @@
-﻿namespace Zero.Abp.AspNetCore.Components.Server.AntdTheme.Bundling
+﻿namespace Zero.Abp.AntBlazorUI.Core
 {
     public class AntBlazorUiBundlePaths
     {

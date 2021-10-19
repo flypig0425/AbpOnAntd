@@ -6,8 +6,21 @@
 
 
   <ItemGroup>
+    <Compile Remove="Components\SettingDrawer\**" />
+    <Content Remove="Components\SettingDrawer\**" />
     <Content Remove="Localization\Resources\AntBlazorLayout\*.json" />
     <EmbeddedResource Include="Localization\Resources\AntBlazorLayout\*.json" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Components\SettingDrawer\**" />
+    <None Remove="Components\SettingDrawer\**" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Compile Remove="Core\LayoutState.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Zero.Abp.AntBlazor.Layout
+namespace Zero.Abp.AntBlazor.Layout.Core.LayoutConfig
 {
     [Serializable]
     public class LayoutSettings : ILayoutSettings

@@ -2,6 +2,7 @@
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.VirtualFileSystem;
+using Zero.Abp.AntBlazor.Layout.Core.LayoutConfig;
 using Zero.Abp.AntBlazorUI;
 using Zero.Abp.AntBlazorUI.Localization;
 

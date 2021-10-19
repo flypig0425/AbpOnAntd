@@ -67,24 +67,7 @@
                 }
                 else
                 {
-                    if (menuIcon.StartsWith("fa"))
-                    {
-                        <span class="anticon">
-                            <i class="@ClassNames(menuIcon,$"{that.PrefixCls}-sider-icon")"></i>
-                        </span>
-                    }
-                    else if (menuIcon.StartsWith("http") || Regex.IsMatch(menuIcon, @"\w.(png|jpg|jpeg|svg|webp|gif|bmp)$"))
-                    {
-                        <img src="@menuIcon" alt="icon" class="@($"{that.PrefixCls}-sider-icon")" />
-                    }
-                    else if (menuIcon.StartsWith(that.IconPrefixes))
-                    {
-                        <IconFont Type="@menuIcon" />
-                    }
-                    else
-                    {
-                        <Icon Type="@menuIcon" Theme="outline" />
-                    }
+                    <IconView Icon="@menuIcon"/>
                     <span class="@($"{that.PrefixCls}-menu-item-title")">
                         @menuItem.DisplayName
                     </span>

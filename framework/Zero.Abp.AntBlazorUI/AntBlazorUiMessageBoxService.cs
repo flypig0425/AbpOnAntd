@@ -1,7 +1,5 @@
 ﻿using AntDesign;
-using Localization.Resources.AbpUi;
 using Microsoft.AspNetCore.Components;
-using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using System;
@@ -9,7 +7,7 @@ using System.Threading.Tasks;
 using Volo.Abp.DependencyInjection;
 using Zero.Abp.AspNetCore.Components.MessageBoxs;
 
-namespace Volo.Abp.AntBlazorUI
+namespace Zero.Abp.AntBlazorUI
 {
     [Dependency(ReplaceServices = true)]
     public class AntBlazorUiMessageBoxService : IUiMessageBoxService, IScopedDependency
@@ -117,70 +115,71 @@ namespace Volo.Abp.AntBlazorUI
             }
             return opt;
         }
-        internal static class IconRenderFragments
+    }
+
+    internal static class IconRenderFragments
+    {
+        public static RenderFragment Info = (builder) =>
         {
-            public static RenderFragment Info = (builder) =>
+            builder.OpenComponent<Icon>(0);
+            builder.AddAttribute(1, "Type", "info-circle");
+            builder.AddAttribute(2, "Theme", "outline");
+            builder.CloseComponent();
+        };
+
+        public static RenderFragment Warning = (builder) =>
+        {
+            builder.OpenComponent<Icon>(0);
+            builder.AddAttribute(1, "Type", "exclamation-circle");
+            builder.AddAttribute(2, "Theme", "outline");
+            builder.CloseComponent();
+        };
+
+        public static RenderFragment Error = (builder) =>
+        {
+            builder.OpenComponent<Icon>(0);
+            builder.AddAttribute(1, "Type", "close-circle");
+            builder.AddAttribute(2, "Theme", "outline");
+            builder.CloseComponent();
+        };
+
+        public static RenderFragment Success = (builder) =>
+        {
+            builder.OpenComponent<Icon>(0);
+            builder.AddAttribute(1, "Type", "check-circle");
+            builder.AddAttribute(2, "Theme", "outline");
+            builder.CloseComponent();
+        };
+
+        public static RenderFragment Question = (builder) =>
+        {
+            builder.OpenComponent<Icon>(0);
+            builder.AddAttribute(1, "Type", "question-circle");
+            builder.AddAttribute(2, "Theme", "outline");
+            builder.CloseComponent();
+        };
+
+        public static RenderFragment GetByConfirmIcon(UiMessageBoxType type)
+        {
+            return type switch
+            {
+                UiMessageBoxType.Info => Info,
+                UiMessageBoxType.Warning => Warning,
+                UiMessageBoxType.Error => Error,
+                UiMessageBoxType.Success => Success,
+                UiMessageBoxType.Confirmation => Question,
+                _ => null,
+            };
+        }
+        public static RenderFragment GetByConfirmIcon(string iconType)
+        {
+            return (builder) =>
             {
                 builder.OpenComponent<Icon>(0);
-                builder.AddAttribute(1, "Type", "info-circle");
+                builder.AddAttribute(1, "Type", iconType);
                 builder.AddAttribute(2, "Theme", "outline");
                 builder.CloseComponent();
             };
-
-            public static RenderFragment Warning = (builder) =>
-            {
-                builder.OpenComponent<Icon>(0);
-                builder.AddAttribute(1, "Type", "exclamation-circle");
-                builder.AddAttribute(2, "Theme", "outline");
-                builder.CloseComponent();
-            };
-
-            public static RenderFragment Error = (builder) =>
-            {
-                builder.OpenComponent<Icon>(0);
-                builder.AddAttribute(1, "Type", "close-circle");
-                builder.AddAttribute(2, "Theme", "outline");
-                builder.CloseComponent();
-            };
-
-            public static RenderFragment Success = (builder) =>
-            {
-                builder.OpenComponent<Icon>(0);
-                builder.AddAttribute(1, "Type", "check-circle");
-                builder.AddAttribute(2, "Theme", "outline");
-                builder.CloseComponent();
-            };
-
-            public static RenderFragment Question = (builder) =>
-            {
-                builder.OpenComponent<Icon>(0);
-                builder.AddAttribute(1, "Type", "question-circle");
-                builder.AddAttribute(2, "Theme", "outline");
-                builder.CloseComponent();
-            };
-
-            public static RenderFragment GetByConfirmIcon(UiMessageBoxType type)
-            {
-                return type switch
-                {
-                    UiMessageBoxType.Info => Info,
-                    UiMessageBoxType.Warning => Warning,
-                    UiMessageBoxType.Error => Error,
-                    UiMessageBoxType.Success => Success,
-                    UiMessageBoxType.Confirmation => Question,
-                    _ => null,
-                };
-            }
-            public static RenderFragment GetByConfirmIcon(string iconType)
-            {
-                return (builder) =>
-                {
-                    builder.OpenComponent<Icon>(0);
-                    builder.AddAttribute(1, "Type", iconType);
-                    builder.AddAttribute(2, "Theme", "outline");
-                    builder.CloseComponent();
-                };
-            }
         }
     }
 }

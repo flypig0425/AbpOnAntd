@@ -1,13 +1,14 @@
 ﻿using Microsoft.AspNetCore.Components;
 using System.Threading.Tasks;
+using Zero.Abp.AntBlazor.Layout.Core.LayoutConfig;
 
 namespace Zero.Abp.AntBlazor.Layout.Core
 {
     public partial class LayoutStateProvider
     {
         [Parameter] public RenderFragment ChildContent { get; set; }
-        [Inject] protected ILayoutConfigProvider LayoutConfigProvider { get; set; }
 
+        [Inject] protected ILayoutConfigProvider LayoutConfigProvider { get; set; }
 
         public LayoutSettings Settings { get; internal set; }
 
@@ -24,5 +25,4 @@ namespace Zero.Abp.AntBlazor.Layout.Core
         //    await ProtectedSessionStore.SetAsync("count", CurrentCount);
         //}
     }
-}
 }

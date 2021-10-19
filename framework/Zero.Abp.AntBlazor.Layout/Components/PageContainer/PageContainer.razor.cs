@@ -11,10 +11,6 @@ namespace Zero.Abp.AntBlazor.Layout
     {
         #region 
 
-        [CascadingParameter]
-        private EditContext Context { get; set; }
-
-
         [CascadingParameter(Name = "LayoutContext")]
         public BasicLayout Value { get; set; } = new BasicLayout();
 

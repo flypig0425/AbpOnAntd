@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Volo.Abp.UI.Navigation;
 
-namespace Zero.Abp.AntBlazor.Layout
+namespace Zero.Abp.AntBlazor.Layout.Core
 {
     public static class IMenuManagerExtensions
     {

@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Zero.Abp.AntBlazorUI
+namespace Zero.Abp.AntBlazorUI.Core
 {
     public static class AntBlazorUtils
     {

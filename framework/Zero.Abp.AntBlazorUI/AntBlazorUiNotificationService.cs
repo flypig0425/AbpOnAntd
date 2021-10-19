@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Volo.Abp.DependencyInjection;
 using Zero.Abp.AspNetCore.Components.Notifications;
 
-namespace Volo.Abp.AntBlazorUI
+namespace Zero.Abp.AntBlazorUI
 {
     [Dependency(ReplaceServices = true)]
     public class AntBlazorUiNotificationService : IUiNotificationService, IScopedDependency

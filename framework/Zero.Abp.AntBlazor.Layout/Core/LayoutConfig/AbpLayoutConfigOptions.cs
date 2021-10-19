@@ -1,4 +1,4 @@
-﻿namespace Zero.Abp.AntBlazor.Layout
+﻿namespace Zero.Abp.AntBlazor.Layout.Core.LayoutConfig
 {
     public class AbpLayoutConfigOptions
     {
