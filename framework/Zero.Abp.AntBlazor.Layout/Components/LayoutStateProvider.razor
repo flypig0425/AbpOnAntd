@@ -1,0 +1,16 @@
+﻿@namespace Zero.Abp.AntBlazor.Layout
+
+@if (isLoaded)
+{
+    <CascadingValue Value="@this" Name="LayoutStateProvider">
+        @ChildContent
+    </CascadingValue>
+}
+else
+{
+    <p>Loading...</p>
+}
+
+@code {
+    [Parameter] public RenderFragment ChildContent { get; set; }
+}

@@ -1,4 +1,6 @@
 ﻿@namespace Zero.Abp.AntBlazor.Layout
+@using System.Linq.Expressions
+@using Zero.Abp.AntBlazor.Layout.Core.LayoutConfig
 @inherits AntLayoutComponentBase
 
 <AntList Split="false"
@@ -20,7 +22,7 @@
         return@<Template>
         <span style="@StyleValues(("opacity:0.5",disabledFactory))">@L[fieldName]</span>
         <RadioGroup Size="@("small")" TValue="string" Value="@(valueFactory?.Invoke()?? "")" Disabled="@(disabledFactory?.Invoke()?? false)"
-                OnChange="value=>LayoutState.UpdateSettingAsync<string>(propertySelector,value,valueFactory)"
+                OnChange="value=>LayoutStateProvider.UpdateSettingAsync<string>(propertySelector,value,valueFactory)"
                 ButtonStyle="@RadioButtonStyle.Solid">
             @foreach (var item in options)
                 {
@@ -41,7 +43,7 @@
         return @<Template>
         <span style="@StyleValues(("opacity:0.5",disabledFactory))">@L[fieldName]</span>
         <Switch Size="small" Checked="@(valueFactory?.Invoke()?? false)" Disabled="@(disabledFactory?.Invoke()?? false)"
-            OnChange="value=>LayoutState.UpdateSettingAsync(propertySelector,value,valueFactory)" />
+            OnChange="value=>LayoutStateProvider.UpdateSettingAsync(propertySelector,value,valueFactory)" />
     </Template>
     ;
     }
@@ -59,7 +61,7 @@
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
-        LayoutState.OnChange += OnSettingsChanged;
+        //LayoutStateProvider.OnChange += OnSettingsChanged;
         if (ListType == "LayoutSetting")
         {
             SettingItems = new[] {
@@ -96,7 +98,7 @@
     }
     protected override void Dispose(bool disposing)
     {
-        LayoutState.OnChange -= OnSettingsChanged;
+        //LayoutStateProvider.OnChange -= OnSettingsChanged;
         base.Dispose(disposing);
     }
 }

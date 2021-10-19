@@ -16,17 +16,18 @@
         <div class="@BaseClassName-drawer-content">
             <ThemeColor Title="@L["ThemeColor"]"
                         Value="@Settings.PrimaryColor"
-                        OnChange="value=>LayoutState.UpdateSettingAsync<string>(x=>x.PrimaryColor,value,()=>Settings.PrimaryColor)" />
+                        OnChange="value=>LayoutStateProvider.UpdateSettingAsync<string>(x=>x.PrimaryColor,value,()=> Settings.PrimaryColor)" />
             <SettingDrawerList ListType="ThemeSetting" />
 
             <Divider />
 
             <SettingDrawerBody Title="@L["NavigationMode"]"
                                PrefixCls="@BaseClassName">
+
                 <BlockCheckbox PrefixCls="@BaseClassName"
                                List="LayoutList"
                                Value="@Settings.Layout"
-                               OnChange="value=>LayoutState.UpdateSettingAsync<string>(x=>x.Layout,value,()=>Settings.Layout)" />
+                               OnChange="value=>LayoutStateProvider.UpdateSettingAsync<string>(x=>x.Layout,value,()=> Settings.Layout)" />
             </SettingDrawerBody>
 
             <SettingDrawerList ListType="LayoutSetting" />

@@ -1,37 +1,46 @@
 ﻿using AntDesign;
+using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Volo.Abp;
-using Volo.Abp.DependencyInjection;
-using Volo.Abp.Threading;
 using Zero.Abp.AntBlazor.Layout.Core.LayoutConfig;
 
-namespace Zero.Abp.AntBlazor.Layout.Core
+namespace Zero.Abp.AntBlazor.Layout
 {
-    public class LayoutState : IScopedDependency
+    public partial class LayoutStateProvider
     {
+
         public LayoutSettings Settings { get; internal set; }
 
-        protected ILayoutConfigProvider LayoutConfigProvider { get; set; }
 
-        public LayoutState(ILayoutConfigProvider layoutConfigProvider)
+        public event Action OnChange;
+
+        public event Func<string, Task> OnThemeChangedAsync;
+
+
+
+        [Inject] protected ILayoutConfigProvider LayoutConfigProvider { get; set; }
+
+        private bool isLoaded;
+        protected override async Task OnInitializedAsync()
         {
-            LayoutConfigProvider = layoutConfigProvider;
-            AsyncHelper.RunSync(async () =>
-            {
-                Settings = await LayoutConfigProvider.GetSettingsAsync();
-            });
+            await base.OnInitializedAsync();
+            Settings = await LayoutConfigProvider.GetSettingsAsync();
+            isLoaded = true;
         }
 
-        protected string _themeUrl;
-        public async Task UpdateSettingAsync<TValue>(
-            Expression<Func<LayoutSettings, TValue>> propertySelector
-            , TValue newValue, Func<TValue> currentValue = null)
+        //public async Task SaveChangesAsync()
+        //{
+        //    await ProtectedSessionStore.SetAsync("count", CurrentCount);
+        //}
+
+        public async Task UpdateSettingAsync<TValue>(Expression<Func<LayoutSettings, TValue>> propertySelector, TValue newValue, Func<TValue> currentValue = null)
         {
             if (currentValue?.Invoke()?.Equals(newValue) ?? false) { return; }
             ObjectHelper.TrySetProperty(Settings, propertySelector, () => newValue);
+
             NotifyStateChanged();
 
             var fieldName = (propertySelector.Body as MemberExpression)?.Member?.Name;
@@ -65,6 +74,7 @@ namespace Zero.Abp.AntBlazor.Layout.Core
             await Task.CompletedTask;
         }
 
+        protected string _themeUrl;
         public async Task UpdateThemeAsync()
         {
             var primaryColor = Settings.PrimaryColor == "default" ? null : Settings.PrimaryColor;
@@ -81,10 +91,6 @@ namespace Zero.Abp.AntBlazor.Layout.Core
             await NotifyThemeChanged(_themeUrl);
         }
 
-        public event Action OnChange;
-
-        public event Func<string, Task> OnThemeChangedAsync;
-
         private void NotifyStateChanged() => OnChange?.Invoke();
         private async Task NotifyThemeChanged(string _themeUrl)
         {
@@ -93,5 +99,6 @@ namespace Zero.Abp.AntBlazor.Layout.Core
                 await OnThemeChangedAsync?.Invoke(_themeUrl);
             }
         }
+
     }
 }

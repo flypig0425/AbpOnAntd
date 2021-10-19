@@ -9,8 +9,6 @@ namespace Zero.Abp.AntBlazorUI
 {
     public abstract class AntUIComponentBase : AntComponentBase
     {
-        [Parameter] public string PrefixCls { get; set; } = "ant";
-
         [Parameter] public string Class { get; set; }
         [Parameter] public string Style { get; set; }
         [Parameter] public RenderFragment ChildContent { get; set; }

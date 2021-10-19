@@ -5,12 +5,36 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\framework\Zero.Abp.AspNetCore.Components.Web.Theming\Zero.Abp.AspNetCore.Components.Web.Theming.csproj" />
+    <Compile Remove="Layout\**" />
+    <Compile Remove="styles\**" />
+    <Compile Remove="wwwroot\**" />
+    <Content Remove="Layout\**" />
+    <Content Remove="styles\**" />
+    <Content Remove="wwwroot\**" />
+    <EmbeddedResource Remove="Layout\**" />
+    <EmbeddedResource Remove="styles\**" />
+    <EmbeddedResource Remove="wwwroot\**" />
+    <None Remove="Layout\**" />
+    <None Remove="styles\**" />
+    <None Remove="wwwroot\**" />
   </ItemGroup>
-  
+
   <ItemGroup>
-    <Content Remove="Localization\Resources\AntdTheme\*.json" />
-    <EmbeddedResource Include="Localization\Resources\AntdTheme\*.json" />
+    <Compile Remove="AbpAntdTheme.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="package-lock.json" />
+    <Content Remove="package.json" />
+    <Content Remove="_Imports.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="gulpfile.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\framework\Zero.Abp.AspNetCore.Components.Web.Theming\Zero.Abp.AspNetCore.Components.Web.Theming.csproj" />
   </ItemGroup>
 
 </Project>

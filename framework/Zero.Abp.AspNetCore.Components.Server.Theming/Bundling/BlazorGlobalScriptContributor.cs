@@ -8,8 +8,8 @@ namespace Zero.Abp.AspNetCore.Components.Server.Theming.Bundling
     {
         public override void ConfigureBundle(BundleConfigurationContext context)
         {
-            context.Files.AddIfNotContains(AbpAntdesign.ScriptPath);
             context.Files.AddIfNotContains("/_framework/blazor.server.js");
+            context.Files.AddIfNotContains(AntBlazorUiBundlePaths.Scripts);
             context.Files.AddIfNotContains("/_content/Zero.Abp.AspNetCore.Components.Web/libs/abp/js/abp.js");
         }
     }

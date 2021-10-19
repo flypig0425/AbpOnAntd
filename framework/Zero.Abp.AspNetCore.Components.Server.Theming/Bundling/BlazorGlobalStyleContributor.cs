@@ -8,7 +8,7 @@ namespace Zero.Abp.AspNetCore.Components.Server.Theming.Bundling
     {
         public override void ConfigureBundle(BundleConfigurationContext context)
         {
-            context.Files.AddIfNotContains(AbpAntdesign.StylePath);
+            context.Files.AddIfNotContains(AntBlazorUiBundlePaths.Styles);
         }
     }
 }

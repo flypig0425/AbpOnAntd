@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
-using Zero.Abp.AspNetCore.Components.Web.AntdTheme;
+using Zero.Abp.AntBlazor.Layout;
 
 namespace Zero.Abp.AspNetCore.Components.Server.AntdTheme.Bundling
 {
@@ -8,7 +8,7 @@ namespace Zero.Abp.AspNetCore.Components.Server.AntdTheme.Bundling
     {
         public override void ConfigureBundle(BundleConfigurationContext context)
         {
-            context.Files.AddIfNotContains(AbpAntdTheme.StylePath);
+            context.Files.AddIfNotContains(AntBlazorLayoutBundlePaths.Styles);
         }
     }
 }

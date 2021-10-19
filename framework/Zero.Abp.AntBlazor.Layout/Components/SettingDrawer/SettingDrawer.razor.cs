@@ -3,14 +3,13 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Zero.Abp.AntBlazor.Layout.Core;
 
 namespace Zero.Abp.AntBlazor.Layout
 {
     public partial class SettingDrawer
     {
         private bool _show;
-        private string BaseClassName => $"{LayoutPrefixCls}-setting";
+        private string BaseClassName => $"{PrefixCls}-setting";
         private CheckboxItem[] LayoutList => new CheckboxItem[]
         {
             new CheckboxItem
@@ -38,13 +37,13 @@ namespace Zero.Abp.AntBlazor.Layout
 
         protected override async Task OnInitializedAsync()
         {
-            LayoutState.OnChange += OnSettingsChanged;
+            //LayoutStateProvider.OnChange += OnSettingsChanged;
             await base.OnInitializedAsync();
         }
 
         protected override void Dispose(bool disposing)
         {
-            LayoutState.OnChange -= OnSettingsChanged;
+            //LayoutStateProvider.OnChange -= OnSettingsChanged;
             base.Dispose(disposing);
         }
 

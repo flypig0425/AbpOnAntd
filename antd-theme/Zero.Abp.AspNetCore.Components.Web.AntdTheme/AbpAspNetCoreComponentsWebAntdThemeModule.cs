@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Volo.Abp.Localization;
+﻿using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.VirtualFileSystem;
 using Zero.Abp.AspNetCore.Components.Web.Theming;
@@ -11,12 +10,12 @@ namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
         )]
     public class AbpAspNetCoreComponentsWebAntdThemeModule : AbpModule
     {
+        private readonly string AssemblyName = typeof(AbpAspNetCoreComponentsWebAntdThemeModule).Assembly.GetName().Name;
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
-            ConfigureAntDesign(context);
             Configure<AbpVirtualFileSystemOptions>(options =>
             {
-                options.FileSets.AddEmbedded<AbpAspNetCoreComponentsWebAntdThemeModule>(AbpAntdTheme.AssemblyName);
+                options.FileSets.AddEmbedded<AbpAspNetCoreComponentsWebAntdThemeModule>(AssemblyName);
             });
 
             Configure<AbpLocalizationOptions>(options =>
@@ -25,14 +24,6 @@ namespace Zero.Abp.AspNetCore.Components.Web.AntdTheme
                 .Add<AbpAntdThemeResource>("en")
                 .AddVirtualJson("/Localization/Resources/AntdTheme");
             });
-        }
-
-        private void ConfigureAntDesign(ServiceConfigurationContext context)
-        {
-            var configuration = context.Services.GetConfiguration();
-            var config = configuration.GetSection("AbpLayoutConfig");
-            context.Services.Configure<AbpLayoutConfigOptions>(config);
-            context.Services.AddAntDesign();
         }
     }
 }

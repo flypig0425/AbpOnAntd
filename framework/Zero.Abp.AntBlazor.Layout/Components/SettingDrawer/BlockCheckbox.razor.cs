@@ -13,7 +13,7 @@ namespace Zero.Abp.AntBlazor.Layout
     public partial class BlockCheckbox
     {
         private string _value;
-        private string BaseClassName => $"{LayoutPrefixCls}-drawer-block-checkbox";
+        private string BaseClassName => $"{PrefixCls}-drawer-block-checkbox";
         [Parameter] public CheckboxItem[] List { get; set; }
         [Parameter] public EventCallback<string> ValueChanged { get; set; }
         [Parameter] public EventCallback<string> OnChange { get; set; }

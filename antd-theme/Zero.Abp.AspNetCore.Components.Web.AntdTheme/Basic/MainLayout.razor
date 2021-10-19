@@ -1,11 +1,15 @@
-﻿@inherits LayoutComponentBase
+﻿@using Volo.Abp.UI.Navigation
+@using Zero.Abp.AntBlazor.Layout
+@using Zero.Abp.AntBlazor.Layout.Core
+@inherits LayoutComponentBase
 @inject IMenuManager MenuManager
 
-<BasicLayout MenuData="@MenuData">
-    @Body
-</BasicLayout>
-<SettingDrawer />
-
+<LayoutStateProvider>
+    <BasicLayout MenuData="@MenuData">
+        @Body
+    </BasicLayout>
+    <SettingDrawer />
+</LayoutStateProvider>
 @code {
     protected ApplicationMenuItemList MenuData { get; set; }
     protected override async Task OnInitializedAsync()

@@ -1,7 +1,6 @@
 ﻿using AntDesign;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
-using Zero.Abp.AntBlazor.Layout.Core;
 using Zero.Abp.AntBlazor.Layout.Core.LayoutConfig;
 using Zero.Abp.AntBlazor.Layout.Localization;
 using Zero.Abp.AntBlazorUI;
@@ -11,17 +10,16 @@ namespace Zero.Abp.AntBlazor.Layout
     public abstract class AntLayoutComponentBase : AntUIComponentBase
     {
         #region MyRegion
-        [CascadingParameter]
+        [CascadingParameter(Name = "LayoutStateProvider")]
         protected LayoutStateProvider LayoutStateProvider { get; set; }
-
-        protected LayoutSettings Settings => LayoutStateProvider?.Settings ?? new LayoutSettings();
+        protected  LayoutSettings Settings => LayoutStateProvider?.Settings??new LayoutSettings();
 
         protected bool IsSideLayout => Settings.Layout == Layout.Side.Name;
         protected bool IsTopLayout => Settings.Layout == Layout.Top.Name;
         protected bool IsMixLayout => Settings.Layout == Layout.Mix.Name;
         #endregion
 
-        [Parameter] public string LayoutPrefixCls { get; set; } = $"ant-pro";
+        [Parameter] public string PrefixCls { get; set; } = $"ant-pro";
 
         #region 
         //[Parameter] public RenderFragment HeaderContent { get; set; }

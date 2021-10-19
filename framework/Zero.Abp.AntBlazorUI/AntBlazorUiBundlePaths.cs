@@ -1,4 +1,4 @@
-﻿namespace Zero.Abp.AntBlazorUI.Core
+﻿namespace Zero.Abp.AntBlazorUI
 {
     public class AntBlazorUiBundlePaths
     {

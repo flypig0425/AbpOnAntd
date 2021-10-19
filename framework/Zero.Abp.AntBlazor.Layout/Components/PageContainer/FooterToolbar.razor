@@ -27,7 +27,7 @@
     [Parameter] public RenderFragment Extra { get; set; }
     //[Parameter] public RenderFragment<(object,string leftWidth)> RenderContent { get; set; }
 
-    private string BaseClassName => $"{LayoutPrefixCls}-footer-bar";
+    private string BaseClassName => $"{PrefixCls}-footer-bar";
     private string Width => hasSiderMenu ? (siderWidth > 0 ? (isMobile ? "width:100%" : $"width:calc(100% - ${siderWidth}px)") : "width:100%") : "";
 
     protected override async Task OnInitializedAsync()

@@ -37,6 +37,7 @@ namespace Zero.Abp.AntBlazorUI.Components
         {
             AlertManager.Alerts.Clear();
             Alerts.Clear();
+            InvokeAsync(StateHasChanged);
         }
 
         private void Alerts_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)

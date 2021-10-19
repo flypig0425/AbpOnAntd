@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Components.Routing;
 using System.Threading.Tasks;
 using Volo.Abp.UI.Navigation;
 using Zero.Abp.AntBlazor.Layout.Core;
+using Zero.Abp.AntBlazor.Layout.Core.LayoutConfig;
 
 namespace Zero.Abp.AntBlazor.Layout
 {
@@ -147,7 +148,7 @@ namespace Zero.Abp.AntBlazor.Layout
             , ($"padding-left: {PaddingLeft}px", Settings.MenuRender)
             );
 
-        private string BaseClassName => $"{LayoutPrefixCls}-basicLayout";
+        private string BaseClassName => $"{PrefixCls}-basicLayout";
 
         private string LayoutClass => ClassNames("ant-design-pro", BaseClassName, $"screen-{ScreenSize}"
             , ($"{BaseClassName}-top-menu", IsTopLayout)

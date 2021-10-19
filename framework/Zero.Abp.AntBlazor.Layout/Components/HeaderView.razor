@@ -57,10 +57,10 @@
     private int? headerRight => needFixedHeader ? 0 : null;
 
     private string HeaderClass => ClassNames(
-         ($"{LayoutPrefixCls}-fixed-header", needFixedHeader)
-       , ($"{LayoutPrefixCls}-fixed-header-action", !Collapsed)
-       , ($"{LayoutPrefixCls}-top-menu", IsTopLayout)
-       , ($"{LayoutPrefixCls}-header-{Settings.HeaderTheme}")
+         ($"{PrefixCls}-fixed-header", needFixedHeader)
+       , ($"{PrefixCls}-fixed-header-action", !Collapsed)
+       , ($"{PrefixCls}-top-menu", IsTopLayout)
+       , ($"{PrefixCls}-header-{Settings.HeaderTheme}")
         );
 
     private string FixedHeaderStyle => StyleValues(

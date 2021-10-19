@@ -3,8 +3,8 @@ using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.VirtualFileSystem;
 using Zero.Abp.AntBlazor.Layout.Core.LayoutConfig;
+using Zero.Abp.AntBlazor.Layout.Localization;
 using Zero.Abp.AntBlazorUI;
-using Zero.Abp.AntBlazorUI.Localization;
 
 namespace Zero.Abp.AntBlazor.Layout
 {
@@ -25,7 +25,7 @@ namespace Zero.Abp.AntBlazor.Layout
             Configure<AbpLocalizationOptions>(options =>
             {
                 options.Resources
-                .Add<AbpAntBlazorUIResource>("en")
+                .Add<AntBlazorLayoutResource>("en")
                 .AddVirtualJson("/Localization/Resources/AntBlazorLayout");
             });
 

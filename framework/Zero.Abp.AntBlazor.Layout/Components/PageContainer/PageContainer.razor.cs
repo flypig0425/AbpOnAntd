@@ -70,10 +70,10 @@ namespace Zero.Abp.AntBlazor.Layout
             base.Dispose(disposing);
         }
 
-        private string PrefixedClassName => $"{LayoutPrefixCls}-page-container";
+        private string PrefixedClassName => $"{PrefixCls}-page-container";
         private string ContainerClassName => ClassNames(PrefixedClassName, Class
-            , ($"{LayoutPrefixCls}-page-container-ghost", Header?.Ghost ?? Ghost)
-            , ($"{LayoutPrefixCls}-page-container-with-footer", HasFooter)
+            , ($"{PrefixCls}-page-container-ghost", Header?.Ghost ?? Ghost)
+            , ($"{PrefixCls}-page-container-with-footer", HasFooter)
         );
     }
 
