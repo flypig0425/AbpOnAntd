@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "framework", "framework", "{9B20C328-C33E-4ACC-90AE-EEE112C36EEC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.AntdesignUI", "framework\Zero.Abp.AntdesignUI\Zero.Abp.AntdesignUI.csproj", "{98D3D0C8-13E6-4F91-BB0D-405E0B81F17B}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.AspNetCore.Components", "framework\Zero.Abp.AspNetCore.Components\Zero.Abp.AspNetCore.Components.csproj", "{68290D41-423C-4A63-997B-5BD8D3A9B1A4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.AspNetCore.Components.Server", "framework\Zero.Abp.AspNetCore.Components.Server\Zero.Abp.AspNetCore.Components.Server.csproj", "{128566DE-B4ED-4244-A766-AE540A37693C}"
@@ -41,9 +39,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "setting-management", "setti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.SettingManagement.Blazor", "modules\setting-management\Zero.Abp.SettingManagement.Blazor\Zero.Abp.SettingManagement.Blazor.csproj", "{2D8A309D-2357-4D01-8182-055E09524A4E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zero.Abp.SettingManagement.Blazor.Server", "modules\setting-management\Zero.Abp.SettingManagement.Blazor.Server\Zero.Abp.SettingManagement.Blazor.Server.csproj", "{CAF8ADB7-C0D9-41A1-93D5-98D1E06B038B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.SettingManagement.Blazor.Server", "modules\setting-management\Zero.Abp.SettingManagement.Blazor.Server\Zero.Abp.SettingManagement.Blazor.Server.csproj", "{CAF8ADB7-C0D9-41A1-93D5-98D1E06B038B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zero.Abp.SettingManagement.Blazor.WebAssembly", "modules\setting-management\Zero.Abp.SettingManagement.Blazor.WebAssembly\Zero.Abp.SettingManagement.Blazor.WebAssembly.csproj", "{2F9BE7C2-B253-4481-8BFE-FE58501A4337}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.SettingManagement.Blazor.WebAssembly", "modules\setting-management\Zero.Abp.SettingManagement.Blazor.WebAssembly\Zero.Abp.SettingManagement.Blazor.WebAssembly.csproj", "{2F9BE7C2-B253-4481-8BFE-FE58501A4337}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "antd-theme", "antd-theme", "{74951E45-3925-4637-A97D-7AF77C279549}"
 EndProject
@@ -59,9 +57,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{339A55
 		configureawait.props = configureawait.props
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zero.Abp.AntBlazorUI", "framework\Zero.Abp.AntBlazorUI\Zero.Abp.AntBlazorUI.csproj", "{ADCA69E5-0B12-43BA-A8A9-3993808530CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.AntBlazorUI", "framework\Zero.Abp.AntBlazorUI\Zero.Abp.AntBlazorUI.csproj", "{ADCA69E5-0B12-43BA-A8A9-3993808530CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zero.Abp.AntBlazor.Layout", "framework\Zero.Abp.AntBlazor.Layout\Zero.Abp.AntBlazor.Layout.csproj", "{D8CDBCB4-0AC8-4DEC-BD0C-BEA0B11DC8EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.AntBlazor.Layout", "framework\Zero.Abp.AntBlazor.Layout\Zero.Abp.AntBlazor.Layout.csproj", "{D8CDBCB4-0AC8-4DEC-BD0C-BEA0B11DC8EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,10 +67,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{98D3D0C8-13E6-4F91-BB0D-405E0B81F17B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{98D3D0C8-13E6-4F91-BB0D-405E0B81F17B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{98D3D0C8-13E6-4F91-BB0D-405E0B81F17B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{98D3D0C8-13E6-4F91-BB0D-405E0B81F17B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{68290D41-423C-4A63-997B-5BD8D3A9B1A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{68290D41-423C-4A63-997B-5BD8D3A9B1A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68290D41-423C-4A63-997B-5BD8D3A9B1A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -154,7 +148,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{98D3D0C8-13E6-4F91-BB0D-405E0B81F17B} = {9B20C328-C33E-4ACC-90AE-EEE112C36EEC}
 		{68290D41-423C-4A63-997B-5BD8D3A9B1A4} = {9B20C328-C33E-4ACC-90AE-EEE112C36EEC}
 		{128566DE-B4ED-4244-A766-AE540A37693C} = {DABBF297-AD92-4D54-8300-D515389CB6C1}
 		{F36A79BD-535C-4379-B689-6164CDE48ECD} = {DABBF297-AD92-4D54-8300-D515389CB6C1}

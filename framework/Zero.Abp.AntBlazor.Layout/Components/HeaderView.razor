@@ -10,26 +10,24 @@
     @if ((IsTopLayout || isSplitMenus) && !IsMobile)
     {
         <TopNavHeader Mode="MenuMode.Horizontal"
-                  MenuData="MenuData"
-                  SelectedKeys="SelectedKeys"
-                  SelectedKeysChanged="SelectedKeysChanged" />
+                      MenuData="MenuData"
+                      SelectedKeys="SelectedKeys"
+                      SelectedKeysChanged="SelectedKeysChanged"
+                      RightContentRender="HeaderContentRender" />
     }
     else
     {
         <GlobalHeader IsMobile="IsMobile"
-                  Collapsed="@Collapsed"
-                  OnCollapse="HandleCollapse">
+                      Collapsed="@Collapsed"
+                      OnCollapse="HandleCollapse"
+                      RightContentRender="HeaderContentRender">
             @HeaderContentRender
         </GlobalHeader>
     }
 </Header>
 
 @code {
-
-    [Parameter] public ApplicationMenuItemList MenuData { get; set; }
-    [Parameter] public string[] SelectedKeys { get; set; } = null;
-    [Parameter] public EventCallback<string[]> SelectedKeysChanged { get; set; }
-
+    #region Collapsed--[@bind-Collapsed,OnCollapse]
     [Parameter] public bool Collapsed { get; set; }
     [Parameter] public EventCallback<bool> CollapsedChanged { get; set; }
     [Parameter] public EventCallback<bool> OnCollapse { get; set; }
@@ -39,11 +37,21 @@
         if (OnCollapse.HasDelegate) { await OnCollapse.InvokeAsync(collapsed); }
         if (CollapsedChanged.HasDelegate) { await CollapsedChanged.InvokeAsync(collapsed); }
     }
+    #endregion
+
+
+    [Parameter] public ApplicationMenuItemList MenuData { get; set; }
+    [Parameter] public string[] SelectedKeys { get; set; } = null;
+    [Parameter] public EventCallback<string[]> SelectedKeysChanged { get; set; }
+
+
 
 
     [Parameter] public int SiderWidth { get; set; } = 208;
     [Parameter] public bool IsMobile { get; set; }
     [Parameter] public bool HasSiderMenu { get; set; }
+
+    [Parameter] public RenderFragment HeaderRightContent { get; set; }
     [Parameter] public RenderFragment HeaderContentRender { get; set; }
 
     private bool isSplitMenus => IsMixLayout && Settings.SplitMenus;

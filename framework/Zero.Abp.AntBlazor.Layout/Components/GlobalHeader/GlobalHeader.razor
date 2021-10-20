@@ -22,18 +22,18 @@
         </div>
     }
     <div style="flex: 1">@ChildContent</div>
-    <HeaderRight/>
-    @*@if (RightContentRender != null)
+    @if (RightContentRender != null)
     {
         @RightContentRender
-    }*@
+    }
+    else
+    {
+        <HeaderRight />
+    }
 </div>
 
 @code{
-
-
-    [Parameter] public bool IsMobile { get; set; }
-
+    #region Collapsed--[@bind-Collapsed,OnCollapse]
     [Parameter] public bool Collapsed { get; set; }
     [Parameter] public EventCallback<bool> CollapsedChanged { get; set; }
     [Parameter] public EventCallback<bool> OnCollapse { get; set; }
@@ -43,6 +43,14 @@
         if (OnCollapse.HasDelegate) { await OnCollapse.InvokeAsync(collapsed); }
         if (CollapsedChanged.HasDelegate) { await CollapsedChanged.InvokeAsync(collapsed); }
     }
+    #endregion
+
+
+
+    [Parameter] public RenderFragment RightContentRender { get; set; }
+
+    [Parameter] public bool IsMobile { get; set; }
+
 
     [Parameter] public RenderFragment<bool> CollapsedButtonRender { get; set; } = defaultCollapsedButtonRender;
 

@@ -8,18 +8,7 @@ namespace Zero.Abp.AntBlazor.Layout
 {
     public partial class BasicLayout
     {
-        #region MyRegion
-        public bool HasPageContainer => LayoutStateProvider?.HasPageContainer ?? false;
-        #endregion
-
-        [Parameter] public bool Pure { get; set; }
-        [Parameter] public bool Loading { get; set; }
-        [Parameter] public bool DisableContentMargin { get; set; }
-        [Parameter] public int SiderWidth { get; set; } = 208;
-        [Parameter] public string ContentStyle { get; set; }
-
-        [Parameter] public ApplicationMenuItemList MenuData { get; set; }
-
+        #region Collapsed--[@bind-Collapsed,OnCollapse]
         [Parameter] public bool Collapsed { get; set; }
         [Parameter] public EventCallback<bool> CollapsedChanged { get; set; }
         [Parameter] public EventCallback<bool> OnCollapse { get; set; }
@@ -29,7 +18,26 @@ namespace Zero.Abp.AntBlazor.Layout
             if (OnCollapse.HasDelegate) { await OnCollapse.InvokeAsync(collapsed); }
             if (CollapsedChanged.HasDelegate) { await CollapsedChanged.InvokeAsync(collapsed); }
         }
+        #endregion
 
+
+        #region 
+        [Parameter] public RenderFragment HeaderContent { get; set; }
+        [Parameter] public RenderFragment FooterContent { get; set; }
+        [Parameter] public RenderFragment MenuContent { get; set; }
+
+        [Parameter] public RenderFragment HeaderRightContent { get; set; }
+        [Parameter] public RenderFragment MenuExtraRender { get; set; }
+        #endregion
+
+
+        [Parameter] public bool Pure { get; set; }
+        [Parameter] public bool Loading { get; set; }
+        [Parameter] public bool DisableContentMargin { get; set; }
+        [Parameter] public int SiderWidth { get; set; } = 208;
+        [Parameter] public string ContentStyle { get; set; }
+
+        [Parameter] public ApplicationMenuItemList MenuData { get; set; }
 
         private bool IsSplitMenus => Settings.SplitMenus && (/*OpenKeys != false ||*/ IsMixLayout) && !IsMobile;
 
@@ -82,32 +90,28 @@ namespace Zero.Abp.AntBlazor.Layout
             }
         }
 
-        #region StyleOrClass
-        private readonly bool isChildrenLayout = false;
-
-        private readonly string layoutCls = "ant-layout";
-
-
-        public bool HasSiderMenu => (!IsTopLayout || IsMixLayout && Settings.SplitMenus) && (SiderMenuDom != null);
-
+        #region [StyleOrClass]
+        bool HasSiderMenu => (!IsTopLayout || IsMixLayout && Settings.SplitMenus) && (SiderMenuDom != null);
         bool HasLeftPadding => HasSiderMenu && Settings.FixedSidebar && !IsMobile;
         int PaddingLeft => HasLeftPadding ? (Collapsed ? 48 : SiderWidth) : 0;
 
+
+        private readonly bool isChildrenLayout = false;
+        private readonly string layoutCls = "ant-layout";
         private string WeakModeStyle => StyleValues(("filter: invert(80%)", Settings.ColorWeak));
         private string GenLayoutStyle => StyleValues("position: relative"
             , ("min-height:0px", isChildrenLayout || (ContentStyle?.Contains("min-height") ?? false))
             , ($"padding-left: {PaddingLeft}px", Settings.MenuRender)
             );
 
-        private string BaseClassName => $"{PrefixCls}-basicLayout";
 
-        private string LayoutClass => ClassNames("ant-design-pro", BaseClassName, $"screen-{ScreenSize}"
+        private string BaseClassName => $"{PrefixCls}-basicLayout";
+        private string LayoutClass => ClassNames("ant-design-pro", BaseClassName
             , ($"{BaseClassName}-top-menu", IsTopLayout)
             , ($"{BaseClassName}-is-children", isChildrenLayout)
             , ($"{BaseClassName}-fix-siderbar", Settings.FixedSidebar)
             , ($"{BaseClassName}-mobile", IsMobile)
             );
-
         private string ContentClass => ClassNames($"{BaseClassName}-content"
             , ($"{BaseClassName}-has-header", Settings.HeaderRender)
             , ($"{BaseClassName}-content-disable-margin", DisableContentMargin)

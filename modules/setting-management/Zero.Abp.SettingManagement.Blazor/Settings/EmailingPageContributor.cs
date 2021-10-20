@@ -2,8 +2,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
 using System.Threading.Tasks;
-using Volo.Abp.Features;
-using Volo.Abp.MultiTenancy;
 using Volo.Abp.SettingManagement;
 using Volo.Abp.SettingManagement.Localization;
 using Zero.Abp.SettingManagement.Blazor.Pages.SettingManagement.EmailSettingGroup;

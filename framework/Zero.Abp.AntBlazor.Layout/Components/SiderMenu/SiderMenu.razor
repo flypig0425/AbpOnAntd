@@ -95,8 +95,7 @@
     [Parameter] public string LogoStyle { get; set; }
     [Parameter] public BreakpointType Breakpoint { get; set; } = BreakpointType.Lg;
 
-    [CascadingParameter(Name = nameof(MenuExtraRender))]
-    public RenderFragment MenuExtraRender { get; set; }
+    [Parameter] public RenderFragment MenuExtraRender { get; set; }
 
     [Parameter]
     public RenderFragment<bool> CollapsedButtonRender { get; set; } = (collapsed) =>

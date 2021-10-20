@@ -62,6 +62,7 @@ namespace Zero.Abp.AntBlazor.Layout
                 }
             }
             ScreenSize = actualBreakpoint;
+
             InvokeStateHasChanged();
         }
         #endregion

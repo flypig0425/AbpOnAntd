@@ -4,100 +4,49 @@
 
 @if (EmailSettings != null)
 {
- @*   <Form>
-        <Validations @ref="@IdentitySettingValidation" Model="@EmailSettings" ValidateOnLoad="false">
-            <Row>
-                <Column>
-                    <Validation MessageLocalizer="@LH.Localize">
-                        <Field>
-                            <FieldLabel>@L["DefaultFromDisplayName"]</FieldLabel>
-                            <TextEdit @bind-Text="@EmailSettings.DefaultFromDisplayName">
-                                <Feedback>
-                                    <ValidationError />
-                                </Feedback>
-                            </TextEdit>
-                        </Field>
-                    </Validation>
-                    <Validation MessageLocalizer="@LH.Localize">
-                        <Field>
-                            <FieldLabel>@L["DefaultFromAddress"]</FieldLabel>
-                            <TextEdit @bind-Text="@EmailSettings.DefaultFromAddress">
-                                <Feedback>
-                                    <ValidationError />
-                                </Feedback>
-                            </TextEdit>
-                        </Field>
-                    </Validation>
-                    <Validation MessageLocalizer="@LH.Localize">
-                        <Field>
-                           <FieldLabel>@L["SmtpHost"]</FieldLabel>
-                            <TextEdit @bind-Text="@EmailSettings.SmtpHost">
-                                <Feedback>
-                                    <ValidationError />
-                                </Feedback>
-                            </TextEdit>
-                        </Field>
-                    </Validation>
-                    <Validation MessageLocalizer="@LH.Localize">
-                        <Field>
-                            <FieldLabel>@L["SmtpPort"]</FieldLabel>
-                            <NumericEdit TValue="int" @bind-Value="@EmailSettings.SmtpPort">
-                                <Feedback>
-                                    <ValidationError/>
-                                </Feedback>
-                            </NumericEdit>
-                        </Field>
-                    </Validation>
-                    <Field>
-                        <FieldLabel>@L["SmtpEnableSsl"]</FieldLabel>
-                        <Check TValue="bool" @bind-Checked="@EmailSettings.SmtpEnableSsl">
-                        </Check>
-                    </Field>
-                    <Field>
-                        <FieldLabel>@L["SmtpUseDefaultCredentials"]</FieldLabel>
-                        <Check TValue="bool" @bind-Checked="@EmailSettings.SmtpUseDefaultCredentials">
-                        </Check>
-                    </Field>
-                    @if (!EmailSettings.SmtpUseDefaultCredentials)
-                    {
-                        <Validation MessageLocalizer="@LH.Localize">
-                            <Field>
-                              <FieldLabel>@L["SmtpDomain"]</FieldLabel>
-                                <TextEdit @bind-Text="@EmailSettings.SmtpDomain">
-                                    <Feedback>
-                                        <ValidationError />
-                                    </Feedback>
-                                </TextEdit>
-                            </Field>
-                        </Validation>
-                        <Validation MessageLocalizer="@LH.Localize">
-                            <Field>
-                               <FieldLabel>@L["SmtpUserName"]</FieldLabel>
-                                <TextEdit @bind-Text="@EmailSettings.SmtpUserName">
-                                    <Feedback>
-                                        <ValidationError />
-                                    </Feedback>
-                                </TextEdit>
-                            </Field>
-                        </Validation>
-                        <Validation MessageLocalizer="@LH.Localize">
-                            <Field>
-                               <FieldLabel>@L["SmtpPassword"]</FieldLabel>
-                                <TextEdit @bind-Text="@EmailSettings.SmtpPassword">
-                                    <Feedback>
-                                        <ValidationError />
-                                    </Feedback>
-                                </TextEdit>
-                            </Field>
-                        </Validation>
-                    }
-                </Column>
-            </Row>
-        </Validations>
-        <Row>
-            <Column>
-                <SubmitButton Clicked="@UpdateSettingsAsync" />
-            </Column>
-        </Row>
-    </Form>*@
+    <Form Model="@EmailSettings"
+          OnFinish="@UpdateSettingsAsync"
+          OnFinishFailed="OnFinishFailed"
+          LabelColSpan="8"
+          WrapperColSpan="16">
+
+        <FormItem Label="@L["DefaultFromDisplayName"]">
+            <Input @bind-Value="@context.DefaultFromDisplayName" />
+        </FormItem>
+
+        <FormItem Label="@L["DefaultFromAddress"]">
+            <Input @bind-Value="@context.DefaultFromAddress" />
+        </FormItem>
+
+        <FormItem Label="@L["SmtpHost"]">
+            <Input @bind-Value="@context.SmtpHost" />
+        </FormItem>
+
+        <FormItem Label="@L["SmtpPort"]">
+            <Input @bind-Value="@context.SmtpPort" />
+        </FormItem>
+
+        <FormItem Label="@L["SmtpEnableSsl"]">
+            <Checkbox @bind-Value="@context.SmtpEnableSsl" />
+        </FormItem>
+
+        <FormItem Label="@L["SmtpUseDefaultCredentials"]">
+            <Checkbox @bind-Value="@context.SmtpUseDefaultCredentials" />
+        </FormItem>
+
+        @if (!EmailSettings.SmtpUseDefaultCredentials)
+        {
+            <FormItem Label="@L["SmtpDomain"]">
+                <Input @bind-Value="@context.SmtpDomain" />
+            </FormItem>
+
+            <FormItem Label="@L["SmtpUserName"]">
+                <Input @bind-Value="@context.SmtpUserName" />
+            </FormItem>
+
+            <FormItem Label="@L["SmtpPassword"]">
+                <Input @bind-Value="@context.SmtpPassword" />
+            </FormItem>
+        }
+    </Form>
 }

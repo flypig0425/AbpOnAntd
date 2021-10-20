@@ -21,7 +21,8 @@
                        MenuData="MenuData"
                        SelectedKeys="SelectedKeys"
                        SelectedKeysChanged="SelectedKeysChanged"
-                       IsMobile="IsMobile" />
+                       IsMobile="IsMobile"
+                       MenuExtraRender="MenuExtraRender" />
         </Drawer>
     }
     else
@@ -37,18 +38,15 @@
                    MenuData="MenuData"
                    SelectedKeys="SelectedKeys"
                    SelectedKeysChanged="SelectedKeysChanged"
-                   IsMobile="IsMobile" />
+                   IsMobile="IsMobile"
+                   MenuExtraRender="MenuExtraRender" />
         // SiderTheme="SiderTheme"
         //MenuFooterRender = "MenuFooterRender"
         //           CollapsedButtonRender = "CollapsedButtonRender"
     }
 }
 @code {
-    [Parameter] public ApplicationMenuItemList MenuData { get; set; }
-    [Parameter] public string[] SelectedKeys { get; set; }
-    [Parameter] public EventCallback<string[]> SelectedKeysChanged { get; set; }
-
-
+    #region Collapsed--[@bind-Collapsed,OnCollapse]
     [Parameter] public bool Collapsed { get; set; }
     [Parameter] public EventCallback<bool> CollapsedChanged { get; set; }
     [Parameter] public EventCallback<bool> OnCollapse { get; set; }
@@ -58,6 +56,16 @@
         if (OnCollapse.HasDelegate) { await OnCollapse.InvokeAsync(collapsed); }
         if (CollapsedChanged.HasDelegate) { await CollapsedChanged.InvokeAsync(collapsed); }
     }
+    #endregion
+
+
+    [Parameter] public RenderFragment MenuExtraRender { get; set; }
+
+    [Parameter] public ApplicationMenuItemList MenuData { get; set; }
+    [Parameter] public string[] SelectedKeys { get; set; }
+    [Parameter] public EventCallback<string[]> SelectedKeysChanged { get; set; }
+
+
 
     [Parameter] public bool Hide { get; set; }
     [Parameter] public bool IsMobile { get; set; }

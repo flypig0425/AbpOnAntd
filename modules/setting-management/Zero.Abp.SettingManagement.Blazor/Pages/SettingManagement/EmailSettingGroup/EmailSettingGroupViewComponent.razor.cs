@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using System;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Volo.Abp.SettingManagement;
 using Volo.Abp.SettingManagement.Localization;
@@ -19,7 +20,7 @@ namespace Zero.Abp.SettingManagement.Blazor.Pages.SettingManagement.EmailSetting
         [Inject]
         protected IUiMessageService UiMessageService { get; set; }
 
-        protected EmailSettingsDto EmailSettings;
+        protected EmailSettingsDto EmailSettings = new EmailSettingsDto();
 
         //protected Validations IdentitySettingValidation;
 
@@ -55,6 +56,12 @@ namespace Zero.Abp.SettingManagement.Blazor.Pages.SettingManagement.EmailSetting
             {
                 await HandleErrorAsync(ex);
             }
+        }
+
+
+        protected void OnFinishFailed()
+        {
+            Console.WriteLine($"Failed:{JsonSerializer.Serialize(EmailSettings)}");
         }
     }
 }

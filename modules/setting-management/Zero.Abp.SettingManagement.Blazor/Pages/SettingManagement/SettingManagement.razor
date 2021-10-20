@@ -4,71 +4,36 @@
 *@
 @* ************************* PAGE HEADER ************************* *@
 
-<PageHeader Title="@L["Settings"]" BreadcrumbItems="@BreadcrumbItems">
+@*<PageHeader Title="@L["Settings"]" BreadcrumbItems="@BreadcrumbItems">
 
-</PageHeader>
+    </PageHeader>*@
 
 <GridContent>
-    <div className={styles.main}
-         ref={(ref) =>
-        {
-        if (ref) {
-        dom.current = ref;
-        }
-        }}
-        >
-        <div className={styles.leftMenu}>
-            <Menu mode={initConfig.mode}
-                  selectedKeys={[initConfig.selectKey]}
-                  onClick={({ key })=>
+    <div class="main" @ref="element">
+        <div class="leftMenu">
+            <Menu Mode="@Mode"
+                  SelectedKeys="@(new[]{ SelectedGroup})"
+                  OnMenuItemClicked="(item)=> { SelectedGroup = item.Key; }">
+                @foreach (var group in SettingComponentCreationContext.Groups)
                 {
-                setInitConfig({
-                ...initConfig,
-                selectKey: key as SettingsStateKeys,
-                });
-                }}
-                >
-                {getMenu()}
+                    <MenuItem Key="@GetNormalizedString(group.Id)">
+                        @group.DisplayName
+                    </MenuItem>
+                }
             </Menu>
         </div>
-        <div className={styles.right}>
-            <div className={styles.title}>{menuMap[initConfig.selectKey]}</div>
-            {renderChildren()}
+        <div class="right">
+            @foreach (var group in SettingComponentCreationContext.Groups)
+            {
+                @if (GetNormalizedString(group.Id) == SelectedGroup)
+                {
+                    <div class="title">@group.DisplayName</div>
+                    @SettingItemRenders.Last(f => f.key == SelectedGroup)
+                }
+            }
         </div>
     </div>
 </GridContent>
-
-
-<Card>
-    <CardBody>
-        <Tabs @bind-SelectedTab="@SelectedGroup" TabPosition="TabPosition.Left" Pills="true">
-            <Items>
-                @foreach (var group in SettingComponentCreationContext.Groups)
-                {
-                    <Tab Name="@GetNormalizedString(group.Id)">
-                        @group.DisplayName
-                    </Tab>
-                }
-            </Items>
-            <Content>
-                @foreach (var group in SettingComponentCreationContext.Groups)
-                {
-                    <TabPanel Name="@GetNormalizedString(group.Id)">
-                        <h2>@group.DisplayName</h2>
-                        <Divider />
-
-                        @{
-                            SettingItemRenders.Add(builder =>
-                            {
-                                builder.OpenComponent(0, group.ComponentType);
-                                builder.CloseComponent();
-                            });
-                        }
-
-                        @SettingItemRenders.Last()
-                    </TabPanel>
-                }
-            </Content>
-        </Tabs>
-    </CardBody>
-</Card>
+@code{
+    private ElementReference element;
+}

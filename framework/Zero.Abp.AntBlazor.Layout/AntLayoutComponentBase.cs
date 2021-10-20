@@ -15,20 +15,17 @@ namespace Zero.Abp.AntBlazor.Layout
         protected LayoutSettings Settings => LayoutStateProvider?.Settings ?? new LayoutSettings();
 
         protected bool IsSideLayout => Settings.Layout == Layout.Side.Name;
+
         protected bool IsTopLayout => Settings.Layout == Layout.Top.Name;
+
         protected bool IsMixLayout => Settings.Layout == Layout.Mix.Name;
+
         protected bool IsMobile => LayoutStateProvider?.IsMobile ?? false;
+
+        public bool HasPageContainer => LayoutStateProvider?.HasPageContainer ?? false;
         #endregion
 
         [Parameter] public string PrefixCls { get; set; } = $"ant-pro";
-
-        #region 
-        //[Parameter] public RenderFragment HeaderContent { get; set; }
-        //[Parameter] public RenderFragment RightContentRender { get; set; }
-        //[Parameter] public RenderFragment FooterContent { get; set; }
-        //[Parameter] public RenderFragment MenuContent { get; set; }
-        //[Parameter] public RenderFragment MenuExtraRender { get; set; }
-        #endregion
 
         //[Inject] protected LayoutState LayoutState { get; set; }
         //protected LayoutSettings Settings => LayoutState.Settings;
