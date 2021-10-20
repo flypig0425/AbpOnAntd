@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Routing;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Volo.Abp.UI.Navigation;
 using Zero.Abp.AntBlazor.Layout.Core;
@@ -22,10 +23,12 @@ namespace Zero.Abp.AntBlazor.Layout
 
 
         #region 
+
         [Parameter] public RenderFragment HeaderContent { get; set; }
         [Parameter] public RenderFragment FooterContent { get; set; }
         [Parameter] public RenderFragment MenuContent { get; set; }
 
+        [Parameter] public List<RenderFragment> HeaderRightItemRenders { get; set; }
         [Parameter] public RenderFragment HeaderRightContent { get; set; }
         [Parameter] public RenderFragment MenuExtraRender { get; set; }
         #endregion

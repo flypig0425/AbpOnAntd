@@ -4,22 +4,22 @@
 <div class="@className" style="@Style">
     @if (IsMobile)
     {
-        <div class="@BaseClassName-logo">
-            <Branding HideTitle />
-        </div>
+            <div class="@BaseClassName-logo">
+                <Branding HideTitle />
+            </div>
         @if (CollapsedButtonRender != null)
         {
-            <span class="@BaseClassName-collapsed-button" style="cursor:pointer"
+                    <span class="@BaseClassName-collapsed-button" style="cursor:pointer"
                   @onclick="@(async () => { await HandleCollapse(!Collapsed); })">
                 @CollapsedButtonRender(Collapsed)
-            </span>
+                    </span>
         }
     }
     else if (IsMixLayout)
     {
-        <div class="@BaseClassName-logo">
-            <Branding />
-        </div>
+            <div class="@BaseClassName-logo">
+                <Branding />
+            </div>
     }
     <div style="flex: 1">@ChildContent</div>
     @if (RightContentRender != null)
@@ -28,11 +28,11 @@
     }
     else
     {
-        <HeaderRight />
+         <HeaderRight ItemRenders="RightItemRenders"/>
     }
 </div>
 
-@code{
+@code {
     #region Collapsed--[@bind-Collapsed,OnCollapse]
     [Parameter] public bool Collapsed { get; set; }
     [Parameter] public EventCallback<bool> CollapsedChanged { get; set; }
@@ -47,6 +47,7 @@
 
 
 
+[Parameter] public List<RenderFragment> RightItemRenders { get; set; }
     [Parameter] public RenderFragment RightContentRender { get; set; }
 
     [Parameter] public bool IsMobile { get; set; }

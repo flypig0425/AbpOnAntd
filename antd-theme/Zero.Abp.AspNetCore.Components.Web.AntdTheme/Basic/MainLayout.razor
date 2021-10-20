@@ -1,20 +1,35 @@
 ﻿@using Volo.Abp.UI.Navigation
 @using Zero.Abp.AntBlazor.Layout
 @using Zero.Abp.AntBlazor.Layout.Core
+@using Zero.Abp.AspNetCore.Components.Web.Theming.Toolbars
 @inherits LayoutComponentBase
 @inject IMenuManager MenuManager
+@inject IToolbarManager ToolbarManager
 
-    <LayoutStateProvider>
-        <BasicLayout MenuData="@MenuData">
-            @Body
-        </BasicLayout>
-        <SettingDrawer />
-    </LayoutStateProvider>
-    @code {
-        protected ApplicationMenuItemList MenuData { get; set; }
-        protected override async Task OnInitializedAsync()
+<LayoutStateProvider>
+    <BasicLayout MenuData="@MenuData"
+                 HeaderRightItemRenders="@ToolbarItemRenders">
+        @Body
+    </BasicLayout>
+    <SettingDrawer />
+</LayoutStateProvider>
+@code {
+    protected ApplicationMenuItemList MenuData { get; set; }
+    protected List<RenderFragment> ToolbarItemRenders { get; set; } = new List<RenderFragment>();
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        MenuData = await MenuManager.GetMainMenuItemsAsync();
+        var toolbar = await ToolbarManager.GetAsync(StandardToolbars.Main);
+        ToolbarItemRenders.Clear();
+        var sequence = 0;
+        foreach (var item in toolbar.Items)
         {
-            await base.OnInitializedAsync();
-            MenuData = await MenuManager.GetMainMenuItemsAsync();
+            ToolbarItemRenders.Add(builder =>
+            {
+                builder.OpenComponent(sequence++, item.ComponentType);
+                builder.CloseComponent();
+            });
         }
     }
+}
