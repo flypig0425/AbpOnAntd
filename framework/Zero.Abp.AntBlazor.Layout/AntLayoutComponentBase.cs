@@ -9,14 +9,15 @@ namespace Zero.Abp.AntBlazor.Layout
 {
     public abstract class AntLayoutComponentBase : AntUIComponentBase
     {
-        #region MyRegion
-        [CascadingParameter(Name = "LayoutStateProvider")]
+        #region LayoutStateProvider
+        [CascadingParameter]
         protected LayoutStateProvider LayoutStateProvider { get; set; }
-        protected  LayoutSettings Settings => LayoutStateProvider?.Settings??new LayoutSettings();
+        protected LayoutSettings Settings => LayoutStateProvider?.Settings ?? new LayoutSettings();
 
         protected bool IsSideLayout => Settings.Layout == Layout.Side.Name;
         protected bool IsTopLayout => Settings.Layout == Layout.Top.Name;
         protected bool IsMixLayout => Settings.Layout == Layout.Mix.Name;
+        protected bool IsMobile => LayoutStateProvider?.IsMobile ?? false;
         #endregion
 
         [Parameter] public string PrefixCls { get; set; } = $"ant-pro";

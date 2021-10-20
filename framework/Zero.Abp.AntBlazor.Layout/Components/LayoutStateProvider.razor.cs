@@ -1,4 +1,5 @@
 ﻿using AntDesign;
+using AntDesign.JsInterop;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
@@ -11,30 +12,90 @@ namespace Zero.Abp.AntBlazor.Layout
 {
     public partial class LayoutStateProvider
     {
-
         public LayoutSettings Settings { get; internal set; }
 
+        #region 
+        public int SiderWidth { get; internal set; } = 208;
 
-        public event Action OnChange;
+        public bool HasHeader { get; internal set; }  
 
-        public event Func<string, Task> OnThemeChangedAsync;
+        public bool HasSiderMenu { get; internal set; }
+
+        public bool HasPageContainer { get; internal set; }
+
+        public bool HasPageFooterToolbar { get; internal set; } 
+        #endregion
 
 
+        public bool IsMobile => (ScreenSize == BreakpointType.Sm || ScreenSize == BreakpointType.Xs) && !DisableMobile;
 
-        [Inject] protected ILayoutConfigProvider LayoutConfigProvider { get; set; }
+        #region 
+        protected BreakpointType ScreenSize { get; set; } = BreakpointType.Lg;//useAntdMediaQuery();
+
+        private static readonly BreakpointType[] _breakpoints = new[] {
+            BreakpointType.Xs, BreakpointType.Sm,
+            BreakpointType.Md, BreakpointType.Lg,
+            BreakpointType.Xl, BreakpointType.Xxl
+        };
+
+        private async Task InitOptimizeSize()
+        {
+            if (!DisableMobile)
+            {
+                var dimensions = await JsInvokeAsync<Window>(JSInteropConstants.GetWindow);
+                DomEventListener.AddShared<Window>("window", "resize", OnResize);
+                OptimizeSize(dimensions.InnerWidth);
+            }
+        }
+        private void OnResize(Window window)
+        {
+            OptimizeSize(window.InnerWidth);
+        }
+        private void OptimizeSize(decimal windowWidth)
+        {
+            BreakpointType actualBreakpoint = _breakpoints[^1];
+            for (int i = 0; i < _breakpoints.Length; i++)
+            {
+                if (windowWidth <= (int)_breakpoints[i] && (windowWidth >= (i > 0 ? (int)_breakpoints[i - 1] : 0)))
+                {
+                    actualBreakpoint = _breakpoints[i];
+                }
+            }
+            ScreenSize = actualBreakpoint;
+            InvokeStateHasChanged();
+        }
+        #endregion
+
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (firstRender)
+            {
+                await InitOptimizeSize();
+            }
+            await base.OnAfterRenderAsync(firstRender);
+        }
+
+
+        [Inject] protected IDomEventListener DomEventListener { get; set; }
+
+        protected override void Dispose(bool disposing)
+        {
+            DomEventListener?.Dispose();
+            base.Dispose(disposing);
+        }
 
         private bool isLoaded;
+
+        [Inject] protected ILayoutConfigProvider LayoutConfigProvider { get; set; }
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
             Settings = await LayoutConfigProvider.GetSettingsAsync();
+            await UpdateThemeAsync();
             isLoaded = true;
         }
 
-        //public async Task SaveChangesAsync()
-        //{
-        //    await ProtectedSessionStore.SetAsync("count", CurrentCount);
-        //}
 
         public async Task UpdateSettingAsync<TValue>(Expression<Func<LayoutSettings, TValue>> propertySelector, TValue newValue, Func<TValue> currentValue = null)
         {
@@ -74,7 +135,6 @@ namespace Zero.Abp.AntBlazor.Layout
             await Task.CompletedTask;
         }
 
-        protected string _themeUrl;
         public async Task UpdateThemeAsync()
         {
             var primaryColor = Settings.PrimaryColor == "default" ? null : Settings.PrimaryColor;
@@ -86,19 +146,21 @@ namespace Zero.Abp.AntBlazor.Layout
             else
             {
                 var fileName = string.Join("-", fileNameArr);
-                _themeUrl = $"/_content/{typeof(SettingDrawer).Assembly.GetName().Name}/theme/{fileName}.css";
+                _themeUrl = $"/_content/Zero.Abp.AntBlazor.Layout/theme/{fileName}.css";
             }
             await NotifyThemeChanged(_themeUrl);
         }
 
-        private void NotifyStateChanged() => OnChange?.Invoke();
+
+        protected string _themeUrl;
+        protected ElementReference _themeRef;
         private async Task NotifyThemeChanged(string _themeUrl)
         {
-            if (OnThemeChangedAsync != null)
-            {
-                await OnThemeChangedAsync?.Invoke(_themeUrl);
-            }
+            await JsInvokeAsync(JSInteropConstants.AddElementTo, _themeRef, "head");
         }
-
+        private void NotifyStateChanged()
+        {
+            StateHasChanged();
+        }
     }
 }

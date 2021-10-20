@@ -1,8 +1,9 @@
 ﻿@namespace Zero.Abp.AntBlazor.Layout
+@inherits AntComponentBase
 
 @if (isLoaded)
 {
-    <CascadingValue Value="@this" Name="LayoutStateProvider">
+    <CascadingValue Value="@this">
         @ChildContent
     </CascadingValue>
 }
@@ -10,7 +11,11 @@ else
 {
     <p>Loading...</p>
 }
+<link rel="stylesheet" href="@_themeUrl" @ref="_themeRef">
 
 @code {
+
+    [Parameter] public bool DisableMobile { get; set; }
+
     [Parameter] public RenderFragment ChildContent { get; set; }
 }

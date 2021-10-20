@@ -70,63 +70,61 @@
         <div class="@($"{PrefixedClassName}-main")">
             <div class="@($"{PrefixedClassName}-row")">
                 @if (Content != null)
-                    {
-                        <div class="@($"{PrefixedClassName}-content")">@Content</div>
-                    }
-                    @if (ExtraContent != null)
-                    {
-                        <div class="@($"{PrefixedClassName}-extraContent")">@ExtraContent</div>
-                    }
-                </div>
+                {
+                    <div class="@($"{PrefixedClassName}-content")">@Content</div>
+                }
+                @if (ExtraContent != null)
+                {
+                    <div class="@($"{PrefixedClassName}-extraContent")">@ExtraContent</div>
+                }
             </div>
-        </div>;
-
-    RenderFragment PageHeaderFooter => TabList.IsNullOrEmpty() ? null :
-    @<Tabs Class="@($"{PrefixedClassName}-tabs")"
-           ActiveKey="@TabActiveKey"
-           Type="@TabProps.Type"
-           Size="@TabProps.Size"
-           HideAdd="@TabProps.HideAdd"
-           OnTabClick="HandleTabClick"
-           OnEdit="@TabProps.OnEdit"
-           TabBarExtraContent="@TabBarExtraContent">
-        @foreach (var item in TabList)
-            {
-                <TabPane Key="@item.Key" Tab="@item.Tab" Closable="@item.Closable" Disabled="@item.Disabled" />
-            }
-        </Tabs>;
-
-    RenderFragment PageHeaderDom()
-    {
-        if (Header != null)
-        {
-            Title = Header.Title.IsT0 ? Header.Title.AsT0 ?? Title : Title;
-            TitleTemplate = Header.Title.IsT1 ? Header.Title.AsT1 ?? TitleTemplate : TitleTemplate;
-            Ghost = Header?.Ghost ?? Ghost;
-            Extra = Header.Extra ?? Extra;
-            BreadcrumbContent = Header.Breadcrumb ?? BreadcrumbContent;
-        }
-        //    var parameters = new Dictionary<string, object>();
-        //    parameters.AddIfNoNull(nameof(PageHeader.Title), () => Title);
-        //    parameters.AddIfNoNull(nameof(PageHeader.Ghost), () => Ghost);
-        //    parameters.AddIfNoNull(nameof(PageHeader.TitleTemplate), () => TitleContent);
-        //    parameters.AddIfNoNull(nameof(PageHeader.PageHeaderExtra), () => Extra);
-        //    parameters.AddIfNoNull(nameof(PageHeader.PageHeaderBreadcrumb), () => BreadcrumbContent);
-        //    parameters.AddIfNoNull(nameof(PageHeader.PageHeaderContent), () => PageHeaderContent);
-        //    parameters.AddIfNoNull(nameof(PageHeader.PageHeaderFooter), () => PageHeaderFooter);
-        //    return @<div class=@($"{PrefixedClassName}-warp")>
-        //    <Component Type="@typeof(PageHeader)" Parameters="@parameters" />
-        //</div>;
-        return @<div class=@($"{PrefixedClassName}-warp")>
-        <PageHeader Title="@Title"
-                Ghost="@Ghost"
-                TitleTemplate="@TitleTemplate"
-                PageHeaderExtra="@Extra"
-                PageHeaderBreadcrumb="@BreadcrumbContent"
-                PageHeaderContent="@PageHeaderContent"
-                PageHeaderFooter="@PageHeaderFooter">
-        </PageHeader>
+        </div>
     </div>;
+
+RenderFragment PageHeaderFooter()
+{
+    if (TabList.IsNullOrEmpty()) { return null; }
+    var parameters = new Dictionary<string, object>();
+    parameters.AddIfNoNull(nameof(Tabs.TabBarExtraContent), () => TabBarExtraContent);
+
+    return @<Tabs Class="@($"{PrefixedClassName}-tabs")"
+                  ActiveKey="@TabActiveKey"
+                  Type="@TabProps.Type"
+                  Size="@TabProps.Size"
+                  HideAdd="@TabProps.HideAdd"
+                  OnTabClick="HandleTabClick"
+                  OnEdit="@TabProps.OnEdit"
+                  @attributes="@parameters">
+    @foreach (var item in TabList)
+    {
+        <TabPane Key="@item.Key" Tab="@item.Tab" Closable="@item.Closable" Disabled="@item.Disabled" />
     }
+</Tabs>; 
+
+}
+
+RenderFragment PageHeaderDom()
+{
+if (Header != null)
+{
+ Title = Header.Title.IsT0 ? Header.Title.AsT0 ?? Title : Title;
+ TitleTemplate = Header.Title.IsT1 ? Header.Title.AsT1 ?? TitleTemplate : TitleTemplate;
+ Ghost = Header?.Ghost ?? Ghost;
+ Extra = Header.Extra ?? Extra;
+ BreadcrumbContent = Header.Breadcrumb ?? BreadcrumbContent;
+}
+var parameters = new Dictionary<string, object>();
+parameters.AddIfNoNull(nameof(PageHeader.TitleTemplate), () => TitleTemplate);
+parameters.AddIfNoNull(nameof(PageHeader.PageHeaderExtra), () => Extra);
+parameters.AddIfNoNull(nameof(PageHeader.PageHeaderBreadcrumb), () => BreadcrumbContent);
+parameters.AddIfNoNull(nameof(PageHeader.PageHeaderContent), () => PageHeaderContent);
+parameters.AddIfNoNull(nameof(PageHeader.PageHeaderFooter), () => PageHeaderFooter());
+return @<div class=@($"{PrefixedClassName}-warp")>
+    <PageHeader Title="@Title"
+                Ghost="@Ghost"
+                @attributes="parameters">
+    </PageHeader>
+</div>;
+}
 
 }

@@ -10,16 +10,10 @@ namespace Zero.Abp.AntBlazor.Layout
     public partial class PageContainer
     {
         #region 
-
-        [CascadingParameter(Name = "LayoutContext")]
-        public BasicLayout Value { get; set; } = new BasicLayout();
-
-
-
-        private bool HasHeader => Value?.HasHeader ?? false;
-        private bool HasFooterToolbar => Value?.HasFooterToolbar ?? false;
+        private bool HasHeader => LayoutStateProvider?.HasHeader ?? false;
+        private bool HasFooterToolbar => LayoutStateProvider?.HasPageFooterToolbar ?? false;
         private void SetHasPageContainer(bool hasPageContainer) {
-            if (Value != null) { Value.HasPageContainer = hasPageContainer; }
+            if (LayoutStateProvider != null) { LayoutStateProvider.HasPageContainer = hasPageContainer; }
         }
         #endregion
 

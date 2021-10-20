@@ -4,17 +4,17 @@
 @inherits LayoutComponentBase
 @inject IMenuManager MenuManager
 
-<LayoutStateProvider>
-    <BasicLayout MenuData="@MenuData">
-        @Body
-    </BasicLayout>
-    <SettingDrawer />
-</LayoutStateProvider>
-@code {
-    protected ApplicationMenuItemList MenuData { get; set; }
-    protected override async Task OnInitializedAsync()
-    {
-        await base.OnInitializedAsync();
-        MenuData = await MenuManager.GetMainMenuItemsAsync();
+    <LayoutStateProvider>
+        <BasicLayout MenuData="@MenuData">
+            @Body
+        </BasicLayout>
+        <SettingDrawer />
+    </LayoutStateProvider>
+    @code {
+        protected ApplicationMenuItemList MenuData { get; set; }
+        protected override async Task OnInitializedAsync()
+        {
+            await base.OnInitializedAsync();
+            MenuData = await MenuManager.GetMainMenuItemsAsync();
+        }
     }
-}
