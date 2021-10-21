@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Volo.Abp.Application;
 using Volo.Abp.Authorization;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
@@ -10,6 +11,7 @@ namespace Zero.Abp.AntBlazorUI
 {
     [DependsOn(
         typeof(AbpAspNetCoreComponentsWebModule),
+        typeof(AbpDddApplicationContractsModule),
         typeof(AbpAuthorizationModule)
         )]
     public class AbpAntBlazorUIModule : AbpModule

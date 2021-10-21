@@ -9,7 +9,7 @@ namespace Zero.Abp.AntBlazor.Layout
 {
     public partial class BasicLayout
     {
-        #region Collapsed--[@bind-Collapsed,OnCollapse]
+        #region [@bind-Collapsed,OnCollapse]
         [Parameter] public bool Collapsed { get; set; }
         [Parameter] public EventCallback<bool> CollapsedChanged { get; set; }
         [Parameter] public EventCallback<bool> OnCollapse { get; set; }
@@ -23,7 +23,6 @@ namespace Zero.Abp.AntBlazor.Layout
 
 
         #region 
-
         [Parameter] public RenderFragment HeaderContent { get; set; }
         [Parameter] public RenderFragment FooterContent { get; set; }
         [Parameter] public RenderFragment MenuContent { get; set; }
@@ -75,11 +74,11 @@ namespace Zero.Abp.AntBlazor.Layout
 
         private void SetLayoutState()
         {
-            if (LayoutStateProvider != null)
+            if (LayoutContextProvider != null)
             {
-                LayoutStateProvider.HasHeader = HeaderDom != null;
-                LayoutStateProvider.HasSiderMenu = HasSiderMenu;
-                LayoutStateProvider.SiderWidth = SiderWidth;
+                LayoutContextProvider.HasHeader = HeaderDom != null;
+                LayoutContextProvider.HasSiderMenu = HasSiderMenu;
+                LayoutContextProvider.SiderWidth = SiderWidth;
             }
         }
 

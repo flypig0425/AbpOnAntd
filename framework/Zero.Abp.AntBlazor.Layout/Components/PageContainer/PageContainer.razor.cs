@@ -10,10 +10,10 @@ namespace Zero.Abp.AntBlazor.Layout
     public partial class PageContainer
     {
         #region 
-        private bool HasHeader => LayoutStateProvider?.HasHeader ?? false;
-        private bool HasFooterToolbar => LayoutStateProvider?.HasPageFooterToolbar ?? false;
+        private bool HasHeader => LayoutContextProvider?.HasHeader ?? false;
+        private bool HasFooterToolbar => LayoutContextProvider?.HasPageFooterToolbar ?? false;
         private void SetHasPageContainer(bool hasPageContainer) {
-            if (LayoutStateProvider != null) { LayoutStateProvider.HasPageContainer = hasPageContainer; }
+            if (LayoutContextProvider != null) { LayoutContextProvider.HasPageContainer = hasPageContainer; }
         }
         #endregion
 
@@ -47,6 +47,7 @@ namespace Zero.Abp.AntBlazor.Layout
         [Parameter] public bool Ghost { get; set; }
         [Parameter] public RenderFragment Extra { get; set; }
         [Parameter] public RenderFragment BreadcrumbContent { get; set; }
+        //[Parameter] public List<BreadcrumbItem> BreadcrumbItems { get; set; }
         #endregion
 
         [Parameter] public RenderFragment Content { get; set; }

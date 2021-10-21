@@ -16,7 +16,7 @@
         <div class="@BaseClassName-drawer-content">
             <ThemeColor Title="@L["ThemeColor"]"
                         Value="@Settings.PrimaryColor"
-                        OnChange="value=>LayoutStateProvider.UpdateSettingAsync<string>(x=>x.PrimaryColor,value,()=> Settings.PrimaryColor)" />
+                        OnChange="value=>LayoutContextProvider.UpdateSettingAsync<string>(x=>x.PrimaryColor,value,()=> Settings.PrimaryColor)" />
             <SettingDrawerList ListType="ThemeSetting" />
 
             <Divider />
@@ -27,7 +27,7 @@
                 <BlockCheckbox PrefixCls="@BaseClassName"
                                List="LayoutList"
                                Value="@Settings.Layout"
-                               OnChange="value=>LayoutStateProvider.UpdateSettingAsync<string>(x=>x.Layout,value,()=> Settings.Layout)" />
+                               OnChange="value=>LayoutContextProvider.UpdateSettingAsync<string>(x=>x.Layout,value,()=> Settings.Layout)" />
             </SettingDrawerBody>
 
             <SettingDrawerList ListType="LayoutSetting" />

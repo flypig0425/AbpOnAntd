@@ -10,28 +10,70 @@ using Zero.Abp.AntBlazor.Layout.Core.LayoutConfig;
 
 namespace Zero.Abp.AntBlazor.Layout
 {
-    public partial class LayoutStateProvider
+    public partial class LayoutContextProvider
     {
+        #region public
+        [Parameter] public bool DisableMobile { get; set; }
+
         public LayoutSettings Settings { get; internal set; }
 
         #region 
         public int SiderWidth { get; internal set; } = 208;
 
-        public bool HasHeader { get; internal set; }  
+        public bool HasHeader { get; internal set; }
 
         public bool HasSiderMenu { get; internal set; }
 
         public bool HasPageContainer { get; internal set; }
 
-        public bool HasPageFooterToolbar { get; internal set; } 
+        public bool HasPageFooterToolbar { get; internal set; }
         #endregion
 
+        public BreakpointType ScreenSize { get; internal set; } = BreakpointType.Lg;//useAntdMediaQuery();
 
         public bool IsMobile => (ScreenSize == BreakpointType.Sm || ScreenSize == BreakpointType.Xs) && !DisableMobile;
 
-        #region 
-        protected BreakpointType ScreenSize { get; set; } = BreakpointType.Lg;//useAntdMediaQuery();
+        public event Action<Window> OnResize;
+        #endregion
 
+
+
+        [Inject] protected IDomEventListener DomEventListener { get; set; }
+        [Inject] protected ILayoutConfigProvider LayoutConfigProvider { get; set; }
+
+        private bool isLoaded;
+        protected override async Task OnInitializedAsync()
+        {
+            await base.OnInitializedAsync();
+            Settings = await LayoutConfigProvider.GetSettingsAsync();
+            await UpdateThemeAsync();
+            isLoaded = true;
+        }
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (firstRender)
+            {
+                DomEventListener.AddShared<Window>("window", "resize", WindowResize);
+                await InitOptimizeSize();
+            }
+            await base.OnAfterRenderAsync(firstRender);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            DomEventListener?.Dispose();
+            base.Dispose(disposing);
+        }
+
+        private void WindowResize(Window window)
+        {
+            OnResize?.Invoke(window);
+            OptimizeSize(window.InnerWidth);
+        }
+
+
+        #region  [ScreenSize]
         private static readonly BreakpointType[] _breakpoints = new[] {
             BreakpointType.Xs, BreakpointType.Sm,
             BreakpointType.Md, BreakpointType.Lg,
@@ -40,17 +82,10 @@ namespace Zero.Abp.AntBlazor.Layout
 
         private async Task InitOptimizeSize()
         {
-            if (!DisableMobile)
-            {
-                var dimensions = await JsInvokeAsync<Window>(JSInteropConstants.GetWindow);
-                DomEventListener.AddShared<Window>("window", "resize", OnResize);
-                OptimizeSize(dimensions.InnerWidth);
-            }
+            var dimensions = await JsInvokeAsync<Window>(JSInteropConstants.GetWindow);
+            OptimizeSize(dimensions.InnerWidth);
         }
-        private void OnResize(Window window)
-        {
-            OptimizeSize(window.InnerWidth);
-        }
+
         private void OptimizeSize(decimal windowWidth)
         {
             BreakpointType actualBreakpoint = _breakpoints[^1];
@@ -62,42 +97,11 @@ namespace Zero.Abp.AntBlazor.Layout
                 }
             }
             ScreenSize = actualBreakpoint;
-
             InvokeStateHasChanged();
         }
         #endregion
 
-
-        protected override async Task OnAfterRenderAsync(bool firstRender)
-        {
-            if (firstRender)
-            {
-                await InitOptimizeSize();
-            }
-            await base.OnAfterRenderAsync(firstRender);
-        }
-
-
-        [Inject] protected IDomEventListener DomEventListener { get; set; }
-
-        protected override void Dispose(bool disposing)
-        {
-            DomEventListener?.Dispose();
-            base.Dispose(disposing);
-        }
-
-        private bool isLoaded;
-
-        [Inject] protected ILayoutConfigProvider LayoutConfigProvider { get; set; }
-        protected override async Task OnInitializedAsync()
-        {
-            await base.OnInitializedAsync();
-            Settings = await LayoutConfigProvider.GetSettingsAsync();
-            await UpdateThemeAsync();
-            isLoaded = true;
-        }
-
-
+        #region [Setting&&Theme]
         public async Task UpdateSettingAsync<TValue>(Expression<Func<LayoutSettings, TValue>> propertySelector, TValue newValue, Func<TValue> currentValue = null)
         {
             if (currentValue?.Invoke()?.Equals(newValue) ?? false) { return; }
@@ -151,7 +155,7 @@ namespace Zero.Abp.AntBlazor.Layout
             }
             await NotifyThemeChanged(_themeUrl);
         }
-
+        #endregion
 
         protected string _themeUrl;
         protected ElementReference _themeRef;
@@ -159,9 +163,6 @@ namespace Zero.Abp.AntBlazor.Layout
         {
             await JsInvokeAsync(JSInteropConstants.AddElementTo, _themeRef, "head");
         }
-        private void NotifyStateChanged()
-        {
-            StateHasChanged();
-        }
+        private void NotifyStateChanged() { StateHasChanged(); }
     }
 }

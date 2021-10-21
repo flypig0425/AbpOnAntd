@@ -9,13 +9,11 @@
 }
 else
 {
-    <p>Loading...</p>
+  <PageLoading />
 }
 <link rel="stylesheet" href="@_themeUrl" @ref="_themeRef">
 
 @code {
-
-    [Parameter] public bool DisableMobile { get; set; }
 
     [Parameter] public RenderFragment ChildContent { get; set; }
 }

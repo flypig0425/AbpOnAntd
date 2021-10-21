@@ -18,8 +18,8 @@
 
     [Parameter] public LinkItem[] Links { get; set; }
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-       
+        await base.OnInitializedAsync();
     }
 }

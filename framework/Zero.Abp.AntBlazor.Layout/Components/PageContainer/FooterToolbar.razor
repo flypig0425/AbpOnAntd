@@ -12,11 +12,11 @@
 
     #region
     private bool isMobile => IsMobile;
-    private bool hasSiderMenu => LayoutStateProvider?.HasSiderMenu ?? false;
-    private int siderWidth => LayoutStateProvider?.SiderWidth ?? 0;
+    private bool hasSiderMenu => LayoutContextProvider?.HasSiderMenu ?? false;
+    private int siderWidth => LayoutContextProvider?.SiderWidth ?? 0;
     private void SetHasFooterToolbar(bool hasFooterToolbar)
     {
-        if (LayoutStateProvider != null) { LayoutStateProvider.HasPageFooterToolbar = hasFooterToolbar; }
+        if (LayoutContextProvider != null) { LayoutContextProvider.HasPageFooterToolbar = hasFooterToolbar; }
     }
     #endregion
 

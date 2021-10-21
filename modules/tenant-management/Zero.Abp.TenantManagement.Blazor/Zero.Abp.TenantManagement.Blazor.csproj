@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<Import Project="..\..\..\configureawait.props" />
+	<Import Project="..\..\..\common.props" />
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+	</PropertyGroup>
+
+
+	<ItemGroup>
+		<PackageReference Include="Volo.Abp.AutoMapper" Version="4.4.3" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\framework\Zero.Abp.AspNetCore.Components.Web.Theming\Zero.Abp.AspNetCore.Components.Web.Theming.csproj" />
+		<ProjectReference Include="..\..\feature-management\Zero.Abp.FeatureManagement.Blazor\Zero.Abp.FeatureManagement.Blazor.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Volo.Abp.TenantManagement.Application.Contracts" Version="4.4.3" />
+	</ItemGroup>
+</Project>

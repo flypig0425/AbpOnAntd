@@ -22,7 +22,7 @@
         return@<Template>
         <span style="@StyleValues(("opacity:0.5",disabledFactory))">@L[fieldName]</span>
         <RadioGroup Size="@("small")" TValue="string" Value="@(valueFactory?.Invoke()?? "")" Disabled="@(disabledFactory?.Invoke()?? false)"
-                OnChange="value=>LayoutStateProvider.UpdateSettingAsync<string>(propertySelector,value,valueFactory)"
+                OnChange="value=>LayoutContextProvider.UpdateSettingAsync<string>(propertySelector,value,valueFactory)"
                 ButtonStyle="@RadioButtonStyle.Solid">
             @foreach (var item in options)
                 {
@@ -43,7 +43,7 @@
         return @<Template>
         <span style="@StyleValues(("opacity:0.5",disabledFactory))">@L[fieldName]</span>
         <Switch Size="small" Checked="@(valueFactory?.Invoke()?? false)" Disabled="@(disabledFactory?.Invoke()?? false)"
-            OnChange="value=>LayoutStateProvider.UpdateSettingAsync(propertySelector,value,valueFactory)" />
+            OnChange="value=>LayoutContextProvider.UpdateSettingAsync(propertySelector,value,valueFactory)" />
     </Template>
     ;
     }

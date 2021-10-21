@@ -6,13 +6,13 @@
 @inject IMenuManager MenuManager
 @inject IToolbarManager ToolbarManager
 
-<LayoutStateProvider>
+<LayoutContextProvider>
     <BasicLayout MenuData="@MenuData"
                  HeaderRightItemRenders="@ToolbarItemRenders">
         @Body
     </BasicLayout>
     <SettingDrawer />
-</LayoutStateProvider>
+</LayoutContextProvider>
 @code {
     protected ApplicationMenuItemList MenuData { get; set; }
     protected List<RenderFragment> ToolbarItemRenders { get; set; } = new List<RenderFragment>();

@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<Import Project="..\..\..\configureawait.props" />
+	<Import Project="..\..\..\common.props" />
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\framework\Zero.Abp.AspNetCore.Components.WebAssembly.Theming\Zero.Abp.AspNetCore.Components.WebAssembly.Theming.csproj" />
+		<ProjectReference Include="..\..\feature-management\Zero.Abp.FeatureManagement.Blazor.WebAssembly\Zero.Abp.FeatureManagement.Blazor.WebAssembly.csproj" />
+		<ProjectReference Include="..\Zero.Abp.TenantManagement.Blazor\Zero.Abp.TenantManagement.Blazor.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Volo.Abp.TenantManagement.HttpApi.Client" Version="4.4.3" />
+	</ItemGroup>
+	
+</Project>

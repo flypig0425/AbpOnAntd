@@ -1,0 +1,81 @@
+﻿@page "/tenant-management/tenants"
+@attribute [Authorize(TenantManagementPermissions.Tenants.Default)]
+@using Microsoft.AspNetCore.Authorization
+@using Zero.Abp.FeatureManagement.Blazor.Components
+@using Microsoft.AspNetCore.Components.Forms
+@using Volo.Abp.TenantManagement
+@using Volo.Abp.TenantManagement.Localization
+@*@using Volo.Abp.AspNetCore.Components.Web.Theming.Layout
+    @using Volo.Abp.BlazoriseUI.Components.ObjectExtending*@
+@using Zero.Abp.AspNetCore.Components.Web
+@inject AbpBlazorMessageLocalizerHelper<AbpTenantManagementResource> LH
+@inherits AbpCrudPageBase<ITenantAppService, TenantDto, Guid, GetTenantsInput, TenantCreateDto, TenantUpdateDto>
+@*<PageContainer  Title="@L["Tenants"]">
+
+    </PageContainer>*@
+
+@*<Card>*@
+    @*<CardHeader>*@
+        @* ************************* PAGE HEADER ************************* *@
+@*        <PageHeader Title="@L["Tenants"]"
+    BreadcrumbItems="@BreadcrumbItems"
+    Toolbar="@Toolbar">
+    </PageHeader>*@
+@*    </CardHeader>
+    <CardBody>*@
+        @* ************************* DATA GRID ************************* *@
+ @*       <AbpExtensibleDataGrid TItem="TenantDto"
+    Data="@Entities"
+    ReadData="@OnDataGridReadAsync"
+    TotalItems="@TotalCount"
+    ShowPager="true"
+    PageSize="@PageSize"
+    CurrentPage="@CurrentPage"
+    Columns="@TenantManagementTableColumns">
+    </AbpExtensibleDataGrid>*@
+    @*</CardBody>*@
+@*</Card>*@
+
+@* ************************* CREATE MODAL ************************* *@
+@if (HasCreatePermission)
+{
+    <Modal Title="@L["NewTenant"]"
+       Visible="@CreateVisible"
+       OnOk="@CreateEntityAsync"
+       OnCancel="CloseCreateModalAsync"
+       CancelText="@L["Cancel"].Value">
+        <Form Model="@NewEntity">
+            <FormItem Label="@L["TenantName"]">
+                <Input @bind-Value="@context.Name" AutoFocus="true" />
+            </FormItem>
+            <FormItem Label="@L["DisplayName:AdminEmailAddress"]">
+                <Input @bind-Value="@context.AdminEmailAddress" /> @*Role="@TextRole.Email" *@
+            </FormItem>
+            <FormItem Label="@L["DisplayName:AdminPassword"]">
+                <Input @bind-Value="@context.AdminPassword" /> @*Role="@TextRole.Password" *@
+            </FormItem>
+            @*<ExtensionProperties TEntityType="TenantCreateDto" TResourceType="AbpTenantManagementResource" Entity="@NewEntity" LH="@LH"/>*@
+        </Form>
+    </Modal>
+}
+@* ************************* EDIT MODAL ************************* *@
+@if (HasUpdatePermission)
+{
+    <Modal Title="@L["NewTenant"]"
+       Visible="@EditVisible"
+       OnOk="@UpdateEntityAsync"
+       OnCancel="CloseEditModalAsync"
+       CancelText="@L["Cancel"].Value">
+        <Form Model="@EditingEntity">
+            <FormItem Label="@L["TenantName"]">
+                <Input @bind-Value="@context.Name" AutoFocus="true" />
+            </FormItem>
+            @*<ExtensionProperties TEntityType="TenantUpdateDto" TResourceType="AbpTenantManagementResource" Entity="@TenantUpdateDto" LH="@LH"/>*@
+        </Form>
+    </Modal>
+}
+
+@if (HasManageFeaturesPermission)
+{
+    <FeatureManagementModal @ref="FeatureManagementModal" />
+}

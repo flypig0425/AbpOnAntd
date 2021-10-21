@@ -56,7 +56,6 @@ else
         <HeaderView HasSiderMenu="HasSiderMenu"
                 SiderWidth="SiderWidth"
                 MenuData="menuData"
-                IsMobile="IsMobile"
                 Collapsed="@Collapsed"
                 OnCollapse="HandleCollapse"
                 RightContent="HeaderRightContent"
@@ -88,13 +87,12 @@ else
 
     private RenderFragment siderMenuWrapper(ApplicationMenuItemList clearMenuData = null) =>
     @<Template>
-        <SiderMenuWrapper IsMobile="IsMobile"
-                      SiderWidth="SiderWidth"
+        <SiderMenuWrapper SiderWidth="SiderWidth"
                       MenuData="clearMenuData"
                       Collapsed="@Collapsed"
                       OnCollapse="HandleCollapse"
                       MenuExtraRender="MenuExtraRender"
-                      @bind-SelectedKeys="SiderSelectedKeys" />
+                          @bind-SelectedKeys="SiderSelectedKeys" />
     </Template>;
     #endregion
 }

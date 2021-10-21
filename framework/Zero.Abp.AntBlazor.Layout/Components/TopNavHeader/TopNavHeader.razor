@@ -4,7 +4,7 @@
 
 <div class="@TopNavHeaderClass" style="@Style">
     <div class="@ClassNames($"{BaseClassName}-main",("wide", Settings.ContentWidth == "Fixed"))">
-        <div class="@($"{BaseClassName}-main-left")" @onclick="OnMenuHeaderClick">
+        <div class="@($"{BaseClassName}-main-left")">
             <div class="@($"{BaseClassName}-logo")" id="logo">
                 <Branding />
             </div>
@@ -25,8 +25,7 @@
                     }
                     else
                     {
-                      
-         <HeaderRight ItemRenders="RightItemRenders"/>
+                        <HeaderRight ItemRenders="RightItemRenders" />
                     }
                 </div>
             </div>
@@ -34,30 +33,32 @@
     </div>
 </div>
 @code {
-    private MenuTheme MenuTheme => Settings.HeaderTheme.ToMenuTheme();
-
-    [Parameter] public ApplicationMenuItemList MenuData { get; set; }
+    #region [@bind-SelectedKeys]
     [Parameter] public string[] SelectedKeys { get; set; }
     [Parameter] public EventCallback<string[]> SelectedKeysChanged { get; set; }
+    #endregion
 
-    [Parameter] public bool Collapsed { get; set; }
     [Parameter] public MenuMode Mode { get; set; }
-    [Parameter] public EventCallback<MouseEventArgs> OnMenuHeaderClick { get; set; }
-    
+    [Parameter] public ApplicationMenuItemList MenuData { get; set; }
 
-[Parameter] public List<RenderFragment> RightItemRenders { get; set; }
+    [Parameter] public List<RenderFragment> RightItemRenders { get; set; }
     [Parameter] public RenderFragment RightContentRender { get; set; }
 
-    string rightSize = "auto";
-    public void SetRightSize(string value)
+    private MenuTheme MenuTheme => Settings.HeaderTheme.ToMenuTheme();
+    protected override async Task OnInitializedAsync()
     {
-        rightSize = value;
+        await base.OnInitializedAsync();
     }
 
+    string rightSize = "auto";
+    public void SetRightSize(string value) { rightSize = value; }
+
+    #region [StyleOrClass]
     private string BaseClassName => $"{PrefixCls}-top-nav-header";
 
     private string TopNavHeaderClass => ClassNames(
         BaseClassName, Class
         , ("light", MenuTheme == MenuTheme.Light)
         );
+    #endregion
 }

@@ -10,20 +10,18 @@
     @if ((IsTopLayout || isSplitMenus) && !IsMobile)
     {
         <TopNavHeader Mode="MenuMode.Horizontal"
-                      MenuData="MenuData"
-                      SelectedKeys="SelectedKeys"
-                      SelectedKeysChanged="SelectedKeysChanged"
-                      
-                      RightItemRenders="RightItemRenders"
-                      RightContentRender="RightContent" />
+                  MenuData="MenuData"
+                  SelectedKeys="SelectedKeys"
+                  SelectedKeysChanged="SelectedKeysChanged"
+                  RightItemRenders="RightItemRenders"
+                  RightContentRender="RightContent" />
     }
     else
     {
-        <GlobalHeader IsMobile="IsMobile"
-                      Collapsed="@Collapsed"
-                      OnCollapse="HandleCollapse"
-                      RightItemRenders="RightItemRenders"
-                      RightContentRender="RightContent">
+        <GlobalHeader Collapsed="@Collapsed"
+                  OnCollapse="HandleCollapse"
+                  RightItemRenders="RightItemRenders"
+                  RightContentRender="RightContent">
             @ChildContent
         </GlobalHeader>
     }
@@ -42,24 +40,26 @@
     }
     #endregion
 
-
-    [Parameter] public ApplicationMenuItemList MenuData { get; set; }
-    [Parameter] public string[] SelectedKeys { get; set; } = null;
+    #region [@bind-SelectedKeys]
+    [Parameter] public string[] SelectedKeys { get; set; }
     [Parameter] public EventCallback<string[]> SelectedKeysChanged { get; set; }
-
-
-
+    #endregion
 
     [Parameter] public int SiderWidth { get; set; } = 208;
-    [Parameter] public bool IsMobile { get; set; }
     [Parameter] public bool HasSiderMenu { get; set; }
-    
+    [Parameter] public ApplicationMenuItemList MenuData { get; set; }
 
-[Parameter] public List<RenderFragment> RightItemRenders { get; set; }
     [Parameter] public RenderFragment RightContent { get; set; }
+    [Parameter] public List<RenderFragment> RightItemRenders { get; set; }
 
     private bool isSplitMenus => IsMixLayout && Settings.SplitMenus;
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        if (IsMobile) { await HandleCollapse(true); }
+    }
 
+    #region [StyleOrClass]
     private bool needFixedHeader => Settings.FixedHeader || IsMixLayout;
     private int headerHeight => Settings.HeaderHeight;
 
@@ -89,4 +89,5 @@
         , $"{(headerRight.HasValue ? $"right:{headerRight}px;" : "")}"
         , Style
         );
+    #endregion
 }

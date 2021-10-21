@@ -33,7 +33,7 @@
 </div>
 
 @code {
-    #region Collapsed--[@bind-Collapsed,OnCollapse]
+    #region [@bind-Collapsed,OnCollapse]
     [Parameter] public bool Collapsed { get; set; }
     [Parameter] public EventCallback<bool> CollapsedChanged { get; set; }
     [Parameter] public EventCallback<bool> OnCollapse { get; set; }
@@ -45,14 +45,8 @@
     }
     #endregion
 
-
-
-[Parameter] public List<RenderFragment> RightItemRenders { get; set; }
+    [Parameter] public List<RenderFragment> RightItemRenders { get; set; }
     [Parameter] public RenderFragment RightContentRender { get; set; }
-
-    [Parameter] public bool IsMobile { get; set; }
-
-
     [Parameter] public RenderFragment<bool> CollapsedButtonRender { get; set; } = defaultCollapsedButtonRender;
 
     protected override void OnInitialized()
@@ -60,12 +54,13 @@
         base.OnInitialized();
     }
 
-    static readonly RenderFragment<bool> defaultCollapsedButtonRender = collapsed =>
-    @<Icon Type="@(collapsed ? "menu-unfold" : "menu-fold")" Theme="outline" />;
-
+    #region [StyleOrClass]
     private string BaseClassName => $"{PrefixCls}-global-header";
     private string className => ClassNames(BaseClassName, Class
     , ($"{BaseClassName}-layout-{Settings.Layout}", Settings.Layout != null && Settings.HeaderTheme == MenuTheme.Dark.Name)
     );
-
+    #endregion
+        
+    static readonly RenderFragment<bool> defaultCollapsedButtonRender = collapsed =>
+    @<Icon Type="@(collapsed ? "menu-unfold" : "menu-fold")" Theme="outline" />;
 }
