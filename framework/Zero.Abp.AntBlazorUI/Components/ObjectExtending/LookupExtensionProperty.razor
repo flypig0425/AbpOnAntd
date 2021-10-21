@@ -1,19 +1,44 @@
 ﻿@typeparam TEntity
 @typeparam TResourceType
-@using Abp.Localization
-@using Blazorise.Components
 
-<Field>
-    <FieldLabel>@PropertyInfo.GetLocalizedDisplayName(StringLocalizerFactory)</FieldLabel>
-    <Autocomplete Data="@lookupItems"
-                  TItem="SelectItem<object>"
-                  TValue="object"
-                  TextField="item=>item.Text"
-                  ValueField="item=>item.Value"
-                  SelectedValue="@SelectedValue"
-                  SelectedValueChanged="@SelectedValueChanged"
-                  SearchChanged="@SearchFilterChangedAsync"
-                  MinLength="0">
-    </Autocomplete>
-</Field>
- 
+<FormItem Label="@PropertyInfo.GetLocalizedDisplayName(StringLocalizerFactory)">
+    @*<AutoComplete OptionDataItems="@lookupItems"
+                      TOption="SelectItem<object>"
+                      Value="@SelectedValue"
+                      ValueChanged="@SelectedValueChanged">
+        </AutoComplete>*@
+
+    <AutoComplete Options="@lookupItems">
+        <AutoCompleteSearch 
+                            
+                            Value="@SelectedValue"
+                            ValueChanged="@SelectedValueChanged" 
+                            OnChange="@SearchFilterChangedAsync"
+                            MaxLength="0"/>
+    </AutoComplete>
+</FormItem>
+@*<Field>
+        <FieldLabel>@PropertyInfo.GetLocalizedDisplayName(StringLocalizerFactory)</FieldLabel>
+        <Autocomplete
+                     Data="@lookupItems"
+                      TItem="SelectItem<object>"
+                      TValue="object"
+
+                      TextField="item=>item.Text"
+                      ValueField="item=>item.Value"
+                    >
+        </Autocomplete>
+    </Field>*@
+@*<Field>
+        <FieldLabel>@PropertyInfo.GetLocalizedDisplayName(StringLocalizerFactory)</FieldLabel>
+        <Autocomplete Data="@lookupItems"
+                      TItem="SelectItem<object>"
+                      TValue="object"
+                      TextField="item=>item.Text"
+                      ValueField="item=>item.Value"
+                      SelectedValue="@SelectedValue"
+                      SelectedValueChanged="@SelectedValueChanged"
+                      SearchChanged="@SearchFilterChangedAsync"
+                      MinLength="0">
+        </Autocomplete>
+    </Field>*@

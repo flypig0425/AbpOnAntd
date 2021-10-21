@@ -1,14 +1,15 @@
 ﻿@typeparam TEntity
 @typeparam TResourceType
-@using Abp.Localization
 
-<Field>
-    <FieldLabel>@PropertyInfo.GetLocalizedDisplayName(StringLocalizerFactory)</FieldLabel>
-    <Select @bind-SelectedValue="@SelectedValue" >
-        @foreach (var item in SelectItems)
-        {
-            <SelectItem Value="@item.Value">@item.Text</SelectItem>
-        }
+<FormItem Label="@PropertyInfo.GetLocalizedDisplayName(StringLocalizerFactory)">
+    <Select TItem="TEntity" TItemValue="int" @bind-SelectedValue="@SelectedValue">
+        <SelectOptions>
+            @foreach (var item in SelectItems)
+            {
+                <SelectOption TItem="TEntity" TItemValue="int" Value="@item.Value">
+                    @item.Text
+                </SelectOption>
+            }
+        </SelectOptions>
     </Select>
-</Field>
-
+</FormItem>
