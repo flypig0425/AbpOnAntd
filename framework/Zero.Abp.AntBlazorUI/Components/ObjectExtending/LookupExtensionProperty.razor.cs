@@ -92,7 +92,6 @@ namespace Zero.Abp.AntBlazorUI.Components.ObjectExtending
         protected virtual Task SelectedValueChanged(object selectedItem)
         {
             SelectedValue = selectedItem;
-
             return Task.CompletedTask;
         }
 
