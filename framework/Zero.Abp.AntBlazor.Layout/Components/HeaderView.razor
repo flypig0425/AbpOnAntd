@@ -45,12 +45,14 @@
     [Parameter] public EventCallback<string[]> SelectedKeysChanged { get; set; }
     #endregion
 
-    [Parameter] public int SiderWidth { get; set; } = 208;
     [Parameter] public bool HasSiderMenu { get; set; }
     [Parameter] public ApplicationMenuItemList MenuData { get; set; }
 
     [Parameter] public RenderFragment RightContent { get; set; }
     [Parameter] public List<RenderFragment> RightItemRenders { get; set; }
+    
+    private int SiderWidth => Settings.SiderWidth;
+    private int CollapsedWidth => Settings.CollapsedWidth;
 
     private bool isSplitMenus => IsMixLayout && Settings.SplitMenus;
     protected override async Task OnInitializedAsync()
@@ -65,7 +67,7 @@
 
     private bool needSideWidth => needFixedHeader && HasSiderMenu && !IsTopLayout && !IsMobile;
     private string headerWidth => !IsMixLayout && needSideWidth
-      ? $"calc(100% - {(Collapsed ? 48 : SiderWidth)}px)" : "100%";
+      ? $"calc(100% - {(Collapsed ? CollapsedWidth : SiderWidth)}px)" : "100%";
     private int? headerRight => needFixedHeader ? 0 : null;
 
     private string HeaderClass => ClassNames(

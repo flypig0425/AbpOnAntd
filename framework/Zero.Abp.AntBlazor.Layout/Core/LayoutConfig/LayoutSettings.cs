@@ -23,7 +23,11 @@ namespace Zero.Abp.AntBlazor.Layout.Core.LayoutConfig
         public bool MenuRender { get; set; } = true;
         public bool MenuHeaderRender { get; set; } = true;
 
+
         public int HeaderHeight { get; set; } = 48;
+        public int CollapsedWidth { get; set; } = 48;
+        public int SiderWidth { get; set; } = 208;
+
         /// <summary>
         /// fluid || fixed
         /// </summary>

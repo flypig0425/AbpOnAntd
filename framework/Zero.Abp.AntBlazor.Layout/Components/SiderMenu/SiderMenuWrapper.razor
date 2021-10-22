@@ -11,13 +11,12 @@
         BodyStyle="height: 100vh; padding: 0; display: flex; flex-direction: row"
         OnClose="async ()=> { await HandleCollapse(true); }">
         <SiderMenu Collapsed="@false"
-               Mode="Mode"
                Class="@ClassNames($"{PrefixCls}-sider",Class)"
-               Links="Links"
-               LogoStyle="LogoStyle"
-               MenuData="MenuData"
-               SelectedKeys="SelectedKeys"
-               SelectedKeysChanged="SelectedKeysChanged"
+               Links="@Links"
+               LogoStyle="@LogoStyle"
+               MenuData="@MenuData"
+               SelectedKeys="@SelectedKeys"
+               SelectedKeysChanged="@SelectedKeysChanged"
                MenuExtraRender="MenuExtraRender"
                MenuFooterRender="MenuFooterRender"
                CollapsedButtonRender="CollapsedButtonRender" />
@@ -28,13 +27,12 @@ else
     <SiderMenu Style="@Style"
            Collapsed="@Collapsed"
            OnCollapse="HandleCollapse"
-           Mode="Mode"
            Class="@ClassNames($"{PrefixCls}-sider",Class)"
-           Links="Links"
-           LogoStyle="LogoStyle"
-           MenuData="MenuData"
-           SelectedKeys="SelectedKeys"
-           SelectedKeysChanged="SelectedKeysChanged"
+           Links="@Links"
+           LogoStyle="@LogoStyle"
+           MenuData="@MenuData"
+           SelectedKeys="@SelectedKeys"
+           SelectedKeysChanged="@SelectedKeysChanged"
            MenuExtraRender="MenuExtraRender"
            MenuFooterRender="MenuFooterRender"
            CollapsedButtonRender="CollapsedButtonRender" />
@@ -59,15 +57,16 @@ else
     #endregion
 
     #region [Menu]
-    [Parameter] public int SiderWidth { get; set; }
     [Parameter] public string LogoStyle { get; set; }
-    [Parameter] public MenuMode Mode { get; set; }
+    @*[Parameter] public MenuMode Mode { get; set; }*@
     [Parameter] public ApplicationMenuItemList MenuData { get; set; }
     [Parameter] public List<RenderFragment> Links { get; set; }
     [Parameter] public RenderFragment MenuExtraRender { get; set; }
     [Parameter] public RenderFragment MenuFooterRender { get; set; }
-    [Parameter] public RenderFragment<bool> CollapsedButtonRender { get; set; }
+    [Parameter] public RenderFragment CollapsedButtonRender { get; set; }
     #endregion
+    
+    private int SiderWidth => Settings.SiderWidth;
 
     protected override async Task OnInitializedAsync()
     {

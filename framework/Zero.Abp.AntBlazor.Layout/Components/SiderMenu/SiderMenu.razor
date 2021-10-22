@@ -14,7 +14,7 @@
 
 <Sider Collapsible="false"
        Collapsed="@Collapsed"
-       CollapsedWidth="@collapsedWidth"
+       CollapsedWidth="@CollapsedWidth"
        Width="@SiderWidth"
        Theme="@SiderTheme"
        Style="@SiderStyle"
@@ -39,17 +39,16 @@
     <div style="flex: 1; overflow-y: auto; overflow-x: hidden;">
         <BaseMenu Style="width: 100%"
                   Class="@($"{BaseClassName}-menu")"
-                  Mode="Mode"
-                  Theme="MenuTheme"
-                  Collapsed="Collapsed"
-                  MenuData="MenuData"
-                  SelectedKeys="SelectedKeys"
-                  SelectedKeysChanged="SelectedKeysChanged" />
+                  Mode="@MenuMode"
+                  Theme="@MenuTheme"
+                  MenuData="@MenuData"
+                  SelectedKeys="@SelectedKeys"
+                  SelectedKeysChanged="@SelectedKeysChanged" />
     </div>
 
     <div class="@BaseClassName-links">
-        <Menu Mode="Mode"
-              Theme="MenuTheme"
+        <Menu Mode="@MenuMode"
+              Theme="@MenuTheme"
               InlineIndent="16"
               Class="@($"{BaseClassName}-link-menu")"
               SelectedKeys="Array.Empty<string>()"
@@ -64,12 +63,19 @@
                     </MenuItem>
                 }
             }
-            @if (CollapsedButtonRender != null && !IsMobile)
+            @if (!IsMobile)
             {
                 <MenuItem Class="@($"{BaseClassName}-collapsed-button")"
                       Key="Collapsed" Title="@null"
                       OnClick="@(async arg => await HandleCollapse(Collapsed = !Collapsed))">
-                    @CollapsedButtonRender(Collapsed)
+                    @if (CollapsedButtonRender != null)
+                    {
+                        @CollapsedButtonRender
+                    }
+                    else
+                    {
+                        <Icon Type="@(Collapsed ? "menu-unfold" : "menu-fold")" />
+                    }
                 </MenuItem>
             }
         </Menu>
@@ -101,16 +107,37 @@
     [Parameter] public EventCallback<string[]> SelectedKeysChanged { get; set; }
     #endregion
 
+
     #region [Menu]
-    [Parameter] public int SiderWidth { get; set; }
     [Parameter] public string LogoStyle { get; set; }
-    [Parameter] public MenuMode Mode { get; set; } = MenuMode.Inline;
     [Parameter] public ApplicationMenuItemList MenuData { get; set; }
     [Parameter] public List<RenderFragment> Links { get; set; }
     [Parameter] public RenderFragment MenuExtraRender { get; set; }
     [Parameter] public RenderFragment MenuFooterRender { get; set; }
-    [Parameter] public RenderFragment<bool> CollapsedButtonRender { get; set; } = defaultCollapsedButton;
+    [Parameter] public RenderFragment CollapsedButtonRender { get; set; }
     #endregion
+
+    #region private
+
+    private MenuMode MenuMode => Collapsed ? MenuMode.Vertical : MenuMode.Inline;
+    private int SiderWidth => Settings.SiderWidth;
+    private int CollapsedWidth => Settings.CollapsedWidth;
+    private bool HasHeaderDom => Settings.MenuHeaderRender && (!IsMixLayout || !Settings.HeaderRender);
+
+    private SiderTheme SiderTheme => Settings.SidebarTheme.ToSiderTheme();
+    private MenuTheme MenuTheme => Settings.SidebarTheme.ToMenuTheme();
+    #endregion
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+    }
+
+    private async Task HandleSiderCollapse(bool collapsed)
+    {
+        Collapsed = collapsed;
+        await HandleCollapse(collapsed);
+    }
 
     #region [StyleOrClass]
     //private string siderWidth => $"{(Collapsed ? collapsedWidth : SiderWidth)}px";
@@ -124,24 +151,4 @@
         , $"padding-top: {(IsMixLayout && Settings.HeaderRender && !IsMobile ? Settings.HeaderHeight : 0)}px;"
         );
     #endregion
-
-    #region private
-    private int collapsedWidth = 48;
-    private bool HasHeaderDom => Settings.MenuHeaderRender && (!IsMixLayout || !Settings.HeaderRender);
-
-    private SiderTheme SiderTheme => Settings.SidebarTheme.ToSiderTheme();
-    private MenuTheme MenuTheme => Settings.SidebarTheme.ToMenuTheme();
-    #endregion
-
-    private async Task HandleSiderCollapse(bool collapsed)
-    {
-        Collapsed = collapsed;
-        await HandleCollapse(collapsed);
-    }
-
-    static RenderFragment<bool> defaultCollapsedButton = (collapsed) =>
-    @<Template>
-        <Icon Type="@(collapsed ? "menu-unfold" : "menu-fold")" />
-    </Template>
-    ;
 }

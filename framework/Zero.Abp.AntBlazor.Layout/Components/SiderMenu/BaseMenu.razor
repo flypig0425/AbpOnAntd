@@ -6,7 +6,7 @@
       Style="@Style"
       Class="@ClassNames(Class,("top-nav-menu",Mode==MenuMode.Horizontal))"
       InlineIndent="16"
-      SelectedKeys="SelectedKeys"
+      SelectedKeys="@SelectedKeys"
       SelectedKeysChanged="SelectedKeysChanged">
     @if (Mode == MenuMode.Horizontal && MenuData.Count > maxTopMenuCount)
     {

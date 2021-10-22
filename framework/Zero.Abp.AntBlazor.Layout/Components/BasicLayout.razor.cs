@@ -36,7 +36,6 @@ namespace Zero.Abp.AntBlazor.Layout
         [Parameter] public bool Pure { get; set; }
         [Parameter] public bool Loading { get; set; }
         [Parameter] public bool DisableContentMargin { get; set; }
-        [Parameter] public int SiderWidth { get; set; } = 208;
         [Parameter] public string ContentStyle { get; set; }
 
         [Parameter] public ApplicationMenuItemList MenuData { get; set; }
@@ -47,6 +46,9 @@ namespace Zero.Abp.AntBlazor.Layout
         protected string[] SiderSelectedKeys { get; set; }
 
         [Inject] protected NavigationManager NavigationManager { get; set; }
+
+        private int SiderWidth => Settings.SiderWidth;
+        private int CollapsedWidth => Settings.CollapsedWidth;
 
         protected override async Task OnInitializedAsync()
         {
@@ -95,7 +97,7 @@ namespace Zero.Abp.AntBlazor.Layout
         #region [StyleOrClass]
         bool HasSiderMenu => (!IsTopLayout || IsMixLayout && Settings.SplitMenus) && (SiderMenuDom != null);
         bool HasLeftPadding => HasSiderMenu && Settings.FixedSidebar && !IsMobile;
-        int PaddingLeft => HasLeftPadding ? (Collapsed ? 48 : SiderWidth) : 0;
+        int PaddingLeft => HasLeftPadding ? (Collapsed ? CollapsedWidth : SiderWidth) : 0;
 
 
         private readonly bool isChildrenLayout = false;

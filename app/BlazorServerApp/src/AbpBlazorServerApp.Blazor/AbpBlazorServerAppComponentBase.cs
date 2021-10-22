@@ -1,5 +1,5 @@
 ﻿using AbpBlazorServerApp.Localization;
-using Volo.Abp.AspNetCore.Components;
+using Zero.Abp.AspNetCore.Components;
 
 namespace AbpBlazorServerApp.Blazor
 {

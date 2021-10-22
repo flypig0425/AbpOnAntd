@@ -52,9 +52,8 @@ namespace Zero.Abp.AntBlazorUI.Components.ExtensibleDataTable
             {
                 if (ParentEntityActionsColumn != null)
                 {
-                    ParentEntityActionsColumn.Hidden = Actions.Any(t => t.Visible && t.HasPermission);
+                    ParentEntityActionsColumn.Hidden = Actions.All(t => !t.Visible || !t.HasPermission);
                 }
-
                 await InvokeAsync(StateHasChanged);
             }
 

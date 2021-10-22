@@ -44,7 +44,7 @@ else
     {
         @if ((Settings.HeaderRender == false) || Pure) { return null; }
         @if (HeaderContent != null) { return HeaderContent; }
-        var menuData = new ApplicationMenuItemList(MenuData);
+        var menuData = MenuData ?? new ApplicationMenuItemList();
         if (IsSplitMenus)
         {
             var noChildrenMenuData = MenuData.Select(s => new ApplicationMenuItem(
@@ -54,7 +54,6 @@ else
 
         return @<Template>
         <HeaderView HasSiderMenu="HasSiderMenu"
-                SiderWidth="SiderWidth"
                 MenuData="menuData"
                 Collapsed="@Collapsed"
                 OnCollapse="HandleCollapse"
@@ -79,16 +78,14 @@ else
         var clearMenuData = menuData;  /*clearMenuItem(menuData || []);*/
         if (clearMenuData.IsNullOrEmpty() && Settings.SplitMenus) { return null; }
         if (IsTopLayout && !IsMobile) { return null; }
-
-
         if (MenuContent != null) { return MenuContent; }
         return siderMenuWrapper(clearMenuData);
     }
 
-    private RenderFragment siderMenuWrapper(ApplicationMenuItemList clearMenuData = null) =>
+    private RenderFragment siderMenuWrapper(ApplicationMenuItemList menuData = null) =>
     @<Template>
-        <SiderMenuWrapper SiderWidth="SiderWidth"
-                      MenuData="clearMenuData"
+        <SiderMenuWrapper
+                      MenuData="@menuData"
                       Collapsed="@Collapsed"
                       OnCollapse="HandleCollapse"
                       MenuExtraRender="MenuExtraRender"

@@ -32,6 +32,7 @@ namespace Zero.Abp.AntBlazorUI.Components
         }
         private async Task NavigateToAsync(string uri, string target = null)
         {
+            uri = uri.TrimStart('~');
             if (target == "_blank")
             {
                 await JsRuntime.InvokeVoidAsync("open", uri, target);

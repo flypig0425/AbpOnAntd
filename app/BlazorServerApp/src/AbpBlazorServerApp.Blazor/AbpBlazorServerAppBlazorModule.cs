@@ -1,46 +1,39 @@
-﻿using System;
-using System.IO;
-using System.Net.Http;
-using Blazorise.Bootstrap;
-using Blazorise.Icons.FontAwesome;
+﻿using AbpBlazorServerApp.Blazor.Menus;
+using AbpBlazorServerApp.EntityFrameworkCore;
+using AbpBlazorServerApp.Localization;
+using AbpBlazorServerApp.MultiTenancy;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using AbpBlazorServerApp.Blazor.Menus;
-using AbpBlazorServerApp.EntityFrameworkCore;
-using AbpBlazorServerApp.Localization;
-using AbpBlazorServerApp.MultiTenancy;
+using System;
+using System.IO;
+using System.Net.Http;
 using Volo.Abp;
 using Volo.Abp.Account.Web;
 using Volo.Abp.AspNetCore.Authentication.JwtBearer;
-using Volo.Abp.AspNetCore.Components.Server.BasicTheme;
-using Volo.Abp.AspNetCore.Components.Server.BasicTheme.Bundling;
-using Volo.Abp.AspNetCore.Components.Web.Theming.Routing;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc.Localization;
-using Volo.Abp.AspNetCore.Mvc.UI;
-using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap;
 using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
-using Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic.Bundling;
-using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
 using Volo.Abp.AspNetCore.Serilog;
 using Volo.Abp.Autofac;
 using Volo.Abp.AutoMapper;
-using Volo.Abp.Identity.Blazor.Server;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
-using Volo.Abp.SettingManagement.Blazor.Server;
 using Volo.Abp.Swashbuckle;
-using Volo.Abp.TenantManagement.Blazor.Server;
-using Volo.Abp.UI;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.VirtualFileSystem;
+using Zero.Abp.AspNetCore.Components.Server.AntdTheme;
+using Zero.Abp.AspNetCore.Components.Server.AntdTheme.Bundling;
+using Zero.Abp.AspNetCore.Components.Web.Theming.Routing;
+using Zero.Abp.Identity.Blazor.Server;
+using Zero.Abp.SettingManagement.Blazor.Server;
+using Zero.Abp.TenantManagement.Blazor.Server;
 
 namespace AbpBlazorServerApp.Blazor
 {
@@ -54,7 +47,7 @@ namespace AbpBlazorServerApp.Blazor
         typeof(AbpAspNetCoreAuthenticationJwtBearerModule),
         typeof(AbpAspNetCoreSerilogModule),
         typeof(AbpAccountWebIdentityServerModule),
-        typeof(AbpAspNetCoreComponentsServerBasicThemeModule),
+        typeof(AbpAspNetCoreComponentsServerAntdThemeModule),
         typeof(AbpIdentityBlazorServerModule),
         typeof(AbpTenantManagementBlazorServerModule),
         typeof(AbpSettingManagementBlazorServerModule)
@@ -118,7 +111,7 @@ namespace AbpBlazorServerApp.Blazor
 
                 //BLAZOR UI
                 options.StyleBundles.Configure(
-                    BlazorBasicThemeBundles.Styles.Global,
+                    BlazorAntdThemeBundles.Styles.Global,
                     bundle =>
                     {
                         bundle.AddFiles("/blazor-global-styles.css");
@@ -159,23 +152,8 @@ namespace AbpBlazorServerApp.Blazor
         {
             Configure<AbpLocalizationOptions>(options =>
             {
-                options.Languages.Add(new LanguageInfo("ar", "ar", "العربية"));
-                options.Languages.Add(new LanguageInfo("cs", "cs", "Čeština"));
-                options.Languages.Add(new LanguageInfo("en", "en", "English"));
-                options.Languages.Add(new LanguageInfo("en-GB", "en-GB", "English (UK)"));
-                options.Languages.Add(new LanguageInfo("hu", "hu", "Magyar"));
-                options.Languages.Add(new LanguageInfo("fi", "fi", "Finnish"));
-                options.Languages.Add(new LanguageInfo("fr", "fr", "Français"));
-                options.Languages.Add(new LanguageInfo("hi", "hi", "Hindi", "in"));
-                options.Languages.Add(new LanguageInfo("it", "it", "Italian", "it"));
-                options.Languages.Add(new LanguageInfo("pt-BR", "pt-BR", "Português"));
-                options.Languages.Add(new LanguageInfo("ru", "ru", "Русский"));
-                options.Languages.Add(new LanguageInfo("sk", "sk", "Slovak"));
-                options.Languages.Add(new LanguageInfo("tr", "tr", "Türkçe"));
-                options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文"));
-                options.Languages.Add(new LanguageInfo("zh-Hant", "zh-Hant", "繁體中文"));
-                options.Languages.Add(new LanguageInfo("de-DE", "de-DE", "Deutsch", "de"));
-                options.Languages.Add(new LanguageInfo("es", "es", "Español"));
+                options.Languages.Add(new LanguageInfo("en", "en-US", "English", "🇺🇸"));
+                options.Languages.Add(new LanguageInfo("zh-Hans", "zh-CN", "简体中文", "🇨🇳"));
             });
         }
 
@@ -201,9 +179,9 @@ namespace AbpBlazorServerApp.Blazor
 
         private void ConfigureBlazorise(ServiceConfigurationContext context)
         {
-            context.Services
-                .AddBootstrapProviders()
-                .AddFontAwesomeIcons();
+            //context.Services
+            //    .AddBootstrapProviders()
+            //    .AddFontAwesomeIcons();
         }
 
         private void ConfigureMenu(ServiceConfigurationContext context)

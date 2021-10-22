@@ -1,8 +1,8 @@
 ﻿@page "/"
 @namespace AbpBlazorServerApp.Blazor.Pages
 @using System.Globalization
-@using Volo.Abp.AspNetCore.Components.Server.BasicTheme.Bundling
-@using Volo.Abp.AspNetCore.Components.Web.BasicTheme.Themes.Basic
+@using Zero.Abp.AspNetCore.Components.Server.AntdTheme.Bundling
+@using Zero.Abp.AspNetCore.Components.Web.AntdTheme.Basic
 @using Volo.Abp.Localization
 @{
     Layout = null;
@@ -17,7 +17,8 @@
     <title>AbpBlazorServerApp.Blazor</title>
     <base href="~/" />
     
-    <abp-style-bundle name="@BlazorBasicThemeBundles.Styles.Global" />
+    <abp-style-bundle name="@BlazorAntdThemeBundles.Styles.Global" />
+    <link href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
 </head>
 <body class="abp-application-layout bg-light @rtl">
     <component type="typeof(App)" render-mode="Server" />
@@ -33,6 +34,6 @@
         <a class="dismiss">🗙</a>
     </div>
 
-    <abp-script-bundle name="@BlazorBasicThemeBundles.Scripts.Global" />
+    <abp-script-bundle name="@BlazorAntdThemeBundles.Scripts.Global" />
 </body>
 </html>
