@@ -1,4 +1,5 @@
 ﻿using AntDesign;
+using AntDesign.TableModels;
 using JetBrains.Annotations;
 using Localization.Resources.AbpUi;
 using Microsoft.AspNetCore.Authorization;
@@ -14,7 +15,11 @@ using Volo.Abp.Authorization;
 using Volo.Abp.Localization;
 using Volo.Abp.ObjectExtending;
 using Volo.Abp.ObjectExtending.Modularity;
+using Zero.Abp.AntBlazorUI.Components.ExtensibleDataTable;
+using Zero.Abp.AntBlazorUI.Components.ObjectExtending;
 using Zero.Abp.AspNetCore.Components;
+using Zero.Abp.AspNetCore.Components.Web.Extensibility.EntityActions;
+using Zero.Abp.AspNetCore.Components.Web.Extensibility.TableColumns;
 
 namespace Zero.Abp.AntBlazorUI
 {
@@ -187,9 +192,9 @@ namespace Zero.Abp.AntBlazorUI
         //protected Validations CreateValidationsRef;
         //protected Validations EditValidationsRef;
         //protected List<BreadcrumbItem> BreadcrumbItems = new(2);
-        //protected DataGridEntityActionsColumn<TListViewModel> EntityActionsColumn;
-        //protected EntityActionDictionary EntityActions { get; set; }
-        //protected TableColumnDictionary TableColumns { get; set; }
+        protected DataTableEntityActionsColumn<TListViewModel> EntityActionsColumn;
+        protected EntityActionDictionary EntityActions { get; set; }
+        protected TableColumnDictionary TableColumns { get; set; }
 
         protected string CreatePolicyName { get; set; }
         protected string UpdatePolicyName { get; set; }
@@ -203,8 +208,8 @@ namespace Zero.Abp.AntBlazorUI
         {
             NewEntity = new TCreateViewModel();
             EditingEntity = new TUpdateViewModel();
-            //TableColumns = new TableColumnDictionary();
-            //EntityActions = new EntityActionDictionary();
+            TableColumns = new TableColumnDictionary();
+            EntityActions = new EntityActionDictionary();
         }
 
         protected override async Task OnInitializedAsync()
@@ -297,18 +302,15 @@ namespace Zero.Abp.AntBlazorUI
             await InvokeAsync(StateHasChanged);
         }
 
-        //protected virtual async Task OnDataGridReadAsync(DataGridReadDataEventArgs<TListViewModel> e)
-        //{
-        //    CurrentSorting = e.Columns
-        //        .Where(c => c.Direction != SortDirection.None)
-        //        .Select(c => c.Field + (c.Direction == SortDirection.Descending ? " DESC" : ""))
-        //        .JoinAsString(",");
-        //    CurrentPage = e.Page;
-
-        //    await GetEntitiesAsync();
-
-        //    await InvokeAsync(StateHasChanged);
-        //}
+        protected virtual async Task OnDataGridReadAsync(QueryModel<TListViewModel> e)
+        {
+            CurrentSorting = e.SortModel
+                .Select(c => c.FieldName + " " + c.Sort)
+                .JoinAsString(",");
+            CurrentPage = e.PageIndex;
+            await GetEntitiesAsync();
+            await InvokeAsync(StateHasChanged);
+        }
 
         protected virtual async Task OpenCreateModalAsync()
         {
@@ -437,8 +439,7 @@ namespace Zero.Abp.AntBlazorUI
         protected virtual async Task OnCreatedEntityAsync()
         {
             await GetEntitiesAsync();
-
-            //await InvokeAsync(CreateModal.Hide);
+            CreateVisible = false;
         }
 
         protected virtual async Task UpdateEntityAsync()
@@ -470,8 +471,7 @@ namespace Zero.Abp.AntBlazorUI
         protected virtual async Task OnUpdatedEntityAsync()
         {
             await GetEntitiesAsync();
-
-            //await InvokeAsync(EditModal.Hide);
+            EditVisible=false;
         }
 
         protected virtual async Task DeleteEntityAsync(TListViewModel entity)
@@ -557,46 +557,46 @@ namespace Zero.Abp.AntBlazorUI
             return ValueTask.CompletedTask;
         }
 
-        //protected virtual IEnumerable<TableColumn> GetExtensionTableColumns(string moduleName, string entityType)
-        //{
-        //    var properties = ModuleExtensionConfigurationHelper.GetPropertyConfigurations(moduleName, entityType);
-        //    foreach (var propertyInfo in properties)
-        //    {
-        //        if (propertyInfo.IsAvailableToClients && propertyInfo.UI.OnTable.IsVisible)
-        //        {
-        //            if (propertyInfo.Name.EndsWith("_Text"))
-        //            {
-        //                var lookupPropertyName = propertyInfo.Name.RemovePostFix("_Text");
-        //                var lookupPropertyDefinition = properties.SingleOrDefault(t => t.Name == lookupPropertyName);
-        //                yield return new TableColumn
-        //                {
-        //                    Title = lookupPropertyDefinition.GetLocalizedDisplayName(StringLocalizerFactory),
-        //                    Data = $"ExtraProperties[{propertyInfo.Name}]"
-        //                };
-        //            }
-        //            else
-        //            {
-        //                var column = new TableColumn
-        //                {
-        //                    Title = propertyInfo.GetLocalizedDisplayName(StringLocalizerFactory),
-        //                    Data = $"ExtraProperties[{propertyInfo.Name}]"
-        //                };
+        protected virtual IEnumerable<TableColumn> GetExtensionTableColumns(string moduleName, string entityType)
+        {
+            var properties = ModuleExtensionConfigurationHelper.GetPropertyConfigurations(moduleName, entityType);
+            foreach (var propertyInfo in properties)
+            {
+                if (propertyInfo.IsAvailableToClients && propertyInfo.UI.OnTable.IsVisible)
+                {
+                    if (propertyInfo.Name.EndsWith("_Text"))
+                    {
+                        var lookupPropertyName = propertyInfo.Name.RemovePostFix("_Text");
+                        var lookupPropertyDefinition = properties.SingleOrDefault(t => t.Name == lookupPropertyName);
+                        yield return new TableColumn
+                        {
+                            Title = lookupPropertyDefinition.GetLocalizedDisplayName(StringLocalizerFactory),
+                            Data = $"ExtraProperties[{propertyInfo.Name}]"
+                        };
+                    }
+                    else
+                    {
+                        var column = new TableColumn
+                        {
+                            Title = propertyInfo.GetLocalizedDisplayName(StringLocalizerFactory),
+                            Data = $"ExtraProperties[{propertyInfo.Name}]"
+                        };
 
-        //                if (propertyInfo.IsDate() || propertyInfo.IsDateTime())
-        //                {
-        //                    column.DisplayFormat = propertyInfo.GetDateEditInputFormatOrNull();
-        //                }
+                        if (propertyInfo.IsDate() || propertyInfo.IsDateTime())
+                        {
+                            column.DisplayFormat = propertyInfo.GetDateEditInputFormatOrNull();
+                        }
 
-        //                if (propertyInfo.Type.IsEnum)
-        //                {
-        //                    column.ValueConverter = (val) =>
-        //                        EnumHelper.GetLocalizedMemberName(propertyInfo.Type, val.As<ExtensibleObject>().ExtraProperties[propertyInfo.Name], StringLocalizerFactory);
-        //                }
+                        if (propertyInfo.Type.IsEnum)
+                        {
+                            column.ValueConverter = (val) =>
+                                EnumHelper.GetLocalizedMemberName(propertyInfo.Type, val.As<ExtensibleObject>().ExtraProperties[propertyInfo.Name], StringLocalizerFactory);
+                        }
 
-        //                yield return column;
-        //            }
-        //        }
-        //    }
-        //}
+                        yield return column;
+                    }
+                }
+            }
+        }
     }
 }

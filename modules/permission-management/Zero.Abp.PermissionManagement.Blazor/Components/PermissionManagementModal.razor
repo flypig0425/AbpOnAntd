@@ -1,0 +1,68 @@
+﻿@using Microsoft.Extensions.Localization
+@using Volo.Abp.PermissionManagement.Localization
+@using Zero.Abp.AspNetCore.Components
+@inherits AbpComponentBase
+
+<Modal Visible="_modalVisible" Centered
+       Title="@($"{L["Permissions"]} - {_entityDisplayName}")"
+       OkText="@L["Save"].Value"
+       CancelText="@L["Cancel"].Value"
+       OnOk="SaveAsync"
+       OnCancel="CloseModal">
+
+    <FormItem>
+        <Checkbox @bind-Checked="@GrantAll">@L["SelectAllInAllTabs"]</Checkbox>
+    </FormItem>
+
+    <Divider />
+
+    @if (_groups != null)
+    {
+        <Tabs TabPosition="TabPosition.Left" @bind-SelectedTab="@_selectedTabName">
+            @foreach (var group in _groups)
+            {
+                <TabPane Key="@GetNormalizedGroupName(group.Name)">
+                    <TabTemplate>
+                        @if (group.Permissions.Any(x => x.IsGranted))
+                        {
+                            <span>
+                                <b>@group.DisplayName ( @(group.Permissions.Count(x => x.IsGranted)) )</b>
+                            </span>
+                        }
+                        else
+                        {
+                            <span>
+                                @group.DisplayName ( @(group.Permissions.Count(x => x.IsGranted)) )
+                            </span>
+                        }
+                    </TabTemplate>
+                    <ChildContent>
+                        <h4>@group.DisplayName</h4>
+
+                        <Divider />
+
+                        <FormItem>
+                            <Checkbox Checked="@(group.Permissions.All(x => x.IsGranted))"
+                              CheckedChanged="@(b => GroupGrantAllChanged(b, group))">
+                                @L["SelectAllInThisTab"]
+                            </Checkbox>
+                        </FormItem>
+
+                        <Divider />
+
+                        @foreach (var permission in group.Permissions)
+                        {
+                            <FormItem Style="@(permission.ParentName != null ?"margin: 1rem !important;":"")">
+                                <Checkbox Disabled="@(IsDisabledPermission(permission))"
+                              Checked="@permission.IsGranted"
+                              CheckedChanged="@(b => PermissionChanged(b, group, permission))">
+                                    @GetShownName(permission)
+                                </Checkbox>
+                            </FormItem>
+                        }
+                    </ChildContent>
+                </TabPane>
+            }
+        </Tabs>
+    }
+</Modal>

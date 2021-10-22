@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Volo.Abp.ObjectExtending;
 
-namespace Zero.Abp.ObjectExtending
+namespace Zero.Abp.AntBlazorUI
 {
     public static class ObjectExtensionPropertyInfoBlazorExtensions
     {

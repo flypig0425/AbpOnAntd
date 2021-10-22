@@ -1,12 +1,13 @@
-﻿using Localization.Resources.AbpUi;
+﻿using AntDesign;
+using Localization.Resources.AbpUi;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Zero.Abp.AntBlazorUI.Components
+namespace Zero.Abp.AntBlazorUI.Components.ExtensibleDataTable
 {
-    public partial class DataGridEntityActionsColumn<TItem> : DataGridColumn<TItem>
+    public partial class DataTableEntityActionsColumn<TItem> : Column<TItem>
     {
         [Inject]
         public IStringLocalizer<AbpUiResource> UiLocalizer { get; set; }
@@ -19,10 +20,10 @@ namespace Zero.Abp.AntBlazorUI.Components
 
         protected virtual ValueTask SetDefaultValuesAsync()
         {
-            Caption = UiLocalizer["Actions"];
+            Title = UiLocalizer["Actions"];
             Width = "150px";
             Sortable = false;
-            Field = typeof(TItem).GetProperties().First().Name;
+            DataIndex = typeof(TItem).GetProperties().First().Name;
             return ValueTask.CompletedTask;
         }
     }

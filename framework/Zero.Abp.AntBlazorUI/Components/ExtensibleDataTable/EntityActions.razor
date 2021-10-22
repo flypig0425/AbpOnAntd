@@ -1,0 +1,38 @@
+﻿@typeparam TItem
+<CascadingValue Value="this" IsFixed="true">
+    @if (Type == ActionType.Dropdown)
+    {
+        @if (HasPrimaryAction)
+        {
+            <DropdownButton Block="true"
+                    Type="@PrimaryAction.ButtonType"
+                    OnClick="async ()=> await PrimaryAction.ActionClickedAsync()">
+                <Overlay>
+                    <Menu>
+                        @ChildContent
+                    </Menu>
+                </Overlay>
+                <ChildContent>
+                    @PrimaryAction.Text
+                </ChildContent>
+            </DropdownButton>
+        }
+        else
+        {
+            <Dropdown OnClick="async ()=> await PrimaryAction.ActionClickedAsync()">
+                <Overlay>
+                    <Menu>
+                        @ChildContent
+                    </Menu>
+                </Overlay>
+                <ChildContent>
+                    <Button Block="true" Type="@ToggleType">  @ToggleText <Icon Type="down" /></Button>
+                </ChildContent>
+            </Dropdown>
+        }
+    }
+    else
+    {
+        @ChildContent
+    }
+</CascadingValue>

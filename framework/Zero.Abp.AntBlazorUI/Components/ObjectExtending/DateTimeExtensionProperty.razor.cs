@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Volo.Abp.Data;
 using Volo.Abp.ObjectExtending;
 
-namespace Volo.Abp.BlazoriseUI.Components.ObjectExtending
+namespace Zero.Abp.AntBlazorUI.Components.ObjectExtending
 {
     public partial class DateTimeExtensionProperty<TEntity, TResourceType> : ComponentBase
         where TEntity : IHasExtraProperties

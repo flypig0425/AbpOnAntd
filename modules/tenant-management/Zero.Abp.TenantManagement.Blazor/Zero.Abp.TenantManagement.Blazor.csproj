@@ -11,6 +11,7 @@
 	<ItemGroup>
 		<PackageReference Include="Volo.Abp.AutoMapper" Version="4.4.3" />
 	</ItemGroup>
+  
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\framework\Zero.Abp.AspNetCore.Components.Web.Theming\Zero.Abp.AspNetCore.Components.Web.Theming.csproj" />
 		<ProjectReference Include="..\..\feature-management\Zero.Abp.FeatureManagement.Blazor\Zero.Abp.FeatureManagement.Blazor.csproj" />

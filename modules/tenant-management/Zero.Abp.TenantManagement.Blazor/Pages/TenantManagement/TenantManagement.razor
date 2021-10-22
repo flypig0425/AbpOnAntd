@@ -1,18 +1,26 @@
 ﻿@page "/tenant-management/tenants"
 @attribute [Authorize(TenantManagementPermissions.Tenants.Default)]
 @using Microsoft.AspNetCore.Authorization
+@using Zero.Abp.AntBlazorUI.Components.ExtensibleDataTable
 @using Zero.Abp.FeatureManagement.Blazor.Components
 @using Microsoft.AspNetCore.Components.Forms
 @using Volo.Abp.TenantManagement
 @using Volo.Abp.TenantManagement.Localization
-@*@using Volo.Abp.AspNetCore.Components.Web.Theming.Layout
-    @using Volo.Abp.BlazoriseUI.Components.ObjectExtending*@
+@using Zero.Abp.AntBlazorUI.Components.ObjectExtending
 @using Zero.Abp.AspNetCore.Components.Web
 @inject AbpBlazorMessageLocalizerHelper<AbpTenantManagementResource> LH
 @inherits AbpCrudPageBase<ITenantAppService, TenantDto, Guid, GetTenantsInput, TenantCreateDto, TenantUpdateDto>
-@*<PageContainer  Title="@L["Tenants"]">
-
-    </PageContainer>*@
+<PageContainer Title="@L["Tenants"]">
+    <AbpExtensibleDataTable TItem="TenantDto"
+                            Data="@Entities"
+                            ReadData="@OnDataGridReadAsync"
+                            TotalItems="@TotalCount"
+                            ShowPager="true"
+                            PageSize="@PageSize"
+                            CurrentPage="@CurrentPage"
+                            Columns="@TenantManagementTableColumns">
+    </AbpExtensibleDataTable>
+</PageContainer>
 
 @*<Card>*@
     @*<CardHeader>*@
@@ -54,7 +62,7 @@
             <FormItem Label="@L["DisplayName:AdminPassword"]">
                 <Input @bind-Value="@context.AdminPassword" /> @*Role="@TextRole.Password" *@
             </FormItem>
-            @*<ExtensionProperties TEntityType="TenantCreateDto" TResourceType="AbpTenantManagementResource" Entity="@NewEntity" LH="@LH"/>*@
+            <ExtensionProperties TEntityType="TenantCreateDto" TResourceType="AbpTenantManagementResource" Entity="@NewEntity" LH="@LH"/>
         </Form>
     </Modal>
 }
@@ -70,7 +78,7 @@
             <FormItem Label="@L["TenantName"]">
                 <Input @bind-Value="@context.Name" AutoFocus="true" />
             </FormItem>
-            @*<ExtensionProperties TEntityType="TenantUpdateDto" TResourceType="AbpTenantManagementResource" Entity="@TenantUpdateDto" LH="@LH"/>*@
+            <ExtensionProperties TEntityType="TenantUpdateDto" TResourceType="AbpTenantManagementResource" Entity="@EditingEntity" LH="@LH"/>
         </Form>
     </Modal>
 }

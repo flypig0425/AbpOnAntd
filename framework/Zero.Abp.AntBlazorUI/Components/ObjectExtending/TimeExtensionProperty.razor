@@ -1,13 +1,11 @@
 ﻿@typeparam TEntity
 @typeparam TResourceType
-@using Volo.Abp.BlazoriseUI
 @using Volo.Abp.Localization
 
 @if (PropertyInfo != null && Entity != null)
 {
-    <Field>
-        <FieldLabel>@PropertyInfo.GetLocalizedDisplayName(StringLocalizerFactory)</FieldLabel>-->
-        <TimeEdit TValue="TimeSpan?" @bind-Time="@Value">
-        </TimeEdit>
-    </Field>
+    <FormItem Label="@PropertyInfo.GetLocalizedDisplayName(StringLocalizerFactory)">
+        <TimePicker TValue="TimeSpan?" @bind-Date="@Value">
+        </TimePicker>
+    </FormItem>
 }

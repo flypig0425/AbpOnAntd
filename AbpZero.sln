@@ -95,6 +95,22 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.FeatureManagement.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.FeatureManagement.Blazor", "modules\feature-management\Zero.Abp.FeatureManagement.Blazor\Zero.Abp.FeatureManagement.Blazor.csproj", "{DC2CC52B-BD25-4563-94A4-A43DDA8B1753}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "identity", "identity", "{DC0F0F27-CCA0-41E9-BDC1-0A28C3E34F94}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.Identity.Blazor", "modules\identity\Zero.Abp.Identity.Blazor\Zero.Abp.Identity.Blazor.csproj", "{F85BC3AA-AEEF-4DB9-B0BE-D5C8981BD04C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.Identity.Blazor.Server", "modules\identity\Zero.Abp.Identity.Blazor.Server\Zero.Abp.Identity.Blazor.Server.csproj", "{CB691255-6C9B-49B0-B68A-93693EA1BAE2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.Identity.Blazor.WebAssembly", "modules\identity\Zero.Abp.Identity.Blazor.WebAssembly\Zero.Abp.Identity.Blazor.WebAssembly.csproj", "{4247739E-CA35-4E64-971F-96690BFA951D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "permission-management", "permission-management", "{F4F32FDB-EF32-4E2A-8195-49B616D9F592}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.PermissionManagement.Blazor", "modules\permission-management\Zero.Abp.PermissionManagement.Blazor\Zero.Abp.PermissionManagement.Blazor.csproj", "{51DA7A2F-E8BC-4239-8071-5D11B778826F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.PermissionManagement.Blazor.Server", "modules\permission-management\Zero.Abp.PermissionManagement.Blazor.Server\Zero.Abp.PermissionManagement.Blazor.Server.csproj", "{F16553CC-F907-4D27-AED5-F436A60BDF85}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.PermissionManagement.Blazor.WebAssembly", "modules\permission-management\Zero.Abp.PermissionManagement.Blazor.WebAssembly\Zero.Abp.PermissionManagement.Blazor.WebAssembly.csproj", "{EA2D9DCE-A518-4BC7-A8A4-A5FE3B1CA9FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -233,6 +249,30 @@ Global
 		{DC2CC52B-BD25-4563-94A4-A43DDA8B1753}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC2CC52B-BD25-4563-94A4-A43DDA8B1753}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC2CC52B-BD25-4563-94A4-A43DDA8B1753}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F85BC3AA-AEEF-4DB9-B0BE-D5C8981BD04C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F85BC3AA-AEEF-4DB9-B0BE-D5C8981BD04C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F85BC3AA-AEEF-4DB9-B0BE-D5C8981BD04C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F85BC3AA-AEEF-4DB9-B0BE-D5C8981BD04C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB691255-6C9B-49B0-B68A-93693EA1BAE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB691255-6C9B-49B0-B68A-93693EA1BAE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB691255-6C9B-49B0-B68A-93693EA1BAE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB691255-6C9B-49B0-B68A-93693EA1BAE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4247739E-CA35-4E64-971F-96690BFA951D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4247739E-CA35-4E64-971F-96690BFA951D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4247739E-CA35-4E64-971F-96690BFA951D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4247739E-CA35-4E64-971F-96690BFA951D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51DA7A2F-E8BC-4239-8071-5D11B778826F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51DA7A2F-E8BC-4239-8071-5D11B778826F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51DA7A2F-E8BC-4239-8071-5D11B778826F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51DA7A2F-E8BC-4239-8071-5D11B778826F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F16553CC-F907-4D27-AED5-F436A60BDF85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F16553CC-F907-4D27-AED5-F436A60BDF85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F16553CC-F907-4D27-AED5-F436A60BDF85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F16553CC-F907-4D27-AED5-F436A60BDF85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA2D9DCE-A518-4BC7-A8A4-A5FE3B1CA9FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA2D9DCE-A518-4BC7-A8A4-A5FE3B1CA9FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA2D9DCE-A518-4BC7-A8A4-A5FE3B1CA9FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA2D9DCE-A518-4BC7-A8A4-A5FE3B1CA9FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -277,6 +317,14 @@ Global
 		{0CB2DA4C-6FA1-4463-8B6C-EA7C2A340F40} = {DEE9E17A-CDEB-4E20-B6A2-C15D0814B54B}
 		{337C3F13-B83A-4DE8-BAB6-39CE98F858E3} = {DEE9E17A-CDEB-4E20-B6A2-C15D0814B54B}
 		{DC2CC52B-BD25-4563-94A4-A43DDA8B1753} = {DEE9E17A-CDEB-4E20-B6A2-C15D0814B54B}
+		{DC0F0F27-CCA0-41E9-BDC1-0A28C3E34F94} = {85345669-869D-4390-9B3A-B69599C10BBF}
+		{F85BC3AA-AEEF-4DB9-B0BE-D5C8981BD04C} = {DC0F0F27-CCA0-41E9-BDC1-0A28C3E34F94}
+		{CB691255-6C9B-49B0-B68A-93693EA1BAE2} = {DC0F0F27-CCA0-41E9-BDC1-0A28C3E34F94}
+		{4247739E-CA35-4E64-971F-96690BFA951D} = {DC0F0F27-CCA0-41E9-BDC1-0A28C3E34F94}
+		{F4F32FDB-EF32-4E2A-8195-49B616D9F592} = {85345669-869D-4390-9B3A-B69599C10BBF}
+		{51DA7A2F-E8BC-4239-8071-5D11B778826F} = {F4F32FDB-EF32-4E2A-8195-49B616D9F592}
+		{F16553CC-F907-4D27-AED5-F436A60BDF85} = {F4F32FDB-EF32-4E2A-8195-49B616D9F592}
+		{EA2D9DCE-A518-4BC7-A8A4-A5FE3B1CA9FC} = {F4F32FDB-EF32-4E2A-8195-49B616D9F592}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CCCD4626-D10B-4FA0-A554-235AECB0AB80}

@@ -5,7 +5,7 @@ using Zero.Abp.AspNetCore.Components.Web.Theming;
 namespace Zero.Abp.AspNetCore.Components.WebAssembly.Theming
 {
     [DependsOn(
-        typeof(AbpAntdesignUIModule),
+        typeof(AbpAntBlazorUIModule),
         typeof(AbpAspNetCoreComponentsWebThemingModule),
         typeof(AbpAspNetCoreComponentsWebAssemblyModule)
     )]

@@ -1,0 +1,115 @@
+﻿@typeparam TItem
+@using Volo.Abp.Data
+@using Zero.Abp.AntBlazorUI.Components.ObjectExtending
+
+<Table TItem="TItem"
+       DataSource="@Data"
+       Total="@(TotalItems??0)"
+       @bind-PageIndex="@CurrentPage"
+       @bind-PageSize="@PageSize"
+       OnChange="@ReadData">
+    @* <Selection Key="@(context.Id.ToString())" />*@
+
+    @if (Columns != null)
+    {
+        @foreach (var column in Columns)
+        {
+            if (column.Actions.Any())
+            {
+                @*  <ActionColumn>
+                    <Space>
+                    <SpaceItem><Button Danger OnClick="()=>Delete(context.Id)">Delete</Button></SpaceItem>
+                    </Space>
+                    </ActionColumn>*@
+
+                <DataTableEntityActionsColumn TItem="TItem" @ref="ActionColumns[column.Title]" Title="@column.Title">
+                    <EntityActions TItem="TItem" EntityActionsColumn="ActionColumns[column.Title]">
+                        @foreach (var action in column.Actions)
+                        {
+                            var isConfirmationMessage = action.ConfirmationMessage != null;
+                            <EntityAction TItem="TItem"
+                                  ButtonType="@(action.ActionType != null ? action.ActionType.ToString() : ButtonType.Primary)"
+                                  Icon="@action.Icon"
+                                  Clicked="async () => await action.Clicked(context)"
+                                  ConfirmationMessage="@(() => action?.ConfirmationMessage?.Invoke(context)??null)"
+                                  Visible="@(action.Visible != null ? action.Visible(context) : true)"
+                                  Text="@action.Text">
+                            </EntityAction>
+                        }
+                    </EntityActions>
+                </DataTableEntityActionsColumn>
+            }
+            else
+            {
+                @if (column.Component != null)
+                {
+                    <Column TData="TItem" DataIndex="@typeof(TItem).GetProperties().First().Name" Title="@column.Title">
+                        @RenderCustomTableColumnComponent(column.Component, context)
+                    </Column>
+                }
+                else
+                {
+                    if (!ExtensionPropertiesRegex.IsMatch(column.Data))
+                    {
+                        @if (column.ValueConverter == null)
+                        {
+                            @*FormatProvider="@column.DisplayFormatProvider" *@
+                            <Column TData="TItem" DataIndex="@column.Data" Title="@column.Title" Sortable="@column.Sortable"
+            Format="@column.DisplayFormat" />
+                        }
+                        else
+                        {
+                            <Column TData="TItem" DataIndex="@typeof(TItem).GetProperties().First().Name" Title="@column.Title" Sortable="@column.Sortable">
+                                @(GetConvertedFieldValue(context, column))
+                            </Column>
+                        }
+                    }
+                    else
+                    {
+                        <Column TData="TItem" DataIndex="@nameof(IHasExtraProperties.ExtraProperties)" Title="@column.Title">
+                            @{
+                                var entity = context as IHasExtraProperties;
+                                var propertyName = ExtensionPropertiesRegex.Match(column.Data).Groups[1].Value;
+                                var propertyValue = entity.GetProperty(propertyName);
+                                if (propertyValue != null && propertyValue.GetType() == typeof(bool))
+                                {
+                                    if ((bool)propertyValue)
+                                    {
+                                        <Icon class="text-success" Type="check" />
+                                    }
+                                    else
+                                    {
+                                        <Icon class="text-danger" Type="close" />
+                                    }
+                                }
+                                else
+                                {
+                                    if (column.ValueConverter != null)
+                                    {
+                                        @(GetConvertedFieldValue(context, column))
+                                    }
+                                    else
+                                    {
+                                        if (column.DisplayFormat == null)
+                                        {
+                                            @(propertyValue)
+                                        }
+                                        else
+                                        {
+                                            @(string.Format(column.DisplayFormatProvider, column.DisplayFormat, propertyValue))
+                                        }
+                                    }
+                                }
+                            }
+                        </Column>
+                    }
+                }
+            }
+        }
+    }
+</Table>
+
+@* ShowPager="@ShowPager"*@
+
+@*@ref="table"
+    @bind-SelectedRows="selectedRows"*@

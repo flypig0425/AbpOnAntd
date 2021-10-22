@@ -1,24 +1,24 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using AntDesign.TableModels;
+using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Zero.Abp.AspNetCore.Components.Web.Extensibility.TableColumns;
 
-namespace Zero.Abp.AntBlazorUI.Components
+namespace Zero.Abp.AntBlazorUI.Components.ExtensibleDataTable
 {
-    public partial class AbpExtensibleDataGrid<TItem> : ComponentBase
+    public partial class AbpExtensibleDataTable<TItem> : ComponentBase
     {
         protected const string DataFieldAttributeName = "Data";
 
-        protected Dictionary<string, DataGridEntityActionsColumn<TItem>> ActionColumns =
-            new Dictionary<string, DataGridEntityActionsColumn<TItem>>();
+        protected Dictionary<string, DataTableEntityActionsColumn<TItem>> ActionColumns = new();
 
         protected Regex ExtensionPropertiesRegex = new Regex(@"ExtraProperties\[(.*?)\]");
 
         [Parameter] public IEnumerable<TItem> Data { get; set; }
 
-        [Parameter] public EventCallback<DataGridReadDataEventArgs<TItem>> ReadData { get; set; }
+        [Parameter] public EventCallback<QueryModel<TItem>> ReadData { get; set; }
 
         [Parameter] public int? TotalItems { get; set; }
 
@@ -37,7 +37,7 @@ namespace Zero.Abp.AntBlazorUI.Components
         {
             return (builder) =>
             {
-                builder.OpenComponent(type);
+                builder.OpenComponent(0, type);
                 builder.AddAttribute(0, DataFieldAttributeName, data);
                 builder.CloseComponent();
             };
@@ -48,8 +48,7 @@ namespace Zero.Abp.AntBlazorUI.Components
             var convertedValue = columnDefinition.ValueConverter.Invoke(item);
             if (!columnDefinition.DisplayFormat.IsNullOrEmpty())
             {
-                return string.Format(columnDefinition.DisplayFormatProvider, columnDefinition.DisplayFormat,
-                    convertedValue);
+                return string.Format(columnDefinition.DisplayFormatProvider, columnDefinition.DisplayFormat, convertedValue);
             }
 
             return convertedValue;

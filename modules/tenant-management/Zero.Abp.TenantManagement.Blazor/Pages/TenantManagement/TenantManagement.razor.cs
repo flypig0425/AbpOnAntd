@@ -1,7 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Volo.Abp.ObjectExtending;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.TenantManagement.Localization;
+using Zero.Abp.AspNetCore.Components.Web.Extensibility.EntityActions;
+using Zero.Abp.AspNetCore.Components.Web.Extensibility.TableColumns;
 using Zero.Abp.AspNetCore.Components.Web.Theming.PageToolbars;
 using Zero.Abp.FeatureManagement.Blazor.Components;
 
@@ -18,7 +23,7 @@ namespace Zero.Abp.TenantManagement.Blazor.Pages.TenantManagement
 
         protected PageToolbar Toolbar { get; } = new();
 
-        //protected List<TableColumn> TenantManagementTableColumns => TableColumns.Get<TenantManagement>();
+        protected List<TableColumn> TenantManagementTableColumns => TableColumns.Get<TenantManagement>();
 
         public TenantManagement()
         {
@@ -56,58 +61,58 @@ namespace Zero.Abp.TenantManagement.Blazor.Pages.TenantManagement
 
         protected override ValueTask SetEntityActionsAsync()
         {
-            //EntityAction
-            //    .Get<TenantManagement>()
-            //    .AddRange(new EntityAction[]
-            //    {
-            //        new EntityAction
-            //        {
-            //            Text = L["Edit"],
-            //            Visible = (data) => HasUpdatePermission,
-            //            Clicked = async (data) => { await OpenEditModalAsync(data.As<TenantDto>()); }
-            //        },
-            //        new EntityAction
-            //        {
-            //            Text = L["Features"],
-            //            Visible = (data) => HasManageFeaturesPermission,
-            //            Clicked = async (data) =>
-            //            {
-            //                var tenant = data.As<TenantDto>();
-                           //await FeatureManagementModal.OpenAsync(FeatureProviderName, tenant.Id.ToString());
-            //            }
-            //        },
-            //        new EntityAction
-            //        {
-            //            Text = L["Delete"],
-            //            Visible = (data) => HasDeletePermission,
-            //            Clicked = async (data) => await DeleteEntityAsync(data.As<TenantDto>()),
-            //            ConfirmationMessage = (data) => GetDeleteConfirmationMessage(data.As<TenantDto>())
-            //        }
-            //    });
+            EntityActions
+                .Get<TenantManagement>()
+                .AddRange(new EntityAction[]
+                {
+                    new EntityAction
+                    {
+                        Text = L["Edit"],
+                        Visible = (data) => HasUpdatePermission,
+                        Clicked = async (data) => { await OpenEditModalAsync(data.As<TenantDto>()); }
+                    },
+                    new EntityAction
+                    {
+                        Text = L["Features"],
+                        Visible = (data) => HasManageFeaturesPermission,
+                        Clicked = async (data) =>
+                        {
+                            var tenant = data.As<TenantDto>();
+                            await FeatureManagementModal.OpenAsync(FeatureProviderName, tenant.Id.ToString());
+                        }
+                    },
+                    new EntityAction
+                    {
+                        Text = L["Delete"],
+                        Visible = (data) => HasDeletePermission,
+                        Clicked = async (data) => await DeleteEntityAsync(data.As<TenantDto>()),
+                        ConfirmationMessage = (data) => GetDeleteConfirmationMessage(data.As<TenantDto>())
+                    }
+                });
 
             return base.SetEntityActionsAsync();
         }
 
         protected override ValueTask SetTableColumnsAsync()
         {
-            //TenantManagementTableColumns
-            //    .AddRange(new TableColumn[]
-            //    {
-            //        new TableColumn
-            //        {
-            //            Title = L["Actions"],
-            //            Actions = EntityActions.Get<TenantManagement>()
-            //        },
-            //        new TableColumn
-            //        {
-            //            Title = L["TenantName"],
-            //            Data = nameof(TenantDto.Name),
-            //        },
-            //    });
+            TenantManagementTableColumns
+                .AddRange(new TableColumn[]
+                {
+                    new TableColumn
+                    {
+                        Title = L["Actions"],
+                        Actions = EntityActions.Get<TenantManagement>()
+                    },
+                    new TableColumn
+                    {
+                        Title = L["TenantName"],
+                        Data = nameof(TenantDto.Name),
+                    },
+                });
 
-            //TenantManagementTableColumns.AddRange(GetExtensionTableColumns(
-            //    TenantManagementModuleExtensionConsts.ModuleName,
-            //    TenantManagementModuleExtensionConsts.EntityNames.Tenant));
+            TenantManagementTableColumns.AddRange(GetExtensionTableColumns(
+                TenantManagementModuleExtensionConsts.ModuleName,
+                TenantManagementModuleExtensionConsts.EntityNames.Tenant));
 
             return base.SetTableColumnsAsync();
         }

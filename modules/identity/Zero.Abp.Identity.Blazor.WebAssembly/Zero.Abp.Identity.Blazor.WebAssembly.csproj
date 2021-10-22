@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <Import Project="..\..\..\configureawait.props" />
+  <Import Project="..\..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.AutoMapper" Version="4.4.3" />
+    <PackageReference Include="Volo.Abp.Identity.HttpApi.Client" Version="4.4.3" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\permission-management\Zero.Abp.PermissionManagement.Blazor.WebAssembly\Zero.Abp.PermissionManagement.Blazor.WebAssembly.csproj" />
+    <ProjectReference Include="..\Zero.Abp.Identity.Blazor\Zero.Abp.Identity.Blazor.csproj" />
+  </ItemGroup>
+
+</Project>
