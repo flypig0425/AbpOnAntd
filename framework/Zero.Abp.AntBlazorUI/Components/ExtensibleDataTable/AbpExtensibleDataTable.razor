@@ -8,8 +8,9 @@
        @bind-PageIndex="@CurrentPage"
        @bind-PageSize="@PageSize"
        OnChange="@ReadData">
-    @* <Selection Key="@(context.Id.ToString())" />*@
 
+   @*  <Selection Key="@(context.Id.ToString())" />
+*@
     @if (Columns != null)
     {
         @foreach (var column in Columns)
@@ -22,7 +23,7 @@
                     </Space>
                     </ActionColumn>*@
 
-                <DataTableEntityActionsColumn TItem="TItem" Title="@column.Title"
+              @*  <DataTableEntityActionsColumn TItem="TItem" Title="@column.Title"
                                   @ref="ActionColumns[column.Title]">
                     <EntityActions TItem="TItem" EntityActionsColumn="ActionColumns[column.Title]">
                         @foreach (var action in column.Actions)
@@ -38,13 +39,13 @@
                             </EntityAction>
                         }
                     </EntityActions>
-                </DataTableEntityActionsColumn>
+                </DataTableEntityActionsColumn>*@
             }
             else
             {
                 @if (column.Component != null)
                 {
-                    <Column TData="TItem" DataIndex="@typeof(TItem).GetProperties().First().Name" Title="@column.Title">
+                    <Column TData="object" DataIndex="@typeof(TItem).GetProperties().First().Name" Title="@column.Title">
                         @RenderCustomTableColumnComponent(column.Component, context)
                     </Column>
                 }
@@ -55,19 +56,20 @@
                         @if (column.ValueConverter == null)
                         {
                             @*FormatProvider="@column.DisplayFormatProvider" *@
-                            <Column TData="TItem" DataIndex="@column.Data" Title="@column.Title" Sortable="@column.Sortable"
+                            <Column TData="object" DataIndex="@column.Data" Title="@column.Title" Sortable="@column.Sortable"
             Format="@column.DisplayFormat" />
                         }
                         else
                         {
-                            <Column TData="TItem" DataIndex="@typeof(TItem).GetProperties().First().Name" Title="@column.Title" Sortable="@column.Sortable">
+                            <Column TData="object" DataIndex="@typeof(TItem).GetProperties().First().Name" Title="@column.Title"
+                            Sortable="@column.Sortable">
                                 @(GetConvertedFieldValue(context, column))
                             </Column>
                         }
                     }
                     else
                     {
-                        <Column TData="TItem" DataIndex="@nameof(IHasExtraProperties.ExtraProperties)" Title="@column.Title">
+                        <Column TData="object" DataIndex="@nameof(IHasExtraProperties.ExtraProperties)" Title="@column.Title">
                             @{
                                 var entity = context as IHasExtraProperties;
                                 var propertyName = ExtensionPropertiesRegex.Match(column.Data).Groups[1].Value;

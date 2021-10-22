@@ -6,11 +6,12 @@
 @inject IStringLocalizer<IdentityResource> L
 
 @(Data.As<IdentityRoleDto>().Name)
+
 @if (Data.As<IdentityRoleDto>().IsDefault)
 {
-    <Badge Color="Color.Primary" Margin="Margin.Is1.FromLeft">@L["DisplayName:IsDefault"]</Badge>
+    <Tag Color="blue-inverse" Style="margin-left:1em;">@L["DisplayName:IsDefault"]</Tag>
 }
 @if (Data.As<IdentityRoleDto>().IsPublic)
 {
-    <Badge Color="Color.Light" Margin="Margin.Is1.FromLeft">@L["DisplayName:IsPublic"]</Badge>
+    <Tag Color="green-inverse" Style="margin-left:1em;">@L["DisplayName:IsPublic"]</Tag>
 }

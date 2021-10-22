@@ -5,10 +5,10 @@
 @if (EmailSettings != null)
 {
     <Form Model="@EmailSettings"
-          OnFinish="@UpdateSettingsAsync"
-          OnFinishFailed="OnFinishFailed"
-          LabelColSpan="8"
-          WrapperColSpan="16">
+      OnFinish="@UpdateSettingsAsync"
+      OnFinishFailed="OnFinishFailed"
+      LabelColSpan="8"
+      WrapperColSpan="16">
 
         <FormItem Label="@L["DefaultFromDisplayName"]">
             <Input @bind-Value="@context.DefaultFromDisplayName" />
@@ -35,18 +35,26 @@
         </FormItem>
 
         @if (!EmailSettings.SmtpUseDefaultCredentials)
-        {
-            <FormItem Label="@L["SmtpDomain"]">
-                <Input @bind-Value="@context.SmtpDomain" />
-            </FormItem>
+    {
+        <FormItem Label="@L["SmtpDomain"]">
+            <Input @bind-Value="@context.SmtpDomain" />
+        </FormItem>
 
-            <FormItem Label="@L["SmtpUserName"]">
-                <Input @bind-Value="@context.SmtpUserName" />
-            </FormItem>
+        <FormItem Label="@L["SmtpUserName"]">
+            <Input @bind-Value="@context.SmtpUserName" />
+        </FormItem>
 
-            <FormItem Label="@L["SmtpPassword"]">
-                <Input @bind-Value="@context.SmtpPassword" />
-            </FormItem>
-        }
-    </Form>
+        <FormItem Label="@L["SmtpPassword"]">
+            <Input @bind-Value="@context.SmtpPassword" />
+        </FormItem>
+
+    }
+    <FormItem>
+        <Button Loading="@Submiting"
+                Type="@ButtonType.Primary"
+                HtmlType="submit">
+            @L["Save"]
+        </Button>
+    </FormItem>
+</Form>
 }

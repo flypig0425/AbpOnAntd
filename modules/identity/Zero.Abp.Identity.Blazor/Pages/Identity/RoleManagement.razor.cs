@@ -54,8 +54,7 @@ namespace Zero.Abp.Identity.Blazor.Pages.Identity
                         Visible = (data) => HasManagePermissionsPermission,
                         Clicked = async (data) =>
                         {
-                            await PermissionManagementModal.OpenAsync(PermissionProviderName,
-                                data.As<IdentityRoleDto>().Name);
+                            await PermissionManagementModal.OpenAsync(PermissionProviderName,data.As<IdentityRoleDto>().Name);
                         }
                     },
                     new EntityAction

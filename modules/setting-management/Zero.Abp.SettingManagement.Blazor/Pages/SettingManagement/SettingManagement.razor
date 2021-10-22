@@ -1,14 +1,15 @@
 ﻿@page "/setting-management"
-@*@using Volo.Abp.Features
-    @attribute [RequiresFeature(SettingManagementFeatures.Enable)]
-*@
+@using Volo.Abp.Features
+@using Volo.Abp.SettingManagement
+@attribute [RequiresFeature(SettingManagementFeatures.Enable)]
+
 @* ************************* PAGE HEADER ************************* *@
 
 @*<PageHeader Title="@L["Settings"]" BreadcrumbItems="@BreadcrumbItems">
 
     </PageHeader>*@
 
-<GridContent>
+<PageContainer Title="@L["Settings"]">
     <div class="main" @ref="element">
         <div class="leftMenu">
             <Menu Mode="@Mode"
@@ -28,12 +29,12 @@
                 @if (GetNormalizedString(group.Id) == SelectedGroup)
                 {
                     <div class="title">@group.DisplayName</div>
-                    @SettingItemRenders.Last(f => f.key == SelectedGroup)
+                    @(SettingItemRenders.Last(f => f.key == SelectedGroup).render)
                 }
             }
         </div>
     </div>
-</GridContent>
-@code{
+</PageContainer>
+@code {
     private ElementReference element;
 }

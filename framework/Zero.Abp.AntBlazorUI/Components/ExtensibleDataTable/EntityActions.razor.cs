@@ -10,7 +10,7 @@ namespace Zero.Abp.AntBlazorUI.Components.ExtensibleDataTable
 {
     public partial class EntityActions<TItem> : ComponentBase
     {
-        protected readonly List<EntityAction<TItem>> Actions = new List<EntityAction<TItem>>();
+        protected readonly List<EntityAction<TItem>> Actions = new();
         protected bool HasPrimaryAction => Actions.Any(t => t.Primary);
         protected EntityAction<TItem> PrimaryAction => Actions.FirstOrDefault(t => t.Primary);
 

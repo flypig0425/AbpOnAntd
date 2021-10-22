@@ -42,19 +42,26 @@ namespace Zero.Abp.SettingManagement.Blazor.Pages.SettingManagement.EmailSetting
             }
         }
 
+        protected bool Submiting { get; set; }
         protected virtual async Task UpdateSettingsAsync()
         {
             try
             {
+                Submiting = true;
                 await EmailSettingsAppService.UpdateAsync(ObjectMapper.Map<EmailSettingsDto, UpdateEmailSettingsDto>(EmailSettings));
 
                 await CurrentApplicationConfigurationCacheResetService.ResetAsync();
 
-                await UiMessageService.Success(L["SuccessfullySaved"]);
+                _ = UiMessageService.Success(L["SuccessfullySaved"]);
             }
             catch (Exception ex)
             {
                 await HandleErrorAsync(ex);
+            }
+            finally
+            {
+                Submiting = false;
+                await InvokeAsync(StateHasChanged);
             }
         }
 
