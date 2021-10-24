@@ -95,7 +95,12 @@ namespace Zero.Abp.PermissionManagement.Blazor.Components
                 }
 
                 _selectedTabName = GetNormalizedGroupName(_groups.First().Name);
-                _modalVisible = true;
+
+                await InvokeAsync(() =>
+                {
+                    _modalVisible = true;
+                    StateHasChanged();
+                });
             }
             catch (Exception ex)
             {
@@ -108,17 +113,18 @@ namespace Zero.Abp.PermissionManagement.Blazor.Components
             _modalVisible = false;
             return Task.CompletedTask;
         }
-
+        bool ConfirmLoading;
         private async Task SaveAsync()
         {
             try
             {
+                ConfirmLoading = true;
                 var updateDto = new UpdatePermissionsDto
                 {
                     Permissions = _groups
-                        .SelectMany(g => g.Permissions)
-                        .Select(p => new UpdatePermissionDto { IsGranted = p.IsGranted, Name = p.Name })
-                        .ToArray()
+                     .SelectMany(g => g.Permissions)
+                     .Select(p => new UpdatePermissionDto { IsGranted = p.IsGranted, Name = p.Name })
+                     .ToArray()
                 };
 
                 await PermissionAppService.UpdateAsync(_providerName, _providerKey, updateDto);
@@ -127,6 +133,10 @@ namespace Zero.Abp.PermissionManagement.Blazor.Components
             catch (Exception ex)
             {
                 await HandleErrorAsync(ex);
+            }
+            finally
+            {
+                ConfirmLoading = false;
             }
         }
 
@@ -174,26 +184,26 @@ namespace Zero.Abp.PermissionManagement.Blazor.Components
                 return;
             }
 
-            if (value)
-            {
-                _grantedPermissionCount++;
-                _notGrantedPermissionCount--;
-            }
-            else
-            {
-                _grantedPermissionCount--;
-                _notGrantedPermissionCount++;
-            }
+            //if (value)
+            //{
+            //    _grantedPermissionCount++;
+            //    _notGrantedPermissionCount--;
+            //}
+            //else
+            //{
+            //    _grantedPermissionCount--;
+            //    _notGrantedPermissionCount++;
+            //}
 
             permission.IsGranted = value;
         }
 
-        private PermissionGrantInfoDto GetParentPermission(PermissionGroupDto permissionGroup, PermissionGrantInfoDto permission)
+        private static PermissionGrantInfoDto GetParentPermission(PermissionGroupDto permissionGroup, PermissionGrantInfoDto permission)
         {
             return permissionGroup.Permissions.First(x => x.Name == permission.ParentName);
         }
 
-        private List<PermissionGrantInfoDto> GetChildPermissions(PermissionGroupDto permissionGroup, PermissionGrantInfoDto permission)
+        private static List<PermissionGrantInfoDto> GetChildPermissions(PermissionGroupDto permissionGroup, PermissionGrantInfoDto permission)
         {
             return permissionGroup.Permissions.Where(x => x.Name.StartsWith(permission.Name)).ToList();
         }

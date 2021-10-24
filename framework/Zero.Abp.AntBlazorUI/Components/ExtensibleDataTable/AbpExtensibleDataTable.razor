@@ -1,6 +1,7 @@
 ﻿@typeparam TItem
 @using Volo.Abp.Data
 @using Zero.Abp.AntBlazorUI.Components.ObjectExtending
+@using Zero.Abp.AspNetCore.Components.MessageBoxs
 
 <Table TItem="TItem"
        DataSource="@Data"
@@ -9,37 +10,52 @@
        @bind-PageSize="@PageSize"
        OnChange="@ReadData">
 
-   @*  <Selection Key="@(context.Id.ToString())" />
-*@
+    @*  <Selection Key="@(context.Id.ToString())" />
+    *@
     @if (Columns != null)
     {
         @foreach (var column in Columns)
         {
             if (column.Actions.Any())
             {
-                @*  <ActionColumn>
+                <ActionColumn>
                     <Space>
-                    <SpaceItem><Button Danger OnClick="()=>Delete(context.Id)">Delete</Button></SpaceItem>
-                    </Space>
-                    </ActionColumn>*@
-
-              @*  <DataTableEntityActionsColumn TItem="TItem" Title="@column.Title"
-                                  @ref="ActionColumns[column.Title]">
-                    <EntityActions TItem="TItem" EntityActionsColumn="ActionColumns[column.Title]">
                         @foreach (var action in column.Actions)
                         {
-                            var isConfirmationMessage = action.ConfirmationMessage != null;
-                            <EntityAction TItem="TItem"
-                          ButtonType="@(action.ActionType != null ? action.ActionType.ToString() : ButtonType.Primary)"
-                          Icon="@action.Icon"
-                          Clicked="async () => await action.Clicked(context)"
-                          ConfirmationMessage="@(() => action?.ConfirmationMessage?.Invoke(context)??null)"
-                          Visible="@(action.Visible != null ? action.Visible(context) : true)"
-                          Text="@action.Text">
-                            </EntityAction>
+                            if (action.Visible != null ? action.Visible(context) : true)
+                            {
+                                <SpaceItem>
+                                    <Button Type="@(action.ActionType != null ? action.ActionType.ToString() : ButtonType.Primary)"
+                        OnClick="async () => await ActionClickedAsync(context,action)">
+                                        @if (!string.IsNullOrEmpty(action.Icon))
+                                        {
+                                            <IconView Icon="@action.Icon" />
+                                        }
+                                        @action.Text
+                                    </Button>
+                                </SpaceItem>
+                            }
                         }
+                    </Space>
+                </ActionColumn>
+
+                @*     <DataTableEntityActionsColumn TItem="TItem" Title="@column.Title"
+                    @ref="ActionColumns[column.Title]">
+                    <EntityActions TItem="TItem" EntityActionsColumn="ActionColumns[column.Title]">
+                    @foreach (var action in column.Actions)
+                    {
+                    var isConfirmationMessage = action.ConfirmationMessage != null;
+                    <EntityAction TItem="TItem"
+                    ButtonType="@(action.ActionType != null ? action.ActionType.ToString() : ButtonType.Primary)"
+                    Icon="@action.Icon"
+                    Clicked="async () => await action.Clicked(context)"
+                    ConfirmationMessage="@(() => action?.ConfirmationMessage?.Invoke(context)??null)"
+                    Visible="@(action.Visible != null ? action.Visible(context) : true)"
+                    Text="@action.Text">
+                    </EntityAction>
+                    }
                     </EntityActions>
-                </DataTableEntityActionsColumn>*@
+                    </DataTableEntityActionsColumn>*@
             }
             else
             {
@@ -62,7 +78,7 @@
                         else
                         {
                             <Column TData="object" DataIndex="@typeof(TItem).GetProperties().First().Name" Title="@column.Title"
-                            Sortable="@column.Sortable">
+            Sortable="@column.Sortable">
                                 @(GetConvertedFieldValue(context, column))
                             </Column>
                         }
@@ -116,3 +132,22 @@
 
 @*@ref="table"
     @bind-SelectedRows="selectedRows"*@
+@inject IUiMessageBoxService UiMessageBoxService;
+@code {
+    protected internal virtual async Task ActionClickedAsync<T>(T context,
+                    Zero.Abp.AspNetCore.Components.Web.Extensibility.EntityActions.EntityAction action)
+    {
+        var confirmationMessage = action.ConfirmationMessage?.Invoke(context);
+        if (!confirmationMessage.IsNullOrWhiteSpace())
+        {
+            if (await UiMessageBoxService.Confirm(confirmationMessage))
+            {
+                await InvokeAsync(async () => await action.Clicked(context));
+            }
+        }
+        else
+        {
+            await action.Clicked(context);
+        }
+    }
+}

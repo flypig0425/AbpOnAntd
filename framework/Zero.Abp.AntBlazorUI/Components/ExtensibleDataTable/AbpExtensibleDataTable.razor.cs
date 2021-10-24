@@ -14,7 +14,7 @@ namespace Zero.Abp.AntBlazorUI.Components.ExtensibleDataTable
 
         protected Dictionary<string, DataTableEntityActionsColumn<TItem>> ActionColumns = new();
 
-        protected Regex ExtensionPropertiesRegex = new Regex(@"ExtraProperties\[(.*?)\]");
+        protected Regex ExtensionPropertiesRegex = new(@"ExtraProperties\[(.*?)\]");
 
         [Parameter] public IEnumerable<TItem> Data { get; set; }
 

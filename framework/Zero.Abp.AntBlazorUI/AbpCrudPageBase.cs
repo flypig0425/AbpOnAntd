@@ -189,8 +189,9 @@ namespace Zero.Abp.AntBlazorUI
 
         protected bool CreateVisible;
         protected bool EditVisible;
-        //protected Validations CreateValidationsRef;
-        //protected Validations EditValidationsRef;
+        protected Form<TCreateViewModel> CreateFormRef;
+        protected Form<TUpdateViewModel> EditFormRef;
+
         //protected List<BreadcrumbItem> BreadcrumbItems = new(2);
         protected DataTableEntityActionsColumn<TListViewModel> EntityActionsColumn;
         protected EntityActionDictionary EntityActions { get; set; }
@@ -316,7 +317,7 @@ namespace Zero.Abp.AntBlazorUI
         {
             try
             {
-                //CreateValidationsRef?.ClearAll();
+                CreateFormRef?.Reset();
 
                 await CheckCreatePolicyAsync();
 
@@ -326,8 +327,8 @@ namespace Zero.Abp.AntBlazorUI
                 // so we need to notify it manually by calling StateHasChanged
                 await InvokeAsync(() =>
                 {
-                    StateHasChanged();
                     CreateVisible = true;
+                    StateHasChanged();
                 });
             }
             catch (Exception ex)
@@ -352,7 +353,7 @@ namespace Zero.Abp.AntBlazorUI
         {
             try
             {
-                //EditValidationsRef?.ClearAll();
+                EditFormRef?.Reset();
 
                 await CheckUpdatePolicyAsync();
 
@@ -363,8 +364,8 @@ namespace Zero.Abp.AntBlazorUI
 
                 await InvokeAsync(() =>
                 {
-                    StateHasChanged();
                     EditVisible = true;
+                    StateHasChanged();
                 });
             }
             catch (Exception ex)
@@ -414,16 +415,16 @@ namespace Zero.Abp.AntBlazorUI
         {
             try
             {
-                //if (CreateValidationsRef?.ValidateAll() ?? true)
-                //{
-                //    await OnCreatingEntityAsync();
+                if (CreateFormRef?.Validate() ?? true)
+                {
+                    await OnCreatingEntityAsync();
 
-                //    await CheckCreatePolicyAsync();
-                //    var createInput = MapToCreateInput(NewEntity);
-                //    await AppService.CreateAsync(createInput);
+                    await CheckCreatePolicyAsync();
+                    var createInput = MapToCreateInput(NewEntity);
+                    await AppService.CreateAsync(createInput);
 
-                //    await OnCreatedEntityAsync();
-                //}
+                    await OnCreatedEntityAsync();
+                }
             }
             catch (Exception ex)
             {
@@ -446,16 +447,16 @@ namespace Zero.Abp.AntBlazorUI
         {
             try
             {
-                //if (EditValidationsRef?.ValidateAll() ?? true)
-                //{
-                //    await OnUpdatingEntityAsync();
+                if (EditFormRef?.Validate () ?? true)
+                {
+                    await OnUpdatingEntityAsync();
 
-                //    await CheckUpdatePolicyAsync();
-                //    var updateInput = MapToUpdateInput(EditingEntity);
-                //    await AppService.UpdateAsync(EditingEntityId, updateInput);
+                    await CheckUpdatePolicyAsync();
+                    var updateInput = MapToUpdateInput(EditingEntity);
+                    await AppService.UpdateAsync(EditingEntityId, updateInput);
 
-                //    await OnUpdatedEntityAsync();
-                //}
+                    await OnUpdatedEntityAsync();
+                }
             }
             catch (Exception ex)
             {
@@ -471,7 +472,7 @@ namespace Zero.Abp.AntBlazorUI
         protected virtual async Task OnUpdatedEntityAsync()
         {
             await GetEntitiesAsync();
-            EditVisible=false;
+            EditVisible = false;
         }
 
         protected virtual async Task DeleteEntityAsync(TListViewModel entity)
