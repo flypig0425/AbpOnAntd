@@ -11,11 +11,17 @@ namespace Zero.Abp.AntBlazor.Layout
     {
         #region 
         private bool HasHeader => LayoutContextProvider?.HasHeader ?? false;
-        private bool HasFooterToolbar => LayoutContextProvider?.HasPageFooterToolbar ?? false;
-        private void SetHasPageContainer(bool hasPageContainer) {
+        private void SetHasPageContainer(bool hasPageContainer)
+        {
             if (LayoutContextProvider != null) { LayoutContextProvider.HasPageContainer = hasPageContainer; }
         }
+
+
+        protected bool _hasFooterToolbar;
+        public void SetHasFooterToolbar(bool hasFooterToolbar) { _hasFooterToolbar = hasFooterToolbar; }
         #endregion
+
+
 
         [Parameter] public OneOf<bool, RenderFragment, SpinProps> Loading { get; set; } = false;
 
@@ -85,7 +91,7 @@ namespace Zero.Abp.AntBlazor.Layout
         public string Key { get; set; }
         public string Tab { get; set; }
         public bool Closable { get; set; } = true;
-        public bool Disabled { get; set; } 
+        public bool Disabled { get; set; }
     }
 
     public class SpinProps

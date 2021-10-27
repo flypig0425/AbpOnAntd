@@ -75,7 +75,11 @@ namespace Zero.Abp.FeatureManagement.Blazor.Components
                         }
                     }
                 }
-                ModalVisible = true;
+                await InvokeAsync(() =>
+                {
+                    ModalVisible = true;
+                    StateHasChanged();
+                });
             }
             catch (Exception ex)
             {

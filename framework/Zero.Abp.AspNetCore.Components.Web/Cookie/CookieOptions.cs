@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Zero.Abp.AspNetCore.Components.Web
+namespace Zero.Abp.AspNetCore.Components.Web.Cookie
 {
     public class CookieOptions
     {

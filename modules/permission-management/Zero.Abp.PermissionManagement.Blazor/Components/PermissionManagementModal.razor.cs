@@ -27,32 +27,20 @@ namespace Zero.Abp.PermissionManagement.Blazor.Components
         private int _grantedPermissionCount = 0;
         private int _notGrantedPermissionCount = 0;
 
-        private bool GrantAll
+        private bool GrantPart => _grantedPermissionCount != 0 && _notGrantedPermissionCount != 0;
+        private bool GrantAll => _notGrantedPermissionCount == 0;
+        private void GrantAllChanged(bool value)
         {
-            get
+            if (_groups == null) { return; }
+            _grantedPermissionCount = 0;
+            _notGrantedPermissionCount = 0;
+            foreach (var permission in _groups.SelectMany(x => x.Permissions))
             {
-                return _notGrantedPermissionCount == 0;
-            }
-            set
-            {
-                if (_groups == null) { return; }
-                _grantedPermissionCount = 0;
-                _notGrantedPermissionCount = 0;
-                foreach (var permission in _groups.SelectMany(x => x.Permissions))
+                if (!IsDisabledPermission(permission))
                 {
-                    if (!IsDisabledPermission(permission))
-                    {
-                        permission.IsGranted = value;
-
-                        if (value)
-                        {
-                            _grantedPermissionCount++;
-                        }
-                        else
-                        {
-                            _notGrantedPermissionCount++;
-                        }
-                    }
+                    permission.IsGranted = value;
+                    if (value) { _grantedPermissionCount++; }
+                    else { _notGrantedPermissionCount++; }
                 }
             }
         }
@@ -68,12 +56,9 @@ namespace Zero.Abp.PermissionManagement.Blazor.Components
             {
                 _providerName = providerName;
                 _providerKey = providerKey;
-
                 var result = await PermissionAppService.GetAsync(_providerName, _providerKey);
-
                 _entityDisplayName = entityDisplayName ?? result.EntityDisplayName;
                 _groups = result.Groups;
-
                 _grantedPermissionCount = 0;
                 _notGrantedPermissionCount = 0;
                 foreach (var permission in _groups.SelectMany(x => x.Permissions))
@@ -83,19 +68,10 @@ namespace Zero.Abp.PermissionManagement.Blazor.Components
                         _disabledPermissions.Add(permission);
                         continue;
                     }
-
-                    if (permission.IsGranted)
-                    {
-                        _grantedPermissionCount++;
-                    }
-                    else
-                    {
-                        _notGrantedPermissionCount++;
-                    }
+                    if (permission.IsGranted) { _grantedPermissionCount++; }
+                    else { _notGrantedPermissionCount++; }
                 }
-
                 _selectedTabName = GetNormalizedGroupName(_groups.First().Name);
-
                 await InvokeAsync(() =>
                 {
                     _modalVisible = true;
@@ -113,6 +89,8 @@ namespace Zero.Abp.PermissionManagement.Blazor.Components
             _modalVisible = false;
             return Task.CompletedTask;
         }
+
+
         bool ConfirmLoading;
         private async Task SaveAsync()
         {
@@ -126,7 +104,6 @@ namespace Zero.Abp.PermissionManagement.Blazor.Components
                      .Select(p => new UpdatePermissionDto { IsGranted = p.IsGranted, Name = p.Name })
                      .ToArray()
                 };
-
                 await PermissionAppService.UpdateAsync(_providerName, _providerKey, updateDto);
                 _modalVisible = false;
             }
@@ -140,7 +117,7 @@ namespace Zero.Abp.PermissionManagement.Blazor.Components
             }
         }
 
-        private string GetNormalizedGroupName(string name)
+        private static string GetNormalizedGroupName(string name)
         {
             return "PermissionGroup_" + name.Replace(".", "_");
         }
@@ -159,17 +136,14 @@ namespace Zero.Abp.PermissionManagement.Blazor.Components
         private void PermissionChanged(bool value, PermissionGroupDto permissionGroup, PermissionGrantInfoDto permission)
         {
             SetPermissionGrant(permission, value);
-
             if (value && permission.ParentName != null)
             {
                 var parentPermission = GetParentPermission(permissionGroup, permission);
-
                 SetPermissionGrant(parentPermission, true);
             }
             else if (value == false)
             {
                 var childPermissions = GetChildPermissions(permissionGroup, permission);
-
                 foreach (var childPermission in childPermissions)
                 {
                     SetPermissionGrant(childPermission, false);
@@ -179,22 +153,17 @@ namespace Zero.Abp.PermissionManagement.Blazor.Components
 
         private void SetPermissionGrant(PermissionGrantInfoDto permission, bool value)
         {
-            if (permission.IsGranted == value)
+            if (permission.IsGranted == value) { return; }
+            if (value)
             {
-                return;
+                _grantedPermissionCount++;
+                _notGrantedPermissionCount--;
             }
-
-            //if (value)
-            //{
-            //    _grantedPermissionCount++;
-            //    _notGrantedPermissionCount--;
-            //}
-            //else
-            //{
-            //    _grantedPermissionCount--;
-            //    _notGrantedPermissionCount++;
-            //}
-
+            else
+            {
+                _grantedPermissionCount--;
+                _notGrantedPermissionCount++;
+            }
             permission.IsGranted = value;
         }
 
@@ -207,7 +176,19 @@ namespace Zero.Abp.PermissionManagement.Blazor.Components
         {
             return permissionGroup.Permissions.Where(x => x.Name.StartsWith(permission.Name)).ToList();
         }
-
+        private static bool IsGrantPart(PermissionGroupDto permissionGroup)
+        {
+            return permissionGroup.Permissions.Any(x => x.IsGranted)
+                && permissionGroup.Permissions.Any(x => !x.IsGranted);
+        }
+        private static bool IsGrantAll(PermissionGroupDto permissionGroup)
+        {
+            return permissionGroup.Permissions.All(x => x.IsGranted);
+        }
+        private  int GrantCount(PermissionGroupDto permissionGroup)
+        {
+            return permissionGroup.Permissions.Count(x => x.IsGranted);
+        }
         private bool IsDisabledPermission(PermissionGrantInfoDto permissionGrantInfo)
         {
             return _disabledPermissions.Any(x => x == permissionGrantInfo);
@@ -219,7 +200,6 @@ namespace Zero.Abp.PermissionManagement.Blazor.Components
             {
                 return permissionGrantInfo.DisplayName;
             }
-
             return string.Format(
                 "{0} ({1})",
                 permissionGrantInfo.DisplayName,

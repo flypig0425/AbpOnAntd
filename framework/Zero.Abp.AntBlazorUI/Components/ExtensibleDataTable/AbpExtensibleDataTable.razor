@@ -1,61 +1,60 @@
 ﻿@typeparam TItem
+@using Microsoft.Extensions.Localization
 @using Volo.Abp.Data
 @using Zero.Abp.AntBlazorUI.Components.ObjectExtending
 @using Zero.Abp.AspNetCore.Components.MessageBoxs
+@using Zero.Abp.AspNetCore.Components.Web.Extensibility.EntityActions
+@using global::Localization.Resources.AbpUi
+@inject IStringLocalizer<AbpUiResource> L
+@inject IUiMessageBoxService UiMessageBoxService
 
-<Table TItem="TItem"
+@if (Toolbar != null)
+{
+    <Space Style="margin:8px 0">
+        @foreach (var toolbarItem in Toolbar)
+        {
+            <SpaceItem>
+                @RenderTableToolbarComponent(toolbarItem)
+            </SpaceItem>
+        }
+    </Space>
+}
+
+<Table Bordered="@true"
+       Size="@TableSize.Middle"
+       TItem="TItem"
        DataSource="@Data"
        Total="@(TotalItems??0)"
+       OnChange="@ReadData"
+       HidePagination="@(ShowPager==false)"
        @bind-PageIndex="@CurrentPage"
-       @bind-PageSize="@PageSize"
-       OnChange="@ReadData">
-
-    @*  <Selection Key="@(context.Id.ToString())" />
-    *@
+       @bind-PageSize="@PageSize">
+    @*  <Selection Key="@(context.Id.ToString())" /> *@
     @if (Columns != null)
     {
         @foreach (var column in Columns)
         {
             if (column.Actions.Any())
             {
-                <ActionColumn>
+                <ActionColumn Title="@L["Actions"]" Width="@("150px")">
                     <Space>
                         @foreach (var action in column.Actions)
                         {
-                            if (action.Visible != null ? action.Visible(context) : true)
+                            if (action?.Visible(context) ?? true)
                             {
                                 <SpaceItem>
-                                    <Button Type="@(action.ActionType != null ? action.ActionType.ToString() : ButtonType.Primary)"
-                        OnClick="async () => await ActionClickedAsync(context,action)">
+                                    <a @onclick="async () => await ActionClickedAsync(context,action)">
                                         @if (!string.IsNullOrEmpty(action.Icon))
                                         {
                                             <IconView Icon="@action.Icon" />
                                         }
                                         @action.Text
-                                    </Button>
+                                    </a>
                                 </SpaceItem>
                             }
                         }
                     </Space>
                 </ActionColumn>
-
-                @*     <DataTableEntityActionsColumn TItem="TItem" Title="@column.Title"
-                    @ref="ActionColumns[column.Title]">
-                    <EntityActions TItem="TItem" EntityActionsColumn="ActionColumns[column.Title]">
-                    @foreach (var action in column.Actions)
-                    {
-                    var isConfirmationMessage = action.ConfirmationMessage != null;
-                    <EntityAction TItem="TItem"
-                    ButtonType="@(action.ActionType != null ? action.ActionType.ToString() : ButtonType.Primary)"
-                    Icon="@action.Icon"
-                    Clicked="async () => await action.Clicked(context)"
-                    ConfirmationMessage="@(() => action?.ConfirmationMessage?.Invoke(context)??null)"
-                    Visible="@(action.Visible != null ? action.Visible(context) : true)"
-                    Text="@action.Text">
-                    </EntityAction>
-                    }
-                    </EntityActions>
-                    </DataTableEntityActionsColumn>*@
             }
             else
             {
@@ -128,14 +127,12 @@
     }
 </Table>
 
-@* ShowPager="@ShowPager"*@
-
 @*@ref="table"
     @bind-SelectedRows="selectedRows"*@
-@inject IUiMessageBoxService UiMessageBoxService;
+
+
 @code {
-    protected internal virtual async Task ActionClickedAsync<T>(T context,
-                    Zero.Abp.AspNetCore.Components.Web.Extensibility.EntityActions.EntityAction action)
+    protected internal virtual async Task ActionClickedAsync<T>(T context, EntityAction action)
     {
         var confirmationMessage = action.ConfirmationMessage?.Invoke(context);
         if (!confirmationMessage.IsNullOrWhiteSpace())

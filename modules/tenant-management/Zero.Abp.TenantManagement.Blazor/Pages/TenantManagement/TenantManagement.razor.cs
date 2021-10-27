@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AntDesign;
+using Microsoft.AspNetCore.Authorization;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -7,13 +8,23 @@ using Volo.Abp.TenantManagement;
 using Volo.Abp.TenantManagement.Localization;
 using Zero.Abp.AspNetCore.Components.Web.Extensibility.EntityActions;
 using Zero.Abp.AspNetCore.Components.Web.Extensibility.TableColumns;
-using Zero.Abp.AspNetCore.Components.Web.Theming.PageToolbars;
+using Zero.Abp.AspNetCore.Components.Web.Extensibility.TableToolbar;
+using Zero.Abp.AspNetCore.Components.Web.Theming.Extensibility;
 using Zero.Abp.FeatureManagement.Blazor.Components;
 
 namespace Zero.Abp.TenantManagement.Blazor.Pages.TenantManagement
 {
     public partial class TenantManagement
     {
+
+        protected FormValidateErrorMessages validateMessages = new FormValidateErrorMessages
+        {
+            Required = "'{0}' 是必选字段",
+            // ...
+        };
+
+
+
         protected const string FeatureProviderName = "T";
 
         protected bool HasManageFeaturesPermission;
@@ -21,8 +32,7 @@ namespace Zero.Abp.TenantManagement.Blazor.Pages.TenantManagement
 
         protected FeatureManagementModal FeatureManagementModal;
 
-        protected PageToolbar Toolbar { get; } = new();
-
+        protected List<TableToolbarItem> TenantManagementTableToolbar => TableToolbar.Get<TenantManagement>();
         protected List<TableColumn> TenantManagementTableColumns => TableColumns.Get<TenantManagement>();
 
         public TenantManagement()
@@ -40,7 +50,6 @@ namespace Zero.Abp.TenantManagement.Blazor.Pages.TenantManagement
         protected override async Task SetPermissionsAsync()
         {
             await base.SetPermissionsAsync();
-
             HasManageFeaturesPermission = await AuthorizationService.IsGrantedAsync(ManageFeaturesPolicyName);
         }
 
@@ -51,10 +60,8 @@ namespace Zero.Abp.TenantManagement.Blazor.Pages.TenantManagement
 
         protected override ValueTask SetToolbarItemsAsync()
         {
-            //Toolbar.AddButton(L["NewTenant"],
-            //    OpenCreateModalAsync,
-            //    IconName.Add,
-            //    requiredPolicyName: CreatePolicyName);
+            TenantManagementTableToolbar
+                .AddButton(L["NewTenant"], OpenCreateModalAsync, "fa fa-plus", visible: () => HasCreatePermission);
 
             return base.SetToolbarItemsAsync();
         }

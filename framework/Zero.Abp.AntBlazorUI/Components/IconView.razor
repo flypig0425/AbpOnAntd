@@ -4,21 +4,21 @@
 {
     @if (Icon.StartsWith("fa"))
     {
-        <span class="anticon" style="vertical-align: 0em;">
+        <span class="anticon" style="vertical-align: 0em;@Style">
             <i class="@Icon"></i>
         </span>
     }
     else if (Icon.StartsWith("http") || Regex.IsMatch(Icon, @"\w.(png|jpg|jpeg|svg|webp|gif|bmp)$"))
     {
-        <img src="@Icon" alt="icon" />
+        <img src="@Icon" alt="icon" style="@Style"/>
     }
     else if (Icon.StartsWith(IconPrefixes))
     {
-        <IconFont Type="@Icon" />
+        <IconFont Type="@Icon" Style="@Style"/>
     }
     else
     {
-        <Icon Type="@Icon" Theme="outline" />
+        <Icon Type="@Icon" Theme="outline" Style="@Style"/>
     }
 }
 
@@ -26,4 +26,6 @@
     [Parameter] public string IconPrefixes { get; set; } = "icon-";
 
     [Parameter] public string Icon { get; set; }
+
+    [Parameter] public string Style { get; set; }
 }

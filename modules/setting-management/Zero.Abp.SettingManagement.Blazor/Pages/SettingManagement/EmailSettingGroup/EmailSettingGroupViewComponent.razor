@@ -7,8 +7,7 @@
     <Form Model="@EmailSettings"
       OnFinish="@UpdateSettingsAsync"
       OnFinishFailed="OnFinishFailed"
-      LabelColSpan="8"
-      WrapperColSpan="16">
+      Layout="@FormLayout.Vertical">
 
         <FormItem Label="@L["DefaultFromDisplayName"]">
             <Input @bind-Value="@context.DefaultFromDisplayName" />
@@ -26,13 +25,18 @@
             <Input @bind-Value="@context.SmtpPort" />
         </FormItem>
 
-        <FormItem Label="@L["SmtpEnableSsl"]">
-            <Checkbox @bind-Value="@context.SmtpEnableSsl" />
+        <FormItem >
+            <Checkbox @bind-Value="@context.SmtpEnableSsl" >
+                @L["SmtpEnableSsl"]
+            </Checkbox>
         </FormItem>
 
-        <FormItem Label="@L["SmtpUseDefaultCredentials"]">
-            <Checkbox @bind-Value="@context.SmtpUseDefaultCredentials" />
+         <FormItem >
+            <Checkbox @bind-Value="@context.SmtpUseDefaultCredentials" >
+                @L["SmtpUseDefaultCredentials"]
+            </Checkbox>
         </FormItem>
+
 
         @if (!EmailSettings.SmtpUseDefaultCredentials)
     {

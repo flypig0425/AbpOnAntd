@@ -18,6 +18,7 @@
                             ShowPager="true"
                             PageSize="@PageSize"
                             CurrentPage="@CurrentPage"
+                            Toolbar="@UserManagementTableToolbar"
                             Columns="@UserManagementTableColumns">
     </AbpExtensibleDataTable>
 </PageContainer>
@@ -29,9 +30,12 @@
        Visible="@CreateVisible"
        OnOk="@CreateEntityAsync"
        OnCancel="CloseCreateModalAsync"
-       CancelText="@L["Cancel"].Value">
-        <Form Model="@NewEntity">
-            <Tabs @bind-SelectedTab="@CreateModalSelectedTab">
+       CancelText="@L["Cancel"].Value"
+       ConfirmLoading="@CreateSubmiting"
+       Centered MaskClosable="@false">
+        <Form @ref="CreateFormRef" Model="@NewEntity" Loading="@CreateLoading"
+          LabelColSpan="4" WrapperColSpan="20">
+            <Tabs @bind-ActiveKey="@CreateModalSelectedTab">
                 <TabPane Key="UserInformations" Tab="@L["UserInformations"]">
                     <FormItem Label="@L["DisplayName:UserName"]">
                         <Input @bind-Value="@context.UserName" AutoFocus="true" />
@@ -51,12 +55,12 @@
                         <Input @bind-Value="@context.Email" />
                     </FormItem>
 
-                    <FormItem Label="@L["DisplayName:PhoneNumber"]">
+                    <FormItem Label="@L["DisplayName:PhoneNumber"]"> 
                         <Input @bind-Value="@context.PhoneNumber" />
                     </FormItem>
 
-                    <FormItem>
-                        <Checkbox @bind-Checked="@context.LockoutEnabled">@L["DisplayName:LockoutEnabled"]</Checkbox>
+                    <FormItem WrapperCol="new ColLayoutParam{ Offset = 4, Span = 20 }">
+                        <Checkbox @bind-Value="@context.LockoutEnabled">@L["DisplayName:LockoutEnabled"]</Checkbox>
                     </FormItem>
 
                     <ExtensionProperties TEntityType="IdentityUserCreateDto" TResourceType="IdentityResource" Entity="@NewEntity" LH="@LH" />
@@ -66,10 +70,8 @@
                 {
                     @foreach (var role in NewUserRoles)
                     {
-                        <FormItem>
-                            <input type="hidden" @bind-value="@role.Name" />
-                            <Checkbox @bind-Checked="@role.IsAssigned">@role.Name</Checkbox>
-                        </FormItem>
+                        <input type="hidden" @bind-value="@role.Name" />
+                        <Checkbox @bind-Value="@role.IsAssigned">@role.Name</Checkbox>
                     }
                 }
             </TabPane>
@@ -85,16 +87,21 @@
        Visible="@EditVisible"
        OnOk="@UpdateEntityAsync"
        OnCancel="CloseEditModalAsync"
-       CancelText="@L["Cancel"].Value">
-        <Form Model="@EditingEntity">
-            <Tabs @bind-SelectedTab="@EditModalSelectedTab">
+       CancelText="@L["Cancel"].Value"
+       ConfirmLoading="@CreateSubmiting"
+       Centered MaskClosable="@false">
+        <Form @ref="EditFormRef" Model="@EditingEntity" Loading="@EditLoading"
+          LabelColSpan="4" WrapperColSpan="20">
+            <Tabs @bind-ActiveKey="@EditModalSelectedTab">
                 <TabPane Key="UserInformations" Tab="@L["UserInformations"]">
                     <FormItem Label="@L["DisplayName:UserName"]">
                         <Input @bind-Value="@context.UserName" AutoFocus="true" />
                     </FormItem>
+
                     <FormItem Label="@L["DisplayName:Name"]">
                         <Input @bind-Value="@context.Name" />
                     </FormItem>
+
                     <FormItem Label="@L["DisplayName:Surname"]">
                         <Input @bind-Value="@context.Surname" />
                     </FormItem>
@@ -111,8 +118,8 @@
                         <Input @bind-Value="@context.PhoneNumber" />
                     </FormItem>
 
-                    <FormItem>
-                        <Checkbox @bind-Checked="@context.LockoutEnabled">@L["DisplayName:LockoutEnabled"]</Checkbox>
+                    <FormItem WrapperCol="new ColLayoutParam{ Offset = 4, Span = 20 }">
+                        <Checkbox @bind-Value="@context.LockoutEnabled">@L["DisplayName:LockoutEnabled"]</Checkbox>
                     </FormItem>
                     <ExtensionProperties TEntityType="IdentityUserUpdateDto" TResourceType="IdentityResource" Entity="@EditingEntity" LH="@LH" />
                 </TabPane>
@@ -121,10 +128,8 @@
                 {
                     @foreach (var role in EditUserRoles)
                     {
-                        <FormItem>
-                            <input type="hidden" @bind-value="@role.Name" />
-                            <Checkbox @bind-Checked="@role.IsAssigned">@role.Name</Checkbox>
-                        </FormItem>
+                        <input type="hidden" @bind-value="@role.Name" />
+                        <Checkbox @bind-Value="@role.IsAssigned">@role.Name</Checkbox>
                     }
                 }
             </TabPane>

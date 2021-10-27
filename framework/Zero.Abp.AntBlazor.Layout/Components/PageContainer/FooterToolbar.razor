@@ -9,14 +9,18 @@
 </div>
 
 @code {
+    [CascadingParameter]
+    protected PageContainer PageContainer { get; set; }
 
     #region
     private bool isMobile => IsMobile;
     private bool hasSiderMenu => LayoutContextProvider?.HasSiderMenu ?? false;
     private int siderWidth => LayoutContextProvider?.SiderWidth ?? 0;
+
+
     private void SetHasFooterToolbar(bool hasFooterToolbar)
     {
-        if (LayoutContextProvider != null) { LayoutContextProvider.HasPageFooterToolbar = hasFooterToolbar; }
+        PageContainer?.SetHasFooterToolbar(hasFooterToolbar);
     }
     #endregion
 

@@ -15,11 +15,11 @@ using Volo.Abp.Authorization;
 using Volo.Abp.Localization;
 using Volo.Abp.ObjectExtending;
 using Volo.Abp.ObjectExtending.Modularity;
-using Zero.Abp.AntBlazorUI.Components.ExtensibleDataTable;
 using Zero.Abp.AntBlazorUI.Components.ObjectExtending;
 using Zero.Abp.AspNetCore.Components;
 using Zero.Abp.AspNetCore.Components.Web.Extensibility.EntityActions;
 using Zero.Abp.AspNetCore.Components.Web.Extensibility.TableColumns;
+using Zero.Abp.AspNetCore.Components.Web.Extensibility.TableToolbar;
 
 namespace Zero.Abp.AntBlazorUI
 {
@@ -181,7 +181,7 @@ namespace Zero.Abp.AntBlazorUI
         protected int CurrentPage = 1;
         protected string CurrentSorting;
         protected int? TotalCount;
-        protected TGetListInput GetListInput = new TGetListInput();
+        protected TGetListInput GetListInput = new();
         protected IReadOnlyList<TListViewModel> Entities = Array.Empty<TListViewModel>();
         protected TCreateViewModel NewEntity;
         protected TKey EditingEntityId;
@@ -192,10 +192,17 @@ namespace Zero.Abp.AntBlazorUI
         protected Form<TCreateViewModel> CreateFormRef;
         protected Form<TUpdateViewModel> EditFormRef;
 
+        protected bool CreateSubmiting;
+        protected bool CreateLoading;
+
+        protected bool EditSubmiting;
+        protected bool EditLoading;
         //protected List<BreadcrumbItem> BreadcrumbItems = new(2);
-        protected DataTableEntityActionsColumn<TListViewModel> EntityActionsColumn;
-        protected EntityActionDictionary EntityActions { get; set; }
+        //protected DataTableEntityActionsColumn<TListViewModel> EntityActionsColumn;
+
+        protected TableToolbarDictionary TableToolbar { get; set; }
         protected TableColumnDictionary TableColumns { get; set; }
+        protected EntityActionDictionary EntityActions { get; set; }
 
         protected string CreatePolicyName { get; set; }
         protected string UpdatePolicyName { get; set; }
@@ -209,6 +216,7 @@ namespace Zero.Abp.AntBlazorUI
         {
             NewEntity = new TCreateViewModel();
             EditingEntity = new TUpdateViewModel();
+            TableToolbar = new TableToolbarDictionary();
             TableColumns = new TableColumnDictionary();
             EntityActions = new EntityActionDictionary();
         }
@@ -217,6 +225,7 @@ namespace Zero.Abp.AntBlazorUI
         {
             await SetPermissionsAsync();
             await SetEntityActionsAsync();
+            await SetToolbarItemsAsync();
             await SetTableColumnsAsync();
             await InvokeAsync(StateHasChanged);
         }
@@ -226,27 +235,15 @@ namespace Zero.Abp.AntBlazorUI
             if (firstRender)
             {
                 await base.OnAfterRenderAsync(firstRender);
-                await SetToolbarItemsAsync();
                 await SetBreadcrumbItemsAsync();
             }
         }
 
         protected virtual async Task SetPermissionsAsync()
         {
-            if (CreatePolicyName != null)
-            {
-                HasCreatePermission = await AuthorizationService.IsGrantedAsync(CreatePolicyName);
-            }
-
-            if (UpdatePolicyName != null)
-            {
-                HasUpdatePermission = await AuthorizationService.IsGrantedAsync(UpdatePolicyName);
-            }
-
-            if (DeletePolicyName != null)
-            {
-                HasDeletePermission = await AuthorizationService.IsGrantedAsync(DeletePolicyName);
-            }
+            if (CreatePolicyName != null) { HasCreatePermission = await AuthorizationService.IsGrantedAsync(CreatePolicyName); }
+            if (UpdatePolicyName != null) { HasUpdatePermission = await AuthorizationService.IsGrantedAsync(UpdatePolicyName); }
+            if (DeletePolicyName != null) { HasDeletePermission = await AuthorizationService.IsGrantedAsync(DeletePolicyName); }
         }
 
         protected virtual async Task GetEntitiesAsync()
@@ -270,7 +267,6 @@ namespace Zero.Abp.AntBlazorUI
             {
                 return dtos.As<IReadOnlyList<TListViewModel>>();
             }
-
             return ObjectMapper.Map<IReadOnlyList<TGetListOutputDto>, List<TListViewModel>>(dtos);
         }
 
@@ -318,22 +314,21 @@ namespace Zero.Abp.AntBlazorUI
             try
             {
                 CreateFormRef?.Reset();
+                CreateVisible = true;
+                CreateLoading = true;
+                await InvokeAsync(StateHasChanged);
 
                 await CheckCreatePolicyAsync();
-
                 NewEntity = new TCreateViewModel();
-
-                // Mapper will not notify Blazor that binded values are changed
-                // so we need to notify it manually by calling StateHasChanged
-                await InvokeAsync(() =>
-                {
-                    CreateVisible = true;
-                    StateHasChanged();
-                });
             }
             catch (Exception ex)
             {
                 await HandleErrorAsync(ex);
+            }
+            finally
+            {
+                CreateLoading = false;
+                await InvokeAsync(StateHasChanged);
             }
         }
 
@@ -343,34 +338,28 @@ namespace Zero.Abp.AntBlazorUI
             return Task.CompletedTask;
         }
 
-        //protected virtual void ClosingCreateModal(ModalClosingEventArgs eventArgs)
-        //{
-        //    // cancel close if clicked outside of modal area
-        //    eventArgs.Cancel = eventArgs.CloseReason == CloseReason.FocusLostClosing;
-        //}
-
         protected virtual async Task OpenEditModalAsync(TListViewModel entity)
         {
             try
             {
                 EditFormRef?.Reset();
+                EditLoading = true;
+                EditVisible = true;
+                await InvokeAsync(StateHasChanged);
 
                 await CheckUpdatePolicyAsync();
-
                 var entityDto = await AppService.GetAsync(entity.Id);
-
                 EditingEntityId = entity.Id;
                 EditingEntity = MapToEditingEntity(entityDto);
-
-                await InvokeAsync(() =>
-                {
-                    EditVisible = true;
-                    StateHasChanged();
-                });
             }
             catch (Exception ex)
             {
                 await HandleErrorAsync(ex);
+            }
+            finally
+            {
+                EditLoading = false;
+                await InvokeAsync(StateHasChanged);
             }
         }
 
@@ -405,18 +394,14 @@ namespace Zero.Abp.AntBlazorUI
             return Task.CompletedTask;
         }
 
-        //protected virtual void ClosingEditModal(ModalClosingEventArgs eventArgs)
-        //{
-        //    // cancel close if clicked outside of modal area
-        //    eventArgs.Cancel = eventArgs.CloseReason == CloseReason.FocusLostClosing;
-        //}
-
         protected virtual async Task CreateEntityAsync()
         {
             try
             {
                 if (CreateFormRef?.Validate() ?? true)
                 {
+                    CreateSubmiting = true;
+
                     await OnCreatingEntityAsync();
 
                     await CheckCreatePolicyAsync();
@@ -429,6 +414,10 @@ namespace Zero.Abp.AntBlazorUI
             catch (Exception ex)
             {
                 await HandleErrorAsync(ex);
+            }
+            finally
+            {
+                CreateSubmiting = false;
             }
         }
 
@@ -447,8 +436,10 @@ namespace Zero.Abp.AntBlazorUI
         {
             try
             {
-                if (EditFormRef?.Validate () ?? true)
+                if (EditFormRef?.Validate() ?? true)
                 {
+                    EditSubmiting = true;
+
                     await OnUpdatingEntityAsync();
 
                     await CheckUpdatePolicyAsync();
@@ -461,6 +452,10 @@ namespace Zero.Abp.AntBlazorUI
             catch (Exception ex)
             {
                 await HandleErrorAsync(ex);
+            }
+            finally
+            {
+                EditSubmiting = false;
             }
         }
 
@@ -530,11 +525,7 @@ namespace Zero.Abp.AntBlazorUI
         /// <param name="policyName">A policy name to check</param>
         protected virtual async Task CheckPolicyAsync([CanBeNull] string policyName)
         {
-            if (string.IsNullOrEmpty(policyName))
-            {
-                return;
-            }
-
+            if (string.IsNullOrEmpty(policyName)) { return; }
             await AuthorizationService.CheckAsync(policyName);
         }
 

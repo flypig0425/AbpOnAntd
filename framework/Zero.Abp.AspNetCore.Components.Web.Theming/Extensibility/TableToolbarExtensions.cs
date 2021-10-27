@@ -1,48 +1,46 @@
 ﻿using AntDesign;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Zero.Abp.AntBlazorUI.Components;
+using Zero.Abp.AspNetCore.Components.Web.Extensibility.TableToolbar;
 
-namespace Zero.Abp.AspNetCore.Components.Web.Theming.PageToolbars
+namespace Zero.Abp.AspNetCore.Components.Web.Theming.Extensibility
 {
-    public static class PageToolbarExtensions
+    public static class TableToolbarExtensions
     {
-        public static PageToolbar AddComponent<TComponent>(
-            this PageToolbar toolbar,
+        public static List<TableToolbarItem> AddComponent<TComponent>(
+            this List<TableToolbarItem> toolbar,
             Dictionary<string, object> arguments = null,
             int order = 0,
-            string requiredPolicyName = null)
+             Func<bool> visible = null)
         {
             return toolbar.AddComponent(
                 typeof(TComponent),
                 arguments,
                 order,
-                requiredPolicyName
+                visible
             );
         }
 
-        public static PageToolbar AddComponent(
-            this PageToolbar toolbar,
+        public static List<TableToolbarItem> AddComponent(
+            this List<TableToolbarItem> toolbar,
             Type componentType,
             Dictionary<string, object> arguments = null,
             int order = 0,
-            string requiredPolicyName = null)
+            Func<bool> visible = null)
         {
-            toolbar.Contributors.Add(
-                new SimplePageToolbarContributor(
-                    componentType,
-                    arguments,
-                    order,
-                    requiredPolicyName
-                )
-            );
-
+            if (visible?.Invoke() ?? true)
+            {
+                toolbar.Add(new TableToolbarItem(componentType, arguments, order));
+            }
             return toolbar;
         }
 
-        public static PageToolbar AddButton(
-            this PageToolbar toolbar,
+        public static List<TableToolbarItem> AddButton(
+            this List<TableToolbarItem> toolbar,
             string text,
             Func<Task> clicked,
             string icon = null,
@@ -50,7 +48,7 @@ namespace Zero.Abp.AspNetCore.Components.Web.Theming.PageToolbars
             Color color = Color.None,
             bool disabled = false,
             int order = 0,
-            string requiredPolicyName = null)
+             Func<bool> visible = null)
         {
             toolbar.AddComponent<ToolbarButton>(
                 new Dictionary<string, object>
@@ -63,7 +61,7 @@ namespace Zero.Abp.AspNetCore.Components.Web.Theming.PageToolbars
                     { nameof(ToolbarButton.Clicked),clicked},
                 },
                 order,
-                requiredPolicyName
+                visible
             );
 
             return toolbar;

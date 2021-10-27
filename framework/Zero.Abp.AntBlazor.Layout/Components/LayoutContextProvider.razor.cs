@@ -26,7 +26,6 @@ namespace Zero.Abp.AntBlazor.Layout
 
         public bool HasPageContainer { get; internal set; }
 
-        public bool HasPageFooterToolbar { get; internal set; }
         #endregion
 
         public BreakpointType ScreenSize { get; internal set; } = BreakpointType.Lg;//useAntdMediaQuery();

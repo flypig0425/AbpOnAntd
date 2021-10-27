@@ -19,7 +19,7 @@ namespace Zero.Abp.Identity.Blazor
             var l = context.GetLocalizer<IdentityResource>();
 
             var identityMenuItem = new ApplicationMenuItem(IdentityMenuNames.GroupName, l["Menu:IdentityManagement"],
-                icon: "far fa-id-card");
+                icon: "fa fa-id-card");
             administrationMenu.AddItem(identityMenuItem);
 
             identityMenuItem.AddItem(new ApplicationMenuItem(

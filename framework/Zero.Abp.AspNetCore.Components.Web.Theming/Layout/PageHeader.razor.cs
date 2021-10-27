@@ -8,9 +8,6 @@ namespace Zero.Abp.AspNetCore.Components.Web.Theming.Layout
 {
     public partial class PageHeader : ComponentBase
     {
-        protected List<RenderFragment> ToolbarItemRenders { get; set; }
-
-        public IPageToolbarManager PageToolbarManager { get; set; }
 
         [Parameter]
         public string Title { get; set; }
@@ -24,15 +21,22 @@ namespace Zero.Abp.AspNetCore.Components.Web.Theming.Layout
         [Parameter]
         public RenderFragment ChildContent { get; set; }
 
-        [Parameter]
-        public List<BreadcrumbItem> BreadcrumbItems { get; set; }
+        //[Parameter]
+        //public List<BreadcrumbItem> BreadcrumbItems { get; set; }
+
+
+
+
 
         [Parameter]
         public PageToolbar Toolbar { get; set; }
 
+        protected List<RenderFragment> ToolbarItemRenders { get; set; }
+
+        public IPageToolbarManager PageToolbarManager { get; set; }
         public PageHeader()
         {
-            BreadcrumbItems = new List<BreadcrumbItem>();
+            //BreadcrumbItems = new List<BreadcrumbItem>();
             ToolbarItemRenders = new List<RenderFragment>();
         }
 

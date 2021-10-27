@@ -1,0 +1,29 @@
+﻿@using Zero.Abp.AspNetCore.Components.MessageBoxs
+@inject IUiMessageBoxService UiMessageBoxService
+
+<Button  Color="@Color" Type="@Type"
+        OnClick="@(OnClickAsync)" Disabled="@Disabled">
+    @if (!Icon.IsNullOrWhiteSpace() )
+    {
+        <IconView Icon="@Icon" Style="margin-right:4px" />
+    }
+    @Text 
+</Button>
+@code {
+
+    private async Task OnClickAsync()
+    {
+        var confirmationMessage = ConfirmationMessage?.Invoke();
+        if (!confirmationMessage.IsNullOrWhiteSpace())
+        {
+            if (await UiMessageBoxService.Confirm(confirmationMessage))
+            {
+                await InvokeAsync(async () => await Clicked());
+            }
+        }
+        else
+        {
+            await InvokeAsync(async () => await Clicked());
+        }
+    }
+}

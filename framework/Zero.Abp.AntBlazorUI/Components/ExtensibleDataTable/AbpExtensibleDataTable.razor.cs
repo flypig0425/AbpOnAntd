@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Zero.Abp.AspNetCore.Components.Web.Extensibility.TableColumns;
+using Zero.Abp.AspNetCore.Components.Web.Extensibility.TableToolbar;
 
 namespace Zero.Abp.AntBlazorUI.Components.ExtensibleDataTable
 {
@@ -12,7 +13,7 @@ namespace Zero.Abp.AntBlazorUI.Components.ExtensibleDataTable
     {
         protected const string DataFieldAttributeName = "Data";
 
-        protected Dictionary<string, DataTableEntityActionsColumn<TItem>> ActionColumns = new();
+        //protected Dictionary<string, DataTableEntityActionsColumn<TItem>> ActionColumns = new();
 
         protected Regex ExtensionPropertiesRegex = new(@"ExtraProperties\[(.*?)\]");
 
@@ -27,11 +28,30 @@ namespace Zero.Abp.AntBlazorUI.Components.ExtensibleDataTable
         [Parameter] public int PageSize { get; set; }
 
         [Parameter] public IEnumerable<TableColumn> Columns { get; set; }
+        [Parameter] public IEnumerable<TableToolbarItem> Toolbar { get; set; }
 
         [Parameter] public int CurrentPage { get; set; } = 1;
 
         [Inject]
         public IStringLocalizerFactory StringLocalizerFactory { get; set; }
+
+        protected virtual RenderFragment RenderTableToolbarComponent(TableToolbarItem item)
+        {
+            var sequence = 0;
+            return (builder) =>
+            {
+                builder.OpenComponent(sequence, item.ComponentType);
+                if (item.Arguments != null)
+                {
+                    foreach (var argument in item.Arguments)
+                    {
+                        sequence++;
+                        builder.AddAttribute(sequence, argument.Key, argument.Value);
+                    }
+                }
+                builder.CloseComponent();
+            };
+        }
 
         protected virtual RenderFragment RenderCustomTableColumnComponent(Type type, object data)
         {

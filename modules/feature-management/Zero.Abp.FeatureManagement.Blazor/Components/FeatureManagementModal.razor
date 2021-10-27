@@ -1,4 +1,5 @@
-﻿@using Volo.Abp.Validation.StringValues
+﻿@using Volo.Abp.FeatureManagement
+@using Volo.Abp.Validation.StringValues
 @using Microsoft.Extensions.Localization
 @inherits AbpFeatureManagementComponentBase
 
@@ -8,65 +9,64 @@
        OnCancel="@CloseModal"
        OkText="@L["Save"].Value"
        CancelText="@L["Cancel"].Value"
-       Centered="true">
-    @if (Groups == null || !Groups.Any())
+       Centered MaskClosable="@false">
+    @if (Groups.IsNullOrEmpty())
     {
         <span>@L["NoFeatureFoundMessage"]</span>
     }
     else
     {
-        <Tabs TabPosition="TabPosition.Left" @bind-SelectedTab="@SelectedTabName">
+        <Tabs TabPosition="TabPosition.Left" @bind-ActiveKey="@SelectedTabName">
             @foreach (var group in Groups)
             {
                 <TabPane Key="@GetNormalizedGroupName(group.Name)" Tab="@group.DisplayName">
-                    <Divider />
-                    @foreach (var feature in group.Features)
+                      <h4>@group.DisplayName</h4>
+                    <Form Model="@group">
+                        @foreach (var feature in group.Features)
+                {
+                    var disabled = IsDisabled(feature.Provider.Name);
+                    if (feature.ValueType is FreeTextStringValueType)
                     {
-                        var disabled = IsDisabled(feature.Provider.Name);
-                        if (feature.ValueType is FreeTextStringValueType)
-                        {
-                            <FormItem Label="@feature.DisplayName" Help="@feature.Description">
-                                <Input TValue="string"
-                       Disabled="@disabled"
-                       Style="@GetFeatureStyles(feature)"
-                       Value="@feature.Value"
-                       ValueChanged="@(async(v) => await OnFeatureValueChangedAsync(v, feature))" />
-                                @*@if (feature.Description != null)
-                                    {
-                                    <span>@feature.Description</span>
-                                    }*@
-                            </FormItem>
-                        }
-                        if (feature.ValueType is SelectionStringValueType)
-                        {
-                            var items = ((SelectionStringValueType)feature.ValueType).ItemSource.Items;
-                            <FormItem Label="@feature.DisplayName" Style="@GetFeatureStyles(feature)">
-                                <SimpleSelect @bind-SelectedValue="@SelectionStringValues[feature.Name]">
-                                    <SelectOptions>
-                                        @foreach (var item in items)
-                                        {
-                                            <SimpleSelectOption Value="@item.Value">
-                                                @CreateStringLocalizer(item.DisplayText.ResourceName).GetString(item.DisplayText.Name)
-                                            </SimpleSelectOption>
-                                        }
-                                    </SelectOptions>
-                                </SimpleSelect>
-                            </FormItem>
-                        }
-
-                        if (feature.ValueType is ToggleStringValueType)
-                        {
-                            <FormItem>
-                                <Checkbox
-                          Checked="@ToggleValues[feature.Name]"
-                          CheckedChanged="@(async(v) => await OnSelectedValueChangedAsync(v, feature))"
-                          Style="@GetFeatureStyles(feature)">
-                                    @feature.DisplayName
-                                </Checkbox>
-                            </FormItem>
-                        }
+                        <FormItem Label="@feature.DisplayName" Help="@feature.Description">
+                            <Input TValue="string"
+                           Disabled="@disabled"
+                           Style="@GetFeatureStyles(feature)"
+                           Value="@feature.Value"
+                           ValueChanged="@(async(v) => await OnFeatureValueChangedAsync(v, feature))" />
+                            @*@if (feature.Description != null)
+                                {
+                                <span>@feature.Description</span>
+                                }*@
+                        </FormItem>
                     }
-                </TabPane>
+                    if (feature.ValueType is SelectionStringValueType)
+                    {
+                        var items = ((SelectionStringValueType)feature.ValueType).ItemSource.Items;
+                        <FormItem Label="@feature.DisplayName" Style="@GetFeatureStyles(feature)">
+                            <SimpleSelect @bind-SelectedValue="@SelectionStringValues[feature.Name]">
+                                <SelectOptions>
+                                    @foreach (var item in items)
+                                    {
+                                        <SimpleSelectOption Value="@item.Value">
+                                            @CreateStringLocalizer(item.DisplayText.ResourceName).GetString(item.DisplayText.Name)
+                                        </SimpleSelectOption>
+                                    }
+                                </SelectOptions>
+                            </SimpleSelect>
+                        </FormItem>
+                    }
+
+                    if (feature.ValueType is ToggleStringValueType)
+                    {
+                            <Checkbox Value="@ToggleValues[feature.Name]"
+                              ValueChanged="@(async(v) => await OnSelectedValueChangedAsync(v, feature))"
+                              Style="@GetFeatureStyles(feature)">
+                                @feature.DisplayName
+                            </Checkbox>
+                    }
+                }
+            </Form>
+        </TabPane>
             }
         </Tabs>
     }

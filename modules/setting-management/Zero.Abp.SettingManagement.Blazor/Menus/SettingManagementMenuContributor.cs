@@ -52,7 +52,7 @@ namespace Zero.Abp.SettingManagement.Blazor.Menus
             SettingManagementComponentOptions settingManagementComponentOptions,
             SettingComponentCreationContext settingComponentCreationContext)
         {
-            foreach (var contributor in settingManagementComponentOptions.Contributors)
+            foreach (var contributor in settingManagementComponentOptions.Contributors) 
             {
                 if (await contributor.CheckPermissionsAsync(settingComponentCreationContext))
                 {

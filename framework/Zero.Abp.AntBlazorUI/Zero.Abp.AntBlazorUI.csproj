@@ -4,11 +4,12 @@
 		<TargetFramework>net5.0</TargetFramework>
 	</PropertyGroup>
 
-	<ItemGroup>
+	<!--<ItemGroup>
 		<PackageReference Include="AntDesign" Version="0.10.1" />
-	</ItemGroup>
+	</ItemGroup>-->
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\..\GitHub\weidyg\ant-design-blazor\components\AntDesign.csproj" />
 		<ProjectReference Include="..\Zero.Abp.AspNetCore.Components.Web\Zero.Abp.AspNetCore.Components.Web.csproj" />
 	</ItemGroup>
 	

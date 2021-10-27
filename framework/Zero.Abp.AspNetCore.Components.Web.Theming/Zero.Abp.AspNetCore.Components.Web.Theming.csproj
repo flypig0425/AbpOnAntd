@@ -8,18 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Layout\PageContainer\**" />
-    <Content Remove="Layout\PageContainer\**" />
-    <EmbeddedResource Remove="Layout\PageContainer\**" />
-    <None Remove="Layout\PageContainer\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="Layout\PageHeader.razor.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Remove="Layout\PageHeader.razor" />
+    <Compile Remove="Layout\**" />
+    <Compile Remove="PageToolbars\**" />
+    <Content Remove="Layout\**" />
+    <Content Remove="PageToolbars\**" />
+    <EmbeddedResource Remove="Layout\**" />
+    <EmbeddedResource Remove="PageToolbars\**" />
+    <None Remove="Layout\**" />
+    <None Remove="PageToolbars\**" />
   </ItemGroup>
 
   
@@ -29,9 +25,5 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Zero.Abp.AntBlazor.Layout\Zero.Abp.AntBlazor.Layout.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Layout\" />
   </ItemGroup>
 </Project>

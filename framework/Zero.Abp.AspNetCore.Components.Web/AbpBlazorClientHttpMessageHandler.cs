@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Volo.Abp.DependencyInjection;
 using Zero.Abp.AspNetCore.Components.Progression;
+using Zero.Abp.AspNetCore.Components.Web.Cookie;
 
 namespace Zero.Abp.AspNetCore.Components.Web
 {

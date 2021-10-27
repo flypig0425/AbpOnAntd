@@ -28,7 +28,7 @@
                 <PageAlert />
                 @ChildContent
             </div>
-            @if (HasFooterToolbar)
+            @if (_hasFooterToolbar)
             {
                 <div style="height:48px;margin-top:24px" />
             }
@@ -50,7 +50,9 @@
     <!-- #region Footer -->
     @if (HasFooter)
     {
-        <FooterToolbar> @Footer </FooterToolbar>
+        <CascadingValue Value="@this" IsFixed>
+            <FooterToolbar> @Footer </FooterToolbar>
+        </CascadingValue>
     }
     <!-- #endregion -->
 </div>
@@ -88,13 +90,13 @@
         parameters.AddIfNoNull(nameof(Tabs.TabBarExtraContent), () => TabBarExtraContent);
 
         return @<Tabs Class="@($"{PrefixedClassName}-tabs")"
-                  ActiveKey="@TabActiveKey"
-                  Type="@TabProps.Type"
-                  Size="@TabProps.Size"
-                  HideAdd="@TabProps.HideAdd"
-                  OnTabClick="HandleTabClick"
-                  OnEdit="@TabProps.OnEdit"
-                      @attributes="@parameters">
+                      ActiveKey="@TabActiveKey"
+                      Type="@TabProps.Type"
+                      Size="@TabProps.Size"
+                      HideAdd="@TabProps.HideAdd"
+                      OnTabClick="HandleTabClick"
+                      OnEdit="@TabProps.OnEdit"
+                          @attributes="@parameters">
         @foreach (var item in TabList)
             {
                 <TabPane Key="@item.Key" Tab="@item.Tab" Closable="@item.Closable" Disabled="@item.Disabled" />

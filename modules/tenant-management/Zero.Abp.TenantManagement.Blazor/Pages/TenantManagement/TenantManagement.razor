@@ -10,39 +10,21 @@
 @using Zero.Abp.AspNetCore.Components.Web
 @inject AbpBlazorMessageLocalizerHelper<AbpTenantManagementResource> LH
 @inherits AbpCrudPageBase<ITenantAppService, TenantDto, Guid, GetTenantsInput, TenantCreateDto, TenantUpdateDto>
-<PageContainer Title="@L["Tenants"]">
-    <AbpExtensibleDataTable TItem="TenantDto"
-                            Data="@Entities"
-                            ReadData="@OnDataGridReadAsync"
-                            TotalItems="@TotalCount"
-                            ShowPager="true"
-                            PageSize="@PageSize"
-                            CurrentPage="@CurrentPage"
-                            Columns="@TenantManagementTableColumns">
-    </AbpExtensibleDataTable>
+<PageContainer>
+    <Card>
+      
+        <AbpExtensibleDataTable TItem="TenantDto"
+                                Data="@Entities"
+                                ReadData="@OnDataGridReadAsync"
+                                TotalItems="@TotalCount"
+                                ShowPager="true"
+                                PageSize="@PageSize"
+                                CurrentPage="@CurrentPage"
+                                Toolbar="@TenantManagementTableToolbar"
+                                Columns="@TenantManagementTableColumns">
+        </AbpExtensibleDataTable>
+    </Card>
 </PageContainer>
-
-@*<Card>*@
-    @*<CardHeader>*@
-        @* ************************* PAGE HEADER ************************* *@
-@*        <PageHeader Title="@L["Tenants"]"
-    BreadcrumbItems="@BreadcrumbItems"
-    Toolbar="@Toolbar">
-    </PageHeader>*@
-@*    </CardHeader>
-    <CardBody>*@
-        @* ************************* DATA GRID ************************* *@
- @*       <AbpExtensibleDataGrid TItem="TenantDto"
-    Data="@Entities"
-    ReadData="@OnDataGridReadAsync"
-    TotalItems="@TotalCount"
-    ShowPager="true"
-    PageSize="@PageSize"
-    CurrentPage="@CurrentPage"
-    Columns="@TenantManagementTableColumns">
-    </AbpExtensibleDataGrid>*@
-    @*</CardBody>*@
-@*</Card>*@
 
 @* ************************* CREATE MODAL ************************* *@
 @if (HasCreatePermission)
@@ -51,34 +33,40 @@
        Visible="@CreateVisible"
        OnOk="@CreateEntityAsync"
        OnCancel="CloseCreateModalAsync"
-       CancelText="@L["Cancel"].Value">
-        <Form Model="@NewEntity">
+       CancelText="@L["Cancel"].Value"
+       ConfirmLoading="@CreateSubmiting"
+       Centered MaskClosable="@false">
+        <Form @ref="CreateFormRef" Model="@NewEntity" Loading="@CreateLoading"
+          LabelColSpan="8" WrapperColSpan="16" ValidateMessages="@validateMessages">
             <FormItem Label="@L["TenantName"]">
-                <Input @bind-Value="@context.Name" AutoFocus="true" />
+                <Input @bind-Value="@context.Name" AutoFocus AllowClear Placeholder="@L["TenantName"]" />
             </FormItem>
             <FormItem Label="@L["DisplayName:AdminEmailAddress"]">
-                <Input @bind-Value="@context.AdminEmailAddress" /> @*Role="@TextRole.Email" *@
+                <Input @bind-Value="@context.AdminEmailAddress" AllowClear Placeholder="@L["DisplayName:AdminEmailAddress"]" />
             </FormItem>
             <FormItem Label="@L["DisplayName:AdminPassword"]">
-                <Input @bind-Value="@context.AdminPassword" /> @*Role="@TextRole.Password" *@
+                <InputPassword @bind-Value="@context.AdminPassword" AllowClear Placeholder="@L["DisplayName:AdminPassword"]" />
             </FormItem>
-            <ExtensionProperties TEntityType="TenantCreateDto" TResourceType="AbpTenantManagementResource" Entity="@NewEntity" LH="@LH"/>
+            <ExtensionProperties TEntityType="TenantCreateDto" TResourceType="AbpTenantManagementResource" Entity="@NewEntity" LH="@LH" />
         </Form>
     </Modal>
 }
 @* ************************* EDIT MODAL ************************* *@
 @if (HasUpdatePermission)
 {
-    <Modal Title="@L["NewTenant"]"
+    <Modal Title="@L["Edit"]"
        Visible="@EditVisible"
        OnOk="@UpdateEntityAsync"
        OnCancel="CloseEditModalAsync"
-       CancelText="@L["Cancel"].Value">
-        <Form Model="@EditingEntity">
+       CancelText="@L["Cancel"].Value"
+       ConfirmLoading="@EditSubmiting"
+       Centered MaskClosable="@false">
+        <Form @ref="EditFormRef" Model="@EditingEntity" Loading="@EditLoading"
+          LabelColSpan="8" WrapperColSpan="16">
             <FormItem Label="@L["TenantName"]">
                 <Input @bind-Value="@context.Name" AutoFocus="true" />
             </FormItem>
-            <ExtensionProperties TEntityType="TenantUpdateDto" TResourceType="AbpTenantManagementResource" Entity="@EditingEntity" LH="@LH"/>
+            <ExtensionProperties TEntityType="TenantUpdateDto" TResourceType="AbpTenantManagementResource" Entity="@EditingEntity" LH="@LH" />
         </Form>
     </Modal>
 }

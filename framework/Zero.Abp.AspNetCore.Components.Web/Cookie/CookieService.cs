@@ -2,7 +2,7 @@
 using Microsoft.JSInterop;
 using Volo.Abp.DependencyInjection;
 
-namespace Zero.Abp.AspNetCore.Components.Web
+namespace Zero.Abp.AspNetCore.Components.Web.Cookie
 {
     [Dependency(ReplaceServices = true)]
     public class CookieService : ICookieService, ITransientDependency

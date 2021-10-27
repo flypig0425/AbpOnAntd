@@ -7,6 +7,8 @@ using Volo.Abp.Identity.Localization;
 using Volo.Abp.ObjectExtending;
 using Zero.Abp.AspNetCore.Components.Web.Extensibility.EntityActions;
 using Zero.Abp.AspNetCore.Components.Web.Extensibility.TableColumns;
+using Zero.Abp.AspNetCore.Components.Web.Extensibility.TableToolbar;
+using Zero.Abp.AspNetCore.Components.Web.Theming.Extensibility;
 using Zero.Abp.PermissionManagement.Blazor.Components;
 
 namespace Zero.Abp.Identity.Blazor.Pages.Identity
@@ -21,8 +23,7 @@ namespace Zero.Abp.Identity.Blazor.Pages.Identity
 
         protected bool HasManagePermissionsPermission { get; set; }
 
-        //protected PageToolbar Toolbar { get; } = new();
-
+        protected List<TableToolbarItem> RoleManagementTableToolbar => TableToolbar.Get<RoleManagement>();
         protected List<TableColumn> RoleManagementTableColumns => TableColumns.Get<RoleManagement>();
 
         public RoleManagement()
@@ -108,10 +109,8 @@ namespace Zero.Abp.Identity.Blazor.Pages.Identity
 
         protected override ValueTask SetToolbarItemsAsync()
         {
-            //Toolbar.AddButton(L["NewRole"],
-            //    OpenCreateModalAsync,
-            //    IconName.Add,
-            //    requiredPolicyName: CreatePolicyName);
+            RoleManagementTableToolbar
+                 .AddButton(L["NewRole"], OpenCreateModalAsync, "fa fa-plus", visible: () => HasCreatePermission);
 
             return base.SetToolbarItemsAsync();
         }

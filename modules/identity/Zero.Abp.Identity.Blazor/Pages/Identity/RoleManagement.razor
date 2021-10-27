@@ -20,6 +20,7 @@
                             ShowPager="true"
                             PageSize="@PageSize"
                             CurrentPage="@CurrentPage"
+                            Toolbar="@RoleManagementTableToolbar"
                             Columns="@RoleManagementTableColumns">
     </AbpExtensibleDataTable>
 </PageContainer>
@@ -31,8 +32,11 @@
        Visible="@CreateVisible"
        OnOk="@CreateEntityAsync"
        OnCancel="CloseCreateModalAsync"
-       CancelText="@L["Cancel"].Value">
-        <Form Model="@NewEntity">
+       CancelText="@L["Cancel"].Value"
+       ConfirmLoading="@CreateSubmiting"
+       Centered MaskClosable="@false">
+        <Form @ref="CreateFormRef" Model="@NewEntity" Loading="@CreateLoading"
+          LabelColSpan="4" WrapperColSpan="20" >
             <FormItem Label="@L["DisplayName:RoleName"]">
                 <Input @bind-Value="@context.Name" AutoFocus="true" />
             </FormItem>
@@ -47,13 +51,15 @@
 @* ************************* EDIT MODAL ************************* *@
 @if (HasUpdatePermission)
 {
-    <Modal 
-    Title="@L["Edit"]"
-      Visible="@EditVisible"
+    <Modal Title="@L["Edit"]"
+       Visible="@EditVisible"
        OnOk="@UpdateEntityAsync"
        OnCancel="CloseEditModalAsync"
-       CancelText="@L["Cancel"].Value">
-        <Form  @ref="EditFormRef" Model="@EditingEntity">
+       CancelText="@L["Cancel"].Value"
+       ConfirmLoading="@CreateSubmiting"
+       Centered MaskClosable="@false">
+        <Form @ref="EditFormRef" Model="@EditingEntity" Loading="@EditLoading"
+           LabelColSpan="4" WrapperColSpan="20">
             <input type="hidden" name="ConcurrencyStamp" @bind-value="EditingEntity.ConcurrencyStamp" />
             <FormItem Label="@L["DisplayName:RoleName"]">
                 <Input @bind-Value="@context.Name" AutoFocus="true" />

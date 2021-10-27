@@ -3,12 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Volo.Abp;
 using Volo.Abp.Identity;
 using Volo.Abp.Identity.Localization;
 using Volo.Abp.ObjectExtending;
 using Zero.Abp.AspNetCore.Components.Web.Extensibility.EntityActions;
 using Zero.Abp.AspNetCore.Components.Web.Extensibility.TableColumns;
+using Zero.Abp.AspNetCore.Components.Web.Extensibility.TableToolbar;
+using Zero.Abp.AspNetCore.Components.Web.Theming.Extensibility;
 using Zero.Abp.PermissionManagement.Blazor.Components;
 
 namespace Zero.Abp.Identity.Blazor.Pages.Identity
@@ -35,8 +36,7 @@ namespace Zero.Abp.Identity.Blazor.Pages.Identity
 
         protected string EditModalSelectedTab = DefaultSelectedTab;
 
-        //protected PageToolbar Toolbar { get; } = new();
-
+        protected List<TableToolbarItem> UserManagementTableToolbar => TableToolbar.Get<RoleManagement>();
         private List<TableColumn> UserManagementTableColumns => TableColumns.Get<UserManagement>();
 
         public UserManagement()
@@ -147,7 +147,8 @@ namespace Zero.Abp.Identity.Blazor.Pages.Identity
                         Clicked = async (data) =>
                         {
                             await PermissionManagementModal.OpenAsync(PermissionProviderName,
-                                data.As<IdentityUserDto>().Id.ToString());
+                                data.As<IdentityUserDto>().Id.ToString(),
+                                data.As<IdentityUserDto>().UserName);
                         }
                     },
                     new EntityAction
@@ -196,10 +197,8 @@ namespace Zero.Abp.Identity.Blazor.Pages.Identity
 
         protected override ValueTask SetToolbarItemsAsync()
         {
-            //Toolbar.AddButton(L["NewUser"], OpenCreateModalAsync,
-            //    IconName.Add,
-            //    requiredPolicyName: CreatePolicyName);
-
+            UserManagementTableToolbar
+                 .AddButton(L["NewUser"], OpenCreateModalAsync, "fa fa-plus", visible: () => HasCreatePermission);
             return base.SetToolbarItemsAsync();
         }
     }
