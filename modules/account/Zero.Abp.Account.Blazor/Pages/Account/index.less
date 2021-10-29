@@ -1,0 +1,149 @@
+@import '~antd/es/style/themes/default.less';
+@img :'/image';
+
+.header {
+  .left {
+    position: absolute;
+    left    : 48px;
+    top     : 28px;
+
+    .logo {
+      height        : 44px;
+      margin-right  : 16px;
+      vertical-align: top;
+    }
+
+    .title {
+      color      : @heading-color;
+      font-weight: 600;
+      font-size  : 33px;
+      font-family: Avenir, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    }
+
+    @media screen and (max-width: @screen-sm) {
+      display: none;
+    }
+  }
+
+  .right {
+    display    : flex;
+    float      : right;
+    height     : 48px;
+    margin-left: auto;
+    overflow   : hidden;
+/*
+    .dark {
+      width      : 100%;
+      height     : 40px;
+      line-height: 44px;
+      text-align : right;
+    }*/
+
+    .lang {
+      width      : 100%;
+      height     : 40px;
+      line-height: 44px;
+      text-align : right;
+
+      :global(.ant-dropdown-trigger) {
+        margin-right: 24px;
+      }
+    }
+  }
+}
+
+.container {
+  display       : flex;
+  flex-direction: column;
+  height        : 100vh;
+  overflow      : auto;
+  background    : @layout-body-background;
+
+  @media screen and (min-width: @screen-xl) {
+    background-image   : url('@{img}/login-bg.svg');
+    background-repeat  : no-repeat;
+    background-position: center 110px;
+    background-size    : 100%;
+  }
+
+  .content {
+    flex   : 1;
+    padding: 32px 0;
+
+    @media screen and (min-width: @screen-xl) {
+      padding: 32px 0 24px;
+
+      .left {
+        position           : absolute;
+        left               : 50%;
+        top                : 50%;
+        width              : 730px;
+        height             : 400px;
+        margin-top         : -220px;
+        margin-left        : -640px;
+        background-image   : url('@{img}/login-box-bg.svg');
+        background-repeat  : no-repeat;
+        background-position: center;
+        background-size    : 80%;
+      }
+    }
+
+    .main {
+      position   : absolute;
+      top        : 50%;
+      left       : 50%;
+      margin-top : -220px;
+      margin-left: -210px;
+
+      padding         : 36px;
+      border-radius   : .375rem;
+      background-color: white;
+      width           : 420px;
+      height          : 460px;
+
+      // @media screen and (min-width: @screen-md) {
+      //   margin-left: -25px;
+      // }
+
+      @media screen and (min-width: @screen-xl) {
+        margin-left: 160px;
+      }
+
+      :global {
+        .@{ant-prefix}-tabs-nav-list {
+          margin   : auto;
+          font-size: 16px;
+        }
+      }
+
+      .icon {
+        margin-left   : 16px;
+        color         : rgba(0, 0, 0, 0.2);
+        font-size     : 24px;
+        vertical-align: middle;
+        cursor        : pointer;
+        transition    : color 0.3s;
+
+        &:hover {
+          color: @primary-color;
+        }
+      }
+
+      .other {
+        margin-top : 24px;
+        line-height: 22px;
+        text-align : left;
+
+        .register {
+          float: right;
+        }
+      }
+
+      .prefixIcon {
+        color    : @primary-color;
+        font-size: @font-size-base;
+      }
+    }
+  }
+
+}

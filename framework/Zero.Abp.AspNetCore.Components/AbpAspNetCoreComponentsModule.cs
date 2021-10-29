@@ -6,10 +6,12 @@ using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.ObjectMapping;
 using Volo.Abp.Security;
+using Volo.Abp.Guids;
 
 namespace Zero.Abp.AspNetCore.Components
 {
     [DependsOn(
+        typeof(AbpGuidsModule),
         typeof(AbpObjectMappingModule),
         typeof(AbpSecurityModule),
         typeof(AbpLocalizationModule)

@@ -18,6 +18,7 @@ using Volo.Abp.Modularity;
 using Volo.Abp.Swashbuckle;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.UI.Navigation.Urls;
+using Zero.Abp.Account.Blazor.Server;
 using Zero.Abp.AspNetCore.Components.Server.AntdTheme;
 using Zero.Abp.AspNetCore.Components.Server.AntdTheme.Bundling;
 using Zero.Abp.AspNetCore.Components.Web.Theming.Routing;
@@ -27,6 +28,7 @@ namespace BlazorServerDemo
     [DependsOn(
        typeof(AbpAutofacModule),
        typeof(AbpSwashbuckleModule),
+       typeof(AbpAccountBlazorServerModule),
        typeof(AbpAspNetCoreAuthenticationJwtBearerModule),
        typeof(AbpAspNetCoreSerilogModule),
 

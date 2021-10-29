@@ -14,11 +14,11 @@ using System.Net.Http;
 using Volo.Abp;
 using Volo.Abp.Account.Web;
 using Volo.Abp.AspNetCore.Authentication.JwtBearer;
+using Volo.Abp.AspNetCore.MultiTenancy;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc.Localization;
 using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic;
-using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic.Bundling;
 using Volo.Abp.AspNetCore.Serilog;
 using Volo.Abp.Autofac;
 using Volo.Abp.AutoMapper;
@@ -28,6 +28,7 @@ using Volo.Abp.Swashbuckle;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.VirtualFileSystem;
+using Zero.Abp.Account.Blazor.Server;
 using Zero.Abp.AspNetCore.Components.Server.AntdTheme;
 using Zero.Abp.AspNetCore.Components.Server.AntdTheme.Bundling;
 using Zero.Abp.AspNetCore.Components.Web.Theming.Routing;
@@ -41,12 +42,16 @@ namespace AbpBlazorServerApp.Blazor
         typeof(AbpBlazorServerAppApplicationModule),
         typeof(AbpBlazorServerAppEntityFrameworkCoreModule),
         typeof(AbpBlazorServerAppHttpApiModule),
+        typeof(AbpAspNetCoreMultiTenancyModule),
+
         typeof(AbpAspNetCoreMvcUiBasicThemeModule),
+        typeof(AbpAccountWebIdentityServerModule),
+
         typeof(AbpAutofacModule),
         typeof(AbpSwashbuckleModule),
         typeof(AbpAspNetCoreAuthenticationJwtBearerModule),
         typeof(AbpAspNetCoreSerilogModule),
-        typeof(AbpAccountWebIdentityServerModule),
+        //typeof(AbpAccountBlazorServerModule),
         typeof(AbpAspNetCoreComponentsServerAntdThemeModule),
         typeof(AbpIdentityBlazorServerModule),
         typeof(AbpTenantManagementBlazorServerModule),
@@ -101,13 +106,13 @@ namespace AbpBlazorServerApp.Blazor
             Configure<AbpBundlingOptions>(options =>
             {
                 // MVC UI
-                options.StyleBundles.Configure(
-                    BasicThemeBundles.Styles.Global,
-                    bundle =>
-                    {
-                        bundle.AddFiles("/global-styles.css");
-                    }
-                );
+                //options.StyleBundles.Configure(
+                //    BasicThemeBundles.Styles.Global,
+                //    bundle =>
+                //    {
+                //        bundle.AddFiles("/global-styles.css");
+                //    }
+                //);
 
                 //BLAZOR UI
                 options.StyleBundles.Configure(
@@ -246,7 +251,7 @@ namespace AbpBlazorServerApp.Blazor
             }
 
             app.UseUnitOfWork();
-            app.UseIdentityServer();
+            //app.UseIdentityServer();
             app.UseAuthorization();
             app.UseSwagger();
             app.UseAbpSwaggerUI(options =>

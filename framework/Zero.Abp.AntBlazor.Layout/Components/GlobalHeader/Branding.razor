@@ -2,18 +2,25 @@
 @using Volo.Abp.Ui.Branding
 @inject IBrandingProvider BrandingProvider
 
+
 <a>
-    @if (!BrandingProvider.LogoUrl.IsNullOrWhiteSpace())
+    @if (!_logoUrl.IsNullOrWhiteSpace())
     {
-        <img src="@BrandingProvider.LogoUrl" alt="@BrandingProvider.AppName" />
+        <img src="@_logoUrl" alt="@_appName" class="@LogoClass" />
     }
-    @if (!HideTitle)
+    @if (!HideTitle && !_appName.IsNullOrWhiteSpace())
     {
-        <h1 title="@BrandingProvider.AppName">@BrandingProvider.AppName</h1>
+        <h1 title="@_appName" class="@TitleClass">@_appName</h1>
     }
 </a>
 
+
 @code
 {
+    private string _logoUrl => BrandingProvider?.LogoUrl;
+    private string _appName => BrandingProvider?.AppName;
+
     [Parameter] public bool HideTitle { get; set; }
+    [Parameter] public string LogoClass { get; set; }
+    [Parameter] public string TitleClass { get; set; }
 }

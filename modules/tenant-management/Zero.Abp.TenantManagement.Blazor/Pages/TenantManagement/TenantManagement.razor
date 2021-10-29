@@ -1,6 +1,4 @@
-﻿@page "/tenant-management/tenants"
-@attribute [Authorize(TenantManagementPermissions.Tenants.Default)]
-@using Microsoft.AspNetCore.Authorization
+﻿@using Microsoft.AspNetCore.Authorization
 @using Zero.Abp.AntBlazorUI.Components.ExtensibleDataTable
 @using Zero.Abp.FeatureManagement.Blazor.Components
 @using Microsoft.AspNetCore.Components.Forms
@@ -8,11 +6,13 @@
 @using Volo.Abp.TenantManagement.Localization
 @using Zero.Abp.AntBlazorUI.Components.ObjectExtending
 @using Zero.Abp.AspNetCore.Components.Web
+
+@page "/tenant-management/tenants"
+@attribute [Authorize(TenantManagementPermissions.Tenants.Default)]
 @inject AbpBlazorMessageLocalizerHelper<AbpTenantManagementResource> LH
 @inherits AbpCrudPageBase<ITenantAppService, TenantDto, Guid, GetTenantsInput, TenantCreateDto, TenantUpdateDto>
 <PageContainer>
     <Card>
-      
         <AbpExtensibleDataTable TItem="TenantDto"
                                 Data="@Entities"
                                 ReadData="@OnDataGridReadAsync"

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Razor">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
 	<Import Project="..\..\..\configureawait.props" />
 	<Import Project="..\..\..\common.props" />
@@ -12,23 +12,13 @@
 		<PackageReference Include="Volo.Abp.AutoMapper" Version="4.4.3"  />
 		<PackageReference Include="Volo.Abp.Features" Version="4.4.3"  />
 	</ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.FeatureManagement.Application.Contracts" Version="4.4.3" />
+  </ItemGroup>
+  
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\framework\Zero.Abp.AspNetCore.Components.Web.Theming\Zero.Abp.AspNetCore.Components.Web.Theming.csproj" />
 	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="Volo.Abp.FeatureManagement.Application.Contracts" Version="4.4.3" />
-	</ItemGroup>
-	
-	
-	
-    <ItemGroup>
-      <Content Update="_Imports.razor">
-        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      </Content>
-      <Content Update="Components\FeatureManagementModal.razor">
-        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      </Content>
-    </ItemGroup>
 
 </Project>

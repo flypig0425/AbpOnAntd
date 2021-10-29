@@ -40,11 +40,16 @@
                     <FormItem Label="@L["DisplayName:UserName"]">
                         <Input @bind-Value="@context.UserName" AutoFocus="true" />
                     </FormItem>
-                    <FormItem Label="@L["DisplayName:Name"]">
-                        <Input @bind-Value="@context.Name" />
-                    </FormItem>
-                    <FormItem Label="@L["DisplayName:Surname"]">
-                        <Input @bind-Value="@context.Surname" />
+
+                    <FormItem Label="@(L["DisplayName:Surname"]+L["DisplayName:Name"])" Style="margin-bottom:0px">
+                        <InputGroup Compact>
+                            <FormItem NoStyle>
+                                <Input @bind-Value="@context.Surname" Placeholder="@L["DisplayName:Surname"]" />
+                            </FormItem>
+                            <FormItem NoStyle>
+                                <Input @bind-Value="@context.Name" Placeholder="@L["DisplayName:Name"]" />
+                            </FormItem>
+                        </InputGroup>
                     </FormItem>
 
                     <FormItem Label="@L["DisplayName:Password"]">
@@ -55,7 +60,7 @@
                         <Input @bind-Value="@context.Email" />
                     </FormItem>
 
-                    <FormItem Label="@L["DisplayName:PhoneNumber"]"> 
+                    <FormItem Label="@L["DisplayName:PhoneNumber"]">
                         <Input @bind-Value="@context.PhoneNumber" />
                     </FormItem>
 
@@ -98,13 +103,17 @@
                         <Input @bind-Value="@context.UserName" AutoFocus="true" />
                     </FormItem>
 
-                    <FormItem Label="@L["DisplayName:Name"]">
-                        <Input @bind-Value="@context.Name" />
+                    <FormItem Label="@(L["DisplayName:Surname"]+L["DisplayName:Name"])" Style="margin-bottom:0px">
+                        <InputGroup Compact>
+                            <FormItem NoStyle>
+                                <Input @bind-Value="@context.Surname" Placeholder="@L["DisplayName:Surname"]" />
+                            </FormItem>
+                            <FormItem NoStyle>
+                                <Input @bind-Value="@context.Name" Placeholder="@L["DisplayName:Name"]" />
+                            </FormItem>
+                        </InputGroup>
                     </FormItem>
 
-                    <FormItem Label="@L["DisplayName:Surname"]">
-                        <Input @bind-Value="@context.Surname" />
-                    </FormItem>
 
                     <FormItem Label="@L["DisplayName:Password"]">
                         <InputPassword @bind-Value="@context.Password" />

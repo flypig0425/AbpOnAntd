@@ -1,0 +1,114 @@
+﻿@page "/account/login"
+@using Volo.Abp.Account.Settings
+@using Volo.Abp.Settings
+@inherits AbpAccountComponentBase
+
+@inject Volo.Abp.Settings.ISettingProvider SettingProvider
+
+<div class="container">
+    <div class="header">
+        <Space class="left">
+            <Branding LogoClass="logo" TitleClass="title" />
+        </Space>
+        <Space class="right">
+            <div class="lang" data-lang>
+                <SelectLang />
+            </div>
+        </Space>
+    </div>
+    <div class="content">
+        @if (!EnableLocalLogin && !VisibleExternalProviders.Any())
+        {
+            <Alert Type="@AlertType.Warning">
+                <strong>@L["InvalidLoginRequest"]</strong>
+                @L["ThereAreNoLoginSchemesConfiguredForThisClient"]
+            </Alert>
+        }
+        else
+        {
+            <div class="left">
+            </div>
+            <div class="main">
+                <h4>@L["Login"]</h4>
+                @if (IsSelfRegistrationEnabled)
+                {
+                    <strong>
+                        @L["AreYouANewUser"]
+                        @*<a href="@Url.Page("./Register", new {returnUrl = Model.ReturnUrl, returnUrlHash = Model.ReturnUrlHash})" class="text-decoration-none">@L["Register"]</a>*@
+                    </strong>
+                }
+
+                @if (EnableLocalLogin)
+                {
+                    <Form @ref="@LoginFormRef" Model="@LoginInput"
+                  OnFinish="OnLoginAsync"
+                  OnFinishFailed="()=>{}">
+                        <FormItem NoStyle>
+                            <Input @bind-Value="@context.UserNameOrEmailAddress" Placeholder="@L["UserNameOrEmailAddress"]" />
+                        </FormItem>
+                        <FormItem NoStyle>
+                            <InputPassword @bind-Value="@context.Password" Placeholder="@L["Password"]" />
+                        </FormItem>
+                        <FormItem NoStyle>
+                            <Checkbox @bind-Value="context.RememberMe">@L["RememberMe"]</Checkbox>
+                        </FormItem>
+                        @*    <abp-column class="text-right">
+                            <a href="@Url.Page("./ForgotPassword", new {returnUrl = Model.ReturnUrl, returnUrlHash = Model.ReturnUrlHash})">@L["ForgotPassword"]</a>
+                            </abp-column>*@
+                        <FormItem NoStyle>
+                            <Button Block Type="@ButtonType.Primary" HtmlType="submit">@L["Login"] </Button>
+                        </FormItem>
+                        @*   @if (ShowCancelButton)
+                            {
+                            <Button Block Type="@ButtonType.Primary" HtmlType="submit">    @L["Login"] </Button>
+                            <abp-button type="submit" button-type="Secondary" formnovalidate="formnovalidate" name="Action"
+                            value="Cancel" class="btn-block btn-lg mt-3">@L["Cancel"]</abp-button>
+                            }*@
+                    </Form>
+                    @*
+                        <form method="post" class="mt-4">
+                        <div class="form-group">
+                        <label asp-for="LoginInput.UserNameOrEmailAddress"></label>
+                        <input asp-for="LoginInput.UserNameOrEmailAddress" class="form-control" />
+                        <span asp-validation-for="LoginInput.UserNameOrEmailAddress" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                        <label asp-for="LoginInput.Password"></label>
+                        <input asp-for="LoginInput.Password" class="form-control" />
+                        <span asp-validation-for="LoginInput.Password" class="text-danger"></span>
+                        </div>
+                        <abp-row>
+                        <abp-column>
+                        <abp-input asp-for="LoginInput.RememberMe" class="mb-4" />
+                        </abp-column>
+                        <abp-column class="text-right">
+                        <a href="@Url.Page("./ForgotPassword", new {returnUrl = Model.ReturnUrl, returnUrlHash = Model.ReturnUrlHash})">@L["ForgotPassword"]</a>
+                        </abp-column>
+                        </abp-row>
+                        <abp-button type="submit" button-type="Primary" name="Action" value="Login" class="btn-block btn-lg mt-3">@L["Login"]</abp-button>
+                        @if (Model.ShowCancelButton)
+                        {
+                        <abp-button type="submit" button-type="Secondary" formnovalidate="formnovalidate" name="Action" value="Cancel" class="btn-block btn-lg mt-3">@L["Cancel"]</abp-button>
+                        }
+                        </form>*@
+                }
+
+
+                @if (VisibleExternalProviders.Any())
+                {
+                    <div class="other">
+                        <Divider>@L["OrLoginWith"]</Divider>
+                        @foreach (var provider in VisibleExternalProviders)
+                        {
+                            <Tooltip Title="@(L["LogInUsingYourProviderAccount", provider.DisplayName].Value)">
+                                <Button Type="@ButtonType.Primary" OnClick="@(()=>OnExternalLogin(provider.AuthenticationScheme))">
+                                    @provider.DisplayName
+                                </Button>
+                            </Tooltip>
+                        }
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>

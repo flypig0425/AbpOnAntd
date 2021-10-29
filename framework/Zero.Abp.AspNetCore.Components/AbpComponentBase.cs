@@ -7,7 +7,9 @@ using Microsoft.Extensions.Logging.Abstractions;
 using System;
 using System.Threading.Tasks;
 using Volo.Abp;
+using Volo.Abp.Guids;
 using Volo.Abp.Localization;
+using Volo.Abp.MultiTenancy;
 using Volo.Abp.ObjectMapping;
 using Volo.Abp.Users;
 using Zero.Abp.AspNetCore.Components.Alerts;
@@ -56,15 +58,21 @@ namespace Zero.Abp.AspNetCore.Components
         protected ICurrentUser CurrentUser => LazyGetRequiredService(ref _currentUser);
         private ICurrentUser _currentUser;
 
+        protected ICurrentTenant CurrentTenant => LazyGetRequiredService(ref _currentTenant);
+        private ICurrentTenant _currentTenant;
+
+        protected IGuidGenerator GuidGenerator => LazyGetRequiredService(ref _guidGenerator);
+        private IGuidGenerator _guidGenerator;
+        
         #region 
         protected IUiMessageBoxService MessageBox => LazyGetNonScopedRequiredService(ref _messageBox);
         private IUiMessageBoxService _messageBox;
 
         protected IUiNotificationService Notify => LazyGetNonScopedRequiredService(ref _notify);
         private IUiNotificationService _notify;
+
         protected IUiMessageService Message => LazyGetNonScopedRequiredService(ref _message);
         private IUiMessageService _message;
-
 
         protected IAlertManager AlertManager => LazyGetNonScopedRequiredService(ref _alertManager);
         private IAlertManager _alertManager;

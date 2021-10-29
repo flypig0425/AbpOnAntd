@@ -1,0 +1,12 @@
+﻿@page "/account/logout"
+@inherits AbpAccountComponentBase
+@inject NavigationManager NavigationManager
+
+@code {
+    protected override void OnInitialized()
+    {
+        var query = new Uri(NavigationManager.Uri).Query;
+
+        base.OnInitialized();
+    }
+}
