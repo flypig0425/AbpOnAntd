@@ -29,7 +29,7 @@ namespace AbpBlazorServerApp.Blazor.Menus
                     AbpBlazorServerAppMenus.Home,
                     l["Menu:Home"],
                     "/",
-                    icon: "fas fa-home",
+                    //icon: "fa fa-home",
                     order: 0
                 )
             );

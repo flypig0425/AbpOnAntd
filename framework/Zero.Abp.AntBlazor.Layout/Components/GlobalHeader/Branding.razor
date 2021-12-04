@@ -1,7 +1,4 @@
 @namespace Zero.Abp.AntBlazor.Layout
-@using Volo.Abp.Ui.Branding
-@inject IBrandingProvider BrandingProvider
-
 
 <a>
     @if (!_logoUrl.IsNullOrWhiteSpace())
@@ -14,7 +11,8 @@
     }
 </a>
 
-
+@using Volo.Abp.Ui.Branding
+@inject IBrandingProvider BrandingProvider
 @code
 {
     private string _logoUrl => BrandingProvider?.LogoUrl;

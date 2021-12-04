@@ -8,25 +8,29 @@
 else
 {
     <div class="@LayoutClass" style="@WeakModeStyle">
-        <Layout Style="min-height: 100%;">
-            @SiderMenuDom
-            <div style="@GenLayoutStyle" class="@layoutCls">
-                @HeaderDom
-                <WrapContent PrefixCls="@PrefixCls"
-                         Class="@ContentClass"
-                         Style="@ContentStyle">
-                    <Template If="()=>!Loading && !HasPageContainer">
-                        <PageAlert />
-                    </Template>
-                    @(Loading ? @<PageLoading /> : ChildContent)
-                </WrapContent>
-                @FooterDom
-            </div>
-        </Layout>
+        <CascadingValue Value="this" Name="BasicLayout" IsFixed>
+            <Layout Style="min-height: 100%;">
+                @SiderMenuDom
+                <div style="@GenLayoutStyle" class="@layoutCls">
+                    @HeaderDom
+                    <WrapContent PrefixCls="@PrefixCls"
+                             Class="@ContentClass"
+                             Style="@ContentStyle">
+                        @(Loading ? @<PageLoading /> : ChildContent)
+                    </WrapContent>
+                    @FooterDom
+                </div>
+            </Layout>
+        </CascadingValue>
     </div>
 }
 
+<link rel="stylesheet" href="@_themeUrl" @ref="_themeRef">
+
 @code {
+    public bool HasSider { get; set; }
+    public bool HasHeader { get; set; }
+
     RenderFragment SiderMenuDom => renderSiderMenu();
     RenderFragment HeaderDom => headerRender();
     RenderFragment FooterDom => footerRender();
@@ -53,7 +57,8 @@ else
         }
 
         return @<Template>
-        <HeaderView HasSiderMenu="HasSiderMenu"
+        <HeaderView IsMobile="IsMobile"
+                HasSiderMenu="HasSiderMenu"
                 MenuData="menuData"
                 Collapsed="@Collapsed"
                 OnCollapse="HandleCollapse"
@@ -84,7 +89,7 @@ else
 
     private RenderFragment siderMenuWrapper(ApplicationMenuItemList menuData = null) =>
     @<Template>
-        <SiderMenuWrapper
+        <SiderMenuWrapper IsMobile="IsMobile"
                       MenuData="@menuData"
                       Collapsed="@Collapsed"
                       OnCollapse="HandleCollapse"

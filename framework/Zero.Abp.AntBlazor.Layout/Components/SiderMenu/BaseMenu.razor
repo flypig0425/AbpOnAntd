@@ -1,4 +1,4 @@
-@namespace Zero.Abp.AntBlazor.Layout
+锘緻namespace Zero.Abp.AntBlazor.Layout
 @inherits AntLayoutComponentBase
 
 <Menu Mode="@Mode"
@@ -6,6 +6,7 @@
       Style="@Style"
       Class="@ClassNames(Class,("top-nav-menu",Mode==MenuMode.Horizontal))"
       InlineIndent="16"
+      InlineCollapsed="@inlineCollapsed"
       SelectedKeys="@SelectedKeys"
       SelectedKeysChanged="SelectedKeysChanged">
     @if (Mode == MenuMode.Horizontal && MenuData.Count > maxTopMenuCount)
@@ -31,6 +32,7 @@
 </Menu>
 
 @code {
+    [Parameter] public bool InlineCollapsed { get; set; }
     #region [@bind-SelectedKeys]
     [Parameter] public string[] SelectedKeys { get; set; }
     [Parameter] public EventCallback<string[]> SelectedKeysChanged { get; set; }
@@ -46,7 +48,11 @@
     [Parameter] public bool IsGroupMenu { get; set; }
     [Parameter] public string IconPrefixes { get; set; } = "icon-";
 
-    readonly int maxTopMenuCount = 5;//TODO:顶部菜单最大数
+
+    internal bool inlineCollapsed => InlineCollapsed && Mode == MenuMode.Inline;
+
+
+    readonly int maxTopMenuCount = 5;//TODO:椤堕儴鑿滃崟鏈�澶ф暟
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
@@ -69,22 +75,42 @@
                 var isHttpUrl = menuItem?.Url?.Contains("http") ?? false;
                 var cssClass = string.IsNullOrEmpty(menuItem.CssClass) ? string.Empty : menuItem.CssClass;
                 var menuIcon = menuItem?.Icon ?? "";
-                <span title="@menuItem.DisplayName" class="@ClassNames($"{that.PrefixCls}-menu-item",($"{that.PrefixCls}-menu-item-link",isHttpUrl),cssClass)">
-                    @if (menuIcon.IsNullOrWhiteSpace() || menuItem.IsLeaf)
+                var hasIcon = !menuIcon.IsNullOrWhiteSpace();
+                var needRootIcon = context.first && that.Mode == MenuMode.Vertical;
+                <span class="@ClassNames($"{that.PrefixCls}-menu-item",($"{that.PrefixCls}-menu-item-link",isHttpUrl),cssClass)">
+                    @if (hasIcon || needRootIcon)
                     {
-                        @menuItem.DisplayName
-                    }
-                    else
-                    {
-                        <IconView Icon="@menuIcon" IconPrefixes="IconPrefixes" />
+                        Func<string> icoStr = () => menuItem.DisplayName?.FirstOrDefault().ToString();
+                        <IconView Icon="@menuIcon" IconPrefixes="@that.IconPrefixes" OrStr="@icoStr" />
                         <span class="@($"{that.PrefixCls}-menu-item-title")">
                             @menuItem.DisplayName
                         </span>
                     }
+                    else
+                    {
+                        @menuItem.DisplayName
+                    }
+
                 </span>
             }
         </Template>
     ;
+
+    static readonly RenderFragment<(string menuIcon, string displayName, string iconPrefixes, string prefixCls)> defaultTitleDisplay = context =>
+    @<Template>
+        @if (!context.menuIcon.IsNullOrWhiteSpace())
+            {
+                <IconView Icon="@context.menuIcon" IconPrefixes="@context.iconPrefixes" />
+            }
+            else
+            {
+                <span class="anticon" style="vertical-align: 0em;">
+                    @context.displayName?.FirstOrDefault()
+                </span>
+            }
+        </Template>
+    ;
+
     static readonly RenderFragment<(ApplicationMenuItem menuItem, BaseMenu that, bool first)> getSubMenuOrItem = context =>
     @<Template>
         @if (context.menuItem != null)
@@ -107,7 +133,7 @@
                 }
                 else
                 {
-                    <MenuItem Key="@menuItem.Name" Disabled="@menuItem.IsDisabled" Class="@cssClass">
+                    <MenuItem  Key="@menuItem.Name" Disabled="@menuItem.IsDisabled" Class="@cssClass">
                         @if (that.MenuItemRender != null)
                         {
                             @that.MenuItemRender(menuItem)
@@ -116,9 +142,9 @@
                         {
                             @if (!url.IsNullOrWhiteSpace())
                             {
-                                <a href="@url" target="@menuItem.Target">
+                                <MenuLink Href="@url" target="@menuItem.Target">
                                     @defaultTitle((menuItem, that, context.first))
-                                </a>
+                                </MenuLink>
                             }
                             else
                             {

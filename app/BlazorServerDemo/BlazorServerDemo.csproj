@@ -31,7 +31,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\antd-theme\Zero.Abp.AspNetCore.Components.Server.AntdTheme\Zero.Abp.AspNetCore.Components.Server.AntdTheme.csproj" />
-    <ProjectReference Include="..\..\modules\account\Zero.Abp.Account.Blazor.Server\Zero.Abp.Account.Blazor.Server.csproj" />
   </ItemGroup>
 
   <ItemGroup>

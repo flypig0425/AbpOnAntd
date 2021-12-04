@@ -13,6 +13,24 @@
         <SpaceItem />
     </Space>
 }
+
+@*@inject IToolbarManager ToolbarManager*@
 @code {
-    [Parameter] public List<RenderFragment> ItemRenders { get; set; } = new List<RenderFragment>();
+    [Parameter] public List<RenderFragment> ItemRenders { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        //var toolbar = await ToolbarManager.GetAsync(StandardToolbars.Main);
+        //ToolbarItemRenders.Clear();
+        //var sequence = 0;
+        //foreach (var item in toolbar.Items)
+        //{
+        //    ToolbarItemRenders.Add(builder =>
+        //    {
+        //        builder.OpenComponent(sequence++, item.ComponentType);
+        //        builder.CloseComponent();
+        //    });
+        //}
+    }
 }

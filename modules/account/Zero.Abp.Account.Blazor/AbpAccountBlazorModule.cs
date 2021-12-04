@@ -2,20 +2,22 @@
 using Volo.Abp.Account;
 using Volo.Abp.AutoMapper;
 using Volo.Abp.ExceptionHandling;
-using Volo.Abp.Identity.AspNetCore;
+using Volo.Abp.Identity;
 using Volo.Abp.Modularity;
 using Volo.Abp.UI.Navigation;
+using Zero.Abp.Account.Blazor.ProfileManagement;
 using Zero.Abp.AspNetCore.Components.Web.Theming;
 using Zero.Abp.AspNetCore.Components.Web.Theming.Routing;
 
 namespace Zero.Abp.Account.Blazor
 {
     [DependsOn(
-        typeof(AbpAspNetCoreComponentsWebThemingModule),
+        typeof(AbpAccountApplicationContractsModule),
+        typeof(AbpIdentityDomainModule),
+        //typeof(AbpIdentityAspNetCoreModule),
         typeof(AbpAutoMapperModule),
-        typeof(AbpIdentityAspNetCoreModule),
-        //typeof(AbpExceptionHandlingModule),
-        typeof(AbpAccountApplicationContractsModule)
+        typeof(AbpAspNetCoreComponentsWebThemingModule),
+        typeof(AbpExceptionHandlingModule)
         )]
     public class AbpAccountBlazorModule : AbpModule
     {
@@ -36,6 +38,11 @@ namespace Zero.Abp.Account.Blazor
             Configure<AbpRouterOptions>(options =>
             {
                 options.AdditionalAssemblies.Add(typeof(AbpAccountBlazorModule).Assembly);
+            });
+
+            Configure<ProfileManagementPageOptions>(options =>
+            {
+                options.Contributors.Add(new AccountProfileManagementPageContributor());
             });
         }
     }

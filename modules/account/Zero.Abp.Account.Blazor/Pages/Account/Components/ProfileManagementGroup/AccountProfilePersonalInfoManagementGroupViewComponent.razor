@@ -1,0 +1,39 @@
+﻿@using Zero.Abp.AspNetCore.Components
+@inherits AbpAccountComponentBase
+@if (PersonalInfoModel != null)
+{
+    <Form @ref="PersonalInfoForm"
+      Model="@PersonalInfoModel"
+      Layout="@FormLayout.Vertical"
+      OnFinish="UpdatePersonalInfoAsync">
+        <FormItem Label="@L["DisplayName:UserName"]">
+            <Input @bind-Value="context.UserName" ReadOnly="@(!isEmailUpdateEnabled)" AllowClear />
+        </FormItem>
+        <Row Gutter="4">
+            <AntDesign.Col Span="10">
+                <FormItem Label="@(L["DisplayName:Surname"])">
+                    <Input @bind-Value="context.Surname" AllowClear />
+                </FormItem>
+            </AntDesign.Col>
+            <AntDesign.Col Span="10">
+                <FormItem Label="@(L["DisplayName:Name"])">
+                    <Input @bind-Value="context.Name" AllowClear />
+                </FormItem>
+            </AntDesign.Col>
+        </Row>
+        <FormItem Label="@L["DisplayName:Email"]">
+            <Input @bind-Value="context.Email" ReadOnly="@(!isEmailUpdateEnabled)" AllowClear />
+        </FormItem>
+        <FormItem Label="@L["DisplayName:PhoneNumber"]">
+            <Input @bind-Value="context.PhoneNumber" AllowClear />
+        </FormItem>
+        <FormItem>
+            <Button Type="@ButtonType.Primary" HtmlType="submit" Loading="@UpdateInfoSubmiting">
+                @L["Save"]
+            </Button>
+        </FormItem>
+    </Form>
+}
+@code {
+
+}

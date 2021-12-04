@@ -6,35 +6,12 @@
 @* ************************* PAGE HEADER ************************* *@
 
 @*<PageHeader Title="@L["Settings"]" BreadcrumbItems="@BreadcrumbItems">
-
-    </PageHeader>*@
+ </PageHeader>*@
 
 <PageContainer Title="@L["Settings"]">
-    <div class="settings-main" @ref="element">
-        <div class="leftMenu">
-            <Menu Mode="@Mode"
-                  SelectedKeys="@(new[]{ SelectedGroup})"
-                  OnMenuItemClicked="(item)=> { SelectedGroup = item.Key; }">
-                @foreach (var group in SettingComponentCreationContext.Groups)
-                {
-                    <MenuItem Key="@GetNormalizedString(group.Id)">
-                        @group.DisplayName
-                    </MenuItem>
-                }
-            </Menu>
-        </div>
-        <div class="right">
-            @foreach (var group in SettingComponentCreationContext.Groups)
-            {
-                @if (GetNormalizedString(group.Id) == SelectedGroup)
-                {
-                    <div class="title">@group.DisplayName</div>
-                    @(SettingItemRenders.Last(f => f.key == SelectedGroup).render)
-                }
-            }
-        </div>
-    </div>
+    <SettingGroups Items="@ItemRenders" @bind-SelectedKey="@SelectedGroup" />
 </PageContainer>
+
 @code {
-    private ElementReference element;
+
 }

@@ -18,7 +18,8 @@
     }
     else
     {
-        <GlobalHeader Collapsed="@Collapsed"
+        <GlobalHeader IsMobile="IsMobile"
+                  Collapsed="@Collapsed"
                   OnCollapse="HandleCollapse"
                   RightItemRenders="RightItemRenders"
                   RightContentRender="RightContent">
@@ -45,20 +46,29 @@
     [Parameter] public EventCallback<string[]> SelectedKeysChanged { get; set; }
     #endregion
 
+    [Parameter] public bool IsMobile { get; set; }
     [Parameter] public bool HasSiderMenu { get; set; }
     [Parameter] public ApplicationMenuItemList MenuData { get; set; }
 
     [Parameter] public RenderFragment RightContent { get; set; }
     [Parameter] public List<RenderFragment> RightItemRenders { get; set; }
-    
-    private int SiderWidth => Settings.SiderWidth;
-    private int CollapsedWidth => Settings.CollapsedWidth;
 
     private bool isSplitMenus => IsMixLayout && Settings.SplitMenus;
+
+    [CascadingParameter(Name = "BasicLayout")]
+    protected BasicLayout BasicLayout { get; set; }
+
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
         if (IsMobile) { await HandleCollapse(true); }
+        BasicLayout.HasHeader = true;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        BasicLayout.HasHeader = false;
+        base.Dispose(disposing);
     }
 
     #region [StyleOrClass]

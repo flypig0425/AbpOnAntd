@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using AntDesign;
+using AntDesign.JsInterop;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Routing;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Volo.Abp.Threading;
 using Volo.Abp.UI.Navigation;
-using Zero.Abp.AntBlazor.Layout.Core;
 
 namespace Zero.Abp.AntBlazor.Layout
 {
@@ -21,7 +24,6 @@ namespace Zero.Abp.AntBlazor.Layout
         }
         #endregion
 
-
         #region 
         [Parameter] public RenderFragment HeaderContent { get; set; }
         [Parameter] public RenderFragment FooterContent { get; set; }
@@ -32,30 +34,77 @@ namespace Zero.Abp.AntBlazor.Layout
         [Parameter] public RenderFragment MenuExtraRender { get; set; }
         #endregion
 
-
         [Parameter] public bool Pure { get; set; }
         [Parameter] public bool Loading { get; set; }
+        [Parameter] public bool DisableMobile { get; set; }
         [Parameter] public bool DisableContentMargin { get; set; }
         [Parameter] public string ContentStyle { get; set; }
-
         [Parameter] public ApplicationMenuItemList MenuData { get; set; }
+
+
+
+        public bool IsMobile => (ScreenSize == BreakpointType.Sm || ScreenSize == BreakpointType.Xs) && !DisableMobile;
 
         private bool IsSplitMenus => Settings.SplitMenus && (/*OpenKeys != false ||*/ IsMixLayout) && !IsMobile;
 
         protected string[] TopSelectedKeys { get; set; }
         protected string[] SiderSelectedKeys { get; set; }
 
+
+        [Inject] protected IDomEventListener DomEventListener { get; set; }
+        #region [ScreenSize,OnResize,AddResizeListener]
+        public event Action<Window> OnResize;
+        public BreakpointType ScreenSize { get; internal set; } = BreakpointType.Lg;
+        public async Task AddResizeListenerAsync()
+        {
+            DomEventListener.AddShared<Window>("window", "resize", WindowResize);
+            var dimensions = await JsInvokeAsync<Window>(JSInteropConstants.GetWindow);
+            OptimizeSize(dimensions.InnerWidth);
+        }
+
+        private static readonly BreakpointType[] _breakpoints = new[] {
+            BreakpointType.Xs, BreakpointType.Sm,
+            BreakpointType.Md, BreakpointType.Lg,
+            BreakpointType.Xl, BreakpointType.Xxl
+        };
+        private void WindowResize(Window window)
+        {
+            OnResize?.Invoke(window);
+            OptimizeSize(window.InnerWidth);
+        }
+        private void OptimizeSize(decimal windowWidth)
+        {
+            BreakpointType actualBreakpoint = _breakpoints[^1];
+            for (int i = 0; i < _breakpoints.Length; i++)
+            {
+                var maxWidth = (int)_breakpoints[i];
+                var minWidth = (i > 0 ? (int)_breakpoints[i - 1] : 0);
+                if (windowWidth <= maxWidth && windowWidth >= minWidth)
+                {
+                    actualBreakpoint = _breakpoints[i];
+                    break;
+                }
+            }
+            ScreenSize = actualBreakpoint;
+            InvokeStateHasChanged();
+        }
+        #endregion
+
         [Inject] protected NavigationManager NavigationManager { get; set; }
-
-        private int SiderWidth => Settings.SiderWidth;
-        private int CollapsedWidth => Settings.CollapsedWidth;
-
+        [Inject] protected MessageService MessageService { get; set; }
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
             MatchMenuKeys();
-            SetLayoutState();
             NavigationManager.LocationChanged += OnLocationChanged;
+            LayoutConfigProvider.SettingsChanged += OnSettingsChanged;
+            LayoutConfigProvider.ThemeChanged += OnThemeChanged;
+            await LayoutConfigProvider?.UpdateThemeAsync();
+        }
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (firstRender) {await AddResizeListenerAsync(); }
+            await base.OnAfterRenderAsync(firstRender);
         }
 
         protected override void Dispose(bool disposing)
@@ -64,24 +113,27 @@ namespace Zero.Abp.AntBlazor.Layout
             {
                 NavigationManager.LocationChanged -= OnLocationChanged;
             }
+            if (LayoutConfigProvider != null)
+            {
+                LayoutConfigProvider.SettingsChanged -= OnSettingsChanged;
+                LayoutConfigProvider.ThemeChanged -= OnThemeChanged;
+            }
+            DomEventListener?.Dispose();
             base.Dispose(disposing);
+        }
+
+        protected string _themeUrl;
+        protected ElementReference _themeRef;
+        private void OnThemeChanged(string themeUrl)
+        {
+            _themeUrl = themeUrl;
+            _ = JsInvokeAsync(JSInteropConstants.AddElementTo, _themeRef, "head");
         }
 
         private void OnLocationChanged(object sender, LocationChangedEventArgs e)
         {
             MatchMenuKeys();
-            SetLayoutState();
             InvokeStateHasChanged();
-        }
-
-        private void SetLayoutState()
-        {
-            if (LayoutContextProvider != null)
-            {
-                LayoutContextProvider.HasHeader = HeaderDom != null;
-                LayoutContextProvider.HasSiderMenu = HasSiderMenu;
-                LayoutContextProvider.SiderWidth = SiderWidth;
-            }
         }
 
         private void MatchMenuKeys()
@@ -97,7 +149,7 @@ namespace Zero.Abp.AntBlazor.Layout
         #region [StyleOrClass]
         bool HasSiderMenu => (!IsTopLayout || IsMixLayout && Settings.SplitMenus) && (SiderMenuDom != null);
         bool HasLeftPadding => HasSiderMenu && Settings.FixedSidebar && !IsMobile;
-        int PaddingLeft => HasLeftPadding ? (Collapsed ? CollapsedWidth : SiderWidth) : 0;
+        int PaddingLeft => HasLeftPadding ? (Collapsed ? CollapsedWidth : Settings.SiderWidth) : 0;
 
 
         private readonly bool isChildrenLayout = false;

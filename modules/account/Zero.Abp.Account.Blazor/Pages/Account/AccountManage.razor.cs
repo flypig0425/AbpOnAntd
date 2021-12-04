@@ -1,92 +1,63 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Options;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using Volo.Abp.Identity;
-using Zero.Abp.AspNetCore.Components.Messages;
+using Zero.Abp.Account.Blazor.ProfileManagement;
 
 namespace Zero.Abp.Account.Blazor.Pages.Account
 {
     public partial class AccountManage
     {
-        [Inject] protected IProfileAppService ProfileAppService { get; set; }
 
-        [Inject] protected IUiMessageService UiMessageService { get; set; }
+        protected ProfileManagementPageOptions Options { get; }
 
-        protected string SelectedTab = "Password";
+        public AccountManage(IOptions<ProfileManagementPageOptions> options)
+        {
+            Options = options.Value;
+        }
 
-        protected ChangePasswordModel ChangePasswordModel;
 
-        protected PersonalInfoModel PersonalInfoModel;
-
+        [Inject] protected IServiceProvider ServiceProvider { get; set; }
         protected override async Task OnInitializedAsync()
         {
-            await GetUserInformations();
+            await base.OnInitializedAsync();
+            await SetItemRendersAsync();
         }
 
-        protected async Task GetUserInformations()
+
+        #region [SetItemRendersAsync]
+        public ProfileManagementPageCreationContext ProfileManagementPageCreationContext { get; private set; }
+
+        protected string SelectedGroup;
+        protected List<(string Key, string DisplayName, RenderFragment Component)> ItemRenders { get; set; } = new();
+
+        protected virtual async Task SetItemRendersAsync()
         {
-            var user = await ProfileAppService.GetAsync();
-
-            ChangePasswordModel = new ChangePasswordModel
+            ProfileManagementPageCreationContext = new ProfileManagementPageCreationContext(ServiceProvider);
+            foreach (var contributor in Options.Contributors)
             {
-                HideOldPasswordInput = !user.HasPassword
-            };
-
-            PersonalInfoModel = ObjectMapper.Map<ProfileDto, PersonalInfoModel>(user);
-        }
-
-        protected async Task ChangePasswordAsync()
-        {
-            if (string.IsNullOrWhiteSpace(ChangePasswordModel.CurrentPassword)) { return; }
-            if (ChangePasswordModel.NewPassword != ChangePasswordModel.NewPasswordConfirm)
-            {
-                await UiMessageService.Warn(L["NewPasswordConfirmFailed"]);
-                return;
+                await contributor.ConfigureAsync(ProfileManagementPageCreationContext);
             }
 
-            await ProfileAppService.ChangePasswordAsync(new ChangePasswordInput
+            ItemRenders.Clear();
+            foreach (var group in ProfileManagementPageCreationContext.Groups)
             {
-                CurrentPassword = ChangePasswordModel.CurrentPassword,
-                NewPassword = ChangePasswordModel.NewPassword
-            });
-
-            await UiMessageService.Success(L["PasswordChanged"]);
+                ItemRenders.Add((GetNormalizedString(group.Id), group.DisplayName, builder =>
+                {
+                    builder.OpenComponent(0, group.ComponentType);
+                    builder.CloseComponent();
+                }
+                ));
+            }
+            SelectedGroup = GetNormalizedString(ProfileManagementPageCreationContext.Groups.First().Id);
         }
 
-        protected async Task UpdatePersonalInfoAsync()
+        protected virtual string GetNormalizedString(string value)
         {
-            await ProfileAppService.UpdateAsync(
-                ObjectMapper.Map<PersonalInfoModel, UpdateProfileDto>(PersonalInfoModel)
-                );
-
-            await UiMessageService.Success(L["PersonalSettingsSaved"]);
+            return value.Replace('.', '_');
         }
-    }
-
-    public class ChangePasswordModel
-    {
-        public string CurrentPassword { get; set; }
-
-        public string NewPassword { get; set; }
-
-        public string NewPasswordConfirm { get; set; }
-
-        public bool HideOldPasswordInput { get; set; }
-    }
-
-    public class PersonalInfoModel
-    {
-        public string UserName { get; set; }
-
-        public string Email { get; set; }
-
-        public string Name { get; set; }
-
-        public string Surname { get; set; }
-
-        public string PhoneNumber { get; set; }
-
-        public bool PhoneNumberConfirmed { get; set; }
-
-        public bool EmailConfirmed { get; set; }
+        #endregion
     }
 }

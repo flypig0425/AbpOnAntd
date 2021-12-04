@@ -3,42 +3,24 @@
 
 @if (IsMobile)
 {
-    <Drawer Visible="@(!Collapsed)"
+    <Drawer Visible="@visible"
         Placement="left"
         Class="@($"{PrefixCls}-drawer-sider")"
         Width="@SiderWidth"
         Style="@("padding: 0; height: 100vh; "+Style)"
         BodyStyle="height: 100vh; padding: 0; display: flex; flex-direction: row"
         OnClose="async ()=> { await HandleCollapse(true); }">
-        <SiderMenu Collapsed="@false"
-               Class="@ClassNames($"{PrefixCls}-sider",Class)"
-               Links="@Links"
-               LogoStyle="@LogoStyle"
-               MenuData="@MenuData"
-               SelectedKeys="@SelectedKeys"
-               SelectedKeysChanged="@SelectedKeysChanged"
-               MenuExtraRender="MenuExtraRender"
-               MenuFooterRender="MenuFooterRender"
-               CollapsedButtonRender="CollapsedButtonRender" />
+        @renderSiderMenu()
     </Drawer>
 }
 else
 {
-    <SiderMenu Style="@Style"
-           Collapsed="@Collapsed"
-           OnCollapse="HandleCollapse"
-           Class="@ClassNames($"{PrefixCls}-sider",Class)"
-           Links="@Links"
-           LogoStyle="@LogoStyle"
-           MenuData="@MenuData"
-           SelectedKeys="@SelectedKeys"
-           SelectedKeysChanged="@SelectedKeysChanged"
-           MenuExtraRender="MenuExtraRender"
-           MenuFooterRender="MenuFooterRender"
-           CollapsedButtonRender="CollapsedButtonRender" />
+    @renderSiderMenu()
 }
 
 @code {
+    private bool visible => !Collapsed;
+
     #region [@bind-Collapsed,OnCollapse]
     [Parameter] public bool Collapsed { get; set; }
     [Parameter] public EventCallback<bool> CollapsedChanged { get; set; }
@@ -65,12 +47,40 @@ else
     [Parameter] public RenderFragment MenuFooterRender { get; set; }
     [Parameter] public RenderFragment CollapsedButtonRender { get; set; }
     #endregion
-    
-    private int SiderWidth => Settings.SiderWidth;
+
+    [Parameter] public bool IsMobile { get; set; }
+
+    [CascadingParameter(Name = "BasicLayout")]
+    protected BasicLayout BasicLayout { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
-        if (IsMobile) { await HandleCollapse(true); }
+        BasicLayout.HasSider = !IsMobile;
     }
+
+    protected override void Dispose(bool disposing)
+    {
+        BasicLayout.HasSider = false;
+        base.Dispose(disposing);
+    }
+
+
+    private RenderFragment renderSiderMenu() =>
+    @<Template>
+        <SiderMenu IsMobile="@IsMobile"
+               Style="@Style"
+               Collapsed="@Collapsed"
+               OnCollapse="HandleCollapse"
+               Class="@ClassNames($"{PrefixCls}-sider",Class)"
+               Links="@Links"
+               LogoStyle="@LogoStyle"
+               MenuData="@MenuData"
+               SelectedKeys="@SelectedKeys"
+               SelectedKeysChanged="@SelectedKeysChanged"
+               MenuExtraRender="MenuExtraRender"
+               MenuFooterRender="MenuFooterRender"
+               CollapsedButtonRender="CollapsedButtonRender" />
+    </Template>;
+
 }

@@ -10,13 +10,6 @@ namespace Zero.Abp.AntBlazor.Layout
     public partial class PageContainer
     {
         #region 
-        private bool HasHeader => LayoutContextProvider?.HasHeader ?? false;
-        private void SetHasPageContainer(bool hasPageContainer)
-        {
-            if (LayoutContextProvider != null) { LayoutContextProvider.HasPageContainer = hasPageContainer; }
-        }
-
-
         protected bool _hasFooterToolbar;
         public void SetHasFooterToolbar(bool hasFooterToolbar) { _hasFooterToolbar = hasFooterToolbar; }
         #endregion
@@ -62,12 +55,12 @@ namespace Zero.Abp.AntBlazor.Layout
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
-            SetHasPageContainer(true);
+            //SetHasPageContainer(true);
         }
 
         protected override void Dispose(bool disposing)
         {
-            SetHasPageContainer(false);
+            //SetHasPageContainer(false);
             base.Dispose(disposing);
         }
 

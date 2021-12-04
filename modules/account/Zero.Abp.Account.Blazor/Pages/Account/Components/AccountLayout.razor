@@ -1,0 +1,40 @@
+﻿@using Zero.Abp.AspNetCore.Components.Web.Theming.Toolbars
+@inherits LayoutComponentBase
+
+<div class="container">
+    <div class="header">
+        <Space class="left">
+            <Branding LogoClass="logo" TitleClass="title" />
+        </Space>
+       @* <Space class="right">
+            <div class="lang" data-lang>
+                <SelectLang />
+            </div>
+        </Space>*@
+          <HeaderRight ItemRenders="ToolbarItemRenders"/>
+    </div>
+    <div class="content">
+      @Body
+    </div>
+</div>
+
+@inject IToolbarManager ToolbarManager
+
+@code{
+ protected List<RenderFragment> ToolbarItemRenders { get; set; } = new List<RenderFragment>();
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        var toolbar = await ToolbarManager.GetAsync(StandardToolbars.Main);
+        ToolbarItemRenders.Clear();
+        var sequence = 0;
+        foreach (var item in toolbar.Items)
+        {
+            ToolbarItemRenders.Add(builder =>
+            {
+                builder.OpenComponent(sequence++, item.ComponentType);
+                builder.CloseComponent();
+            });
+        }
+    }
+}

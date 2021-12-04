@@ -44,14 +44,15 @@ namespace AbpBlazorServerApp.Blazor
         typeof(AbpBlazorServerAppHttpApiModule),
         typeof(AbpAspNetCoreMultiTenancyModule),
 
-        typeof(AbpAspNetCoreMvcUiBasicThemeModule),
-        typeof(AbpAccountWebIdentityServerModule),
+         typeof(AbpAspNetCoreMvcUiBasicThemeModule),
+         typeof(AbpAccountWebIdentityServerModule),
+         typeof(AbpAccountWebModule),
 
         typeof(AbpAutofacModule),
         typeof(AbpSwashbuckleModule),
         typeof(AbpAspNetCoreAuthenticationJwtBearerModule),
         typeof(AbpAspNetCoreSerilogModule),
-        //typeof(AbpAccountBlazorServerModule),
+        typeof(AbpAccountBlazorServerModule),
         typeof(AbpAspNetCoreComponentsServerAntdThemeModule),
         typeof(AbpIdentityBlazorServerModule),
         typeof(AbpTenantManagementBlazorServerModule),

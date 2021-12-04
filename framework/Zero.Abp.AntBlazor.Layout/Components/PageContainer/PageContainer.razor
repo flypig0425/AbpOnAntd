@@ -25,7 +25,6 @@
         @if (Loading.IsT0 && Loading.AsT0 == false)
         {
             <div class="@($"{PrefixedClassName}-children-content")">
-                <PageAlert />
                 @ChildContent
             </div>
             @if (_hasFooterToolbar)
@@ -50,13 +49,19 @@
     <!-- #region Footer -->
     @if (HasFooter)
     {
-        <CascadingValue Value="@this" IsFixed>
+        <CascadingValue Value="@this" Name="PageContainer" IsFixed>
             <FooterToolbar> @Footer </FooterToolbar>
         </CascadingValue>
     }
     <!-- #endregion -->
 </div>
 @code {
+    //[CascadingParameter(Name = "HasHeader")]
+
+    [CascadingParameter(Name="BasicLayout")]
+    protected BasicLayout BasicLayout { get; set; }
+    private bool HasHeader => BasicLayout?.HasHeader??false;
+
     private bool HasFooter => Footer != null;
     //private bool HasBreadCrumb => false;
     private bool HasPageHeader => AnyNoNull(

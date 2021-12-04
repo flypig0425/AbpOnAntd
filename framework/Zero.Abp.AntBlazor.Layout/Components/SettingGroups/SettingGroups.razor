@@ -1,0 +1,44 @@
+﻿@namespace Zero.Abp.AntBlazor.Layout
+
+<div class="settings-main">
+    <div class="leftMenu">
+        <Menu Mode="@Mode"
+              SelectedKeys="@(new[]{ SelectedKey})"
+              OnMenuItemClicked="async (item)=>await HandleChange(item.Key)">
+            @foreach (var item in Items)
+            {
+                <MenuItem Key="@item.Key">@item.DisplayName</MenuItem>
+            }
+        </Menu>
+    </div>
+    <div class="right">
+        @foreach (var item in Items)
+        {
+            if (item.Key == SelectedKey)
+            {
+                <div class="title">@item.DisplayName</div>
+                @item.Component
+                break;
+            }
+        }
+    </div>
+</div>
+
+@code {
+    protected MenuMode Mode = MenuMode.Inline;
+
+    #region [@bind-SelectedKey]
+    [Parameter] public string SelectedKey { get; set; }
+    [Parameter] public EventCallback<string> SelectedKeyChanged { get; set; }
+    private async Task HandleChange(string key)
+    {
+        SelectedKey = key;
+        if (SelectedKeyChanged.HasDelegate)
+        {
+            await SelectedKeyChanged.InvokeAsync(key);
+        }
+    }
+    #endregion
+
+    [Parameter] public List<(string Key, string DisplayName, RenderFragment Component)> Items { get; set; } = new();
+}

@@ -1,8 +1,11 @@
 using AntDesign;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using System;
+using System.Linq.Expressions;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Zero.Abp.AntBlazor.Layout.LayoutConfig;
 
 namespace Zero.Abp.AntBlazor.Layout
 {
@@ -37,13 +40,16 @@ namespace Zero.Abp.AntBlazor.Layout
 
         protected override async Task OnInitializedAsync()
         {
-            //LayoutStateProvider.OnChange += OnSettingsChanged;
             await base.OnInitializedAsync();
+            //LayoutConfigProvider.SettingsChanged += OnSettingsChanged;
         }
 
         protected override void Dispose(bool disposing)
         {
-            //LayoutStateProvider.OnChange -= OnSettingsChanged;
+            //if (LayoutConfigProvider != null)
+            //{
+            //    LayoutConfigProvider.SettingsChanged -= OnSettingsChanged;
+            //}
             base.Dispose(disposing);
         }
 

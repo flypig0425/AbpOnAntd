@@ -1,5 +1,4 @@
 ﻿using AntDesign;
-using AntDesign.JsInterop;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
@@ -13,22 +12,56 @@ namespace Zero.Abp.SettingManagement.Blazor.Pages.SettingManagement
 {
     public partial class SettingManagement
     {
+        protected SettingManagementComponentOptions Options { get; }
+
+        public SettingManagement(IOptions<SettingManagementComponentOptions> options)
+        {
+            Options = options.Value;
+        }
+
+        protected List<BreadcrumbItem> BreadcrumbItems = new();
+     
         [Inject] protected IServiceProvider ServiceProvider { get; set; }
-
-        protected SettingComponentCreationContext SettingComponentCreationContext { get; set; }
-
-        [Inject] protected IOptions<SettingManagementComponentOptions> _options { get; set; }
-
         [Inject] protected IStringLocalizer<AbpSettingManagementResource> L { get; set; }
 
-        protected SettingManagementComponentOptions Options => _options.Value;
+        protected async override Task OnInitializedAsync()
+        {
+            await base.OnInitializedAsync();
+            await SetItemRendersAsync();
+        }
 
-        protected List<(string key, RenderFragment render)> SettingItemRenders { get; set; } = new();
+        #region  [SetItemRendersAsync]
+        protected SettingComponentCreationContext SettingComponentCreationContext { get; set; }
 
         protected string SelectedGroup;
-        protected List<BreadcrumbItem> BreadcrumbItems = new();
+        protected List<(string Key, string DisplayName, RenderFragment Component)> ItemRenders { get; set; } = new();
 
-        protected MenuMode Mode = MenuMode.Inline;
+        protected virtual async Task SetItemRendersAsync()
+        {
+            SettingComponentCreationContext = new SettingComponentCreationContext(ServiceProvider);
+            foreach (var contributor in Options.Contributors)
+            {
+                await contributor.ConfigureAsync(SettingComponentCreationContext);
+            }
+
+            ItemRenders.Clear();
+            foreach (var group in SettingComponentCreationContext.Groups)
+            {
+                ItemRenders.Add((GetNormalizedString(group.Id), group.DisplayName, builder =>
+                {
+                    builder.OpenComponent(0, group.ComponentType);
+                    builder.CloseComponent();
+                }
+                ));
+            }
+            SelectedGroup = GetNormalizedString(SettingComponentCreationContext.Groups.First().Id);
+        }
+
+        protected virtual string GetNormalizedString(string value)
+        {
+            return value.Replace('.', '_');
+        } 
+        #endregion
 
         //protected async Task ResizeAsync()
         //{
@@ -48,32 +81,5 @@ namespace Zero.Abp.SettingManagement.Blazor.Pages.SettingManagement
         //        Mode = MenuMode.Horizontal;
         //    }
         //}
-
-        protected async override Task OnInitializedAsync()
-        {
-            SettingComponentCreationContext = new SettingComponentCreationContext(ServiceProvider);
-
-            foreach (var contributor in Options.Contributors)
-            {
-                await contributor.ConfigureAsync(SettingComponentCreationContext);
-            }
-
-            SettingItemRenders.Clear();
-            foreach (var group in SettingComponentCreationContext.Groups)
-            {
-                SettingItemRenders.Add((GetNormalizedString(group.Id), builder =>
-                 {
-                     builder.OpenComponent(0, group.ComponentType);
-                     builder.CloseComponent();
-                 }
-                ));
-            }
-            SelectedGroup = GetNormalizedString(SettingComponentCreationContext.Groups.First().Id);
-        }
-
-        protected virtual string GetNormalizedString(string value)
-        {
-            return value.Replace('.', '_');
-        }
     }
 }

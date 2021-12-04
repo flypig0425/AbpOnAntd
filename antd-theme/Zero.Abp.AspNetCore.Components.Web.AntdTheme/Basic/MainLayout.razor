@@ -1,18 +1,16 @@
 ﻿@using Volo.Abp.UI.Navigation
 @using Zero.Abp.AntBlazor.Layout
-@using Zero.Abp.AntBlazor.Layout.Core
 @using Zero.Abp.AspNetCore.Components.Web.Theming.Toolbars
 @inherits LayoutComponentBase
 @inject IMenuManager MenuManager
 @inject IToolbarManager ToolbarManager
 
-<LayoutContextProvider>
-    <BasicLayout MenuData="@MenuData"
-                 HeaderRightItemRenders="@ToolbarItemRenders">
-        @Body
-    </BasicLayout>
-    <SettingDrawer />
-</LayoutContextProvider>
+<BasicLayout MenuData="@MenuData"
+             HeaderRightItemRenders="@ToolbarItemRenders">
+    @Body
+</BasicLayout>
+<SettingDrawer />
+
 @code {
     protected ApplicationMenuItemList MenuData { get; set; }
     protected List<RenderFragment> ToolbarItemRenders { get; set; } = new List<RenderFragment>();

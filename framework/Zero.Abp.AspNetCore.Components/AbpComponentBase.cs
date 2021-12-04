@@ -63,7 +63,7 @@ namespace Zero.Abp.AspNetCore.Components
 
         protected IGuidGenerator GuidGenerator => LazyGetRequiredService(ref _guidGenerator);
         private IGuidGenerator _guidGenerator;
-        
+
         #region 
         protected IUiMessageBoxService MessageBox => LazyGetNonScopedRequiredService(ref _messageBox);
         private IUiMessageBoxService _messageBox;
@@ -145,8 +145,7 @@ namespace Zero.Abp.AspNetCore.Components
             return reference;
         }
 
-        [Inject]
-        protected IServiceProvider NonScopedServices { get; set; }
+        [Inject] protected IServiceProvider NonScopedServices { get; set; }
 
         protected virtual IStringLocalizer CreateLocalizer()
         {
@@ -170,8 +169,28 @@ namespace Zero.Abp.AspNetCore.Components
             await InvokeAsync(async () =>
             {
                 await UserExceptionInformer.InformAsync(new UserExceptionInformerContext(exception));
-                StateHasChanged();
+                await InvokeAsync(StateHasChanged);
             });
+        }
+
+        protected async Task TryActionAsync(Action tryAction, Action finallyAction=null)
+        {
+            try
+            {
+                tryAction?.Invoke();
+            }
+            catch (Exception ex)
+            {
+                await HandleErrorAsync(ex);
+            }
+            finally
+            {
+                if (finallyAction != null)
+                {
+                    finallyAction.Invoke();
+                    await InvokeAsync(StateHasChanged);
+                }
+            }
         }
     }
 }

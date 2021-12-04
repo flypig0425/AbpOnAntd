@@ -1,7 +1,10 @@
 ﻿using AntDesign;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
-using Zero.Abp.AntBlazor.Layout.Core.LayoutConfig;
+using System;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
+using Zero.Abp.AntBlazor.Layout.LayoutConfig;
 using Zero.Abp.AntBlazor.Layout.Localization;
 using Zero.Abp.AntBlazorUI;
 
@@ -9,32 +12,64 @@ namespace Zero.Abp.AntBlazor.Layout
 {
     public abstract class AntLayoutComponentBase : AntUIComponentBase
     {
+        //[CascadingParameter]
+        //private LayoutContextProvider LayoutContextProvider { get; set; }
+
         #region LayoutContextProvider
-        [CascadingParameter]
-        protected LayoutContextProvider LayoutContextProvider { get; set; }
-        protected LayoutSettings Settings => LayoutContextProvider?.Settings ?? new LayoutSettings();
+        //protected bool IsMobile => LayoutContextProvider?.IsMobile ?? false;
 
-        protected bool IsSideLayout => Settings.Layout == Layout.Side.Name;
-        protected bool IsTopLayout => Settings.Layout == Layout.Top.Name;
-        protected bool IsMixLayout => Settings.Layout == Layout.Mix.Name;
-        protected bool IsMobile => LayoutContextProvider?.IsMobile ?? false;
+        //protected bool HasHeader
+        //{
+        //    get { return LayoutContextProvider?.HasHeader ?? false; }
+        //    set { if (LayoutContextProvider != null) { LayoutContextProvider.HasHeader = value; } }
+        //}
+        //protected bool HasSider
+        //{
+        //    get { return LayoutContextProvider?.HasSider ?? false; }
+        //    set { if (LayoutContextProvider != null) { LayoutContextProvider.HasSider = value; } }
+        //}
 
-        public bool HasPageContainer => LayoutContextProvider?.HasPageContainer ?? false;
+        //protected void SetDisableMobile(bool disableMobile)
+        //{
+        //    if (LayoutContextProvider != null) { LayoutContextProvider.DisableMobile = disableMobile; }
+        //}
         #endregion
 
         [Parameter] public string PrefixCls { get; set; } = $"ant-pro";
 
-        //[Inject] protected LayoutState LayoutState { get; set; }
-        //protected LayoutSettings Settings => LayoutState.Settings;
-
-        //protected bool IsSideLayout => Settings.Layout == Layout.Side.Name;
-        //protected bool IsTopLayout => Settings.Layout == Layout.Top.Name;
-        //protected bool IsMixLayout => Settings.Layout == Layout.Mix.Name;
-
         [Inject] protected IStringLocalizer<AntBlazorLayoutResource> L { get; set; }
-        protected virtual void OnSettingsChanged()
+
+        [Inject] protected ILayoutConfigProvider LayoutConfigProvider { get; set; }
+
+        #region ILayoutConfigProvider
+        protected LayoutSettings Settings { get; private set; }
+        protected bool IsSideLayout => Settings.Layout == Layout.Side.Name;
+        protected bool IsTopLayout => Settings.Layout == Layout.Top.Name;
+        protected bool IsMixLayout => Settings.Layout == Layout.Mix.Name;
+
+        protected int SiderWidth => Settings.SiderWidth;
+        protected int CollapsedWidth => Settings.CollapsedWidth;
+
+        protected async ValueTask UpdateSettingAsync<TValue>(
+         Expression<Func<LayoutSettings, TValue>> propertySelector,
+         TValue newValue, Func<TValue> currentValue = null)
         {
-            InvokeStateHasChangedAsync();
+            if (LayoutConfigProvider == null) { return; }
+            await LayoutConfigProvider.UpdateSettingAsync(propertySelector, newValue, currentValue);
+        }
+        #endregion
+
+        protected override async Task OnInitializedAsync()
+        {
+            await base.OnInitializedAsync();
+            Settings = await LayoutConfigProvider.GetSettingsAsync();
+        }
+
+
+        protected void OnSettingsChanged()
+        {
+            //AsyncHelper.RunSync(async () => Settings = await LayoutConfigProvider.GetSettingsAsync());
+            InvokeStateHasChanged();
         }
     }
 

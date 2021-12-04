@@ -4,15 +4,9 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
-
   <ItemGroup>
     <Content Remove="Localization\Resources\AntBlazorLayout\*.json" />
     <EmbeddedResource Include="Localization\Resources\AntBlazorLayout\*.json" />
-  </ItemGroup>
-
-
-  <ItemGroup>
-    <Compile Remove="Core\LayoutState.cs" />
   </ItemGroup>
 
   <ItemGroup>

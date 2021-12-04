@@ -1,70 +1,9 @@
-﻿@page "/account/manage-profile"
-@using Microsoft.AspNetCore.Components.Forms
+﻿@using Microsoft.AspNetCore.Authorization
+
+@page "/account/manage-profile"
+@attribute [Authorize]
 @inherits AbpAccountComponentBase
 
-<Row>
-    <Col Span="12">
-    <Tabs @bind-ActiveKey="@SelectedTab" TabPosition="TabPosition.Left">
-        @if (ChangePasswordModel != null)
-            {
-            <TabPane Key="Password" Tab="@L["ProfileTab:Password"]">
-                <Form Model="@ChangePasswordModel"
-                  LabelColSpan="8"
-                  WrapperColSpan="16"
-                  OnFinish="ChangePasswordAsync">
-                    <FormItem Label="@L["DisplayName:CurrentPassword"]">
-                        <InputPassword @bind-Value="@context.CurrentPassword" />
-                    </FormItem>
-                    <FormItem Label="@L["DisplayName:NewPassword"]">
-                        <InputPassword @bind-Value="@context.NewPassword" />
-                    </FormItem>
-                    <FormItem Label="@L["DisplayName:NewPasswordConfirm"]">
-                        <InputPassword @bind-Value="@context.NewPasswordConfirm" />
-                    </FormItem>
-                    <FormItem WrapperColOffset="8" WrapperColSpan="16">
-                        <Button Type="@ButtonType.Primary" HtmlType="submit">
-                                @L["Save"]
-                        </Button>
-                    </FormItem>
-                </Form>
-            </TabPane>
-            }
-            @if (PersonalInfoModel != null)
-            {
-            <TabPane Key="PersonalInfo" Tab="@L["ProfileTab:PersonalInfo"]">
-                <Form Model="@PersonalInfoModel"
-                  LabelColSpan="8"
-                  WrapperColSpan="16"
-                  OnFinish="UpdatePersonalInfoAsync">
-                    <FormItem Label="@L["DisplayName:UserName"]">
-                        <Input @bind-Value="@context.UserName" />
-                    </FormItem>
-
-                    <FormItem Label="@(L["DisplayName:Surname"]+L["DisplayName:Name"])" Style="margin-bottom:0px">
-                        <InputGroup Compact>
-                            <FormItem NoStyle>
-                                <Input @bind-Value="@context.Surname" Placeholder="@L["DisplayName:Surname"]" />
-                            </FormItem>
-                            <FormItem NoStyle>
-                                <Input @bind-Value="@context.Name" Placeholder="@L["DisplayName:Name"]" />
-                            </FormItem>
-                        </InputGroup>
-                    </FormItem>
-
-                    <FormItem Label="@L["DisplayName:Email"]">
-                        <Input @bind-Value="@context.Email" />
-                    </FormItem>
-                    <FormItem Label="@L["DisplayName:PhoneNumber"]">
-                        <Input @bind-Value="@context.PhoneNumber" />
-                    </FormItem>
-                    <FormItem WrapperColOffset="8" WrapperColSpan="16">
-                        <Button Type="@ButtonType.Primary" HtmlType="submit">
-                                @L["Save"]
-                        </Button>
-                    </FormItem>
-                </Form>
-            </TabPane>
-            }
-    </Tabs>
-    </Col>
-</Row>
+<PageContainer Title="@L["MyAccount"]">
+    <SettingGroups Items="@ItemRenders" @bind-SelectedKey="@SelectedGroup" />
+</PageContainer>

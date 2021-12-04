@@ -5,19 +5,20 @@
      style="@StyleValues(Width,Style)">
     @*@if (RenderContent != null) { @RenderContent((null, width)); }*@
     <div class=@($"{BaseClassName}-left")>@Extra</div>
-    <div class=@($"{BaseClassName}-right")>@ChildContent</div>
+    <div class=@($"{BaseClassName}-right")>
+        @ChildContent
+    </div>
 </div>
 
 @code {
-    [CascadingParameter]
+    [CascadingParameter(Name = "PageContainer")]
     protected PageContainer PageContainer { get; set; }
 
+    [CascadingParameter(Name = "BasicLayout")]
+    protected BasicLayout BasicLayout { get; set; }
+    private bool HasSider => BasicLayout?.HasSider ?? false;
+    private bool IsMobile => BasicLayout?.IsMobile ?? false;
     #region
-    private bool isMobile => IsMobile;
-    private bool hasSiderMenu => LayoutContextProvider?.HasSiderMenu ?? false;
-    private int siderWidth => LayoutContextProvider?.SiderWidth ?? 0;
-
-
     private void SetHasFooterToolbar(bool hasFooterToolbar)
     {
         PageContainer?.SetHasFooterToolbar(hasFooterToolbar);
@@ -29,7 +30,7 @@
     //[Parameter] public RenderFragment<(object,string leftWidth)> RenderContent { get; set; }
 
     private string BaseClassName => $"{PrefixCls}-footer-bar";
-    private string Width => hasSiderMenu ? (siderWidth > 0 ? (isMobile ? "width:100%" : $"width:calc(100% - ${siderWidth}px)") : "width:100%") : "";
+    private string Width => HasSider ? (SiderWidth > 0 ? (IsMobile ? "width:100%" : $"width:calc(100% - ${SiderWidth}px)") : "width:100%") : "";
 
     protected override async Task OnInitializedAsync()
     {

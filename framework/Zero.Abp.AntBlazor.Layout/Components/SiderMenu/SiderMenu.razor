@@ -1,5 +1,4 @@
 @namespace Zero.Abp.AntBlazor.Layout
-@using Zero.Abp.AntBlazorUI.Core
 @inherits AntLayoutComponentBase
 @*@if (FixedHeader)
     {
@@ -39,15 +38,16 @@
     <div style="flex: 1; overflow-y: auto; overflow-x: hidden;">
         <BaseMenu Style="width: 100%"
                   Class="@($"{BaseClassName}-menu")"
-                  Mode="@MenuMode"
+                  Mode="@MenuMode.Inline"
                   Theme="@MenuTheme"
                   MenuData="@MenuData"
+                  InlineCollapsed="@Collapsed"
                   SelectedKeys="@SelectedKeys"
                   SelectedKeysChanged="@SelectedKeysChanged" />
     </div>
 
     <div class="@BaseClassName-links">
-        <Menu Mode="@MenuMode"
+        <Menu Mode="@MenuMode.Vertical"
               Theme="@MenuTheme"
               InlineIndent="16"
               Class="@($"{BaseClassName}-link-menu")"
@@ -119,9 +119,7 @@
 
     #region private
 
-    private MenuMode MenuMode => Collapsed ? MenuMode.Vertical : MenuMode.Inline;
-    private int SiderWidth => Settings.SiderWidth;
-    private int CollapsedWidth => Settings.CollapsedWidth;
+    //private MenuMode MenuMode => Collapsed ? MenuMode.Inline : MenuMode.Inline;
     private bool HasHeaderDom => Settings.MenuHeaderRender && (!IsMixLayout || !Settings.HeaderRender);
 
     private SiderTheme SiderTheme => Settings.SidebarTheme.ToSiderTheme();
@@ -138,6 +136,8 @@
         Collapsed = collapsed;
         await HandleCollapse(collapsed);
     }
+    
+    [Parameter] public bool IsMobile { get; set; }
 
     #region [StyleOrClass]
     //private string siderWidth => $"{(Collapsed ? collapsedWidth : SiderWidth)}px";

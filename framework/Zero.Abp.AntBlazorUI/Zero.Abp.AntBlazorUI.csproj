@@ -23,5 +23,4 @@
 		<EmbeddedResource Include="Localization\Resources\AntBlazorUI\*.json" />
 	</ItemGroup>
 	
-
 </Project>

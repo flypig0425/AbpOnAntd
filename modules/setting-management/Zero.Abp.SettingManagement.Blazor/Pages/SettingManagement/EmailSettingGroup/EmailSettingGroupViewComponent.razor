@@ -1,5 +1,6 @@
 ﻿@using Volo.Abp.SettingManagement.Localization
-@inherits Zero.Abp.AspNetCore.Components.AbpComponentBase
+@using Zero.Abp.AspNetCore.Components
+@inherits AbpComponentBase
 @inject AbpBlazorMessageLocalizerHelper<AbpSettingManagementResource> LH
 
 @if (EmailSettings != null)
@@ -49,7 +50,7 @@
         </FormItem>
 
         <FormItem Label="@L["SmtpPassword"]">
-            <Input @bind-Value="@context.SmtpPassword" />
+            <InputPassword @bind-Value="@context.SmtpPassword" />
         </FormItem>
 
     }

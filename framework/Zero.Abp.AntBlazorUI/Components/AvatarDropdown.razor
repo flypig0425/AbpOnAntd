@@ -22,7 +22,7 @@
                 {
                     string menuIcon = menuItem?.Icon ?? "";
                     <MenuItem Key="@menuItem.Name"
-                              OnClick="@(() => NavigateToAsync(menuItem.Url, menuItem.Target))">
+                      OnClick="@(() => NavigateToAsync(menuItem.Url, menuItem.Target))">
                         <IconView Icon="@menuItem.Icon" />
                         @menuItem.DisplayName
                     </MenuItem>
@@ -36,14 +36,13 @@
         <span @ref="@context.Current" class="action account">
             <Avatar Size="small" Class="avatar" Src="@Avatar" Alt="U" Icon="user" />
             <span class="name anticon">
-                @if (CurrentTenant.Name != null)
-                {
-                    <span><i>@CurrentTenant.Name</i>\@CurrentUser.UserName</span>
-                }
-                else
-                {
-                    <span>@CurrentUser.UserName</span>
-                }
+                <span>
+                    @CurrentUser.UserName
+                    @if (CurrentTenant.Name != null)
+                    {
+                        <i>[@CurrentTenant.Name]</i>
+                    }
+                </span>
             </span>
         </span>
     </Unbound>

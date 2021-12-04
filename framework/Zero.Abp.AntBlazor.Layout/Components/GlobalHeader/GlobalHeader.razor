@@ -4,22 +4,21 @@
 <div class="@className" style="@Style">
     @if (IsMobile)
     {
-            <div class="@BaseClassName-logo">
-                <Branding HideTitle />
-            </div>
-        @if (CollapsedButtonRender != null)
-        {
-                    <span class="@BaseClassName-collapsed-button" style="cursor:pointer"
-                  @onclick="@(async () => { await HandleCollapse(!Collapsed); })">
-                @CollapsedButtonRender(Collapsed)
-                    </span>
-        }
+        <div class="@BaseClassName-logo">   
+            <Branding HideTitle /> 
+       </div>
+       <Template If="()=>CollapsedButtonRender != null">
+           <span class="@BaseClassName-collapsed-button" style="cursor:pointer"
+           @onclick="@(async () => { await HandleCollapse(!Collapsed); })">
+           @CollapsedButtonRender(Collapsed)
+           </span>
+       </Template>
     }
     else if (IsMixLayout)
     {
-            <div class="@BaseClassName-logo">
-                <Branding />
-            </div>
+        <div class="@BaseClassName-logo">
+        <Branding />
+        </div>
     }
     <div style="flex: 1">@ChildContent</div>
     @if (RightContentRender != null)
@@ -28,11 +27,14 @@
     }
     else
     {
-         <HeaderRight ItemRenders="RightItemRenders"/>
+    <HeaderRight ItemRenders="RightItemRenders"/>
     }
 </div>
 
 @code {
+    
+    [Parameter] public bool IsMobile { get; set; }
+
     #region [@bind-Collapsed,OnCollapse]
     [Parameter] public bool Collapsed { get; set; }
     [Parameter] public EventCallback<bool> CollapsedChanged { get; set; }
@@ -60,7 +62,7 @@
     , ($"{BaseClassName}-layout-{Settings.Layout}", Settings.Layout != null && Settings.HeaderTheme == MenuTheme.Dark.Name)
     );
     #endregion
-        
+
     static readonly RenderFragment<bool> defaultCollapsedButtonRender = collapsed =>
     @<Icon Type="@(collapsed ? "menu-unfold" : "menu-fold")" Theme="outline" />;
 }
