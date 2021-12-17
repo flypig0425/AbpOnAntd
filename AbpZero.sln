@@ -111,8 +111,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.PermissionManageme
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.PermissionManagement.Blazor.WebAssembly", "modules\permission-management\Zero.Abp.PermissionManagement.Blazor.WebAssembly\Zero.Abp.PermissionManagement.Blazor.WebAssembly.csproj", "{EA2D9DCE-A518-4BC7-A8A4-A5FE3B1CA9FC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AntDesign", "..\GitHub\weidyg\ant-design-blazor\components\AntDesign.csproj", "{91A975E4-9FE8-4431-BA60-F55F4298BA0C}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "account", "account", "{A4266861-1074-4143-8746-B9C13379D369}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zero.Abp.Account.Blazor", "modules\account\Zero.Abp.Account.Blazor\Zero.Abp.Account.Blazor.csproj", "{672EE7FC-38C1-4125-B13E-98A000ED6A3A}"
@@ -295,10 +293,6 @@ Global
 		{EA2D9DCE-A518-4BC7-A8A4-A5FE3B1CA9FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA2D9DCE-A518-4BC7-A8A4-A5FE3B1CA9FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA2D9DCE-A518-4BC7-A8A4-A5FE3B1CA9FC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{91A975E4-9FE8-4431-BA60-F55F4298BA0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{91A975E4-9FE8-4431-BA60-F55F4298BA0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{91A975E4-9FE8-4431-BA60-F55F4298BA0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{91A975E4-9FE8-4431-BA60-F55F4298BA0C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{672EE7FC-38C1-4125-B13E-98A000ED6A3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{672EE7FC-38C1-4125-B13E-98A000ED6A3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{672EE7FC-38C1-4125-B13E-98A000ED6A3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
