@@ -20,10 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="AbpAntdTheme.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Remove="package-lock.json" />
     <Content Remove="package.json" />
     <Content Remove="_Imports.razor" />

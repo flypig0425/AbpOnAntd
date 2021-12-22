@@ -1,10 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Volo.Abp.Localization;
+﻿using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.VirtualFileSystem;
 using Zero.Abp.AntBlazor.Field.Localization;
-using Zero.Abp.AntBlazor.Layout.LayoutConfig;
-using Zero.Abp.AntBlazor.Layout.Localization;
 using Zero.Abp.AntBlazorUI;
 
 namespace Zero.Abp.AntBlazor.Field
